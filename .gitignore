@@ -1,29 +1,12 @@
-# 梦幻西游漫剧项目（无关）
-梦幻西游*.docx
-梦幻西游*.pdf
-*.png
-*.jpg
-*.mp4
-*.fbx
-*.glb
-舞天姬3D资产/
-视频拼合尝试/
-剑侠客-原版参考.png
-舞天姬-原版参考.jpg
-海毛虫-原版参考.png
-
-# 小红书灵感库（无关）
-xiaohongshu-inspo/
-
-# 飞书skills（无关）
-.agents/
-
-# 临时/补丁脚本
-patch_hint.py
-
 # Python
 __pycache__/
 *.pyc
 
-# 系统
+# IDE
 .vscode/
+
+# Claude
+.claude/
+
+# 临时/补丁脚本
+patch_hint.py
