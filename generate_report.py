@@ -786,7 +786,7 @@ html += f'''  </table>
 </html>'''
 
 # Write
-output_path = f'd:\\AI漫剧制作\\红利低波50ETF_515450_深度分析.html'
+output_path = f'd:\\投资管理系统\\红利低波50ETF_515450_深度分析.html'
 with open(output_path, 'w', encoding='utf-8') as f:
     f.write(html)
 

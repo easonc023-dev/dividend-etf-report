@@ -1,3 +1,3 @@
 @echo off
-cd /d "d:\AI漫剧制作"
+cd /d "d:\投资管理系统"
 python auto_monitor.py
