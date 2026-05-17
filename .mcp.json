@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "akshare": {
+      "command": "python",
+      "args": ["d:/AI漫剧制作/akshare_mcp_server.py"]
+    }
+  }
+}

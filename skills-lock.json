@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "skills": {
+    "lark-approval": {
+      "source": "open.feishu.cn",
+      "sourceType": "well-known",
+      "computedHash": "97f4931f97dc1353994e771cc6abc1bb2d84503a999842d5c0ca682dd5f07c26"
+    },
+    "lark-attendance": {
+      "source": "open.feishu.cn",
+      "sourceType": "well-known",
+      "computedHash": "45c8ec357a987fa755b57a757ad01d00c32a5a6e3eb96d3902d8851aad6f8528"
+    },
+    "lark-base": {
+      "source": "open.feishu.cn",
+      "sourceType": "well-known",
+      "computedHash": "5ab364d6a77552e04c030f10c811999669c05471d7fdb28d21262cb5a28dec71"
+    },
+    "lark-calendar": {
+      "source": "open.feishu.cn",
+      "sourceType": "well-known",
+      "computedHash": "ca92798ade6a40b56528e801cb45743045f284f87ab9204e0e3d947c4036a771"
+    },
+    "lark-contact": {
+      "source": "open.feishu.cn",
+      "sourceType": "well-known",
+      "computedHash": "c905ce0185a81a19b3ee2cb814f20af0f028aaeb79ae48ee38242ef37955c338"
+    },
+    "lark-doc": {
+      "source": "open.feishu.cn",
+      "sourceType": "well-known",
+      "computedHash": "51d7a4e244892e8f44165f59b4c3e56f97c63d1bb57fbbcf0c10e5b9520df52a"
+    },
+    "lark-drive": {
+      "source": "open.feishu.cn",
+      "sourceType": "well-known",
+      "computedHash": "a0a98fae6634581a5b1103db388757d1e662865a5255d5d94e069e7bfe26b1a9"
+    },
+    "lark-event": {
+      "source": "open.feishu.cn",
+      "sourceType": "well-known",
+      "computedHash": "0403ed86fb451a59c965686e795d32e37b69d904e44167a5de8fcf59a27d488e"
+    },
+    "lark-im": {
+      "source": "open.feishu.cn",
+      "sourceType": "well-known",
+      "computedHash": "de459f0dd19b8b58f4c9f6383d7e755bd666c6707662e6223a23130a1664e5ba"
+    },
+    "lark-mail": {
+      "source": "open.feishu.cn",
+      "sourceType": "well-known",
+      "computedHash": "65787bc026063e9164b0e1428c70459f33a474839a4055ee3f1fc171f9e15752"
+    },
+    "lark-minutes": {
+      "source": "open.feishu.cn",
+      "sourceType": "well-known",
+      "computedHash": "bafc37d71aae4b35aef04ff7402751020fd799efb60bbb483240125e7b0775f1"
+    },
+    "lark-okr": {
+      "source": "open.feishu.cn",
+      "sourceType": "well-known",
+      "computedHash": "2e0eeb7b434b59e8766d910fdcda8ff0b2690dc8779f65d816b21474342e1033"
+    },
+    "lark-openapi-explorer": {
+      "source": "open.feishu.cn",
+      "sourceType": "well-known",
+      "computedHash": "a49ad0ad41b4bdeec9f5ccae6d5f6fba7b128fae0b0f428fde7df94cda6e6555"
+    },
+    "lark-shared": {
+      "source": "open.feishu.cn",
+      "sourceType": "well-known",
+      "computedHash": "4ce1b2bc44eb7e20338631037046d9e1468ba941a2a02a364fab990f06c60750"
+    },
+    "lark-sheets": {
+      "source": "open.feishu.cn",
+      "sourceType": "well-known",
+      "computedHash": "728c320ab043282f05c5825aab7c04bf9e1d3930c6e3f92c6ceeb4211a3c481f"
+    },
+    "lark-skill-maker": {
+      "source": "open.feishu.cn",
+      "sourceType": "well-known",
+      "computedHash": "78e2f8725d2525c846bd1fd07d82bdc718be4c382b9971d3d74ffa14d3e2b7c5"
+    },
+    "lark-slides": {
+      "source": "open.feishu.cn",
+      "sourceType": "well-known",
+      "computedHash": "685d67cf9d5c9612149f75f3ad4e5f8131eba844b579d0c8ffb3dafa5930af7a"
+    },
+    "lark-task": {
+      "source": "open.feishu.cn",
+      "sourceType": "well-known",
+      "computedHash": "addd24a724eef0ee686bd28d1d974668efb3c94a69d2cc66f35ffd37c1250c96"
+    },
+    "lark-vc": {
+      "source": "open.feishu.cn",
+      "sourceType": "well-known",
+      "computedHash": "70c94f301eaa6680445fa425e5554be1e1d6d48d3349128ff4e1f3ceece97646"
+    },
+    "lark-whiteboard": {
+      "source": "open.feishu.cn",
+      "sourceType": "well-known",
+      "computedHash": "2ede5c36ad6995d65d0f08958c8fae0a5051de4dd3376898a1d5cc65e37f6663"
+    },
+    "lark-wiki": {
+      "source": "open.feishu.cn",
+      "sourceType": "well-known",
+      "computedHash": "31c035b59622bee8cc798f5342dcdccfc2d56e9a080bc2ebfb64653656a32696"
+    },
+    "lark-workflow-meeting-summary": {
+      "source": "open.feishu.cn",
+      "sourceType": "well-known",
+      "computedHash": "9e1c8e88859457895cb84d31b6f7c787ab02e6bb8197decbe410dca21653f47d"
+    },
+    "lark-workflow-standup-report": {
+      "source": "open.feishu.cn",
+      "sourceType": "well-known",
+      "computedHash": "37664a511e12ecab3fb8eba7a27a42ca35170668b5eaec6b5798229cdebb98a0"
+    }
+  }
+}

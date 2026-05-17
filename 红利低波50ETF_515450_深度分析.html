@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>红利低波50ETF南方 (515450) 深度分析 | 2026-05-16</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif;
+    background: #f5f6f8;
+    color: #2a3140;
+    line-height: 1.5;
+  }
+
+  .header {
+    background: #fff;
+    border-bottom: 1px solid #e2e6ec;
+    padding: 28px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .header h1 { font-size: 22px; font-weight: 700; color: #111; }
+  .header .sub { font-size: 14px; color: #5a6070; margin-top: 4px; }
+  .header .sub span { color: #0ea882; font-weight: 600; }
+  .header .nav-num { font-size: 42px; font-weight: 800; color: #111; }
+  .header .nav-label { font-size: 15px; font-weight: 700; color: #0ea882; text-align: right; }
+  .header .nav-date { font-size: 13px; color: #6b7385; text-align: right; margin-top: 2px; }
+
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    padding: 24px 48px 0;
+  }
+  .hero-card {
+    background: #fff;
+    border: 1px solid #e2e6ec;
+    border-radius: 14px;
+    padding: 32px 36px;
+  }
+  .hero-card h2 {
+    font-size: 15px; font-weight: 700; letter-spacing: 1px;
+    display: flex; align-items: center; gap: 10px;
+    margin-bottom: 24px;
+  }
+  .hero-card h2::after { content: ''; flex:1; height: 1px; opacity: 0.15; }
+  .valuation h2 { color: #0ea882; }
+  .valuation h2::after { background: #0ea882; }
+  .technical h2 { color: #3168d8; }
+  .technical h2::after { background: #3168d8; }
+
+  .val-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; }
+  .val-col { text-align: center; padding: 8px 12px; }
+  .val-col + .val-col { border-left: 1px solid #eef0f4; }
+  .val-title { font-size: 24px; font-weight: 700; color: #111; margin-bottom: 6px; }
+  .val-num { font-size: 44px; font-weight: 800; line-height: 1; }
+  .val-num .pct { font-size: 22px; }
+  .val-info { font-size: 13px; color: #5a6070; line-height: 1.6; margin-top: 6px; }
+  .val-info b { color: #2a3140; }
+  .val-note {
+    margin-top: 18px; padding: 8px 14px;
+    background: #f0faf6; border-left: 3px solid #0ea882;
+    font-size: 13px; color: #3a6055; border-radius: 0 6px 6px 0;
+  }
+
+  .tech-grid { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 0; }
+  .tech-cell { padding: 24px 24px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; }
+  .tech-cell + .tech-cell { border-left: 1px solid #eef0f4; }
+  .tech-cell:nth-child(3), .tech-cell:nth-child(4) { border-top: 1px solid #eef0f4; }
+
+  .tech-label { font-size: 24px; font-weight: 700; color: #111; margin-bottom: 6px; }
+  .tech-num { font-size: 44px; font-weight: 800; color: #111; line-height: 1; margin-bottom: 2px; }
+  .tech-dev { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+          
+  /* RSI Gauge */
+  .gauge-wrap { margin-top: 28px; width: 100%; position: relative; }
+  .gauge-bar {
+    height: 10px; border-radius: 5px; position: relative; width: 100%;
+  }
+  .gauge-bar-6d {
+    background: linear-gradient(to right, #7B1818 0%, #C0392B 15%, #E04558 25%, #E07040 35%, #C88A0C 50%, #0EA882 70%, #0EA882 100%);
+  }
+  .gauge-bar-ma {
+    background: linear-gradient(to right,
+      #0EA882 0%, #0EA882 17%,
+      #0EA882 33%,
+      #C88A0C 42%,
+      #E07040 50%,
+      #E04558 58%,
+      #C0392B 67%,
+      #A93226 83%,
+      #7B1818 100%
+    );
+  }
+  .gauge-bar-7w {
+    background: linear-gradient(to right, #7B1818 0%, #A93226 20%, #E04558 40%, #E07040 50%, #C88A0C 60%, #0EA882 75%, #0EA882 100%);
+  }
+  .gauge-dot {
+    position: absolute; top: -3px; width: 16px; height: 16px;
+    border-radius: 50%; border: 3px solid #fff;
+    box-shadow: 0 0 0 2px currentColor, 0 1px 4px rgba(0,0,0,0.2);
+    transform: translateX(-50%);
+  }
+  .gauge-obs-label { position: absolute; top: -22px; font-size: 11px; font-weight: 700; color: #E04558; transform: translateX(-3px); white-space: nowrap; z-index: 3; }
+  .gauge-ticks { position: relative; width: 100%; height: 34px; margin-top: 4px; }
+  .gauge-mark { position: absolute; top: 0; width: 2px; border-radius: 1px; transform: translateX(-50%); }
+  .gauge-mark.obs { height: 10px; background: #fff; box-shadow: 0 0 3px rgba(0,0,0,0.4); z-index: 2; }
+  .gauge-mark.buy { height: 6px; background: rgba(255,255,255,0.5); z-index: 1; }
+  .gauge-tick {
+    position: absolute; font-size: 12px; color: #5a6070;
+    transform: translateX(-50%); white-space: nowrap;
+  }
+  .gauge-tick.top { top: 6px; font-weight: 600; color: #2a3140; }
+  .gauge-tick.bot { top: 19px; }
+
+  .rsi-hint { display: inline-block; padding: 2px 10px; border-radius: 4px; font-size: 12px; font-weight: 700; margin-bottom: 6px; }
+  .rsi-hint.safe { background: #eef0f4; color: #6b7385; }
+  .rsi-hint.watch { background: #fff8e6; color: #C88A0C; }
+  .rsi-hint.buy { background: #fef2f3; color: #d64555; }
+
+  .rsi-legend { margin-top: 8px; padding: 8px 12px; background: #f8f9fb; border-radius: 6px; font-size: 13px; line-height: 1.6; }
+
+  /* Main grid */
+  .main-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    padding: 18px 48px 0;
+  }
+  .card {
+    background: #fff;
+    border: 1px solid #e2e6ec;
+    border-radius: 14px;
+    padding: 28px 32px;
+  }
+  .card h3 {
+    font-size: 15px; font-weight: 700; margin-bottom: 18px;
+    display: flex; align-items: center; gap: 10px;
+    letter-spacing: 1px;
+  }
+  .card h3::after { content: ''; flex:1; height: 1px; background: #e2e6ec; }
+
+  .wide-card {
+    margin: 18px 48px;
+    background: #fff;
+    border: 1px solid #e2e6ec;
+    border-radius: 14px;
+    padding: 28px 32px;
+  }
+  .wide-card h3 {
+    font-size: 15px; font-weight: 700; margin-bottom: 18px;
+    display: flex; align-items: center; gap: 10px;
+    letter-spacing: 1px;
+  }
+  .wide-card h3::after { content: ''; flex:1; height: 1px; background: #e2e6ec; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; font-size: 14px; }
+  th { text-align: left; padding: 10px 8px; border-bottom: 2px solid #e2e6ec; color: #5a6070; font-size: 13px; font-weight: 600; }
+  td { padding: 10px 8px; border-bottom: 1px solid #eef0f4; }
+  .highlight { color: #0ea882; font-weight: 700; }
+
+  .ind-bar-wrap { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  .ind-name { width: 220px; font-size: 14px; color: #2a3140; flex-shrink: 0; }
+  .ind-pct { width: 52px; font-size: 14px; font-weight: 600; color: #111; text-align: right; flex-shrink: 0; }
+  .ind-bar-bg { flex:1; height: 22px; background: #f0f2f5; border-radius: 4px; overflow: hidden; }
+  .ind-bar-fill { height: 100%; border-radius: 4px; background: #0ea882; }
+
+  .green { color: #0ea882; }
+  .red { color: #d64555; }
+
+  .footer {
+    text-align: center; padding: 24px 48px 32px;
+    font-size: 13px; color: #8a92a3;
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div>
+    <h1>红利低波50ETF南方 (515450)</h1>
+    <div class="sub">跟踪 <span>标普中国A股大盘红利低波50</span> | 红利低波策略</div>
+  </div>
+  <div style="text-align:right">
+    <div class="nav-num">1.423</div>
+    <div class="nav-label">最新净值</div>
+    <div class="nav-date">2026-05-15</div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <!-- Valuation Card -->
+  <div class="hero-card valuation">
+    <h2>估值概览</h2>
+    <div class="val-row">
+      <div class="val-col">
+        <div class="val-title">PE(TTM)</div>
+        <div class="val-num" style="color:#0ea882">14.3<span class="pct"></span></div>
+        <div class="val-info">中位 <b>13.6</b><br>区间 11.0~18.5</div>
+      </div>
+      <div class="val-col">
+        <div class="val-title">PB</div>
+        <div class="val-num" style="color:#0ea882">1.9<span class="pct"></span></div>
+        <div class="val-info">中位 <b>1.5</b><br>区间 1.2~2.1</div>
+      </div>
+      <div class="val-col">
+        <div class="val-title">股息率</div>
+        <div class="val-num" style="color:#0ea882">5.3<span class="pct">%</span></div>
+        <div class="val-info">中位 <b>4.9%</b><br>简单均值 5.3%</div>
+      </div>
+    </div>
+    <div class="val-note">
+      指标说明：PE/PB/股息率为<b>加权计算</b>（按持仓权重），数据来源于基金2026年1季度报告持仓及baostock估值数据。标普指数成分股不可通过中证渠道获取，使用基金实际持仓替代。
+    </div>
+  </div>
+
+  <!-- Technical Card -->
+  <div class="hero-card technical">
+    <h2>技术指标</h2>
+    <div class="tech-grid">
+      <div class="tech-cell">
+        <div class="tech-label">250日均线</div>
+        <div class="rsi-hint watch">进入观察期</div>
+        <div class="tech-num" style="color:#E07040">1.4351</div>
+        <div class="tech-dev" style="color:#E07040">净值偏离 -0.84%</div>
+                <div class="gauge-wrap">
+          <div class="gauge-obs-label" style="left:50.0%">▼观察点</div>
+          <div class="gauge-bar gauge-bar-ma">
+            <div class="gauge-mark obs" style="left:50.0%"></div>
+            <div class="gauge-mark buy" style="left:41.7%"></div>
+            <div class="gauge-mark buy" style="left:33.3%"></div>
+            <div class="gauge-mark buy" style="left:25.0%"></div>
+            <div class="gauge-mark buy" style="left:16.7%"></div>
+            <div class="gauge-mark buy" style="left:8.3%"></div>
+            <div class="gauge-dot" style="left:48.6%;color:#E07040"></div>
+          </div>
+          <div class="gauge-ticks">
+            <div class="gauge-tick top" style="left:0.0%">-30%</div>
+            <div class="gauge-tick top" style="left:8.3%">-25%</div>
+            <div class="gauge-tick top" style="left:16.7%">-20%</div>
+            <div class="gauge-tick top" style="left:25.0%">-15%</div>
+            <div class="gauge-tick top" style="left:33.3%">-10%</div>
+            <div class="gauge-tick top" style="left:41.7%">-5%</div>
+            <div class="gauge-tick top" style="left:50.0%">+0%</div>
+            <div class="gauge-tick top" style="left:58.3%">+5%</div>
+            <div class="gauge-tick top" style="left:66.7%">+10%</div>
+            <div class="gauge-tick top" style="left:75.0%">+15%</div>
+            <div class="gauge-tick top" style="left:83.3%">+20%</div>
+            <div class="gauge-tick top" style="left:91.7%">+25%</div>
+            <div class="gauge-tick top" style="left:100.0%">+30%</div>
+          </div>
+          <div class="rsi-legend" style="margin-top:10px;text-align:center">触及均线为观察点，低于均线越低越买</div>
+        </div>
+      </div>
+      <div class="tech-cell">
+        <div class="tech-label">550日均线</div>
+        <div class="rsi-hint safe">不用关注</div>
+        <div class="tech-num" style="color:#E04558">1.3956</div>
+        <div class="tech-dev" style="color:#E04558">净值偏离 +1.96%</div>
+                <div class="gauge-wrap">
+          <div class="gauge-obs-label" style="left:50.0%">▼观察点</div>
+          <div class="gauge-bar gauge-bar-ma">
+            <div class="gauge-mark obs" style="left:50.0%"></div>
+            <div class="gauge-mark buy" style="left:41.7%"></div>
+            <div class="gauge-mark buy" style="left:33.3%"></div>
+            <div class="gauge-mark buy" style="left:25.0%"></div>
+            <div class="gauge-mark buy" style="left:16.7%"></div>
+            <div class="gauge-mark buy" style="left:8.3%"></div>
+            <div class="gauge-dot" style="left:53.3%;color:#E04558"></div>
+          </div>
+          <div class="gauge-ticks">
+            <div class="gauge-tick top" style="left:0.0%">-30%</div>
+            <div class="gauge-tick top" style="left:8.3%">-25%</div>
+            <div class="gauge-tick top" style="left:16.7%">-20%</div>
+            <div class="gauge-tick top" style="left:25.0%">-15%</div>
+            <div class="gauge-tick top" style="left:33.3%">-10%</div>
+            <div class="gauge-tick top" style="left:41.7%">-5%</div>
+            <div class="gauge-tick top" style="left:50.0%">+0%</div>
+            <div class="gauge-tick top" style="left:58.3%">+5%</div>
+            <div class="gauge-tick top" style="left:66.7%">+10%</div>
+            <div class="gauge-tick top" style="left:75.0%">+15%</div>
+            <div class="gauge-tick top" style="left:83.3%">+20%</div>
+            <div class="gauge-tick top" style="left:91.7%">+25%</div>
+            <div class="gauge-tick top" style="left:100.0%">+30%</div>
+          </div>
+          <div class="rsi-legend" style="margin-top:10px;text-align:center">触及均线为观察点，低于均线越低越买</div>
+        </div>
+      </div>
+      <div class="tech-cell">
+        <div class="tech-label">6日RSI</div>
+        <div class="rsi-hint safe">不用关注</div>
+        <div class="tech-num" style="color:#E04558">30.8</div>
+        <div class="tech-dev" style="color:#E04558">RSI偏离 +5.8%</div>
+                <div class="gauge-wrap">
+          <div class="gauge-obs-label" style="left:25%">▼观察点</div>
+          <div class="gauge-bar gauge-bar-6d">
+            <div class="gauge-mark obs" style="left:25%"></div>
+            <div class="gauge-mark buy" style="left:20%"></div>
+            <div class="gauge-mark buy" style="left:15%"></div>
+            <div class="gauge-mark buy" style="left:10%"></div>
+            <div class="gauge-mark buy" style="left:5%"></div>
+            <div class="gauge-dot" style="left:30.8%;color:#E04558"></div>
+          </div>
+          <div class="gauge-ticks">
+            <div class="gauge-tick top" style="left:5%">5</div>
+            <div class="gauge-tick top" style="left:10%">10</div>
+            <div class="gauge-tick top" style="left:15%">15</div>
+            <div class="gauge-tick top" style="left:20%">20</div>
+            <div class="gauge-tick top" style="left:25%">25</div>
+            <div class="gauge-tick top" style="left:50%">50</div>
+            <div class="gauge-tick top" style="left:75%">75</div>
+            </div>
+          <div class="rsi-legend" style="margin-top:10px;text-align:center">25为观察点，低于25越低越买：20/15/10/5</div>
+        </div>
+      </div>
+      <div class="tech-cell">
+        <div class="tech-label">7周RSI</div>
+        <div class="rsi-hint safe">不用关注</div>
+        <div class="tech-num" style="color:#E04558">45.5</div>
+        <div class="tech-dev" style="color:#E04558">RSI偏离 +5.5%</div>
+                <div class="gauge-wrap">
+          <div class="gauge-obs-label" style="left:40%">▼观察点</div>
+          <div class="gauge-bar gauge-bar-7w">
+            <div class="gauge-mark obs" style="left:40%"></div>
+            <div class="gauge-mark buy" style="left:35%"></div>
+            <div class="gauge-mark buy" style="left:30%"></div>
+            <div class="gauge-mark buy" style="left:25%"></div>
+            <div class="gauge-mark buy" style="left:20%"></div>
+            <div class="gauge-mark buy" style="left:15%"></div>
+            <div class="gauge-mark buy" style="left:10%"></div>
+            <div class="gauge-mark buy" style="left:5%"></div>
+            <div class="gauge-dot" style="left:45.5%;color:#E04558"></div>
+          </div>
+          <div class="gauge-ticks">
+            <div class="gauge-tick top" style="left:5%">5</div>
+            <div class="gauge-tick top" style="left:10%">10</div>
+            <div class="gauge-tick top" style="left:15%">15</div>
+            <div class="gauge-tick top" style="left:20%">20</div>
+            <div class="gauge-tick top" style="left:25%">25</div>
+            <div class="gauge-tick top" style="left:30%">30</div>
+            <div class="gauge-tick top" style="left:35%">35</div>
+            <div class="gauge-tick top" style="left:40%">40</div>
+            <div class="gauge-tick top" style="left:50%">50</div>
+            <div class="gauge-tick top" style="left:75%">75</div>
+            </div>
+          <div class="rsi-legend" style="margin-top:10px;text-align:center">40为观察点，低于40越低越买：35/30/25/20/15/10/5</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MAIN GRID ROW 1 -->
+<div class="main-grid">
+  <!-- NAV & Performance -->
+  <div class="card">
+    <h3 style="color:#0ea882">净值与阶段收益</h3>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px">
+      <div><span style="color:#5a6070;font-size:13px">最新净值</span><br><b style="font-size:20px">1.4230</b></div>
+      <div><span style="color:#5a6070;font-size:13px">净值日期</span><br><b style="font-size:16px">2026-05-15</b></div>
+      <div><span style="color:#5a6070;font-size:13px">开盘</span><br><b>1.4310</b></div>
+      <div><span style="color:#5a6070;font-size:13px">最高 / 最低</span><br><b>1.4320 / 1.4210</b></div>
+    </div>
+    <table>
+      <tr><th>阶段</th><th>收益率</th><th>走势</th></tr>
+      <tr><td>近1周</td><td style="color:#d64555;font-weight:700">-0.42%</td><td style="font-size:11px;color:#d64555">█</td></tr>
+      <tr><td>近1月</td><td style="color:#d64555;font-weight:700">-0.21%</td><td style="font-size:11px;color:#d64555"></td></tr>
+      <tr><td>近3月</td><td style="color:#0ea882;font-weight:700">+0.92%</td><td style="font-size:11px;color:#0ea882">██</td></tr>
+      <tr><td>近6月</td><td style="color:#d64555;font-weight:700">-3.00%</td><td style="font-size:11px;color:#d64555">████████</td></tr>
+      <tr><td>近1年</td><td style="color:#d64555;font-weight:700">-0.63%</td><td style="font-size:11px;color:#d64555">█</td></tr>
+      <tr><td>近2年</td><td style="color:#0ea882;font-weight:700">+4.02%</td><td style="font-size:11px;color:#0ea882">████████████</td></tr>
+    </table>
+  </div>
+
+  <!-- Risk -->
+  <div class="card">
+    <h3 style="color:#d64555">风险指标</h3>
+    <div style="margin-bottom:24px">
+      <div style="font-size:13px;color:#5a6070;margin-bottom:4px">年化波动率 (20日)</div>
+      <div style="font-size:32px;font-weight:800;color:#111">7.26%</div>
+    </div>
+    <div style="margin-bottom:24px">
+      <div style="font-size:13px;color:#5a6070;margin-bottom:4px">年化波动率 (60日)</div>
+      <div style="font-size:32px;font-weight:800;color:#111">11.02%</div>
+    </div>
+    <div>
+      <div style="font-size:13px;color:#5a6070;margin-bottom:4px">近1年最大回撤</div>
+      <div style="font-size:32px;font-weight:800;color:#d64555">8.61%</div>
+    </div>
+  </div>
+</div>
+
+<!-- Peer comparison -->
+<div class="main-grid">
+  <div class="card" style="grid-column:1/-1">
+    <h3 style="color:#3168d8">同类红利ETF近1年收益对比</h3>
+    <table>
+      <tr><th>排名</th><th>名称</th><th style="text-align:right">近1年收益</th><th></th></tr>
+      <tr style=""><td>1</td><td>红利质量ETF华夏</td><td style="text-align:right;color:#0ea882;font-weight:700">+24.64%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>2</td><td>红利ETF易方达</td><td style="text-align:right;color:#0ea882;font-weight:700">+4.64%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>3</td><td>中证红利ETF招商</td><td style="text-align:right;color:#0ea882;font-weight:700">+4.53%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>4</td><td>红利ETF华泰柏瑞</td><td style="text-align:right;color:#0ea882;font-weight:700">+3.77%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>5</td><td>红利低波华泰柏瑞</td><td style="text-align:right;color:#0ea882;font-weight:700">+2.37%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style="background:#f8fafb;"><td>6</td><td>红利低波50ETF南方</td><td style="text-align:right;color:#d64555;font-weight:700">-0.63%</td><td style="color:#0ea882;font-weight:700">★当前</td></tr>
+      <tr style=""><td>7</td><td>红利低波易方达</td><td style="text-align:right;color:#d64555;font-weight:700">-1.18%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>8</td><td>红利低波100景顺</td><td style="text-align:right;color:#d64555;font-weight:700">-2.78%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+    </table>
+  </div>
+</div>
+
+<!-- Industry breakdown -->
+<div class="wide-card">
+  <h3 style="color:#0ea882">成分行业分布（按权重倒排）</h3>
+  <div class="ind-bar-wrap">
+    <div class="ind-name">D44电力、热力生产和供应业</div>
+    <div class="ind-pct">20.8%</div>
+    <div class="ind-bar-bg"><div class="ind-bar-fill" style="width:20.8%"></div></div>
+  </div>
+  <div class="ind-bar-wrap">
+    <div class="ind-name">C38电气机械和器材制造业</div>
+    <div class="ind-pct">13.6%</div>
+    <div class="ind-bar-bg"><div class="ind-bar-fill" style="width:13.6%"></div></div>
+  </div>
+  <div class="ind-bar-wrap">
+    <div class="ind-name">G54道路运输业</div>
+    <div class="ind-pct">9.2%</div>
+    <div class="ind-bar-bg"><div class="ind-bar-fill" style="width:9.2%"></div></div>
+  </div>
+  <div class="ind-bar-wrap">
+    <div class="ind-name">E48土木工程建筑业</div>
+    <div class="ind-pct">8.5%</div>
+    <div class="ind-bar-bg"><div class="ind-bar-fill" style="width:8.5%"></div></div>
+  </div>
+  <div class="ind-bar-wrap">
+    <div class="ind-name">C18纺织服装、服饰业</div>
+    <div class="ind-pct">7.3%</div>
+    <div class="ind-bar-bg"><div class="ind-bar-fill" style="width:7.3%"></div></div>
+  </div>
+  <div class="ind-bar-wrap">
+    <div class="ind-name">B06煤炭开采和洗选业</div>
+    <div class="ind-pct">7.3%</div>
+    <div class="ind-bar-bg"><div class="ind-bar-fill" style="width:7.3%"></div></div>
+  </div>
+  <div class="ind-bar-wrap">
+    <div class="ind-name">C13农副食品加工业</div>
+    <div class="ind-pct">6.8%</div>
+    <div class="ind-bar-bg"><div class="ind-bar-fill" style="width:6.8%"></div></div>
+  </div>
+  <div class="ind-bar-wrap">
+    <div class="ind-name">C15酒、饮料和精制茶制造业</div>
+    <div class="ind-pct">6.1%</div>
+    <div class="ind-bar-bg"><div class="ind-bar-fill" style="width:6.1%"></div></div>
+  </div>
+  <div class="ind-bar-wrap">
+    <div class="ind-name">C26化学原料和化学制品制造业</div>
+    <div class="ind-pct">5.8%</div>
+    <div class="ind-bar-bg"><div class="ind-bar-fill" style="width:5.8%"></div></div>
+  </div>
+  <div class="ind-bar-wrap">
+    <div class="ind-name">C14食品制造业</div>
+    <div class="ind-pct">5.5%</div>
+    <div class="ind-bar-bg"><div class="ind-bar-fill" style="width:5.5%"></div></div>
+  </div>
+  <div class="ind-bar-wrap">
+    <div class="ind-name">G55水上运输业</div>
+    <div class="ind-pct">5.0%</div>
+    <div class="ind-bar-bg"><div class="ind-bar-fill" style="width:5.0%"></div></div>
+  </div>
+  <div class="ind-bar-wrap">
+    <div class="ind-name">C27医药制造业</div>
+    <div class="ind-pct">4.0%</div>
+    <div class="ind-bar-bg"><div class="ind-bar-fill" style="width:4.0%"></div></div>
+  </div>
+  <div style="margin-top:14px;font-size:13px;color:#5a6070">
+    前5大行业权重合计 59.4%
+  </div>
+</div>
+
+<!-- Top holdings table -->
+<div class="wide-card">
+  <h3 style="color:#0ea882">成分股及持仓占比（按权重倒排）</h3>
+  <div style="font-size:13px;color:#5a6070;margin-bottom:12px">
+    数据来源: 基金2026年1季度报告 | 共 18 只 |
+    PE加权 14.3 | PB加权 1.9 | 股息率加权 5.3%
+  </div>
+  <table>
+    <tr><th>代码</th><th>名称</th><th style="text-align:right">权重</th><th style="text-align:right">PE</th><th style="text-align:right">PB</th><th style="text-align:right">股息率</th><th>行业</th></tr>
+    <tr><td>000651</td><td style="font-weight:700;color:#111">格力电器</td><td style="text-align:right;font-weight:700;color:#111">3.70%</td><td style="text-align:right">7.73</td><td style="text-align:right">1.48</td><td style="text-align:right" class="green">7.45%</td><td style="font-size:13px;color:#5a6070">C38电气机械和器材制造业</td></tr>
+    <tr><td>600023</td><td style="font-weight:700;color:#111">浙能电力</td><td style="text-align:right;font-weight:700;color:#111">3.39%</td><td style="text-align:right">11.00</td><td style="text-align:right">1.05</td><td style="text-align:right" class="green">4.78%</td><td style="font-size:13px;color:#5a6070">D44电力、热力生产和供应业</td></tr>
+    <tr><td>600642</td><td style="font-weight:700;color:#111">申能股份</td><td style="text-align:right;font-weight:700;color:#111">3.36%</td><td style="text-align:right">12.27</td><td style="text-align:right">1.22</td><td style="text-align:right" class="green">4.74%</td><td style="font-size:13px;color:#5a6070">D44电力、热力生产和供应业</td></tr>
+    <tr><td>600177</td><td style="font-weight:700;color:#111">雅戈尔</td><td style="text-align:right;font-weight:700;color:#111">3.31%</td><td style="text-align:right">13.73</td><td style="text-align:right">0.83</td><td style="text-align:right" class="green">6.56%</td><td style="font-size:13px;color:#5a6070">C18纺织服装、服饰业</td></tr>
+    <tr><td>601088</td><td style="font-weight:700;color:#111">中国神华</td><td style="text-align:right;font-weight:700;color:#111">3.30%</td><td style="text-align:right">19.22</td><td style="text-align:right">2.06</td><td style="text-align:right" class="green">4.95%</td><td style="font-size:13px;color:#5a6070">B06煤炭开采和洗选业</td></tr>
+    <tr><td>000895</td><td style="font-weight:700;color:#111">双汇发展</td><td style="text-align:right;font-weight:700;color:#111">3.09%</td><td style="text-align:right">17.51</td><td style="text-align:right">4.06</td><td style="text-align:right" class="green">5.46%</td><td style="font-size:13px;color:#5a6070">C13农副食品加工业</td></tr>
+    <tr><td>000858</td><td style="font-weight:700;color:#111">五粮液</td><td style="text-align:right;font-weight:700;color:#111">2.76%</td><td style="text-align:right">26.76</td><td style="text-align:right">2.63</td><td style="text-align:right" class="green">6.61%</td><td style="font-size:13px;color:#5a6070">C15酒、饮料和精制茶制造业</td></tr>
+    <tr><td>601668</td><td style="font-weight:700;color:#111">中国建筑</td><td style="text-align:right;font-weight:700;color:#111">2.72%</td><td style="text-align:right">5.37</td><td style="text-align:right">0.41</td><td style="text-align:right" class="green">5.51%</td><td style="font-size:13px;color:#5a6070">E48土木工程建筑业</td></tr>
+    <tr><td>001286</td><td style="font-weight:700;color:#111">陕西能源</td><td style="text-align:right;font-weight:700;color:#111">2.63%</td><td style="text-align:right">13.49</td><td style="text-align:right">1.57</td><td style="text-align:right" class="green">3.57%</td><td style="font-size:13px;color:#5a6070">D44电力、热力生产和供应业</td></tr>
+    <tr><td>600352</td><td style="font-weight:700;color:#111">浙江龙盛</td><td style="text-align:right;font-weight:700;color:#111">2.62%</td><td style="text-align:right">19.75</td><td style="text-align:right">1.17</td><td style="text-align:right" class="green">3.76%</td><td style="font-size:13px;color:#5a6070">C26化学原料和化学制品制造业</td></tr>
+    <tr><td>600873</td><td style="font-weight:700;color:#111">梅花生物</td><td style="text-align:right;font-weight:700;color:#111">2.50%</td><td style="text-align:right">10.69</td><td style="text-align:right">1.55</td><td style="text-align:right" class="green">6.64%</td><td style="font-size:13px;color:#5a6070">C14食品制造业</td></tr>
+    <tr><td>002032</td><td style="font-weight:700;color:#111">苏泊尔</td><td style="text-align:right;font-weight:700;color:#111">2.45%</td><td style="text-align:right">18.39</td><td style="text-align:right">5.70</td><td style="text-align:right" class="green">5.81%</td><td style="font-size:13px;color:#5a6070">C38电气机械和器材制造业</td></tr>
+    <tr><td>600350</td><td style="font-weight:700;color:#111">山东高速</td><td style="text-align:right;font-weight:700;color:#111">2.37%</td><td style="text-align:right">16.40</td><td style="text-align:right">1.73</td><td style="text-align:right" class="green">3.83%</td><td style="font-size:13px;color:#5a6070">G54道路运输业</td></tr>
+    <tr><td>601298</td><td style="font-weight:700;color:#111">青岛港</td><td style="text-align:right;font-weight:700;color:#111">2.28%</td><td style="text-align:right">11.01</td><td style="text-align:right">1.23</td><td style="text-align:right" class="green">3.53%</td><td style="font-size:13px;color:#5a6070">G55水上运输业</td></tr>
+    <tr><td>600377</td><td style="font-weight:700;color:#111">宁沪高速</td><td style="text-align:right;font-weight:700;color:#111">1.78%</td><td style="text-align:right">13.01</td><td style="text-align:right">1.43</td><td style="text-align:right" class="green">4.00%</td><td style="font-size:13px;color:#5a6070">G54道路运输业</td></tr>
+    <tr><td>000423</td><td style="font-weight:700;color:#111">东阿阿胶</td><td style="text-align:right;font-weight:700;color:#111">1.48%</td><td style="text-align:right">19.02</td><td style="text-align:right">3.12</td><td style="text-align:right" class="green">4.63%</td><td style="font-size:13px;color:#5a6070">C27医药制造业</td></tr>
+    <tr><td>601186</td><td style="font-weight:700;color:#111">中国铁建</td><td style="text-align:right;font-weight:700;color:#111">1.12%</td><td style="text-align:right">5.08</td><td style="text-align:right">0.32</td><td style="text-align:right" class="green">9.10%</td><td style="font-size:13px;color:#5a6070">E48土木工程建筑业</td></tr>
+    <tr><td>603658</td><td style="font-weight:700;color:#111">安图生物</td><td style="text-align:right;font-weight:700;color:#111">0.34%</td><td style="text-align:right">18.55</td><td style="text-align:right">2.09</td><td style="text-align:right" class="green">3.75%</td><td style="font-size:13px;color:#5a6070">C27医药制造业</td></tr>
+  </table>
+</div>
+
+<div class="footer">
+  红利低波50ETF南方 (515450) 深度分析 | 2026-05-16 22:20<br>
+  数据源: 新浪(行情) + 基金季报持仓 + baostock(估值/行业/股息)<br>
+  重要声明: 本报告仅供投资参考，不构成投资建议。投资有风险，入市需谨慎。
+</div>
+
+</body>
+</html>
