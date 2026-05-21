@@ -238,6 +238,158 @@
   .green { color: #0ea882; }
   .red { color: #d64555; }
 
+  /* ═══════════════════════════════════════ */
+  /* 概览 Tab 按钮 */
+  /* ═══════════════════════════════════════ */
+  .tab-btn.tab-dashboard {
+    background: #fff;
+    border: 1.5px solid #d0d4da;
+    font-weight: 600;
+    font-size: 14px;
+    color: #2a3140;
+    padding: 8px 20px;
+  }
+  .tab-btn.tab-dashboard:hover {
+    background: #f8f9fb;
+    border-color: #b0b6c0;
+  }
+  .tab-btn.tab-dashboard.active {
+    background: #2a3140;
+    color: #fff;
+    border-color: #2a3140;
+    box-shadow: 0 2px 10px rgba(42,49,64,0.3);
+  }
+  .tab-btn.tab-dashboard.active .tab-code {
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* ═══════════════════════════════════════ */
+  /* Dashboard 概览面板 */
+  /* ═══════════════════════════════════════ */
+  .dash-hero {
+    padding: 28px 48px 0;
+    margin-bottom: 8px;
+  }
+  .dash-hero h2 {
+    font-size: 20px; font-weight: 700; color: #111; margin-bottom: 6px;
+  }
+  .dash-sub {
+    font-size: 13px; color: #8a92a3; margin-bottom: 14px;
+  }
+  .dash-legend {
+    display: flex; gap: 22px; font-size: 13px; color: #5a6070;
+  }
+  .dash-legend .legend-item { display: flex; align-items: center; gap: 4px; }
+  .dash-legend .legend-item.buy { color: #c62828; font-weight: 600; }
+  .dash-legend .legend-item.watch { color: #e07040; font-weight: 600; }
+  .dash-legend .legend-item.safe { color: #6b7280; }
+
+  .dash-section {
+    padding: 8px 48px 14px;
+  }
+  .dash-section-head {
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 14px;
+  }
+  .dash-dot {
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  }
+  .dash-dot.cat-energy { background: #c88a0c; }
+  .dash-dot.cat-regular { background: #0ea882; }
+  .dash-cat-name {
+    font-size: 16px; font-weight: 700; color: #2a3140;
+  }
+  .dash-cat-count {
+    font-size: 12px; color: #a0a8b4; margin-left: 2px;
+  }
+
+  .dash-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 14px;
+  }
+
+  /* Score card */
+  .score-card {
+    background: #fff;
+    border: 1px solid #e2e6ec;
+    border-radius: 14px;
+    padding: 20px 18px 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+  .score-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    border-color: #c0c8d4;
+  }
+  .score-card.cat-energy { border-top: 3px solid #c88a0c; }
+  .score-card.cat-regular { border-top: 3px solid #0ea882; }
+  .score-card.error-card {
+    opacity: 0.55;
+    cursor: default;
+  }
+  .score-card.error-card:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: #e2e6ec;
+  }
+
+  .sc-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 14px;
+  }
+  .sc-name {
+    font-size: 15px; font-weight: 700; color: #2a3140;
+  }
+  .sc-code {
+    font-size: 11px; color: #a0a8b4; font-weight: 500;
+  }
+  .sc-error-msg {
+    text-align: center; color: #a0a8b4; font-size: 14px; padding: 12px 0;
+  }
+
+  /* Score bar + number */
+  .sc-score-wrap {
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 4px;
+  }
+  .score-bar-bg {
+    flex: 1; height: 6px; background: #eef0f4; border-radius: 3px; overflow: hidden;
+  }
+  .score-bar-fill {
+    height: 100%; border-radius: 3px; transition: width 0.4s ease;
+  }
+  .sc-num {
+    font-size: 26px; font-weight: 800; flex-shrink: 0; line-height: 1;
+  }
+  .sc-grade {
+    font-size: 12px; font-weight: 700; margin-bottom: 14px; padding-left: 0;
+  }
+  .sc-grade.buy   { color: #c62828; }
+  .sc-grade.watch { color: #e07040; }
+  .sc-grade.safe  { color: #6b7280; }
+
+  /* Mini badges */
+  .sc-badges {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    border-top: 1px solid #eef0f4;
+    padding-top: 12px;
+  }
+  .mini-badge {
+    display: flex; align-items: center; gap: 3px;
+    font-size: 12px;
+  }
+  .mini-label {
+    color: #8a92a3; font-weight: 500; min-width: 34px; font-size: 11px;
+  }
+  .mini-val {
+    color: #2a3140; font-weight: 600; margin-left: 2px;
+  }
+
   .footer {
     text-align: center; padding: 24px 48px 32px;
     font-size: 13px; color: #8a92a3;
@@ -248,40 +400,181 @@
 
 <div class="header" id="main-header">
   <div>
-    <h1 id="header-name">景顺长城中证国新港股通央企红利ETF联接A (520990)</h1>
-    <div class="sub">跟踪 <span id="header-index">中证国新港股通央企红利</span> | <span id="header-cat">能源/资源红利</span></div>
+    <h1 id="header-name">红利策略综合概览 (9产品)</h1>
+    <div class="sub">跟踪 <span id="header-index">RSI + 均线偏离加权评分</span> | <span id="header-cat">能源/资源红利 + 常规红利</span></div>
   </div>
   <div style="text-align:right">
-    <div class="nav-num" id="header-nav">1.0570</div>
-    <div class="nav-label" id="header-src">ETF行情</div>
-    <div class="nav-date" id="header-date">2026-05-21</div>
+    <div class="nav-num" id="header-nav">9只</div>
+    <div class="nav-label" id="header-src">技术指标综合</div>
+    <div class="nav-date" id="header-date">2026-05-22</div>
   </div>
 </div>
 
 <div class="tab-bar" id="tab-bar">
-<div class="tab-category" data-cat="能源/资源红利">
-      <span class="tab-cat-dot cat-energy"></span>
-      <span class="tab-cat-label">能源/资源红利</span>
-    </div>
-    <div class="tab-group">
-      <button class="tab-btn cat-energy active" data-code="021961" data-cat="能源/资源红利">国新红利<span class="tab-code">021961</span></button>
-      <button class="tab-btn cat-energy" data-code="021881" data-cat="能源/资源红利">沪深港红利50<span class="tab-code">021881</span></button>
-      <button class="tab-btn cat-energy" data-code="020866" data-cat="能源/资源红利">港股通央企红利<span class="tab-code">020866</span></button>
-      <button class="tab-btn cat-energy" data-code="016185" data-cat="能源/资源红利">电力公用事业<span class="tab-code">016185</span></button>
-      <button class="tab-btn cat-energy" data-code="009051" data-cat="能源/资源红利">中证红利<span class="tab-code">009051</span></button>
-    </div>
-<div class="tab-category" data-cat="常规红利">
-      <span class="tab-cat-dot cat-regular"></span>
-      <span class="tab-cat-label">常规红利</span>
-    </div>
-    <div class="tab-group">
-      <button class="tab-btn cat-regular" data-code="014771" data-cat="常规红利">中泰红利优选<span class="tab-code">014771</span></button>
-      <button class="tab-btn cat-regular" data-code="020602" data-cat="常规红利">红利低波(易方达)<span class="tab-code">020602</span></button>
-      <button class="tab-btn cat-regular" data-code="012708" data-cat="常规红利">东证红利低波<span class="tab-code">012708</span></button>
-      <button class="tab-btn cat-regular" data-code="515450" data-cat="常规红利">红利低波50<span class="tab-code">515450</span></button>
-    </div>
+<div class="tab-group" style="margin-bottom:12px">
+    <button class="tab-btn tab-dashboard active" data-code="dashboard">概览<span class="tab-code">综合评分</span></button>
+  </div>
+  <div class="tab-category" data-cat="能源/资源红利">
+    <span class="tab-cat-dot cat-energy"></span>
+    <span class="tab-cat-label">能源/资源红利</span>
+  </div>
+  <div class="tab-group">
+    <button class="tab-btn cat-energy" data-code="021961" data-cat="能源/资源红利">国新红利<span class="tab-code">021961</span></button>
+    <button class="tab-btn cat-energy" data-code="021881" data-cat="能源/资源红利">沪深港红利50<span class="tab-code">021881</span></button>
+    <button class="tab-btn cat-energy" data-code="020866" data-cat="能源/资源红利">港股通央企红利<span class="tab-code">020866</span></button>
+    <button class="tab-btn cat-energy" data-code="016185" data-cat="能源/资源红利">电力公用事业<span class="tab-code">016185</span></button>
+    <button class="tab-btn cat-energy" data-code="009051" data-cat="能源/资源红利">中证红利<span class="tab-code">009051</span></button>
+  </div>
+  <div class="tab-category" data-cat="常规红利">
+    <span class="tab-cat-dot cat-regular"></span>
+    <span class="tab-cat-label">常规红利</span>
+  </div>
+  <div class="tab-group">
+    <button class="tab-btn cat-regular" data-code="014771" data-cat="常规红利">中泰红利优选<span class="tab-code">014771</span></button>
+    <button class="tab-btn cat-regular" data-code="020602" data-cat="常规红利">红利低波(易方达)<span class="tab-code">020602</span></button>
+    <button class="tab-btn cat-regular" data-code="012708" data-cat="常规红利">东证红利低波<span class="tab-code">012708</span></button>
+    <button class="tab-btn cat-regular" data-code="515450" data-cat="常规红利">红利低波50<span class="tab-code">515450</span></button>
+  </div>
 </div>
 
+<div class="etf-panel" id="panel-dashboard">
+    <div class="dash-hero">
+      <h2>综合买入信号概览</h2>
+      <p class="dash-sub">基于RSI(6日/7周) + 均线偏离(250日/550日) 加权评分 | RSI7周×2 · MA250×2 · RSI6×1 · MA550×1</p>
+      <div class="dash-legend">
+        <span class="legend-item buy">● ≥60 买入信号</span>
+        <span class="legend-item watch">● 40-59 观察期</span>
+        <span class="legend-item safe">● &lt;40 无需关注</span>
+      </div>
+    </div>
+    
+        <div class="dash-section">
+          <div class="dash-section-head">
+            <span class="dash-dot cat-energy"></span>
+            <span class="dash-cat-name">能源/资源红利</span>
+            <span class="dash-cat-count">5只产品</span>
+          </div>
+          <div class="dash-grid">
+            <div class="score-card cat-energy" data-code="009051" onclick="switchToProduct('009051')">
+              <div class="sc-header">
+                <span class="sc-name">中证红利</span>
+                <span class="sc-code">515180</span>
+              </div>
+              <div class="sc-score-wrap">
+                <div class="score-bar-bg"><div class="score-bar-fill" style="width:29%;background:#6b7280"></div></div>
+                <span class="sc-num" style="color:#6b7280">29</span>
+              </div>
+              <div class="sc-grade" style="color:#6b7280">无需关注</div>
+              <div class="sc-badges"><div class="mini-badge"><span class="mini-label">RSI6</span><span style="color:#c62828;font-size:16px">●</span><span class="mini-val">13.9</span></div><div class="mini-badge"><span class="mini-label">RSI7W</span><span style="color:#e07040;font-size:16px">●</span><span class="mini-val">36.6</span></div><div class="mini-badge"><span class="mini-label">MA250</span><span style="color:#e07040;font-size:16px">●</span><span class="mini-val">-1.2%</span></div><div class="mini-badge"><span class="mini-label">MA550</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+1.6%</span></div></div>
+            </div>
+            <div class="score-card cat-energy" data-code="021881" onclick="switchToProduct('021881')">
+              <div class="sc-header">
+                <span class="sc-name">沪深港红利50</span>
+                <span class="sc-code">021881</span>
+              </div>
+              <div class="sc-score-wrap">
+                <div class="score-bar-bg"><div class="score-bar-fill" style="width:25%;background:#6b7280"></div></div>
+                <span class="sc-num" style="color:#6b7280">25</span>
+              </div>
+              <div class="sc-grade" style="color:#6b7280">无需关注</div>
+              <div class="sc-badges"><div class="mini-badge"><span class="mini-label">RSI6</span><span style="color:#c62828;font-size:16px">●</span><span class="mini-val">13.3</span></div><div class="mini-badge"><span class="mini-label">RSI7W</span><span style="color:#e07040;font-size:16px">●</span><span class="mini-val">36.8</span></div><div class="mini-badge"><span class="mini-label">MA250</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+4.7%</span></div><div class="mini-badge"><span class="mini-label">MA550</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+10.9%</span></div></div>
+            </div>
+            <div class="score-card cat-energy" data-code="020866" onclick="switchToProduct('020866')">
+              <div class="sc-header">
+                <span class="sc-name">港股通央企红利</span>
+                <span class="sc-code">513920</span>
+              </div>
+              <div class="sc-score-wrap">
+                <div class="score-bar-bg"><div class="score-bar-fill" style="width:16%;background:#6b7280"></div></div>
+                <span class="sc-num" style="color:#6b7280">16</span>
+              </div>
+              <div class="sc-grade" style="color:#6b7280">无需关注</div>
+              <div class="sc-badges"><div class="mini-badge"><span class="mini-label">RSI6</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">25.9</span></div><div class="mini-badge"><span class="mini-label">RSI7W</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">42.4</span></div><div class="mini-badge"><span class="mini-label">MA250</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+3.1%</span></div><div class="mini-badge"><span class="mini-label">MA550</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+18.3%</span></div></div>
+            </div>
+            <div class="score-card cat-energy" data-code="021961" onclick="switchToProduct('021961')">
+              <div class="sc-header">
+                <span class="sc-name">国新红利</span>
+                <span class="sc-code">520990</span>
+              </div>
+              <div class="sc-score-wrap">
+                <div class="score-bar-bg"><div class="score-bar-fill" style="width:11%;background:#6b7280"></div></div>
+                <span class="sc-num" style="color:#6b7280">11</span>
+              </div>
+              <div class="sc-grade" style="color:#6b7280">无需关注</div>
+              <div class="sc-badges"><div class="mini-badge"><span class="mini-label">RSI6</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">31.7</span></div><div class="mini-badge"><span class="mini-label">RSI7W</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">44.6</span></div><div class="mini-badge"><span class="mini-label">MA250</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+2.9%</span></div><div class="mini-badge"><span class="mini-label">MA550</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+8.5%</span></div></div>
+            </div>
+            <div class="score-card cat-energy" data-code="016185" onclick="switchToProduct('016185')">
+              <div class="sc-header">
+                <span class="sc-name">电力公用事业</span>
+                <span class="sc-code">159611</span>
+              </div>
+              <div class="sc-score-wrap">
+                <div class="score-bar-bg"><div class="score-bar-fill" style="width:3%;background:#6b7280"></div></div>
+                <span class="sc-num" style="color:#6b7280">3</span>
+              </div>
+              <div class="sc-grade" style="color:#6b7280">无需关注</div>
+              <div class="sc-badges"><div class="mini-badge"><span class="mini-label">RSI6</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">40.5</span></div><div class="mini-badge"><span class="mini-label">RSI7W</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">56.2</span></div><div class="mini-badge"><span class="mini-label">MA250</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+9.1%</span></div><div class="mini-badge"><span class="mini-label">MA550</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+12.7%</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="dash-section">
+          <div class="dash-section-head">
+            <span class="dash-dot cat-regular"></span>
+            <span class="dash-cat-name">常规红利</span>
+            <span class="dash-cat-count">4只产品</span>
+          </div>
+          <div class="dash-grid">
+            <div class="score-card cat-regular" data-code="020602" onclick="switchToProduct('020602')">
+              <div class="sc-header">
+                <span class="sc-name">红利低波(易方达)</span>
+                <span class="sc-code">563020</span>
+              </div>
+              <div class="sc-score-wrap">
+                <div class="score-bar-bg"><div class="score-bar-fill" style="width:42%;background:#e07040"></div></div>
+                <span class="sc-num" style="color:#e07040">42</span>
+              </div>
+              <div class="sc-grade" style="color:#e07040">观察期</div>
+              <div class="sc-badges"><div class="mini-badge"><span class="mini-label">RSI6</span><span style="color:#e07040;font-size:16px">●</span><span class="mini-val">23.3</span></div><div class="mini-badge"><span class="mini-label">RSI7W</span><span style="color:#c62828;font-size:16px">●</span><span class="mini-val">30.2</span></div><div class="mini-badge"><span class="mini-label">MA250</span><span style="color:#e07040;font-size:16px">●</span><span class="mini-val">-4.1%</span></div><div class="mini-badge"><span class="mini-label">MA550</span><span style="color:#e07040;font-size:16px">●</span><span class="mini-val">-0.5%</span></div></div>
+            </div>
+            <div class="score-card cat-regular" data-code="012708" onclick="switchToProduct('012708')">
+              <div class="sc-header">
+                <span class="sc-name">东证红利低波</span>
+                <span class="sc-code">931446</span>
+              </div>
+              <div class="sc-score-wrap">
+                <div class="score-bar-bg"><div class="score-bar-fill" style="width:36%;background:#6b7280"></div></div>
+                <span class="sc-num" style="color:#6b7280">36</span>
+              </div>
+              <div class="sc-grade" style="color:#6b7280">无需关注</div>
+              <div class="sc-badges"><div class="mini-badge"><span class="mini-label">RSI6</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">26.1</span></div><div class="mini-badge"><span class="mini-label">RSI7W</span><span style="color:#c62828;font-size:16px">●</span><span class="mini-val">28.8</span></div><div class="mini-badge"><span class="mini-label">MA250</span><span style="color:#e07040;font-size:16px">●</span><span class="mini-val">-2.5%</span></div><div class="mini-badge"><span class="mini-label">MA550</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+4.2%</span></div></div>
+            </div>
+            <div class="score-card cat-regular" data-code="515450" onclick="switchToProduct('515450')">
+              <div class="sc-header">
+                <span class="sc-name">红利低波50</span>
+                <span class="sc-code">515450</span>
+              </div>
+              <div class="sc-score-wrap">
+                <div class="score-bar-bg"><div class="score-bar-fill" style="width:19%;background:#6b7280"></div></div>
+                <span class="sc-num" style="color:#6b7280">19</span>
+              </div>
+              <div class="sc-grade" style="color:#6b7280">无需关注</div>
+              <div class="sc-badges"><div class="mini-badge"><span class="mini-label">RSI6</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">33.7</span></div><div class="mini-badge"><span class="mini-label">RSI7W</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">40.0</span></div><div class="mini-badge"><span class="mini-label">MA250</span><span style="color:#e07040;font-size:16px">●</span><span class="mini-val">-1.4%</span></div><div class="mini-badge"><span class="mini-label">MA550</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+1.3%</span></div></div>
+            </div>
+            <div class="score-card cat-regular" data-code="014771" onclick="switchToProduct('014771')">
+              <div class="sc-header">
+                <span class="sc-name">中泰红利优选</span>
+                <span class="sc-code">014771</span>
+              </div>
+              <div class="sc-score-wrap">
+                <div class="score-bar-bg"><div class="score-bar-fill" style="width:15%;background:#6b7280"></div></div>
+                <span class="sc-num" style="color:#6b7280">15</span>
+              </div>
+              <div class="sc-grade" style="color:#6b7280">无需关注</div>
+              <div class="sc-badges"><div class="mini-badge"><span class="mini-label">RSI6</span><span style="color:#c62828;font-size:16px">●</span><span class="mini-val">19.4</span></div><div class="mini-badge"><span class="mini-label">RSI7W</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">46.3</span></div><div class="mini-badge"><span class="mini-label">MA250</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+2.0%</span></div><div class="mini-badge"><span class="mini-label">MA550</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+12.6%</span></div></div>
+            </div>
+          </div>
+        </div>
+  </div>
 <div class="etf-panel" id="panel-021961">
     <div class="hero"><div class="hero-card valuation">
         <h2>估值概览</h2>
@@ -2759,23 +3052,42 @@
 
 
 <div class="footer">
-  红利策略ETF深度分析 | 2026-05-22 00:10<br>
+  红利策略ETF深度分析 | 2026-05-22 01:11<br>
   数据源: 新浪(行情) + 天天基金(净值) + 基金季报/指数成分股 + baostock(估值/行业/股息)<br>
   重要声明: 本报告仅供投资参考，不构成投资建议。投资有风险，入市需谨慎。
 </div>
 
 <script>
 const PRODUCT_DATA = {
-  "021961": { name: "景顺长城中证国新港股通央企红利ETF联接A", display_code: "520990", nav: 1.0570, nav_date: "2026-05-21", price_source: "ETF行情", index_name: "中证国新港股通央企红利", category: "能源/资源红利" },
-  "021881": { name: "鑫元华证沪深港红利50指数A", display_code: "021881", nav: 1.2525, nav_date: "2026-05-21", price_source: "基金净值", index_name: "华证沪深港红利50", category: "能源/资源红利" },
-  "020866": { name: "华安恒生港股通中国央企红利ETF联接A", display_code: "513920", nav: 1.6600, nav_date: "2026-05-21", price_source: "ETF行情", index_name: "恒生港股通中国央企红利", category: "能源/资源红利" },
-  "016185": { name: "广发电力公用事业ETF联接A", display_code: "159611", nav: 1.1370, nav_date: "2026-05-21", price_source: "ETF行情", index_name: "中证电力公用事业", category: "能源/资源红利" },
-  "009051": { name: "易方达中证红利ETF联接A", display_code: "515180", nav: 1.3940, nav_date: "2026-05-21", price_source: "ETF行情", index_name: "中证红利(000922)", category: "能源/资源红利" },
-  "014771": { name: "中泰红利优选一年持有期混合", display_code: "014771", nav: 1.5483, nav_date: "2026-05-21", price_source: "基金净值", index_name: "", category: "常规红利" },
-  "020602": { name: "易方达红利低波ETF联接A", display_code: "563020", nav: 1.1640, nav_date: "2026-05-21", price_source: "ETF行情", index_name: "红利低波(930955)", category: "常规红利" },
-  "012708": { name: "东方红中证东方红红利低波动指数A", display_code: "931446", nav: 1.3422, nav_date: "2026-05-21", price_source: "基金净值", index_name: "东证红利低波(931446)", category: "常规红利" },
-  "515450": { name: "红利低波50ETF南方", display_code: "515450", nav: 1.4150, nav_date: "2026-05-21", price_source: "ETF行情", index_name: "标普中国A股大盘红利低波50", category: "常规红利" }
+  "021961": { name: "景顺长城中证国新港股通央企红利ETF联接A", display_code: "520990", nav_str: "1.0570", nav_date: "2026-05-21", price_source: "ETF行情", index_name: "中证国新港股通央企红利", category: "能源/资源红利" },
+  "021881": { name: "鑫元华证沪深港红利50指数A", display_code: "021881", nav_str: "1.2525", nav_date: "2026-05-21", price_source: "基金净值", index_name: "华证沪深港红利50", category: "能源/资源红利" },
+  "020866": { name: "华安恒生港股通中国央企红利ETF联接A", display_code: "513920", nav_str: "1.6600", nav_date: "2026-05-21", price_source: "ETF行情", index_name: "恒生港股通中国央企红利", category: "能源/资源红利" },
+  "016185": { name: "广发电力公用事业ETF联接A", display_code: "159611", nav_str: "1.1370", nav_date: "2026-05-21", price_source: "ETF行情", index_name: "中证电力公用事业", category: "能源/资源红利" },
+  "009051": { name: "易方达中证红利ETF联接A", display_code: "515180", nav_str: "1.3940", nav_date: "2026-05-21", price_source: "ETF行情", index_name: "中证红利(000922)", category: "能源/资源红利" },
+  "014771": { name: "中泰红利优选一年持有期混合", display_code: "014771", nav_str: "1.5483", nav_date: "2026-05-21", price_source: "基金净值", index_name: "", category: "常规红利" },
+  "020602": { name: "易方达红利低波ETF联接A", display_code: "563020", nav_str: "1.1640", nav_date: "2026-05-21", price_source: "ETF行情", index_name: "红利低波(930955)", category: "常规红利" },
+  "012708": { name: "东方红中证东方红红利低波动指数A", display_code: "931446", nav_str: "1.3422", nav_date: "2026-05-21", price_source: "基金净值", index_name: "东证红利低波(931446)", category: "常规红利" },
+  "515450": { name: "红利低波50ETF南方", display_code: "515450", nav_str: "1.4150", nav_date: "2026-05-21", price_source: "ETF行情", index_name: "标普中国A股大盘红利低波50", category: "常规红利" }
 };
+
+function switchToProduct(code) {
+  /* score card click → switch to product tab */
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.etf-panel').forEach(p => p.style.display = 'none');
+  const btn = document.querySelector('.tab-btn[data-code="' + code + '"]');
+  if (btn) btn.classList.add('active');
+  const panel = document.getElementById('panel-' + code);
+  if (panel) { panel.style.display = 'block'; panel.classList.add('active'); }
+  const pd = PRODUCT_DATA[code];
+  if (pd) {
+    document.getElementById('header-name').textContent = pd.name + ' (' + pd.display_code + ')';
+    document.getElementById('header-index').textContent = pd.index_name || '-';
+    document.getElementById('header-cat').textContent = pd.category;
+    document.getElementById('header-nav').textContent = pd.nav_str;
+    document.getElementById('header-src').textContent = pd.price_source;
+    document.getElementById('header-date').textContent = pd.nav_date;
+  }
+}
 
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -2788,20 +3100,29 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
       panel.style.display = 'block';
       panel.classList.add('active');
     }
-    const pd = PRODUCT_DATA[code];
-    if (pd) {
-      document.getElementById('header-name').textContent = pd.name + ' (' + pd.display_code + ')';
-      document.getElementById('header-index').textContent = pd.index_name || '-';
-      document.getElementById('header-cat').textContent = pd.category;
-      document.getElementById('header-nav').textContent = pd.nav.toFixed(4);
-      document.getElementById('header-src').textContent = pd.price_source;
-      document.getElementById('header-date').textContent = pd.nav_date;
+    if (code === 'dashboard') {
+      document.getElementById('header-name').textContent = '红利策略综合概览';
+      document.getElementById('header-index').textContent = 'RSI + 均线偏离加权评分';
+      document.getElementById('header-cat').textContent = '能源/资源红利 + 常规红利';
+      document.getElementById('header-nav').textContent = '9只';
+      document.getElementById('header-src').textContent = '技术指标综合';
+      document.getElementById('header-date').textContent = '2026-05-22';
+    } else {
+      const pd = PRODUCT_DATA[code];
+      if (pd) {
+        document.getElementById('header-name').textContent = pd.name + ' (' + pd.display_code + ')';
+        document.getElementById('header-index').textContent = pd.index_name || '-';
+        document.getElementById('header-cat').textContent = pd.category;
+        document.getElementById('header-nav').textContent = pd.nav_str;
+        document.getElementById('header-src').textContent = pd.price_source;
+        document.getElementById('header-date').textContent = pd.nav_date;
+      }
     }
   });
 });
 
 (function() {
-  const defaultCode = '021961';
+  const defaultCode = 'dashboard';
   const panel = document.getElementById('panel-' + defaultCode);
   if (panel) {
     panel.style.display = 'block';

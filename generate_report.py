@@ -172,6 +172,71 @@ def ma_dot_color(dev):
     return '#7B1818'
 
 # ═══════════════════════════════════════════════════════════════
+# 综合买入信号评分（纯技术指标）
+# ═══════════════════════════════════════════════════════════════
+
+def _score_segment(value, levels):
+    """通用分段线性评分: levels=[(upper_bound, score), ...] 从高到低"""
+    for i, (bound, score) in enumerate(levels):
+        if value >= bound:
+            if i == 0:
+                return 0.0
+            prev_bound, prev_score = levels[i-1]
+            return prev_score + (prev_bound - value) / (prev_bound - bound) * (score - prev_score)
+    # 低于最后一档, 线性延伸
+    last_bound, last_score = levels[-1]
+    prev_bound, prev_score = levels[-2]
+    extrap = prev_score + (prev_bound - value) / (prev_bound - last_bound) * (last_score - prev_score)
+    return min(100.0, max(0.0, extrap))
+
+RSI6_LEVELS  = [(50, 0), (30, 40), (20, 70), (0, 100)]
+RSI7_LEVELS  = [(50, 0), (35, 40), (25, 70), (0, 100)]
+MA_LEVELS    = [(0, 0), (-5, 50), (-15, 80), (-30, 100)]
+
+def calc_composite_score(d):
+    """根据4个技术指标计算加权综合买入信号分 (0-100)"""
+    rsi6  = _score_segment(d.get('rsi_6d', 50), RSI6_LEVELS)
+    rsi7  = _score_segment(d.get('rsi_7w', 50), RSI7_LEVELS)
+    ma250 = _score_segment(d.get('diff250', 0), MA_LEVELS)
+    ma550 = _score_segment(d.get('diff550', 0), MA_LEVELS)
+
+    # RSI7周 ×2, MA250偏离 ×2, RSI6日 ×1, MA550偏离 ×1
+    composite = (rsi6 * 1 + rsi7 * 2 + ma250 * 2 + ma550 * 1) / 6.0
+
+    if composite >= 60:   grade = 'buy'
+    elif composite >= 40: grade = 'watch'
+    else:                 grade = 'safe'
+
+    return {
+        'rsi6_score': round(rsi6, 1), 'rsi7_score': round(rsi7, 1),
+        'ma250_score': round(ma250, 1), 'ma550_score': round(ma550, 1),
+        'composite': round(composite, 1), 'grade': grade,
+    }
+
+def grade_label(grade):
+    if grade == 'buy':   return '买入信号'
+    if grade == 'watch': return '观察期'
+    return '无需关注'
+
+def indicator_signal_rsi(rsi, obs):
+    """技术指标微型信号"""
+    if rsi <= obs - 5:  return 'buy'
+    if rsi <= obs:      return 'watch'
+    return 'safe'
+
+def indicator_signal_ma(dev):
+    if dev <= -10: return 'buy'
+    if dev <= 0:   return 'watch'
+    return 'safe'
+
+SIGNAL_COLORS = {'buy': '#c62828', 'watch': '#e07040', 'safe': '#6b7280'}
+
+def signal_dot(sig):
+    """信号对应的颜色圆点"""
+    c = SIGNAL_COLORS.get(sig, '#6b7280')
+    return '<span style="color:%s;font-size:16px">●</span>' % c
+
+# ═══════════════════════════════════════════════════════════════
 # 行情获取（带重试）
 # ═══════════════════════════════════════════════════════════════
 
@@ -511,6 +576,19 @@ for idx, p in enumerate(PRODUCTS):
         print(summary)
     all_data.append(d)
 
+# -- 计算综合买入信号评分 --
+for d in all_data:
+    # nav_str for header display
+    if d.get('nav') is not None:
+        d['nav_str'] = '%.4f' % d['nav']
+    else:
+        d['nav_str'] = '—'
+
+    if not d.get('error') and d.get('rsi_6d') is not None:
+        d['score'] = calc_composite_score(d)
+    else:
+        d['score'] = None
+
 # -- 统一采集同类对比 --
 print("\n[同类对比] 采集8支红利ETF近1年收益...", flush=True)
 PEERS = [
@@ -789,6 +867,113 @@ def build_panel_html(d):
     </div>'''
 
 
+# ═══════════════════════════════════════════════════════════════
+# 首页 Dashboard 面板
+# ═══════════════════════════════════════════════════════════════
+
+def _score_bar(composite):
+    """评分进度条"""
+    color = SIGNAL_COLORS['buy'] if composite >= 60 else (SIGNAL_COLORS['watch'] if composite >= 40 else SIGNAL_COLORS['safe'])
+    return '<div class="score-bar-bg"><div class="score-bar-fill" style="width:%.0f%%;background:%s"></div></div>' % (composite, color)
+
+def _mini_badge(label, value, sig, fmt='%.1f'):
+    """微型指标徽章"""
+    dot = signal_dot(sig)
+    return '<div class="mini-badge"><span class="mini-label">%s</span>%s<span class="mini-val">%s</span></div>' % (label, dot, fmt % value)
+
+def _build_score_card(d):
+    """生成单个产品的评分卡片"""
+    s = d['score']
+    composite = s['composite']
+    grade = s['grade']
+    cat_key = 'energy' if '能源' in d['category'] else 'regular'
+    cat_color = '#c88a0c' if cat_key == 'energy' else '#0ea882'
+
+    # 4个微型信号
+    sig_rsi6  = indicator_signal_rsi(d.get('rsi_6d', 50), 25)
+    sig_rsi7  = indicator_signal_rsi(d.get('rsi_7w', 50), 40)
+    sig_ma250 = indicator_signal_ma(d.get('diff250', 0))
+    sig_ma550 = indicator_signal_ma(d.get('diff550', 0))
+
+    badges = _mini_badge('RSI6', d.get('rsi_6d', 0), sig_rsi6) + \
+             _mini_badge('RSI7W', d.get('rsi_7w', 0), sig_rsi7) + \
+             _mini_badge('MA250', d.get('diff250', 0), sig_ma250, fmt='%+.1f%%') + \
+             _mini_badge('MA550', d.get('diff550', 0), sig_ma550, fmt='%+.1f%%')
+
+    gl = grade_label(grade)
+    signal_color = SIGNAL_COLORS.get(grade, SIGNAL_COLORS['safe'])
+    return '''
+            <div class="score-card cat-%s" data-code="%s" onclick="switchToProduct(\'%s\')">
+              <div class="sc-header">
+                <span class="sc-name">%s</span>
+                <span class="sc-code">%s</span>
+              </div>
+              <div class="sc-score-wrap">
+                %s
+                <span class="sc-num" style="color:%s">%.0f</span>
+              </div>
+              <div class="sc-grade" style="color:%s">%s</div>
+              <div class="sc-badges">%s</div>
+            </div>''' % (
+                cat_key, d['code'], d['code'],
+                d['tab'], d['display_code'],
+                _score_bar(composite), signal_color, composite,
+                signal_color, gl, badges,
+            )
+
+def build_dashboard_panel(all_data, categories):
+    """生成首页概览面板HTML"""
+    sections = ''
+    for cat, items in categories.items():
+        cat_key = 'energy' if '能源' in cat else 'regular'
+        cat_color = '#c88a0c' if cat_key == 'energy' else '#0ea882'
+
+        # 按综合分降序, 失败的排最后
+        sorted_items = sorted(items, key=lambda d: (
+            d['score'] is None,
+            -(d['score']['composite'] if d['score'] else 0)
+        ))
+
+        cards = ''
+        for d in sorted_items:
+            if d['score'] is None:
+                # 数据失败的产品
+                cards += '''
+            <div class="score-card cat-%s error-card">
+              <div class="sc-header">
+                <span class="sc-name">%s</span>
+                <span class="sc-code">%s</span>
+              </div>
+              <div class="sc-error-msg">数据暂不可用</div>
+            </div>''' % (cat_key, d['tab'], d['display_code'])
+            else:
+                cards += _build_score_card(d)
+
+        sections += '''
+        <div class="dash-section">
+          <div class="dash-section-head">
+            <span class="dash-dot cat-%s"></span>
+            <span class="dash-cat-name">%s</span>
+            <span class="dash-cat-count">%d只产品</span>
+          </div>
+          <div class="dash-grid">%s
+          </div>
+        </div>''' % (cat_key, cat, len(items), cards)
+
+    return '''<div class="etf-panel" id="panel-dashboard">
+    <div class="dash-hero">
+      <h2>综合买入信号概览</h2>
+      <p class="dash-sub">基于RSI(6日/7周) + 均线偏离(250日/550日) 加权评分 | RSI7周×2 · MA250×2 · RSI6×1 · MA550×1</p>
+      <div class="dash-legend">
+        <span class="legend-item buy">● ≥60 买入信号</span>
+        <span class="legend-item watch">● 40-59 观察期</span>
+        <span class="legend-item safe">● &lt;40 无需关注</span>
+      </div>
+    </div>
+    %s
+  </div>''' % sections
+
+
 # -- 构建分类Tab --
 categories = {}
 for d in all_data:
@@ -803,40 +988,44 @@ CAT_COLORS = {
     '常规红利': '#0ea882',        # 绿
 }
 
-tab_html = ''
+# 概览Tab（默认选中）
+tab_html = '<div class="tab-group" style="margin-bottom:12px">\n'
+tab_html += '    <button class="tab-btn tab-dashboard active" data-code="dashboard">概览<span class="tab-code">综合评分</span></button>\n'
+tab_html += '  </div>\n'
+
+# 分类Tab
 for cat, items in categories.items():
     cat_color = CAT_COLORS.get(cat, '#0ea882')
     cat_key = 'energy' if '能源' in cat else 'regular'
-    tab_html += '<div class="tab-category" data-cat="%s">\n' % cat
-    tab_html += '      <span class="tab-cat-dot cat-%s"></span>\n' % cat_key
-    tab_html += '      <span class="tab-cat-label">%s</span>\n' % cat
-    tab_html += '    </div>\n'
-    tab_html += '    <div class="tab-group">\n'
-    first_in_cat = True
+    tab_html += '  <div class="tab-category" data-cat="%s">\n' % cat
+    tab_html += '    <span class="tab-cat-dot cat-%s"></span>\n' % cat_key
+    tab_html += '    <span class="tab-cat-label">%s</span>\n' % cat
+    tab_html += '  </div>\n'
+    tab_html += '  <div class="tab-group">\n'
     for d in items:
-        is_active = first_in_cat and cat == list(categories.keys())[0]
-        active_cls = ' active' if is_active else ''
         error_cls = ' tab-error' if d.get('error') else ''
-        tab_html += '      <button class="tab-btn cat-%s%s%s" data-code="%s" data-cat="%s">%s<span class="tab-code">%s</span></button>\n' % (
-            cat_key, active_cls, error_cls, d['code'], cat, d['tab'], d['code'])
-        if first_in_cat:
-            first_in_cat = False
-    tab_html += '    </div>\n'
+        tab_html += '    <button class="tab-btn cat-%s%s" data-code="%s" data-cat="%s">%s<span class="tab-code">%s</span></button>\n' % (
+            cat_key, error_cls, d['code'], cat, d['tab'], d['code'])
+    tab_html += '  </div>\n'
 
-# -- 构建面板 --
-panels_html = ''
+# -- 构建面板（首页概览 + 各产品详情）--
+panels_html = build_dashboard_panel(all_data, categories) + '\n'
 for d in all_data:
     panels_html += build_panel_html(d) + '\n'
 
-# -- 默认选中第一个有数据的产品 --
-default_code = all_data[0]['code']
-for d in all_data:
-    if not d.get('error'):
-        default_code = d['code']
-        break
+# -- 默认选中概览页 --
+default_code = 'dashboard'
 
 # -- 获取某个产品的header信息 --
 def get_header_info(code):
+    if code == 'dashboard':
+        return {
+            'name': '红利策略综合概览',
+            'display_code': '%d产品' % len(all_data),
+            'index_name': 'RSI + 均线偏离加权评分',
+            'category': '能源/资源红利 + 常规红利',
+            'nav_str': '%d只' % len(all_data), 'price_source': '技术指标综合', 'nav_date': today.strftime('%Y-%m-%d'),
+        }
     for d in all_data:
         if d['code'] == code:
             return d
@@ -1082,6 +1271,158 @@ CSS = """
   .green { color: #0ea882; }
   .red { color: #d64555; }
 
+  /* ═══════════════════════════════════════ */
+  /* 概览 Tab 按钮 */
+  /* ═══════════════════════════════════════ */
+  .tab-btn.tab-dashboard {
+    background: #fff;
+    border: 1.5px solid #d0d4da;
+    font-weight: 600;
+    font-size: 14px;
+    color: #2a3140;
+    padding: 8px 20px;
+  }
+  .tab-btn.tab-dashboard:hover {
+    background: #f8f9fb;
+    border-color: #b0b6c0;
+  }
+  .tab-btn.tab-dashboard.active {
+    background: #2a3140;
+    color: #fff;
+    border-color: #2a3140;
+    box-shadow: 0 2px 10px rgba(42,49,64,0.3);
+  }
+  .tab-btn.tab-dashboard.active .tab-code {
+    color: rgba(255,255,255,0.55);
+  }
+
+  /* ═══════════════════════════════════════ */
+  /* Dashboard 概览面板 */
+  /* ═══════════════════════════════════════ */
+  .dash-hero {
+    padding: 28px 48px 0;
+    margin-bottom: 8px;
+  }
+  .dash-hero h2 {
+    font-size: 20px; font-weight: 700; color: #111; margin-bottom: 6px;
+  }
+  .dash-sub {
+    font-size: 13px; color: #8a92a3; margin-bottom: 14px;
+  }
+  .dash-legend {
+    display: flex; gap: 22px; font-size: 13px; color: #5a6070;
+  }
+  .dash-legend .legend-item { display: flex; align-items: center; gap: 4px; }
+  .dash-legend .legend-item.buy { color: #c62828; font-weight: 600; }
+  .dash-legend .legend-item.watch { color: #e07040; font-weight: 600; }
+  .dash-legend .legend-item.safe { color: #6b7280; }
+
+  .dash-section {
+    padding: 8px 48px 14px;
+  }
+  .dash-section-head {
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 14px;
+  }
+  .dash-dot {
+    width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+  }
+  .dash-dot.cat-energy { background: #c88a0c; }
+  .dash-dot.cat-regular { background: #0ea882; }
+  .dash-cat-name {
+    font-size: 16px; font-weight: 700; color: #2a3140;
+  }
+  .dash-cat-count {
+    font-size: 12px; color: #a0a8b4; margin-left: 2px;
+  }
+
+  .dash-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    gap: 14px;
+  }
+
+  /* Score card */
+  .score-card {
+    background: #fff;
+    border: 1px solid #e2e6ec;
+    border-radius: 14px;
+    padding: 20px 18px 16px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+  .score-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.08);
+    border-color: #c0c8d4;
+  }
+  .score-card.cat-energy { border-top: 3px solid #c88a0c; }
+  .score-card.cat-regular { border-top: 3px solid #0ea882; }
+  .score-card.error-card {
+    opacity: 0.55;
+    cursor: default;
+  }
+  .score-card.error-card:hover {
+    transform: none;
+    box-shadow: none;
+    border-color: #e2e6ec;
+  }
+
+  .sc-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 14px;
+  }
+  .sc-name {
+    font-size: 15px; font-weight: 700; color: #2a3140;
+  }
+  .sc-code {
+    font-size: 11px; color: #a0a8b4; font-weight: 500;
+  }
+  .sc-error-msg {
+    text-align: center; color: #a0a8b4; font-size: 14px; padding: 12px 0;
+  }
+
+  /* Score bar + number */
+  .sc-score-wrap {
+    display: flex; align-items: center; gap: 8px;
+    margin-bottom: 4px;
+  }
+  .score-bar-bg {
+    flex: 1; height: 6px; background: #eef0f4; border-radius: 3px; overflow: hidden;
+  }
+  .score-bar-fill {
+    height: 100%; border-radius: 3px; transition: width 0.4s ease;
+  }
+  .sc-num {
+    font-size: 26px; font-weight: 800; flex-shrink: 0; line-height: 1;
+  }
+  .sc-grade {
+    font-size: 12px; font-weight: 700; margin-bottom: 14px; padding-left: 0;
+  }
+  .sc-grade.buy   { color: #c62828; }
+  .sc-grade.watch { color: #e07040; }
+  .sc-grade.safe  { color: #6b7280; }
+
+  /* Mini badges */
+  .sc-badges {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    border-top: 1px solid #eef0f4;
+    padding-top: 12px;
+  }
+  .mini-badge {
+    display: flex; align-items: center; gap: 3px;
+    font-size: 12px;
+  }
+  .mini-label {
+    color: #8a92a3; font-weight: 500; min-width: 34px; font-size: 11px;
+  }
+  .mini-val {
+    color: #2a3140; font-weight: 600; margin-left: 2px;
+  }
+
   .footer {
     text-align: center; padding: 24px 48px 32px;
     font-size: 13px; color: #8a92a3;
@@ -1095,9 +1436,9 @@ CSS = """
 # 生成 JS 产品数据
 js_data_lines = []
 for d in all_data:
-    js_data_lines.append('  "%s": { name: "%s", display_code: "%s", nav: %.4f, nav_date: "%s", price_source: "%s", index_name: "%s", category: "%s" }' % (
+    js_data_lines.append('  "%s": { name: "%s", display_code: "%s", nav_str: "%s", nav_date: "%s", price_source: "%s", index_name: "%s", category: "%s" }' % (
         d['code'], d['name'], d['display_code'],
-        d.get('nav', 0), d.get('nav_date', ''),
+        d.get('nav_str', '—'), d.get('nav_date', ''),
         d.get('price_source', ''), d.get('index_name') or '', d['category']
     ))
 js_product_data = ',\n'.join(js_data_lines)
@@ -1118,7 +1459,7 @@ html = """<!DOCTYPE html>
     <div class="sub">跟踪 <span id="header-index">%s</span> | <span id="header-cat">%s</span></div>
   </div>
   <div style="text-align:right">
-    <div class="nav-num" id="header-nav">%.4f</div>
+    <div class="nav-num" id="header-nav">%s</div>
     <div class="nav-label" id="header-src">%s</div>
     <div class="nav-date" id="header-date">%s</div>
   </div>
@@ -1140,6 +1481,25 @@ const PRODUCT_DATA = {
 %s
 };
 
+function switchToProduct(code) {
+  /* score card click → switch to product tab */
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.etf-panel').forEach(p => p.style.display = 'none');
+  const btn = document.querySelector('.tab-btn[data-code="' + code + '"]');
+  if (btn) btn.classList.add('active');
+  const panel = document.getElementById('panel-' + code);
+  if (panel) { panel.style.display = 'block'; panel.classList.add('active'); }
+  const pd = PRODUCT_DATA[code];
+  if (pd) {
+    document.getElementById('header-name').textContent = pd.name + ' (' + pd.display_code + ')';
+    document.getElementById('header-index').textContent = pd.index_name || '-';
+    document.getElementById('header-cat').textContent = pd.category;
+    document.getElementById('header-nav').textContent = pd.nav_str;
+    document.getElementById('header-src').textContent = pd.price_source;
+    document.getElementById('header-date').textContent = pd.nav_date;
+  }
+}
+
 document.querySelectorAll('.tab-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     const code = btn.dataset.code;
@@ -1151,14 +1511,23 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
       panel.style.display = 'block';
       panel.classList.add('active');
     }
-    const pd = PRODUCT_DATA[code];
-    if (pd) {
-      document.getElementById('header-name').textContent = pd.name + ' (' + pd.display_code + ')';
-      document.getElementById('header-index').textContent = pd.index_name || '-';
-      document.getElementById('header-cat').textContent = pd.category;
-      document.getElementById('header-nav').textContent = pd.nav.toFixed(4);
-      document.getElementById('header-src').textContent = pd.price_source;
-      document.getElementById('header-date').textContent = pd.nav_date;
+    if (code === 'dashboard') {
+      document.getElementById('header-name').textContent = '红利策略综合概览';
+      document.getElementById('header-index').textContent = 'RSI + 均线偏离加权评分';
+      document.getElementById('header-cat').textContent = '能源/资源红利 + 常规红利';
+      document.getElementById('header-nav').textContent = '%s';
+      document.getElementById('header-src').textContent = '技术指标综合';
+      document.getElementById('header-date').textContent = '%s';
+    } else {
+      const pd = PRODUCT_DATA[code];
+      if (pd) {
+        document.getElementById('header-name').textContent = pd.name + ' (' + pd.display_code + ')';
+        document.getElementById('header-index').textContent = pd.index_name || '-';
+        document.getElementById('header-cat').textContent = pd.category;
+        document.getElementById('header-nav').textContent = pd.nav_str;
+        document.getElementById('header-src').textContent = pd.price_source;
+        document.getElementById('header-date').textContent = pd.nav_date;
+      }
     }
   });
 });
@@ -1181,11 +1550,12 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     CSS,
     first['name'], first['display_code'],
     first.get('index_name') or '-', first['category'],
-    first.get('nav', 0), first.get('price_source', ''), first.get('nav_date', ''),
+    first.get('nav_str', '—'), first.get('price_source', ''), first.get('nav_date', ''),
     tab_html,
     panels_html,
     today.strftime('%Y-%m-%d %H:%M'),
     js_product_data,
+    '%d只' % len(all_data), today.strftime('%Y-%m-%d'),
     default_code,
 )
 
