@@ -110,6 +110,188 @@ PRODUCTS = [
 ]
 
 # ═══════════════════════════════════════════════════════════════
+# 策略简介（硬编码，非每日数据）
+# ═══════════════════════════════════════════════════════════════
+
+STRATEGY_PROFILES = {
+    '021961': {
+        'fund_full_name': '景顺长城中证国新港股通央企红利ETF联接A',
+        'fund_type': 'ETF联接基金',
+        'inception': '2024-06-26',
+        'company': '景顺长城基金',
+        'underlying_etf': '国新红利ETF (520990)',
+        'index_name': '中证国新港股通央企红利指数',
+        'factors': [
+            ('高股息率', '从港股通央企备选池中，选取过去12个月现金股息率排名前50的股票，要求股息率持续高于市场基准利率，确保红利收益的绝对吸引力'),
+            ('央企背景', '严格限定国务院国资委履行出资人职责的中央企业及其控股上市公司，涵盖能源、通信、基建等国民经济命脉行业，具备较高信用背书和抗风险能力'),
+            ('港股通标的', '全部成分股须纳入沪港通或深港通合格标的名单，内地投资者可直接使用A股账户参与交易，无需额外开设港股账户'),
+            ('流动性筛选', '剔除过去3个月日均成交金额低于2000万港元的股票，确保ETF申购赎回及做市商报价的流动性需求'),
+        ],
+        'scope': '选股范围为港股通（沪/深）全部合格标的中的中央国有企业上市公司，行业覆盖能源（石油、煤炭）、通信（电信运营商）、基建（建筑、港口）、金融（国有大行）等高分红领域。成分股以H股和红筹股为主，市值普遍在500亿港元以上，具备大盘蓝筹特征。',
+        'weighting': '股息率加权',
+        'rebalance': '每半年（6月/12月）',
+        'constituents': '约50只',
+        'desc': '从港股通标的中选取国务院国资委下属央企中股息率较高的50只证券，综合反映港股通央企高股息证券的整体表现，兼具央企信用背书与跨境红利配置价值。',
+    },
+    '021881': {
+        'fund_full_name': '鑫元华证沪深港红利50指数A',
+        'fund_type': '指数基金',
+        'inception': '2024-01-23',
+        'company': '鑫元基金',
+        'underlying_etf': None,
+        'index_name': '华证沪深港红利50指数',
+        'factors': [
+            ('高股息率', '以最近一个完整财年的每股现金股利除以调整日股价计算股息率，覆盖沪深港三地全部上市公司，按股息率降序排列取前50只'),
+            ('跨市场筛选', '同时纳入上海、深圳、香港三地上市的中国公司（含A股、H股、红筹股），单市场权重设上限避免过度集中于某一市场，实现真正的三地红利一体化配置'),
+            ('连续分红要求', '要求成分股最近两个财年均实施了现金分红，排除仅因一次性资产出售或特别派息导致股息率虚高的"伪高息"股票'),
+            ('流动性门槛', '剔除过去6个月日均成交额排名后20%的股票，保证跨市场申赎的流动性，降低港股小盘股流动性不足带来的冲击成本'),
+        ],
+        'scope': '覆盖上海、深圳、香港三个交易所的全部上市中国公司，不设行业限制。A股部分偏好银行、煤炭、交运等传统高息板块；港股部分纳入中资电讯、能源央企等高息H股。三地分散化有效降低单一市场政策风险。',
+        'weighting': '股息率加权',
+        'rebalance': '每半年',
+        'constituents': '50只',
+        'desc': '横跨沪深港三地市场，选取股息率最高的50只股票，覆盖A股与港股红利资产，实现三地红利策略一体化配置，解决单一市场股息率波动过大的问题。',
+    },
+    '020866': {
+        'fund_full_name': '华安恒生港股通中国央企红利ETF联接A',
+        'fund_type': 'ETF联接基金',
+        'inception': '2024-08-07',
+        'company': '华安基金',
+        'underlying_etf': '港股通央企红利ETF华安 (513920)',
+        'index_name': '恒生港股通中国央企红利指数',
+        'factors': [
+            ('高股息率', '在恒生港股通综合指数央企子集中，按净股息率（扣除预提税后）降序排列，选取前50只成分股，使用经分红税调整后的实际到手股息率作为排序基准'),
+            ('央企属性', '限定为最终控制人为国务院国资委或中央国家机关的内地企业，较一般国企有更强的政策确定性和分红意愿，近年央企分红率持续提升至30%以上'),
+            ('港股通可交易', '全部成分股均为恒生港股通指数合格标的，内地投资者可通过沪深港通渠道直接买卖，无需换汇，T+0回转交易提升资金效率'),
+            ('流动性与市值筛选', '剔除日均成交额不足1000万港元及总市值低于50亿港元的标的，确保ETF做市商可有效维护二级市场流动性'),
+        ],
+        'scope': '限定为恒生港股通综合指数中最终控制人为内地中央政府的上市公司，主要分布在金融（国有大行H股）、能源（三桶油）、电讯（三大运营商）、建筑（中铁建、中交建）等传统高分红板块。H股相对A股通常存在折价，提供估值安全边际。',
+        'weighting': '股息率加权（经红利税调整后净股息率）',
+        'rebalance': '每半年',
+        'constituents': '约50只',
+        'desc': '聚焦港股通渠道下的内地央企上市公司，按经红利税调整后的净股息率筛选，真实反映投资者到手收益，相较A股同类央企存在H股折价的安全边际优势。',
+    },
+    '016185': {
+        'fund_full_name': '广发中证电力公用事业ETF联接A',
+        'fund_type': 'ETF联接基金',
+        'inception': '2024-12-25',
+        'company': '广发基金',
+        'underlying_etf': '电力ETF广发 (159611)',
+        'index_name': '中证电力公用事业指数',
+        'factors': [
+            ('行业纯度', '严格按中证行业分类四级标准，限定为\"电力\"\"燃气\"\"水务\"三个三级子行业，剔除综合能源、环保设备等边缘行业，保持行业beta的高度纯净'),
+            ('公用事业属性', '优先选取具有区域垄断特征、现金流稳定、价格受政府定价或指导价约束的传统公用事业企业，这类企业在利率下行周期中具有类债券属性'),
+            ('市值分层', '按自由流通市值降序排列，选取前50-60只，确保纳入长江电力、华能国际、国电电力等龙头，头部5家企业权重通常合计超过40%'),
+            ('流动性筛选', '剔除日均换手率过低（<0.1%）及日均成交额不足1000万元的标的，保证ETF实物申赎效率'),
+        ],
+        'scope': '限定为中证全指内中证行业分类归属于电力（火电、水电、核电、风电光伏运营）、燃气（城市燃气输配）、水务（供水、污水处理）公用事业子行业的上市公司。以火电/水电为主体（约60-70%），新能源运营商近年占比逐步提升。',
+        'weighting': '自由流通市值加权',
+        'rebalance': '每半年（6月/12月）',
+        'constituents': '约50只',
+        'desc': '聚焦电力及公用事业赛道，选取中证全指中归属于电力、燃气、水务公用事业行业的上市公司，具有类债券的稳定现金流特征，在利率下行和防御性行情中表现突出。',
+    },
+    '009051': {
+        'fund_full_name': '易方达中证红利ETF联接A',
+        'fund_type': 'ETF联接基金',
+        'inception': '2020-07-08',
+        'company': '易方达基金',
+        'underlying_etf': '红利ETF易方达 (515180)',
+        'index_name': '中证红利指数 (000922)',
+        'factors': [
+            ('高股息率', '以过去两年平均股息率（每股现金股利÷调整日股价）为核心排序指标，从沪深A股中取股息率排名前100的股票，是国内最经典的红利因子实现方式'),
+            ('连续分红要求', '强制要求过去3个完整财年每年均实施现金分红，排除\"一次性高分红\"（如卖出资产派息）和\"分红不稳定\"的干扰项，确保成分股具有真实的分红文化和财务能力'),
+            ('流动性筛选', '剔除过去一年日均成交金额排名后20%的股票，避免纳入交投清淡的\"僵尸股\"，保证基金日常申赎及指数调仓时的买入/卖出可执行性'),
+            ('市值门槛', '剔除过去一年日均总市值排名后20%的小市值股票，将选股池收敛至大盘和中盘价值股，降低小盘股的流动性风险和股价操纵风险'),
+        ],
+        'scope': '选股范围为沪深A股全部上市公司（剔除ST、*ST及上市不满一年的新股），先按流动性（日均成交额后20%）和市值（日均总市值后20%）做负向剔除，再在剩余约3000只股票中按两年平均股息率降序取前100。覆盖银行、煤炭、交运、钢铁、地产等高息板块，行业集中度天然偏高。',
+        'weighting': '股息率加权（股息率越高权重越大）',
+        'rebalance': '每年一次（12月第二个周五收盘后）',
+        'constituents': '100只',
+        'desc': '国内红利策略的基准指数，选取沪深两市连续三年分红、股息率最高的100只股票，覆盖范围广、行业分散度适中，是A股红利投资领域规模最大、流动性最好的指数。',
+    },
+
+    # -- 常规红利 --
+
+    '014771': {
+        'fund_full_name': '中泰红利优选一年持有期混合',
+        'fund_type': '混合型基金（主动管理）',
+        'inception': '2022-03-17',
+        'company': '中泰证券(上海)资管',
+        'underlying_etf': None,
+        'index_name': None,
+        'factors': [
+            ('高股息与分红增长', '不依赖单一量化因子，综合考察股息率绝对值、分红连续年限（通常要求≥5年）、分红增长率三个维度，偏好\"股息率尚可但分红在加速增长\"的标的'),
+            ('低估值保护', '买入PE、PB处于行业后30%分位的企业，要求安全边际充足。通常回避PB>2倍的高估值\"伪红利\"——高股息率可能来自股价暴跌而非真实分红能力提升'),
+            ('盈利质量筛选', '重点考察ROE(≥8%)、经营现金流/净利润(>0.8)两个质量指标，排除\"借钱分红\"和\"利润虚增\"的企业。自由现金流充裕的公司才有持续分红的基础'),
+            ('基金经理择时', '由基金经理结合宏观经济周期（PPI、利率、PMI）、行业景气度轮动和个股深度调研，在红利框架内进行灵活的行业超低配和仓位管理，不机械复制指数'),
+        ],
+        'scope': '灵活配置于A股（沪深主板、创业板）及港股通标的，不设行业和市值硬性限制。实际持仓偏好银行（国有大行、股份行）、煤炭（动力煤龙头）、交运（高速公路、铁路）、公用事业（水电、核电）等现金流充裕的行业。港股部分择机配置H股银行和电讯龙头。',
+        'weighting': '基金经理主动配置，个股集中度高（前10大持仓通常占净值60%以上）',
+        'rebalance': '灵活择时调仓，无固定再平衡周期',
+        'constituents': '持仓高度集中，通常持有20-40只股票',
+        'desc': '主动管理型红利基金，不跟踪任何指数，由基金经理运用红利+低估值+盈利质量三维框架灵活选股。一年持有期设计降低短期赎回冲击，适合认可红利理念且能接受适度波动的长期投资者。',
+    },
+    '020602': {
+        'fund_full_name': '易方达中证红利低波动ETF联接A',
+        'fund_type': 'ETF联接基金',
+        'inception': '2024-04-09',
+        'company': '易方达基金',
+        'underlying_etf': '红利低波ETF易方达 (563020)',
+        'index_name': '中证红利低波指数 (930955)',
+        'factors': [
+            ('高股息率', '从中证全指中筛选过去三年连续现金分红的股票，按过去两年平均股息率降序排列，取股息率排名前75%的股票进入低波筛选池'),
+            ('低波动率', '对股息率入围股票，计算过去一年日收益率的标准差（即波动率），按波动率升序排列取最低的50只。波动率越低的股票得分越高，实现\"高息+低波\"双排序'),
+            ('连续分红门槛', '要求过去三年每个财年均有现金分红记录，三年要求比中证红利的两年更严格，进一步保障分红的稳定性和可持续性'),
+            ('流动性约束', '剔除过去一年日均成交金额排名后20%的股票，保证指数调仓时可有效执行买卖指令'),
+        ],
+        'scope': '选股范围与中证红利(000922)相同——沪深A股全部非ST、非*ST股票，先经流动性负向剔除，再经连续三年分红门槛筛选，最后在红利池内按波动率择优。成分股以银行、电力、交运等低beta行业为主，天然具有低波动特征。',
+        'weighting': '股息率加权（按过去两年平均股息率分配权重）',
+        'rebalance': '每半年（6月/12月）',
+        'constituents': '50只',
+        'desc': '在中证红利基础上叠加低波动因子，从高息股票中进一步筛选价格波动最小的50只，兼具红利防御性与低波动的持有体验，长期夏普比率通常优于纯红利策略。',
+    },
+    '012708': {
+        'fund_full_name': '东方红中证东方红红利低波动指数A',
+        'fund_type': '指数基金',
+        'inception': '2022-01-04',
+        'company': '东方红资产管理（东方证券资管）',
+        'underlying_etf': None,
+        'index_name': '中证东方红红利低波指数 (931446)',
+        'factors': [
+            ('高股息率（历史+预期）', '不仅考察过去一年的历史现金股息率，更要求\"预期股息率\"（基于分析师一致预期的未来12个月股息）达到门槛。这一前瞻性指标可提前捕捉分红改善信号、规避分红可能恶化的\"价值陷阱\"'),
+            ('低波动率', '计算过去一年日收益率波动率，选取波动率最低的100只。对比930955（选50只），931446的成分数量翻倍，分散化程度更高，单只股票权重上限更低'),
+            ('预期股息率加权', '以分析师一致预期股息率（而非过去实际股息率）作为权重分配基准，赋予\"未来分红可能更好\"的公司更高权重，是区别于其他红利低波指数的核心创新'),
+            ('东方红质量增强', '东方红资管叠加自身投研体系的筛选规则——包括ROE稳定性（连续三年ROE不低于8%）、经营现金流质量、资产负债率上限等，将纯量化红利指数与主动管理经验融合'),
+        ],
+        'scope': '选股范围为沪深A股全部非ST上市公司，先以流动性（日均成交额后20%剔除）、连续分红（≥3年）、ROE下限等指标做负向筛选，再按\"预期股息率+低波动\"双维度进行正向排序取前100。行业分布较同类更均衡，不会过度集中于银行。',
+        'weighting': '预期股息率加权（核心差异化特征）',
+        'rebalance': '每半年（6月/12月）',
+        'constituents': '100只（较同类50只更分散）',
+        'desc': '东方红资管与中证指数联合定制的红利低波指数，独创\"预期股息率加权\"机制，以分析师一致预期替代历史股息率，叠加东方红的质量筛选体系，代表红利策略的前沿进化方向。',
+    },
+    '515450': {
+        'fund_full_name': '南方标普中国A股大盘红利低波50ETF',
+        'fund_type': 'ETF（场内交易型开放式指数基金）',
+        'inception': '2024-03-26',
+        'company': '南方基金',
+        'underlying_etf': None,
+        'index_name': '标普中国A股大盘红利低波50指数',
+        'factors': [
+            ('高股息率', '在标普中国A股大盘指数（覆盖A股市值前约70%）成分股中，计算过去12个月每股现金股利与股价之比，仅选取股息率高于成分股中位数的股票'),
+            ('低波动率', '计算过去12个月每日价格收益率的标准差，按波动率升序排列，选取波动率最低的50只。标普的计算方法要求连续12个月的价格数据，新股或数据不完整的股票自动排除'),
+            ('大盘股筛选', '仅从标普中国A股大盘指数成分股中选取，该大盘指数覆盖A股总市值约前70%、约400-500只股票，底层池天然排除了中小盘股和微盘股'),
+            ('盈利质量要求', '标普指数额外设置盈利门槛——最近四个季度（滚动12个月）累计净利润必须为正，排除持续亏损的企业。这一质量因子是标普方法论区别于国内红利指数的关键差异'),
+            ('流动性门槛', '过去三个月日均成交金额须达到规定阈值（通常为200万美元以上），确保ETF做市商可有效在一级和二级市场间套利，维持净值与市价的紧密跟踪'),
+        ],
+        'scope': '选股起点为标普中国A股大盘指数成分股（约400-500只，覆盖A股总市值约70%），经盈利质量（滚动PE为正）、流动性（日均成交额>门槛）、股息率（高于中位数）三层负向剔除后，按波动率升序取前50。最终组合以银行、电力、煤炭、交运为主，单股权重上限5%。',
+        'weighting': '股息率加权（单股权重上限5%）',
+        'rebalance': '每半年（3月第三个周五、9月第三个周五收盘后）',
+        'constituents': '50只',
+        'desc': '标普道琼斯指数公司编制的A股大盘红利低波策略指数，具备国际指数品牌的严格编制标准（盈利质量+流动性+股息率+低波动四重筛选），单股权重上限5%保障分散化，相较国内同类指数更强调盈利质量。',
+    },
+}
+
+# ═══════════════════════════════════════════════════════════════
 # 工具函数
 # ═══════════════════════════════════════════════════════════════
 
@@ -692,6 +874,59 @@ def build_tech_cell(label, hint_fn, num_val, dev_val, dev_color_fn, is_rsi=False
            '      </div>' % (label, hint_cls, hint_text, color, num_str, color, dev_text, gauge_html)
 
 
+def build_strategy_card(d):
+    """生成策略简介卡片"""
+    prof = STRATEGY_PROFILES.get(d['code'])
+    if not prof:
+        return ''
+
+    # 基金概况行
+    rows = []
+    rows.append(('基金类型', prof['fund_type']))
+    rows.append(('成立日期', prof['inception']))
+    rows.append(('基金公司', prof['company']))
+    if prof['underlying_etf']:
+        rows.append(('底层ETF', prof['underlying_etf']))
+    if prof['index_name']:
+        rows.append(('跟踪指数', prof['index_name']))
+
+    info_rows = ''
+    for label, value in rows:
+        info_rows += '<div class="sf-row"><span class="sf-label">%s</span><span class="sf-value">%s</span></div>\n' % (label, value)
+
+    # 选股因子详情
+    factor_items = ''
+    for fname, fdesc in prof['factors']:
+        factor_items += '<div class="sf-factor-item"><span class="sf-factor-dot">●</span><div><span class="sf-factor-name">%s</span><span class="sf-factor-desc">%s</span></div></div>\n' % (fname, fdesc)
+
+    return '''
+      <div class="wide-card strategy-card">
+        <h3>策略概要</h3>
+        <div class="sf-grid">
+          <div class="sf-col sf-col-info">
+            <div class="sf-col-title">基金概况</div>
+            %s
+          </div>
+          <div class="sf-col sf-col-rule">
+            <div class="sf-col-title">调仓与加权</div>
+            <div class="sf-row"><span class="sf-label">调仓频率</span><span class="sf-value">%s</span></div>
+            <div class="sf-row"><span class="sf-label">成分数量</span><span class="sf-value">%s</span></div>
+            <div class="sf-row"><span class="sf-label">加权方式</span><span class="sf-value">%s</span></div>
+            <div class="sf-row" style="margin-top:8px"><span class="sf-label">选股范围</span><span class="sf-value" style="font-weight:400;font-size:13px;line-height:1.6">%s</span></div>
+          </div>
+        </div>
+        <div class="sf-factors-section">
+          <div class="sf-col-title">选股因子详解</div>
+          %s
+        </div>
+        <div class="sf-desc">%s</div>
+      </div>''' % (info_rows,
+                   prof['rebalance'], prof['constituents'], prof['weighting'],
+                   prof['scope'],
+                   factor_items,
+                   prof['desc'])
+
+
 def build_panel_html(d):
     """生成单个产品的完整HTML面板"""
     if d.get('error'):
@@ -858,7 +1093,10 @@ def build_panel_html(d):
     else:
         stock_table = ''
 
+    strategy_card = build_strategy_card(d)
+
     return f'''<div class="etf-panel" id="panel-{d['code']}">
+    {strategy_card}
     {hero}
     {main_grid}
     {peer_html}
@@ -1421,6 +1659,82 @@ CSS = """
   }
   .mini-val {
     color: #2a3140; font-weight: 600; margin-left: 2px;
+  }
+
+  /* ═══════════════════════════════════════ */
+  /* 策略概要卡片 */
+  /* ═══════════════════════════════════════ */
+  .strategy-card {
+    margin: 18px 48px 0;
+    padding: 20px 28px;
+  }
+  .strategy-card h3 {
+    font-size: 14px; font-weight: 700; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 10px;
+    letter-spacing: 1px; color: #3168d8;
+  }
+  .strategy-card h3::after {
+    content: ''; flex:1; height: 1px; background: #3168d8; opacity: 0.2;
+  }
+
+  .sf-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    margin-bottom: 14px;
+  }
+  .sf-col { min-width: 0; }
+  .sf-col-title {
+    font-size: 11px; font-weight: 700; color: #8a92a3;
+    text-transform: uppercase; letter-spacing: 0.5px;
+    margin-bottom: 6px; padding-bottom: 4px;
+    border-bottom: 1px solid #eef0f4;
+  }
+  .sf-row {
+    display: flex; align-items: baseline;
+    padding: 2px 0; font-size: 13px;
+  }
+  .sf-label {
+    color: #8a92a3; font-size: 12px; min-width: 60px; flex-shrink: 0;
+  }
+  .sf-value {
+    color: #2a3140; font-weight: 600; font-size: 13px;
+  }
+
+  /* 因子详情 */
+  .sf-factors-section {
+    margin-bottom: 10px;
+    padding: 10px 0 0;
+    border-top: 1px solid #eef0f4;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 18px;
+  }
+  .sf-factors-section .sf-col-title {
+    grid-column: 1 / -1;
+    margin-bottom: 2px;
+  }
+  .sf-factor-item {
+    display: flex; gap: 6px;
+    padding: 4px 0;
+    border-bottom: none;
+  }
+  .sf-factor-dot {
+    color: #3168d8; font-size: 9px; flex-shrink: 0;
+    margin-top: 4px;
+  }
+  .sf-factor-name {
+    display: block; font-size: 13px; font-weight: 700; color: #2a3140;
+    margin-bottom: 1px;
+  }
+  .sf-factor-desc {
+    display: block; font-size: 12px; color: #5a6070; line-height: 1.55;
+  }
+
+  .sf-desc {
+    font-size: 12px; color: #5a6070; line-height: 1.6;
+    padding-top: 10px;
+    border-top: 1px solid #eef0f4;
   }
 
   .footer {
