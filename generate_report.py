@@ -67,6 +67,16 @@ PRODUCTS = [
         'sina_sym': 'sh515180',
         'index_name': '中证红利(000922)',
     },
+    {
+        'code': '501059',
+        'name': '西部利得国企红利指数增强A',
+        'tab': '国企红利',
+        'category': '能源/资源红利',
+        'type': 'index_fund_a',
+        'sina_sym': None,
+        'index_name': '中证国企红利(000824)',
+        'csi_index': '000824',
+    },
 
     # -- 常规红利 --
 
@@ -208,6 +218,25 @@ STRATEGY_PROFILES = {
         'rebalance': '每年一次（12月第二个周五收盘后）',
         'constituents': '100只',
         'desc': '国内红利策略的基准指数，选取沪深两市连续三年分红、股息率最高的100只股票，覆盖范围广、行业分散度适中，是A股红利投资领域规模最大、流动性最好的指数。',
+    },
+    '501059': {
+        'fund_full_name': '西部利得中证国有企业红利指数增强型证券投资基金(LOF)A',
+        'fund_type': '指数增强型基金（LOF）',
+        'inception': '2018-07-11',
+        'company': '西部利得基金',
+        'underlying_etf': None,
+        'index_name': '中证国有企业红利指数 (000824)',
+        'factors': [
+            ('国企身份筛选', '从沪深A股全样本中，首先将选股池限定为实际控制人为国务院国资委、财政部、地方国资委/政府及地方国有企业的上市公司，从源头锚定具备政策信用背书和稳定分红意愿的国有主体'),
+            ('连续分红与合理支付率', '要求过去三个完整财年每年均实施现金分红，同时过去三年股利支付率均值与最近一年股利支付率均处于(0,1)合理区间——排除从不分红的"铁公鸡"，也排除因一次性资产出售导致支付率>100%的"伪高息"企业'),
+            ('三年均值股息率排序', '以过去三年平均现金股息率（三年每股现金股利÷调整日股价的均值）为核心排序因子，降序取前100只。采用三年均值而非单年可有效平滑周期股分红波动，避免在周期顶部高位接盘'),
+            ('量化增强（基金层面）', '西部利得量化团队在跟踪指数基础上叠加多因子增强模型，涵盖估值因子（PE/PB分位数）、成长因子（盈利增速）、技术面因子（动量/反转）、研究员预期因子（盈利上调/下调）等，通过因子综合评价体系动态优化个股权重，年化跟踪误差控制在2%以内'),
+        ],
+        'scope': '选股范围为沪深A股中实际控制人为国有主体（国务院国资委、财政部、以及各省市地方国资委/政府/国企）的全部上市公司，行业天然集中在银行（工农中建交及主要股份行）、煤炭（中国神华、陕西煤业等动力煤龙头）、交通运输（高速公路、铁路、港口）、钢铁（宝钢、中信特钢）、公用事业（水电、核电）等高分红国企板块。成分股100只，覆盖了国企体系中分红意愿最强、现金流最充裕的一批企业。',
+        'weighting': '股息率加权（按过去三年平均股息率分配权重，单只上限10%）',
+        'rebalance': '指数每半年调整（6月/12月第二个星期五之后第一个交易日）；基金量化增强层面按月评估因子信号，灵活调整权重',
+        'constituents': '100只',
+        'desc': '从中证国有企业红利指数中选取高股息国企标的，叠加西部利得量化多因子增强模型，兼具国企信用背书、红利防御性与量化超额收益潜力，是目前市场上较稀缺的"国企+红利+增强"三因子叠加策略。',
     },
 
     # -- 常规红利 --
@@ -371,8 +400,8 @@ def _score_segment(value, levels):
     extrap = prev_score + (prev_bound - value) / (prev_bound - last_bound) * (last_score - prev_score)
     return min(100.0, max(0.0, extrap))
 
-RSI6_LEVELS  = [(50, 0), (30, 40), (20, 70), (0, 100)]
-RSI7_LEVELS  = [(50, 0), (35, 40), (25, 70), (0, 100)]
+RSI6_LEVELS  = [(50, 0), (25, 40), (15, 70), (0, 100)]  # 观察点25
+RSI7_LEVELS  = [(50, 0), (40, 40), (25, 70), (0, 100)]  # 观察点40
 MA_LEVELS    = [(0, 0), (-5, 50), (-15, 80), (-30, 100)]
 
 def calc_composite_score(d):
@@ -385,8 +414,8 @@ def calc_composite_score(d):
     # RSI7周 ×2, MA250偏离 ×2, RSI6日 ×1, MA550偏离 ×1
     composite = (rsi6 * 1 + rsi7 * 2 + ma250 * 2 + ma550 * 1) / 6.0
 
-    if composite >= 60:   grade = 'buy'
-    elif composite >= 40: grade = 'watch'
+    if composite >= 45:   grade = 'buy'
+    elif composite >= 30: grade = 'watch'
     else:                 grade = 'safe'
 
     return {
@@ -1111,7 +1140,7 @@ def build_panel_html(d):
 
 def _score_bar(composite):
     """评分进度条"""
-    color = SIGNAL_COLORS['buy'] if composite >= 60 else (SIGNAL_COLORS['watch'] if composite >= 40 else SIGNAL_COLORS['safe'])
+    color = SIGNAL_COLORS['buy'] if composite >= 45 else (SIGNAL_COLORS['watch'] if composite >= 30 else SIGNAL_COLORS['safe'])
     return '<div class="score-bar-bg"><div class="score-bar-fill" style="width:%.0f%%;background:%s"></div></div>' % (composite, color)
 
 def _mini_badge(label, value, sig, fmt='%.1f'):
@@ -1203,9 +1232,9 @@ def build_dashboard_panel(all_data, categories):
       <h2>综合买入信号概览</h2>
       <p class="dash-sub">基于RSI(6日/7周) + 均线偏离(250日/550日) 加权评分 | RSI7周×2 · MA250×2 · RSI6×1 · MA550×1</p>
       <div class="dash-legend">
-        <span class="legend-item buy">● ≥60 买入信号</span>
-        <span class="legend-item watch">● 40-59 观察期</span>
-        <span class="legend-item safe">● &lt;40 无需关注</span>
+        <span class="legend-item buy">● ≥45 买入信号</span>
+        <span class="legend-item watch">● 30-49 观察期</span>
+        <span class="legend-item safe">● &lt;30 无需关注</span>
       </div>
     </div>
     %s
@@ -1228,7 +1257,7 @@ CAT_COLORS = {
 
 # 概览Tab（默认选中）
 tab_html = '<div class="tab-group" style="margin-bottom:12px">\n'
-tab_html += '    <button class="tab-btn tab-dashboard active" data-code="dashboard">概览<span class="tab-code">综合评分</span></button>\n'
+tab_html += '    <button class="tab-btn tab-dashboard active" data-code="dashboard">汇总概览<span class="tab-code">综合评分</span></button>\n'
 tab_html += '  </div>\n'
 
 # 分类Tab
