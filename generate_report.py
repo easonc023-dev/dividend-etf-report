@@ -1907,6 +1907,11 @@ output_path = r'd:\投资管理系统\红利策略ETF深度分析.html'
 with open(output_path, 'w', encoding='utf-8') as f:
     f.write(html)
 
+# GitHub Pages 入口文件
+index_path = r'd:\投资管理系统\index.html'
+with open(index_path, 'w', encoding='utf-8') as f:
+    f.write(html)
+
 print(f"\n{'='*60}")
 print(f"  报告已生成: {output_path}")
 print(f"  产品总数: {len(all_data)} | 成功: {sum(1 for d in all_data if not d.get('error'))} | 失败: {sum(1 for d in all_data if d.get('error'))}")
