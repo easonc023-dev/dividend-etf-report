@@ -47,7 +47,12 @@ def main():
         log("=== 巡检异常终止 ===")
         return
 
-    # 2. 提交到 Git
+    # 2. 切换到 master 并提交
+    rc, out, err = run_cmd('git checkout master')
+    if rc != 0:
+        log(f"git checkout master 失败: {err}")
+        return
+
     ts = datetime.now().strftime('%Y-%m-%d %H:%M')
     commit_msg = f"每日数据更新: {ts}"
 
@@ -61,6 +66,7 @@ def main():
         log(f"git commit 成功: {commit_msg}")
     elif 'nothing to commit' in err or 'nothing to commit' in out:
         log("git commit 跳过: 数据无变化")
+        run_cmd('git checkout dev')  # 切回dev
         log("=== 巡检结束 ===")
         return
     else:
@@ -71,6 +77,7 @@ def main():
     rc, out, err = run_cmd('git push origin master', timeout=180)
     if rc == 0:
         log("git push 成功 → GitHub Pages 将在1-2分钟内更新")
+        run_cmd('git checkout dev')  # 切回dev
     else:
         log(f"git push 失败: {err[:300]}")
         log("GitHub Pages 未更新，请检查网络或手动推送")
