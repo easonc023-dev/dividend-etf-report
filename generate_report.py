@@ -1233,7 +1233,7 @@ def build_dashboard_panel(all_data, categories):
       <p class="dash-sub">基于RSI(6日/7周) + 均线偏离(250日/550日) 加权评分 | RSI7周×2 · MA250×2 · RSI6×1 · MA550×1</p>
       <div class="dash-legend">
         <span class="legend-item buy">● ≥45 买入信号</span>
-        <span class="legend-item watch">● 30-49 观察期</span>
+        <span class="legend-item watch">● 30-44 观察期</span>
         <span class="legend-item safe">● &lt;30 无需关注</span>
       </div>
     </div>
