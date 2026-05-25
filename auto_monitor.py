@@ -47,11 +47,13 @@ def main():
         log("=== 巡检异常终止 ===")
         return
 
-    # 2. 切换到 master 并提交
+    # 2. stash 生成的HTML → 切到 master → pop → 提交
+    run_cmd('git stash push -- index.html "红利策略ETF深度分析.html"')
     rc, out, err = run_cmd('git checkout master')
     if rc != 0:
         log(f"git checkout master 失败: {err}")
         return
+    run_cmd('git stash pop')
 
     ts = datetime.now().strftime('%Y-%m-%d %H:%M')
     commit_msg = f"每日数据更新: {ts}"
