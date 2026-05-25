@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Skills Dashboard — Claude Code 技能仪表盘</title>
+<style>
+/* ============ CSS Variables ============ */
+:root {
+  --bg: #fafaf8;
+  --card-bg: #ffffff;
+  --text: #2d2d2b;
+  --text-secondary: #6b6b65;
+  --text-muted: #9c9c94;
+  --border: #e8e8e2;
+  --blue: #3b82f6;
+  --blue-light: #eff6ff;
+  --orange: #f59e0b;
+  --orange-light: #fffbeb;
+  --green: #10b981;
+  --green-light: #ecfdf5;
+  --purple: #8b5cf6;
+  --purple-light: #f5f3ff;
+  --pink: #ec4899;
+  --pink-light: #fdf2f8;
+  --teal: #14b8a6;
+  --teal-light: #f0fdfa;
+  --red: #ef4444;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.04);
+  --shadow-md: 0 4px 12px rgba(0,0,0,.06);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,.1);
+  --radius: 14px;
+  --radius-sm: 8px;
+  --radius-xs: 5px;
+  --font-display: 'Georgia', 'Noto Serif SC', 'Source Han Serif SC', serif;
+  --font-mono: 'Cascadia Code', 'Fira Code', 'Consolas', 'Courier New', monospace;
+}
+
+/* ============ Reset ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI','PingFang SC','Microsoft YaHei',sans-serif;
+  font-size:15px;line-height:1.7;color:var(--text);background:var(--bg);
+  -webkit-font-smoothing:antialiased;
+}
+
+/* ============ Layout ============ */
+.container{max-width:1280px;margin:0 auto;padding:0 28px}
+section{padding:60px 0}
+section+section{border-top:1px solid var(--border)}
+
+/* ============ Header ============ */
+header{
+  background:var(--card-bg);border-bottom:1px solid var(--border);
+  padding:24px 0;position:sticky;top:0;z-index:100;
+  backdrop-filter:blur(10px);background:rgba(250,250,248,.92);
+}
+.header-inner{
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:16px;
+}
+.logo-area{display:flex;align-items:center;gap:12px}
+.logo-icon{
+  width:42px;height:42px;background:var(--blue);border-radius:var(--radius-sm);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-size:20px;font-weight:700;font-family:var(--font-display);
+}
+.logo-text h1{font-size:20px;font-weight:700;font-family:var(--font-display);line-height:1.2}
+.logo-text span{font-size:12px;color:var(--text-muted);font-weight:400}
+
+.search-box{
+  display:flex;align-items:center;gap:8px;
+  background:var(--bg);border:1px solid var(--border);border-radius:50px;
+  padding:10px 18px;min-width:280px;transition:all .2s;
+}
+.search-box:focus-within{border-color:var(--blue);box-shadow:0 0 0 3px var(--blue-light)}
+.search-box input{
+  border:none;outline:none;background:transparent;font-size:14px;
+  width:100%;color:var(--text);
+}
+.search-box input::placeholder{color:var(--text-muted)}
+.search-icon{color:var(--text-muted);font-size:16px}
+
+.stat-pills{display:flex;gap:10px}
+.stat-pill{
+  padding:6px 14px;border-radius:50px;font-size:13px;font-weight:600;
+  display:flex;align-items:center;gap:6px;
+}
+.stat-pill.total{background:var(--blue-light);color:var(--blue)}
+.stat-pill.builtin{background:var(--purple-light);color:var(--purple)}
+.stat-pill.custom{background:var(--orange-light);color:#b45309}
+.stat-pill .num{font-size:18px;font-family:var(--font-display)}
+
+/* ============ Section Titles ============ */
+.section-header{margin-bottom:36px}
+.section-header h2{
+  font-family:var(--font-display);font-size:28px;font-weight:700;
+  color:var(--text);margin-bottom:8px;position:relative;display:inline-block;
+}
+.section-header h2::after{
+  content:'';position:absolute;bottom:2px;left:0;right:0;height:3px;
+  background:var(--orange);border-radius:2px;opacity:.5;
+}
+.section-header p{color:var(--text-secondary);font-size:15px;max-width:680px}
+
+/* ============ Section 1: What is a Skill ============ */
+.intro-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.intro-define{}
+.intro-define .big-def{
+  font-family:var(--font-display);font-size:22px;line-height:1.6;
+  color:var(--text);margin-bottom:20px;padding:24px;
+  background:var(--blue-light);border-radius:var(--radius);
+  border-left:4px solid var(--blue);
+}
+.intro-define .big-def em{font-style:normal;color:var(--blue);font-weight:700}
+.intro-define p{color:var(--text-secondary);margin-bottom:12px}
+
+.dim-table{
+  background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
+  overflow:hidden;
+}
+.dim-table .dim-row{
+  display:flex;padding:14px 18px;gap:14px;align-items:baseline;
+  border-bottom:1px solid var(--border);transition:background .15s;
+}
+.dim-table .dim-row:last-child{border-bottom:none}
+.dim-table .dim-row:hover{background:var(--bg)}
+.dim-row .dim-num{
+  width:28px;height:28px;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;color:#fff;
+}
+.dim-row:nth-child(1) .dim-num{background:var(--blue)}
+.dim-row:nth-child(2) .dim-num{background:var(--purple)}
+.dim-row:nth-child(3) .dim-num{background:var(--orange)}
+.dim-row:nth-child(4) .dim-num{background:var(--green)}
+.dim-row:nth-child(5) .dim-num{background:var(--red)}
+.dim-row:nth-child(6) .dim-num{background:var(--teal)}
+.dim-row:nth-child(7) .dim-num{background:var(--pink)}
+.dim-row .dim-label{font-weight:700;font-size:13px;min-width:60px;flex-shrink:0}
+.dim-row .dim-desc{font-size:13px;color:var(--text-secondary)}
+.dim-row .dim-example{font-size:12px;color:var(--text-muted);margin-top:2px}
+
+.example-badge{
+  display:inline-block;background:var(--orange-light);color:#b45309;
+  padding:2px 8px;border-radius:var(--radius-xs);font-size:11px;font-weight:600;
+}
+
+/* ============ Section 2: Skills Gallery ============ */
+.filter-bar{
+  display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px;
+  align-items:center;
+}
+.filter-chip{
+  padding:8px 18px;border-radius:50px;font-size:13px;font-weight:600;
+  border:1.5px solid var(--border);background:var(--card-bg);color:var(--text-secondary);
+  cursor:pointer;transition:all .2s;user-select:none;
+}
+.filter-chip:hover{border-color:var(--blue);color:var(--blue)}
+.filter-chip.active{background:var(--blue);color:#fff;border-color:var(--blue)}
+.filter-chip .count{font-size:11px;opacity:.7;margin-left:4px}
+.filter-info{font-size:13px;color:var(--text-muted);margin-left:auto}
+
+.skills-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+  gap:18px;
+}
+
+/* ============ Skill Card ============ */
+.skill-card{
+  background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
+  padding:22px;cursor:pointer;transition:all .25s cubic-bezier(.4,0,.2,1);
+  position:relative;overflow:hidden;
+  animation:cardIn .5s ease both;
+}
+.skill-card:hover{
+  transform:translateY(-3px);box-shadow:var(--shadow-lg);border-color:#d0d0ca;
+}
+.skill-card.expanded{box-shadow:var(--shadow-md);border-color:var(--blue)}
+
+@keyframes cardIn{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+.card-header{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.card-name{font-weight:700;font-size:16px;color:var(--text);font-family:var(--font-display)}
+.card-badges{display:flex;gap:6px;flex-shrink:0}
+
+.source-badge{
+  padding:3px 10px;border-radius:50px;font-size:11px;font-weight:600;white-space:nowrap;
+}
+.source-badge.anthropic{background:var(--blue-light);color:var(--blue)}
+.source-badge.lark{background:var(--green-light);color:var(--green)}
+.source-badge.custom{background:var(--orange-light);color:#b45309}
+.source-badge.builtin{background:var(--purple-light);color:var(--purple)}
+.source-badge.third{background:var(--pink-light);color:var(--pink)}
+
+.card-desc{
+  font-size:13px;color:var(--text-secondary);margin-top:10px;
+  display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;
+  line-height:1.6;
+}
+
+.card-expand-hint{
+  font-size:11px;color:var(--text-muted);margin-top:10px;display:flex;align-items:center;gap:4px;
+}
+.card-expand-hint::after{content:'▸';transition:transform .25s;display:inline-block}
+.skill-card.expanded .card-expand-hint::after{transform:rotate(90deg)}
+
+/* Expanded detail */
+.card-detail{
+  display:none;margin-top:18px;padding-top:18px;border-top:1px solid var(--border);
+}
+.skill-card.expanded .card-detail{display:block;animation:fadeIn .3s ease}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+
+.dim-item{margin-bottom:12px}
+.dim-item:last-child{margin-bottom:0}
+.dim-item .dim-item-label{
+  font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;
+  color:var(--blue);margin-bottom:4px;
+}
+.dim-item .dim-item-text{font-size:13px;color:var(--text-secondary);line-height:1.6}
+.dim-item .dim-item-steps{display:flex;flex-wrap:wrap;gap:6px}
+.step-tag{
+  padding:4px 10px;background:var(--bg);border:1px solid var(--border);
+  border-radius:var(--radius-xs);font-size:12px;color:var(--text-secondary);
+}
+.step-arrow{color:var(--text-muted);font-size:11px;align-self:center}
+.tool-tag{
+  padding:3px 9px;background:var(--orange-light);border-radius:var(--radius-xs);
+  font-size:11px;color:#b45309;font-family:var(--font-mono);
+}
+
+/* ============ Section 3: Tutorial ============ */
+.tutorial-grid{display:grid;grid-template-columns:1fr 1fr;gap:36px}
+.tutorial-block{
+  background:var(--card-bg);border:1px solid var(--border);border-radius:var(--radius);
+  padding:28px;
+}
+.tutorial-block h3{
+  font-family:var(--font-display);font-size:19px;margin-bottom:6px;color:var(--text);
+}
+.tutorial-block .t-sub{font-size:13px;color:var(--text-muted);margin-bottom:20px}
+
+.method-card{
+  background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:18px;margin-bottom:14px;transition:all .2s;
+}
+.method-card:hover{border-color:var(--blue);box-shadow:var(--shadow-sm)}
+.method-card .method-header{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.method-diff{
+  padding:2px 8px;border-radius:var(--radius-xs);font-size:10px;font-weight:700;letter-spacing:.3px;
+}
+.method-diff.easy{background:var(--green-light);color:var(--green)}
+.method-diff.medium{background:var(--orange-light);color:#b45309}
+.method-diff.hard{background:var(--red);color:#fff;opacity:.8}
+.method-card h4{font-size:15px;font-weight:700}
+.method-card p{font-size:13px;color:var(--text-secondary);margin-bottom:10px}
+.method-card pre{
+  background:#1e1e1e;color:#e0e0e0;padding:14px 16px;border-radius:var(--radius-sm);
+  font-size:12px;font-family:var(--font-mono);overflow-x:auto;white-space:pre-wrap;
+  line-height:1.6;
+}
+
+.checklist{list-style:none}
+.checklist li{
+  padding:8px 0;font-size:14px;color:var(--text-secondary);display:flex;align-items:center;gap:10px;
+}
+.checklist li::before{
+  content:'';width:20px;height:20px;border:2px solid var(--border);border-radius:4px;
+  flex-shrink:0;transition:all .2s;cursor:pointer;
+}
+.checklist li.checked{color:var(--text)}
+.checklist li.checked::before{
+  background:var(--green);border-color:var(--green);
+  content:'✓';color:#fff;display:flex;align-items:center;justify-content:center;
+  font-size:12px;font-weight:700;
+}
+
+.skeleton-code{
+  background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-sm);
+  padding:16px;font-size:12px;font-family:var(--font-mono);color:var(--text-secondary);
+  line-height:1.8;overflow-x:auto;white-space:pre;
+}
+
+/* ============ Footer ============ */
+footer{
+  text-align:center;padding:40px 0;color:var(--text-muted);font-size:12px;
+  border-top:1px solid var(--border);
+}
+footer a{color:var(--blue);text-decoration:none}
+footer a:hover{text-decoration:underline}
+
+/* ============ Empty State ============ */
+.empty-state{
+  text-align:center;padding:60px 20px;color:var(--text-muted);
+}
+.empty-state .empty-icon{font-size:48px;margin-bottom:12px}
+.empty-state p{font-size:15px}
+
+/* ============ No Results ============ */
+.no-results{display:none;text-align:center;padding:60px 20px;color:var(--text-muted)}
+.no-results.visible{display:block}
+.no-results .nr-icon{font-size:40px;margin-bottom:10px}
+.no-results p{font-size:14px}
+
+/* ============ Responsive ============ */
+@media (max-width:900px){
+  .intro-grid{grid-template-columns:1fr}
+  .tutorial-grid{grid-template-columns:1fr}
+  .skills-grid{grid-template-columns:1fr}
+  .header-inner{flex-direction:column;align-items:flex-start}
+  .search-box{width:100%}
+  .stat-pills{width:100%;overflow-x:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+<div class="container header-inner">
+  <div class="logo-area">
+    <div class="logo-icon">S</div>
+    <div class="logo-text">
+      <h1>Skills Dashboard</h1>
+      <span>Claude Code · 技能仪表盘</span>
+    </div>
+  </div>
+  <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchInput" placeholder="搜索技能名称、描述、用途…" autocomplete="off">
+  </div>
+  <div class="stat-pills" id="statPills"></div>
+</div>
+</header>
+
+<!-- ============ SECTION 1: WHAT IS A SKILL ============ -->
+<section id="intro">
+<div class="container">
+  <div class="section-header">
+    <h2>什么是 Skill？</h2>
+    <p>给你专属的 AI 使用说明书——让 Claude Code 在工作时自动翻看，干活更精准、更专业。</p>
+  </div>
+  <div class="intro-grid">
+    <div class="intro-define">
+      <div class="big-def">
+        一个 Skill 就是一份<em>“专属说明书”</em>，安装后 AI 会在恰当的时机自动翻阅它，照着里面的规范、流程、工具来做事。
+      </div>
+      <p>就像你给新同事发了一份《品牌 VI 手册》——他做 PPT 时翻一下，就知道颜色用哪个、字体用哪个。Skill 对 AI 做的是一模一样的事。</p>
+      <p>下面拿 <strong>brand-guidelines</strong>（品牌配色规范）举例子，看看一个 Skill 从哪 7 个维度定义自己：</p>
+    </div>
+    <div>
+      <div class="dim-table">
+        <div class="dim-row">
+          <div class="dim-num">1</div>
+          <div>
+            <div class="dim-label">元数据</div>
+            <div class="dim-desc">叫什么？什么时候触发？</div>
+            <div class="dim-example">例： "用户提到品牌配色时自动激活"</div>
+          </div>
+        </div>
+        <div class="dim-row">
+          <div class="dim-num">2</div>
+          <div>
+            <div class="dim-label">边界</div>
+            <div class="dim-desc">管什么、不管什么</div>
+            <div class="dim-example">例：管颜色字体，不管动画</div>
+          </div>
+        </div>
+        <div class="dim-row">
+          <div class="dim-num">3</div>
+          <div>
+            <div class="dim-label">流程</div>
+            <div class="dim-desc">分几步干完活</div>
+            <div class="dim-example">例：选色 → 选字 → 应用 → 检查</div>
+          </div>
+        </div>
+        <div class="dim-row">
+          <div class="dim-num">4</div>
+          <div>
+            <div class="dim-label">工具</div>
+            <div class="dim-desc">靠什么干活</div>
+            <div class="dim-example">例：色卡 (#141413 等)、字体栈</div>
+          </div>
+        </div>
+        <div class="dim-row">
+          <div class="dim-num">5</div>
+          <div>
+            <div class="dim-label">容错</div>
+            <div class="dim-desc">条件不够时怎么办</div>
+            <div class="dim-example">例：字体没装？降级到 Arial <span class="example-badge">这个很关键</span></div>
+          </div>
+        </div>
+        <div class="dim-row">
+          <div class="dim-num">6</div>
+          <div>
+            <div class="dim-label">评测</div>
+            <div class="dim-desc">怎么知道干好了没</div>
+            <div class="dim-example">例：标题是 Poppins 吗？颜色是 #141413 吗？</div>
+          </div>
+        </div>
+        <div class="dim-row">
+          <div class="dim-num">7</div>
+          <div>
+            <div class="dim-label">精准</div>
+            <div class="dim-desc">会误触发吗？漏触发吗？</div>
+            <div class="dim-example">例：说"配色"触发，说"调色"不触发</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ SECTION 2: SKILLS GALLERY ============ -->
+<section id="gallery">
+<div class="container">
+  <div class="section-header">
+    <h2>我的技能库</h2>
+    <p id="galleryDesc">全部技能，按分类和来源整理。点击卡片展开查看详细信息。</p>
+  </div>
+  <div class="filter-bar" id="filterBar"></div>
+  <div class="filter-info" id="filterInfo"></div>
+  <div class="skills-grid" id="skillsGrid"></div>
+  <div class="no-results" id="noResults">
+    <div class="nr-icon">🕵️</div>
+    <p>没找到匹配的技能，试试换个关键词？</p>
+  </div>
+</div>
+</section>
+
+<!-- ============ SECTION 3: TUTORIAL ============ -->
+<section id="tutorial">
+<div class="container">
+  <div class="section-header">
+    <h2>技能教程</h2>
+    <p>加载别人造好的轮子，或者自己动手造一个。</p>
+  </div>
+  <div class="tutorial-grid">
+    <!-- 加载别人的技能 -->
+    <div class="tutorial-block">
+      <h3>加载别人的技能</h3>
+      <p class="t-sub">3 种方式，从简单到高级</p>
+
+      <div class="method-card">
+        <div class="method-header">
+          <span class="method-diff easy">简单</span>
+          <h4>方式一：GitHub 仓库克隆</h4>
+        </div>
+        <p>从 GitHub 克隆技能仓库，复制到全局技能目录。适合安装 Anthropic 官方或社区技能。</p>
+        <pre>git clone https://github.com/anthropics/skills /tmp/skills
+cp -r /tmp/skills/skills/技能名 ~/.claude/skills/技能名</pre>
+      </div>
+
+      <div class="method-card">
+        <div class="method-header">
+          <span class="method-diff medium">中等</span>
+          <h4>方式二：手动创建</h4>
+        </div>
+        <p>新建目录 + SKILL.md 文件，适合少量简单技能。</p>
+        <pre>mkdir -p ~/.claude/skills/my-skill
+# 然后创建 SKILL.md，写上前置元数据和内容
+# 参考下方「创建模板」</pre>
+      </div>
+
+      <div class="method-card">
+        <div class="method-header">
+          <span class="method-diff hard">高级</span>
+          <h4>方式三：skill-creator 自动生成</h4>
+        </div>
+        <p>使用 skill-creator 元技能，带 eval 验证和迭代优化，适合生产级技能。</p>
+        <pre># 直接对我说：
+"用 skill-creator 帮我创建一个技能，用来……"</pre>
+      </div>
+    </div>
+
+    <!-- 自己创建新技能 -->
+    <div class="tutorial-block">
+      <h3>自己创建新技能</h3>
+      <p class="t-sub">7 维清单 + 最小模板，拿来即用</p>
+
+      <ul class="checklist" id="checklist">
+        <li onclick="this.classList.toggle('checked')">想好名字和触发条件（description 字段最重要）</li>
+        <li onclick="this.classList.toggle('checked')">明确技能边界：做什么、不做什么、需要什么环境</li>
+        <li onclick="this.classList.toggle('checked')">写出分步执行流程（每一步输入→输出→判断）</li>
+        <li onclick="this.classList.toggle('checked')">列出依赖工具和脚本</li>
+        <li onclick="this.classList.toggle('checked')">想好出错时的 fallback 方案</li>
+        <li onclick="this.classList.toggle('checked')">写 3-5 个可验证的测试断言</li>
+        <li onclick="this.classList.toggle('checked')">补充 SKIP 条件，避免误触发</li>
+      </ul>
+
+      <p style="margin-top:20px;font-size:13px;color:var(--text-muted)">👆 点击每个条目标记完成</p>
+
+      <h4 style="margin-top:24px;font-size:15px">最小可运行模板</h4>
+      <div class="skeleton-code">---
+name: my-first-skill
+description: "一句话说清功能 + 触发条件。例：当用户说X时触发，当用户只是Y时跳过。"
+---
+
+# 技能名称
+
+## 概述
+这个技能用来解决什么问题。
+
+## 执行步骤
+### Step 1：检查环境
+确认 XXX 可用，否则提示用户安装。
+
+### Step 2：执行核心任务
+1. 读取输入
+2. 处理数据
+3. 输出结果
+
+### Step 3：验证
+检查输出是否符合预期格式。
+
+## 异常处理
+- 如果 A 失败 → 走 B 方案
+- 如果 C 不存在 → 提示用户</div>
+    </div>
+  </div>
+</div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+<div class="container">
+  <p>Skills Dashboard · 数据生成于 <span id="genTime"></span></p>
+  <p>技能变更后运行 <code>node generate-skills-data.js</code> 刷新数据</p>
+</div>
+</footer>
+
+<script src="skills-data.js"></script>
+<script>
+// ============ Data ============
+const DATA = window.__SKILLS_DATA__;
+const allSkills = DATA.skills;
+
+// ============ Source badge class mapping ============
+function sourceClass(source) {
+  const map = {
+    'Anthropic': 'anthropic', '飞书': 'lark', '自定义': 'custom',
+    '系统内置': 'builtin', '第三方': 'third', '项目级': 'custom'
+  };
+  return map[source] || 'anthropic';
+}
+
+// ============ Category groups for filtering ============
+const CATEGORY_GROUPS = {
+  '全部': null,
+  '创意设计': ['创意设计', '内容创作'],
+  'API 开发': ['API 开发'],
+  '开发工具': ['开发工具'],
+  '飞书协作': ['飞书基础', '飞书通讯', '飞书日程', '飞书文档', '飞书表格', '飞书文件', '飞书协作', '飞书工具', '飞书工作流'],
+  '用户自定义': ['用户自定义'],
+  '系统内置': ['项目管理', '系统配置']
+};
+
+// ============ Render Stats ============
+function renderStats(skills) {
+  const total = skills.length;
+  const builtin = skills.filter(s => s.source === '系统内置').length;
+  const custom = skills.filter(s => s.source === '自定义' || s.source === '项目级').length;
+  document.getElementById('statPills').innerHTML = `
+    <div class="stat-pill total"><span class="num">${total}</span> 总计</div>
+    <div class="stat-pill builtin"><span class="num">${builtin}</span> 系统</div>
+    <div class="stat-pill custom"><span class="num">${custom}</span> 自定义</div>
+  `;
+}
+
+// ============ Render Filter Bar ============
+function renderFilterBar() {
+  const bar = document.getElementById('filterBar');
+  const groupNames = Object.keys(CATEGORY_GROUPS);
+  bar.innerHTML = groupNames.map(g => {
+    const cats = CATEGORY_GROUPS[g];
+    let count;
+    if (cats === null) count = allSkills.length;
+    else count = allSkills.filter(s => cats.includes(s.category)).length;
+    return `<div class="filter-chip${g === '全部' ? ' active' : ''}" data-group="${g}">
+      ${g}<span class="count">${count}</span>
+    </div>`;
+  }).join('');
+
+  // Click handlers
+  bar.querySelectorAll('.filter-chip').forEach(chip => {
+    chip.addEventListener('click', () => {
+      bar.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+      chip.classList.add('active');
+      applyFilters();
+    });
+  });
+}
+
+// ============ Render Cards ============
+function renderCards(skills) {
+  const grid = document.getElementById('skillsGrid');
+  const noRes = document.getElementById('noResults');
+
+  if (skills.length === 0) {
+    grid.innerHTML = '';
+    noRes.classList.add('visible');
+  } else {
+    noRes.classList.remove('visible');
+    grid.innerHTML = skills.map((s, i) => {
+      const sc = sourceClass(s.source);
+      const steps = s.dimensions.steps || [];
+      const tools = s.dimensions.tools || [];
+      const stepsHtml = steps.length > 0 ? steps.map((st, j) => {
+        const arrow = j < steps.length - 1 ? '<span class="step-arrow">→</span>' : '';
+        return `<span class="step-tag">${escapeHtml(st)}</span>${arrow}`;
+      }).join('') : '<span class="step-tag">读取文档后执行</span>';
+
+      const toolsHtml = tools.length > 0 ? tools.map(t =>
+        `<span class="tool-tag">${escapeHtml(t)}</span>`
+      ).join(' ') : '<span style="font-size:12px;color:var(--text-muted)">无特定外部依赖</span>';
+
+      return `
+      <div class="skill-card" data-name="${escapeHtml(s.name)}" style="animation-delay:${i * 0.03}s" onclick="toggleCard(this)">
+        <div class="card-header">
+          <div class="card-name">${escapeHtml(s.name)}</div>
+          <div class="card-badges">
+            <span class="source-badge ${sc}">${escapeHtml(s.source)}</span>
+          </div>
+        </div>
+        <div class="card-desc">${escapeHtml(s.description || s.dimensions.scenario)}</div>
+        <div class="card-expand-hint">展开查看详情</div>
+        <div class="card-detail">
+          <div class="dim-item"><div class="dim-item-label">应用场景</div><div class="dim-item-text">${escapeHtml(s.dimensions.scenario)}</div></div>
+          <div class="dim-item"><div class="dim-item-label">触发条件</div><div class="dim-item-text">${escapeHtml(s.dimensions.trigger)}</div></div>
+          <div class="dim-item"><div class="dim-item-label">核心功能</div><div class="dim-item-text">${escapeHtml(s.dimensions.features)}</div></div>
+          <div class="dim-item"><div class="dim-item-label">能解决的问题</div><div class="dim-item-text">${escapeHtml(s.dimensions.solves)}</div></div>
+          <div class="dim-item"><div class="dim-item-label">执行步骤</div><div class="dim-item-steps">${stepsHtml}</div></div>
+          <div class="dim-item"><div class="dim-item-label">涉及工具</div><div>${toolsHtml}</div></div>
+        </div>
+      </div>`;
+    }).join('');
+  }
+
+  document.getElementById('filterInfo').textContent =
+    `当前 ${skills.length} / ${allSkills.length} 个技能`;
+}
+
+// ============ Filter & Search ============
+let currentGroup = '全部';
+let currentSearch = '';
+
+function applyFilters() {
+  const cats = CATEGORY_GROUPS[currentGroup];
+  let filtered = allSkills;
+  if (cats !== null) {
+    filtered = filtered.filter(s => cats.includes(s.category));
+  }
+  if (currentSearch.trim()) {
+    const q = currentSearch.toLowerCase().trim();
+    filtered = filtered.filter(s => {
+      return s.name.toLowerCase().includes(q) ||
+             (s.description || '').toLowerCase().includes(q) ||
+             (s.dimensions.scenario || '').toLowerCase().includes(q) ||
+             (s.dimensions.trigger || '').toLowerCase().includes(q) ||
+             (s.dimensions.features || '').toLowerCase().includes(q) ||
+             s.category.toLowerCase().includes(q);
+    });
+  }
+  renderCards(filtered);
+  renderStats(filtered);
+}
+
+// ============ Card Toggle ============
+function toggleCard(card) {
+  card.classList.toggle('expanded');
+  card.querySelector('.card-expand-hint').textContent =
+    card.classList.contains('expanded') ? '收起详情' : '展开查看详情';
+}
+
+// ============ Utils ============
+function escapeHtml(str) {
+  if (!str) return '';
+  return String(str).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ============ Init ============
+document.getElementById('genTime').textContent = new Date(DATA.generatedAt).toLocaleString('zh-CN');
+
+// Filter chip clicks
+document.getElementById('filterBar').addEventListener('click', (e) => {
+  const chip = e.target.closest('.filter-chip');
+  if (!chip) return;
+  currentGroup = chip.dataset.group;
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.remove('active'));
+  chip.classList.add('active');
+  applyFilters();
+});
+
+// Search input
+document.getElementById('searchInput').addEventListener('input', (e) => {
+  currentSearch = e.target.value;
+  applyFilters();
+});
+
+// Initial render
+renderFilterBar();
+renderCards(allSkills);
+renderStats(allSkills);
+
+// Category dropdown in gallery description
+document.getElementById('galleryDesc').textContent =
+  `全部 ${allSkills.length} 个技能，覆盖 ${DATA.categories.length} 个分类。点击卡片展开查看 6 维度详情。`;
+</script>
+</body>
+</html>
