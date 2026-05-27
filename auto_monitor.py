@@ -30,7 +30,7 @@ def check_nav_date():
         return False, "index.html 不存在"
     with open(INDEX_PATH, 'r', encoding='utf-8') as f:
         content = f.read()
-    dates = set(re.findall(r'"nav_date":\s*"(\d{4}-\d{2}-\d{2})"', content))
+    dates = set(re.findall(r'nav_date:\s*"(\d{4}-\d{2}-\d{2})"', content))
     if not dates:
         return False, "未找到 nav_date 字段"
     stale = [d for d in dates if d != today_str]
