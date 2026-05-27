@@ -15,7 +15,6 @@ def log(msg):
         f.write(line + '\n')
 
 def run_cmd(cmd, timeout=120):
-    """运行命令，返回 (returncode, stdout, stderr)"""
     result = subprocess.run(
         cmd, capture_output=True, text=True,
         encoding='utf-8', errors='replace',
@@ -26,12 +25,19 @@ def run_cmd(cmd, timeout=120):
 def main():
     log("=== 红利策略自动巡检开始 ===")
 
-    # 1. 生成报告
+    # 1. 切换到 master
+    rc, out, err = run_cmd('git checkout master')
+    if rc != 0:
+        log(f"git checkout master 失败: {err}")
+        return
+    log("已切换到 master 分支")
+
+    # 2. 在 master 上直接生成报告
     try:
         result = subprocess.run(
             [sys.executable, os.path.join(SCRIPT_DIR, 'generate_report.py')],
             capture_output=True, text=True, encoding='utf-8', errors='replace',
-            timeout=600, cwd=SCRIPT_DIR
+            timeout=900, cwd=SCRIPT_DIR
         )
         if result.returncode == 0:
             log("报告刷新成功")
@@ -47,14 +53,7 @@ def main():
         log("=== 巡检异常终止 ===")
         return
 
-    # 2. stash 生成的HTML → 切到 master → pop → 提交
-    run_cmd('git stash push -- index.html "红利策略ETF深度分析.html"')
-    rc, out, err = run_cmd('git checkout master')
-    if rc != 0:
-        log(f"git checkout master 失败: {err}")
-        return
-    run_cmd('git stash pop')
-
+    # 3. 提交
     ts = datetime.now().strftime('%Y-%m-%d %H:%M')
     commit_msg = f"每日数据更新: {ts}"
 
@@ -68,23 +67,24 @@ def main():
         log(f"git commit 成功: {commit_msg}")
     elif 'nothing to commit' in err or 'nothing to commit' in out:
         log("git commit 跳过: 数据无变化")
-        run_cmd('git checkout dev')  # 切回dev
+        run_cmd('git checkout dev')
         log("=== 巡检结束 ===")
         return
     else:
         log(f"git commit 失败: {err}")
         return
 
-    # 3. 推送到 GitHub
+    # 4. 推送到 GitHub
     rc, out, err = run_cmd('git push origin master', timeout=180)
     if rc == 0:
-        log("git push 成功 → GitHub Pages 将在1-2分钟内更新")
-        run_cmd('git checkout dev')  # 切回dev
+        log("git push 成功 -> GitHub Pages 将在1-2分钟内更新")
     else:
         log(f"git push 失败: {err[:300]}")
         log("GitHub Pages 未更新，请检查网络或手动推送")
         return
 
+    # 5. 切回 dev
+    run_cmd('git checkout dev')
     log("=== 巡检结束 ===")
 
 if __name__ == '__main__':
