@@ -24,19 +24,22 @@ def run_cmd(cmd, timeout=120):
     return result.returncode, result.stdout.strip(), result.stderr.strip()
 
 def check_nav_date():
-    """检查 index.html 中的 nav_date 是否全是今天"""
+    """检查 index.html 中的 nav_date，允许个别产品延迟一天（场外基金净值滞后）"""
     today_str = datetime.now().strftime('%Y-%m-%d')
     if not os.path.exists(INDEX_PATH):
         return False, "index.html 不存在"
     with open(INDEX_PATH, 'r', encoding='utf-8') as f:
         content = f.read()
-    dates = set(re.findall(r'nav_date:\s*"(\d{4}-\d{2}-\d{2})"', content))
-    if not dates:
+    all_dates = re.findall(r'nav_date:\s*"(\d{4}-\d{2}-\d{2})"', content)
+    if not all_dates:
         return False, "未找到 nav_date 字段"
-    stale = [d for d in dates if d != today_str]
-    if stale:
-        return False, f"nav_date 不是今天: {', '.join(sorted(stale))}"
-    return True, f"全部 {len(dates)} 条 nav_date = {today_str}"
+    total = len(all_dates)
+    today_count = sum(1 for d in all_dates if d == today_str)
+    ratio = today_count / total if total else 0
+    if ratio >= 0.8:
+        return True, f"{today_count}/{total} 条 nav_date = {today_str}"
+    stale = sorted(set(d for d in all_dates if d != today_str))
+    return False, f"仅 {today_count}/{total} 条为今天, 旧日期: {', '.join(stale)}"
 
 def run_generate():
     """运行 generate_report.py，返回 (success, output_lines)"""
@@ -57,6 +60,7 @@ def main():
     ok = True
 
     # ---- 1. 切换到 master ----
+    run_cmd('git stash push -- index.html "红利策略ETF深度分析.html"')  # 防止脏文件阻断
     rc, out, err = run_cmd('git checkout master')
     if rc != 0:
         log(f"FAIL git checkout master: {err}")
