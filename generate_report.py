@@ -362,6 +362,34 @@ def calc_rsi(series, period):
     rs = avg_gain / avg_loss
     return float(100 - 100/(1+rs).iloc[-1])
 
+def _calc_rsi_series(close_series, period):
+    """Vectorized 滚动 RSI，返回完整 Series（含 NaN 前置）"""
+    delta = close_series.diff()
+    gain = delta.clip(lower=0)
+    loss = (-delta).clip(lower=0)
+    avg_gain = gain.ewm(alpha=1/period, min_periods=period).mean()
+    avg_loss = loss.ewm(alpha=1/period, min_periods=period).mean()
+    rs = avg_gain / avg_loss
+    return 100 - 100 / (1 + rs)
+
+def get_rsi_pct(close_series, period, current_val, window_days):
+    """计算当前 RSI 在指定窗口历史中的百分位。
+    window_days=None 表示使用全部数据。
+    返回 {'pct','min','max','median'} 或 None（数据不足）。"""
+    rsi_series = _calc_rsi_series(close_series, period).dropna()
+    if window_days is not None:
+        cutoff = rsi_series.index[-1] - pd.Timedelta(days=window_days)
+        rsi_series = rsi_series[rsi_series.index >= cutoff]
+    if len(rsi_series) < 10:
+        return None
+    pct = round((rsi_series < current_val).mean() * 100, 1)
+    return {
+        'pct': pct,
+        'min': round(rsi_series.min(), 1),
+        'max': round(rsi_series.max(), 1),
+        'median': round(rsi_series.median(), 1),
+    }
+
 def weighted_avg(vals, weights):
     num = sum(v*w for v,w in zip(vals, weights) if v is not None and w > 0)
     den = sum(w for v,w in zip(vals, weights) if v is not None and w > 0)
@@ -595,6 +623,21 @@ def _collect_inner(d, p, industry_map):
     d['rsi_6d'] = rsi_6d
     d['rsi_7w'] = rsi_7w
 
+    # RSI 历史百分位（1年 / 3年 / 成立以来）
+    rsi6_pct = {}
+    rsi7_pct = {}
+    for w_name, w_days in [('1y', 365), ('3y', 1095), ('all', None)]:
+        r6 = get_rsi_pct(close_s, 6, rsi_6d, w_days)
+        if r6:
+            for k, v in r6.items():
+                rsi6_pct['%s_%s' % (w_name, k)] = v
+        r7 = get_rsi_pct(weekly, 7, rsi_7w, w_days)
+        if r7:
+            for k, v in r7.items():
+                rsi7_pct['%s_%s' % (w_name, k)] = v
+    d['rsi6_pct'] = rsi6_pct
+    d['rsi7_pct'] = rsi7_pct
+
     # -- 3. 阶段收益 --
     returns = {}
     for label, days in [('近1周',7),('近1月',30),('近3月',90),('近6月',180),('近1年',365),('近2年',730)]:
@@ -813,6 +856,11 @@ for idx, p in enumerate(PRODUCTS):
         if d.get('has_baostock'):
             summary += f"  PE={d['pe_w']:.1f}  PB={d['pb_w']:.1f}  DV={d['dv_w']:.1f}%"
         summary += f"  RSI6d={d['rsi_6d']:.1f}"
+        r6p = d.get('rsi6_pct', {})
+        if r6p and '3y_pct' in r6p:
+            summary += f"(pct={r6p['3y_pct']}%%)"
+        elif r6p and 'all_pct' in r6p:
+            summary += f"(pct={r6p['all_pct']}%%)"
         print(summary)
     all_data.append(d)
 
@@ -875,7 +923,26 @@ bs.logout()
 # HTML 生成
 # ═══════════════════════════════════════════════════════════════
 
-def build_tech_cell(label, hint_fn, num_val, dev_val, dev_color_fn, is_rsi=False, is_ma=False):
+def pct_color(pct):
+    """百分位越低=越便宜=越偏红"""
+    if pct < 10: return '#c62828'
+    if pct < 25: return '#e07040'
+    if pct < 50: return '#c88a0c'
+    return '#0ea882'
+
+def build_pct_data_attrs(pct_dict):
+    """将 pct_dict 转为 HTML data- 属性字符串。
+    key 如 '3y_pct' -> data-pct3y（无连字符，避免dataset对数字后缀的转换异常）"""
+    if not pct_dict:
+        return ''
+    parts = []
+    for k, v in pct_dict.items():
+        # '3y_pct' -> ('3y', 'pct') -> 'data-pct3y'
+        win, field = k.split('_', 1)
+        parts.append('data-%s%s="%s"' % (field, win, v))
+    return ' '.join(parts)
+
+def build_tech_cell(label, hint_fn, num_val, dev_val, dev_color_fn, is_rsi=False, is_ma=False, pct_data=None):
     """构建单个技术指标cell的HTML"""
     hint_cls, hint_text = (hint_fn(num_val) if is_rsi else hint_fn(dev_val))
     color = (dev_color_fn(num_val) if is_rsi else dev_color_fn(dev_val))
@@ -899,6 +966,29 @@ def build_tech_cell(label, hint_fn, num_val, dev_val, dev_color_fn, is_rsi=False
         for tick in [5,10,15,20,25,30,35,40,50,75]:
             gauge_html += '            <div class="gauge-tick top" style="left:%d%%">%d</div>\n' % (tick, tick)
         gauge_html += '          </div>\n'
+
+        # 百分位信息行（优先选3y，fallback到all→1y）
+        if pct_data:
+            best_w = None
+            for w in ('3y', 'all', '1y'):
+                if ('%s_pct' % w) in pct_data:
+                    best_w = w
+                    break
+            if best_w:
+                pc = pct_data['%s_pct' % best_w]
+                pc_min = pct_data.get('%s_min' % best_w, '-')
+                pc_max = pct_data.get('%s_max' % best_w, '-')
+                pc_med = pct_data.get('%s_median' % best_w, '-')
+                pc_clr = pct_color(pc)
+                data_attrs = build_pct_data_attrs(pct_data)
+                gauge_html += '          <div class="rsi-pct-line" %s>\n' % data_attrs
+                gauge_html += '            历史第 <strong class="pct-val" style="color:%s">%s</strong> 百分位\n' % (pc_clr, pc)
+                gauge_html += '            <span class="pct-range">（区间 %s ~ %s，中位 %s）</span>\n' % (pc_min, pc_max, pc_med)
+                gauge_html += '          </div>\n'
+            else:
+                gauge_html += '          <div class="rsi-pct-line insufficient">历史百分位：<strong class="pct-val" style="color:#8b919e">数据不足</strong>\n'
+                gauge_html += '            <span class="pct-range">（产品历史过短）</span></div>\n'
+
         gauge_html += '          <div class="rsi-legend" style="margin-top:10px;text-align:center">%d为观察点，低于%d越低越买</div>\n' % (obs_pos, obs_pos)
         gauge_html += '        </div>'
     else:
@@ -1032,8 +1122,8 @@ def build_panel_html(d):
         <div class="tech-grid">
           {build_tech_cell('250日均线', ma_hint, d['ma250'], d['diff250'], ma_dot_color, is_ma=True)}
           {build_tech_cell('550日均线', ma_hint, d['ma550'], d['diff550'], ma_dot_color, is_ma=True)}
-          {build_tech_cell('6日RSI', rsi_hint_6d, d['rsi_6d'], d['rsi_6d']-25, rsi_gradient_color_6d, is_rsi=True)}
-          {build_tech_cell('7周RSI', rsi_hint_7w, d['rsi_7w'], d['rsi_7w']-40, rsi_gradient_color_7w, is_rsi=True)}
+          {build_tech_cell('6日RSI', rsi_hint_6d, d['rsi_6d'], d['rsi_6d']-25, rsi_gradient_color_6d, is_rsi=True, pct_data=d.get('rsi6_pct'))}
+          {build_tech_cell('7周RSI', rsi_hint_7w, d['rsi_7w'], d['rsi_7w']-40, rsi_gradient_color_7w, is_rsi=True, pct_data=d.get('rsi7_pct'))}
         </div>
       </div>'''
 
@@ -1285,7 +1375,14 @@ CAT_COLORS = {
 }
 
 # 概览Tab（默认选中）
-tab_html = '<div class="tab-group" style="margin-bottom:12px">\n'
+pct_selector_html = '''<div class="pct-selector">
+  <span>RSI 百分位参考窗口：</span>
+  <button class="pct-btn active" data-window="3y">近 3 年</button>
+  <button class="pct-btn" data-window="1y">近 1 年</button>
+  <button class="pct-btn" data-window="all">成立以来</button>
+</div>
+'''
+tab_html = pct_selector_html + '<div class="tab-group" style="margin-bottom:12px">\n'
 tab_html += '    <button class="tab-btn tab-dashboard active" data-code="dashboard">汇总概览<span class="tab-code">综合评分</span></button>\n'
 tab_html += '  </div>\n'
 
@@ -1799,6 +1896,16 @@ CSS = """
     text-align: center; padding: 24px 48px 32px;
     font-size: 13px; color: #8a92a3;
   }
+
+  .pct-selector { text-align: center; margin: 0 0 12px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .pct-selector span { font-size: 13px; color: #5a6070; }
+  .pct-btn { padding: 4px 16px; border: 1px solid #d0d5dd; border-radius: 6px; background: #fff; font-size: 13px; cursor: pointer; transition: all 0.15s; color: #2a3140; }
+  .pct-btn.active { background: #1a5fdc; color: #fff; border-color: #1a5fdc; }
+  .pct-btn:hover:not(.active) { background: #f5f6f8; }
+  .rsi-pct-line { margin-top: 8px; padding: 6px 10px; background: #f8f9fb; border-radius: 6px; font-size: 12px; color: #5a6070; text-align: center; line-height: 1.6; }
+  .rsi-pct-line strong { font-size: 14px; }
+  .pct-range { display: block; font-size: 11px; color: #8b919e; margin-top: 1px; }
+  .rsi-pct-line.insufficient { color: #8b919e; }
 """
 
 # ═══════════════════════════════════════════════════════════════
@@ -1914,6 +2021,38 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
   const btn = document.querySelector('.tab-btn[data-code="' + defaultCode + '"]');
   if (btn) btn.classList.add('active');
 })();
+
+function pctColor(pct) {
+  if (pct < 10) return '#c62828';
+  if (pct < 25) return '#e07040';
+  if (pct < 50) return '#c88a0c';
+  return '#0ea882';
+}
+
+document.querySelectorAll('.pct-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.pct-btn').forEach(function(b) { b.classList.remove('active'); });
+    this.classList.add('active');
+    var w = this.dataset.window;
+    document.querySelectorAll('.rsi-pct-line').forEach(function(el) {
+      var pct = el.dataset['pct' + w];
+      if (pct === undefined) {
+        el.querySelector('.pct-val').textContent = '--';
+        el.querySelector('.pct-val').style.color = '#8b919e';
+        el.querySelector('.pct-range').textContent = '（数据不足）';
+        el.classList.add('insufficient');
+        return;
+      }
+      var mn = el.dataset['min' + w];
+      var mx = el.dataset['max' + w];
+      var md = el.dataset['median' + w];
+      el.querySelector('.pct-val').textContent = pct;
+      el.querySelector('.pct-val').style.color = pctColor(parseFloat(pct));
+      el.querySelector('.pct-range').textContent = '（区间 ' + (mn || '--') + ' ~ ' + (mx || '--') + '，中位 ' + (md || '--') + '）';
+      el.classList.remove('insufficient');
+    });
+  });
+});
 </script>
 
 </body>
