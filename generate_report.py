@@ -1309,9 +1309,10 @@ def _build_score_card(d):
                     pct_parts.append(
                         '<div class="rsi-pct-line sc-pct" %s>'
                         '<span class="sc-pct-label">%s</span>'
+                        '<span class="pct-dot" style="color:%s">●</span>'
                         '第<strong class="pct-val" style="color:%s">%s</strong>%%位'
                         '<span class="pct-range">（区间 %s ~ %s，中位 %s）</span>'
-                        '</div>' % (data_attrs, label, pc_clr, pc, pc_min, pc_max, pc_med)
+                        '</div>' % (data_attrs, label, pc_clr, pc_clr, pc, pc_min, pc_max, pc_med)
                     )
                 else:
                     pct_parts.append(
@@ -1849,7 +1850,7 @@ CSS = """
     font-size: 12px;
   }
   .mini-label {
-    color: #8a92a3; font-weight: 500; min-width: 34px; font-size: 11px;
+    color: #5a6070; font-weight: 600; min-width: 36px; font-size: 11px;
   }
   .mini-val {
     color: #2a3140; font-weight: 600; margin-left: 2px;
@@ -1869,9 +1870,13 @@ CSS = """
     min-width: 0;
   }
   .sc-pct .sc-pct-label {
-    display: block; font-size: 10px;
-    color: #8b919e; margin-bottom: 1px;
-    font-weight: 500;
+    display: block; font-size: 11px;
+    color: #4a5568; margin-bottom: 1px;
+    font-weight: 600; letter-spacing: 0.5px;
+  }
+  .sc-pct .pct-dot {
+    font-size: 10px; margin-right: 2px;
+    vertical-align: middle;
   }
   .sc-pct .pct-val { font-size: 15px; font-weight: 700; }
   .sc-pct .pct-range {
@@ -1881,6 +1886,7 @@ CSS = """
   }
   .sc-pct.insufficient { color: #a0a8b4; }
   .sc-pct.insufficient .pct-val { color: #8b919e !important; }
+  .sc-pct.insufficient .pct-dot { color: #c0c4cc !important; }
   .sc-pct-na {
     flex: 1; padding: 5px 6px 4px;
     background: #f8f9fb; border-radius: 6px;
@@ -2113,9 +2119,11 @@ document.querySelectorAll('.pct-btn').forEach(function(btn) {
     var w = this.dataset.window;
     document.querySelectorAll('.rsi-pct-line').forEach(function(el) {
       var pct = el.dataset['pct' + w];
+      var dot = el.querySelector('.pct-dot');
       if (pct === undefined) {
         el.querySelector('.pct-val').textContent = '--';
         el.querySelector('.pct-val').style.color = '#8b919e';
+        if (dot) dot.style.color = '#c0c4cc';
         el.querySelector('.pct-range').textContent = '（数据不足）';
         el.classList.add('insufficient');
         return;
@@ -2123,8 +2131,10 @@ document.querySelectorAll('.pct-btn').forEach(function(btn) {
       var mn = el.dataset['min' + w];
       var mx = el.dataset['max' + w];
       var md = el.dataset['median' + w];
+      var clr = pctColor(parseFloat(pct));
       el.querySelector('.pct-val').textContent = pct;
-      el.querySelector('.pct-val').style.color = pctColor(parseFloat(pct));
+      el.querySelector('.pct-val').style.color = clr;
+      if (dot) dot.style.color = clr;
       el.querySelector('.pct-range').textContent = '（区间 ' + (mn || '--') + ' ~ ' + (mx || '--') + '，中位 ' + (md || '--') + '）';
       el.classList.remove('insufficient');
     });
