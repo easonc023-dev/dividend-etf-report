@@ -1771,7 +1771,7 @@ CSS = """
 
   .dash-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
     gap: 14px;
   }
 
@@ -1882,7 +1882,7 @@ CSS = """
   .sc-pct .pct-range {
     display: block; font-size: 9px;
     color: #a0a8b4; margin-top: 1px;
-    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    line-height: 1.4;
   }
   .sc-pct.insufficient { color: #a0a8b4; }
   .sc-pct.insufficient .pct-val { color: #8b919e !important; }
