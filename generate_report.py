@@ -1286,6 +1286,43 @@ def _build_score_card(d):
              _mini_badge('MA250', d.get('diff250', 0), sig_ma250, fmt='%+.1f%%') + \
              _mini_badge('MA550', d.get('diff550', 0), sig_ma550, fmt='%+.1f%%')
 
+    # 紧凑百分位行（卡片内）
+    pct_html = ''
+    r6p = d.get('rsi6_pct')
+    r7p = d.get('rsi7_pct')
+    if r6p is not None or r7p is not None:
+        pct_parts = []
+        for label, pdata in [('6日RSI', r6p), ('7周RSI', r7p)]:
+            if pdata:
+                best_w = None
+                for w in ('3y', 'all', '1y'):
+                    if ('%s_pct' % w) in pdata:
+                        best_w = w
+                        break
+                if best_w:
+                    pc = pdata['%s_pct' % best_w]
+                    pc_min = pdata.get('%s_min' % best_w, '-')
+                    pc_max = pdata.get('%s_max' % best_w, '-')
+                    pc_med = pdata.get('%s_median' % best_w, '-')
+                    pc_clr = pct_color(pc)
+                    data_attrs = build_pct_data_attrs(pdata)
+                    pct_parts.append(
+                        '<div class="rsi-pct-line sc-pct" %s>'
+                        '<span class="sc-pct-label">%s</span>'
+                        '第<strong class="pct-val" style="color:%s">%s</strong>%%位'
+                        '<span class="pct-range">（区间 %s ~ %s，中位 %s）</span>'
+                        '</div>' % (data_attrs, label, pc_clr, pc, pc_min, pc_max, pc_med)
+                    )
+                else:
+                    pct_parts.append(
+                        '<div class="sc-pct-na"><span class="sc-pct-label">%s</span>数据不足</div>' % label
+                    )
+            else:
+                pct_parts.append(
+                    '<div class="sc-pct-na"><span class="sc-pct-label">%s</span>数据不足</div>' % label
+                )
+        pct_html = '<div class="sc-pct-row">%s</div>' % ''.join(pct_parts)
+
     gl = grade_label(grade)
     signal_color = SIGNAL_COLORS.get(grade, SIGNAL_COLORS['safe'])
     return '''
@@ -1300,11 +1337,13 @@ def _build_score_card(d):
               </div>
               <div class="sc-grade" style="color:%s">%s</div>
               <div class="sc-badges">%s</div>
+              %s
             </div>''' % (
                 cat_key, d['code'], d['code'],
                 d['tab'], d['display_code'],
                 _score_bar(composite), signal_color, composite,
                 signal_color, gl, badges,
+                pct_html,
             )
 
 def build_dashboard_panel(all_data, categories):
@@ -1814,6 +1853,44 @@ CSS = """
   }
   .mini-val {
     color: #2a3140; font-weight: 600; margin-left: 2px;
+  }
+
+  /* Score card — RSI 百分位紧凑行 */
+  .sc-pct-row {
+    display: flex; gap: 8px;
+    margin-top: 8px; padding-top: 8px;
+    border-top: 1px dashed #e2e6ec;
+  }
+  .sc-pct {
+    flex: 1; padding: 5px 6px 4px;
+    background: #f8f9fb; border-radius: 6px;
+    font-size: 11px; color: #5a6070;
+    text-align: center; line-height: 1.5;
+    min-width: 0;
+  }
+  .sc-pct .sc-pct-label {
+    display: block; font-size: 10px;
+    color: #8b919e; margin-bottom: 1px;
+    font-weight: 500;
+  }
+  .sc-pct .pct-val { font-size: 15px; font-weight: 700; }
+  .sc-pct .pct-range {
+    display: block; font-size: 9px;
+    color: #a0a8b4; margin-top: 1px;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .sc-pct.insufficient { color: #a0a8b4; }
+  .sc-pct.insufficient .pct-val { color: #8b919e !important; }
+  .sc-pct-na {
+    flex: 1; padding: 5px 6px 4px;
+    background: #f8f9fb; border-radius: 6px;
+    font-size: 11px; color: #a0a8b4;
+    text-align: center; line-height: 1.5;
+  }
+  .sc-pct-na .sc-pct-label {
+    display: block; font-size: 10px;
+    color: #a0a8b4; margin-bottom: 1px;
+    font-weight: 500;
   }
 
   /* ═══════════════════════════════════════ */
