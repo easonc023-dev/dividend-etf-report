@@ -112,17 +112,10 @@ def main():
         log(f"自检失败: {check_msg}")
         log("数据可能不是当天最新，请检查数据源")
 
-    # ---- 6. 切回 dev + 同步本地 HTML ----
+    # ---- 6. 切回 dev + 同步本地 HTML（从master复制，保证内容一致） ----
     run_cmd('git checkout dev')
-    log("已切换到 dev，正在生成本地 HTML...")
-    success, lines = run_generate()
-    if success:
-        log("本地 HTML 已同步")
-        for line in lines[-3:]:
-            if line.strip():
-                log(f"  {line.strip()}")
-    else:
-        log(f"本地 HTML 生成失败: {''.join(lines)[:300]}")
+    run_cmd('git checkout master -- index.html "红利策略ETF深度分析.html"')
+    log("本地 HTML 已从 master 同步（与GitHub Pages内容一致）")
 
     # ---- 7. 收尾 ----
     if ok and check_ok:
