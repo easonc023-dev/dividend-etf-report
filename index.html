@@ -305,7 +305,7 @@
 
   .dash-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
     gap: 14px;
   }
 
@@ -384,10 +384,53 @@
     font-size: 12px;
   }
   .mini-label {
-    color: #8a92a3; font-weight: 500; min-width: 34px; font-size: 11px;
+    color: #5a6070; font-weight: 600; min-width: 36px; font-size: 11px;
   }
   .mini-val {
     color: #2a3140; font-weight: 600; margin-left: 2px;
+  }
+
+  /* Score card — RSI 百分位紧凑行 */
+  .sc-pct-row {
+    display: flex; gap: 8px;
+    margin-top: 8px; padding-top: 8px;
+    border-top: 1px dashed #e2e6ec;
+  }
+  .sc-pct {
+    flex: 1; padding: 5px 6px 4px;
+    background: #f8f9fb; border-radius: 6px;
+    font-size: 11px; color: #5a6070;
+    text-align: center; line-height: 1.5;
+    min-width: 0;
+  }
+  .sc-pct .sc-pct-label {
+    display: block; font-size: 11px;
+    color: #4a5568; margin-bottom: 1px;
+    font-weight: 600; letter-spacing: 0.5px;
+  }
+  .sc-pct .pct-dot {
+    font-size: 10px; margin-right: 2px;
+    vertical-align: middle;
+  }
+  .sc-pct .pct-val { font-size: 15px; font-weight: 700; }
+  .sc-pct .pct-range {
+    display: block; font-size: 9px;
+    color: #a0a8b4; margin-top: 1px;
+    line-height: 1.4;
+  }
+  .sc-pct.insufficient { color: #a0a8b4; }
+  .sc-pct.insufficient .pct-val { color: #8b919e !important; }
+  .sc-pct.insufficient .pct-dot { color: #c0c4cc !important; }
+  .sc-pct-na {
+    flex: 1; padding: 5px 6px 4px;
+    background: #f8f9fb; border-radius: 6px;
+    font-size: 11px; color: #a0a8b4;
+    text-align: center; line-height: 1.5;
+  }
+  .sc-pct-na .sc-pct-label {
+    display: block; font-size: 10px;
+    color: #a0a8b4; margin-bottom: 1px;
+    font-weight: 500;
   }
 
   /* ═══════════════════════════════════════ */
@@ -470,6 +513,16 @@
     text-align: center; padding: 24px 48px 32px;
     font-size: 13px; color: #8a92a3;
   }
+
+  .pct-selector { text-align: center; margin: 0 0 12px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+  .pct-selector span { font-size: 13px; color: #5a6070; }
+  .pct-btn { padding: 4px 16px; border: 1px solid #d0d5dd; border-radius: 6px; background: #fff; font-size: 13px; cursor: pointer; transition: all 0.15s; color: #2a3140; }
+  .pct-btn.active { background: #1a5fdc; color: #fff; border-color: #1a5fdc; }
+  .pct-btn:hover:not(.active) { background: #f5f6f8; }
+  .rsi-pct-line { margin-top: 8px; padding: 6px 10px; background: #f8f9fb; border-radius: 6px; font-size: 12px; color: #5a6070; text-align: center; line-height: 1.6; }
+  .rsi-pct-line strong { font-size: 14px; }
+  .pct-range { display: block; font-size: 11px; color: #8b919e; margin-top: 1px; }
+  .rsi-pct-line.insufficient { color: #8b919e; }
 </style>
 </head>
 <body>
@@ -487,6 +540,12 @@
 </div>
 
 <div class="tab-bar" id="tab-bar">
+<div class="pct-selector">
+  <span>RSI 百分位参考窗口：</span>
+  <button class="pct-btn active" data-window="3y">近 3 年</button>
+  <button class="pct-btn" data-window="1y">近 1 年</button>
+  <button class="pct-btn" data-window="all">成立以来</button>
+</div>
 <div class="tab-group" style="margin-bottom:12px">
     <button class="tab-btn tab-dashboard active" data-code="dashboard">汇总概览<span class="tab-code">综合评分</span></button>
   </div>
@@ -544,6 +603,7 @@
               </div>
               <div class="sc-grade" style="color:#6b7280">无需关注</div>
               <div class="sc-badges"><div class="mini-badge"><span class="mini-label">RSI6</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">30.7</span></div><div class="mini-badge"><span class="mini-label">RSI7W</span><span style="color:#c62828;font-size:16px">●</span><span class="mini-val">30.8</span></div><div class="mini-badge"><span class="mini-label">MA250</span><span style="color:#e07040;font-size:16px">●</span><span class="mini-val">-0.2%</span></div><div class="mini-badge"><span class="mini-label">MA550</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+14.4%</span></div></div>
+              <div class="sc-pct-row"><div class="rsi-pct-line sc-pct" data-pct1y="6.6" data-min1y="15.8" data-max1y="96.4" data-median1y="56.2" data-pct3y="8.1" data-min3y="12.3" data-max3y="96.8" data-median3y="55.5" data-pctall="8.1" data-minall="12.3" data-maxall="96.8" data-medianall="55.5"><span class="sc-pct-label">6日RSI</span><span class="pct-dot" style="color:#c62828">●</span>第<strong class="pct-val" style="color:#c62828">8.1</strong>%位<span class="pct-range">（区间 12.3 ~ 96.8，中位 55.5）</span></div><div class="rsi-pct-line sc-pct" data-pct1y="0.0" data-min1y="30.8" data-max1y="83.1" data-median1y="63.3" data-pct3y="0.9" data-min3y="28.4" data-max3y="86.4" data-median3y="63.1" data-pctall="0.9" data-minall="28.4" data-maxall="86.4" data-medianall="63.1"><span class="sc-pct-label">7周RSI</span><span class="pct-dot" style="color:#c62828">●</span>第<strong class="pct-val" style="color:#c62828">0.9</strong>%位<span class="pct-range">（区间 28.4 ~ 86.4，中位 63.1）</span></div></div>
             </div>
             <div class="score-card cat-energy" data-code="021961" onclick="switchToProduct('021961')">
               <div class="sc-header">
@@ -556,6 +616,7 @@
               </div>
               <div class="sc-grade" style="color:#6b7280">无需关注</div>
               <div class="sc-badges"><div class="mini-badge"><span class="mini-label">RSI6</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">37.6</span></div><div class="mini-badge"><span class="mini-label">RSI7W</span><span style="color:#e07040;font-size:16px">●</span><span class="mini-val">36.1</span></div><div class="mini-badge"><span class="mini-label">MA250</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+0.7%</span></div><div class="mini-badge"><span class="mini-label">MA550</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+6.3%</span></div></div>
+              <div class="sc-pct-row"><div class="rsi-pct-line sc-pct" data-pct1y="23.5" data-min1y="12.3" data-max1y="90.5" data-median1y="51.8" data-pct3y="23.1" data-min3y="12.2" data-max3y="90.5" data-median3y="51.3" data-pctall="23.1" data-minall="12.2" data-maxall="90.5" data-medianall="51.3"><span class="sc-pct-label">6日RSI</span><span class="pct-dot" style="color:#e07040">●</span>第<strong class="pct-val" style="color:#e07040">23.1</strong>%位<span class="pct-range">（区间 12.2 ~ 90.5，中位 51.3）</span></div><div class="rsi-pct-line sc-pct" data-pct1y="5.8" data-min1y="33.3" data-max1y="79.7" data-median1y="59.5" data-pct3y="9.9" data-min3y="17.9" data-max3y="79.7" data-median3y="56.6" data-pctall="9.9" data-minall="17.9" data-maxall="79.7" data-medianall="56.6"><span class="sc-pct-label">7周RSI</span><span class="pct-dot" style="color:#c62828">●</span>第<strong class="pct-val" style="color:#c62828">9.9</strong>%位<span class="pct-range">（区间 17.9 ~ 79.7，中位 56.6）</span></div></div>
             </div>
             <div class="score-card cat-energy" data-code="021881" onclick="switchToProduct('021881')">
               <div class="sc-header">
@@ -568,6 +629,7 @@
               </div>
               <div class="sc-grade" style="color:#6b7280">无需关注</div>
               <div class="sc-badges"><div class="mini-badge"><span class="mini-label">RSI6</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">40.0</span></div><div class="mini-badge"><span class="mini-label">RSI7W</span><span style="color:#e07040;font-size:16px">●</span><span class="mini-val">38.1</span></div><div class="mini-badge"><span class="mini-label">MA250</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+4.4%</span></div><div class="mini-badge"><span class="mini-label">MA550</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+10.8%</span></div></div>
+              <div class="sc-pct-row"><div class="rsi-pct-line sc-pct" data-pct1y="21.0" data-min1y="12.6" data-max1y="91.8" data-median1y="57.8" data-pct3y="19.8" data-min3y="12.4" data-max3y="100.0" data-median3y="56.1" data-pctall="19.8" data-minall="12.4" data-maxall="100.0" data-medianall="56.1"><span class="sc-pct-label">6日RSI</span><span class="pct-dot" style="color:#e07040">●</span>第<strong class="pct-val" style="color:#e07040">19.8</strong>%位<span class="pct-range">（区间 12.4 ~ 100.0，中位 56.1）</span></div><div class="rsi-pct-line sc-pct" data-pct1y="1.9" data-min1y="36.1" data-max1y="89.0" data-median1y="66.9" data-pct3y="6.2" data-min3y="28.4" data-max3y="89.0" data-median3y="61.4" data-pctall="6.2" data-minall="28.4" data-maxall="89.0" data-medianall="61.4"><span class="sc-pct-label">7周RSI</span><span class="pct-dot" style="color:#c62828">●</span>第<strong class="pct-val" style="color:#c62828">6.2</strong>%位<span class="pct-range">（区间 28.4 ~ 89.0，中位 61.4）</span></div></div>
             </div>
             <div class="score-card cat-energy" data-code="009051" onclick="switchToProduct('009051')">
               <div class="sc-header">
@@ -580,6 +642,7 @@
               </div>
               <div class="sc-grade" style="color:#6b7280">无需关注</div>
               <div class="sc-badges"><div class="mini-badge"><span class="mini-label">RSI6</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">48.4</span></div><div class="mini-badge"><span class="mini-label">RSI7W</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">41.1</span></div><div class="mini-badge"><span class="mini-label">MA250</span><span style="color:#e07040;font-size:16px">●</span><span class="mini-val">-0.7%</span></div><div class="mini-badge"><span class="mini-label">MA550</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+2.1%</span></div></div>
+              <div class="sc-pct-row"><div class="rsi-pct-line sc-pct" data-pct1y="44.4" data-min1y="12.9" data-max1y="95.0" data-median1y="51.9" data-pct3y="46.1" data-min3y="6.1" data-max3y="95.7" data-median3y="50.0" data-pctall="40.9" data-minall="6.1" data-maxall="96.5" data-medianall="52.8"><span class="sc-pct-label">6日RSI</span><span class="pct-dot" style="color:#c88a0c">●</span>第<strong class="pct-val" style="color:#c88a0c">46.1</strong>%位<span class="pct-range">（区间 6.1 ~ 95.7，中位 50.0）</span></div><div class="rsi-pct-line sc-pct" data-pct1y="19.2" data-min1y="29.8" data-max1y="84.7" data-median1y="55.3" data-pct3y="24.0" data-min3y="16.0" data-max3y="84.7" data-median3y="51.8" data-pctall="20.4" data-minall="16.0" data-maxall="86.6" data-medianall="53.3"><span class="sc-pct-label">7周RSI</span><span class="pct-dot" style="color:#e07040">●</span>第<strong class="pct-val" style="color:#e07040">24.0</strong>%位<span class="pct-range">（区间 16.0 ~ 84.7，中位 51.8）</span></div></div>
             </div>
             <div class="score-card cat-energy" data-code="501059" onclick="switchToProduct('501059')">
               <div class="sc-header">
@@ -592,6 +655,7 @@
               </div>
               <div class="sc-grade" style="color:#6b7280">无需关注</div>
               <div class="sc-badges"><div class="mini-badge"><span class="mini-label">RSI6</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">60.7</span></div><div class="mini-badge"><span class="mini-label">RSI7W</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">48.0</span></div><div class="mini-badge"><span class="mini-label">MA250</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+2.8%</span></div><div class="mini-badge"><span class="mini-label">MA550</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+9.9%</span></div></div>
+              <div class="sc-pct-row"><div class="rsi-pct-line sc-pct" data-pct1y="61.7" data-min1y="15.2" data-max1y="93.0" data-median1y="56.1" data-pct3y="70.9" data-min3y="6.5" data-max3y="96.2" data-median3y="50.8" data-pctall="64.7" data-minall="2.9" data-maxall="100.0" data-medianall="53.4"><span class="sc-pct-label">6日RSI</span><span class="pct-dot" style="color:#0ea882">●</span>第<strong class="pct-val" style="color:#0ea882">70.9</strong>%位<span class="pct-range">（区间 6.5 ~ 96.2，中位 50.8）</span></div><div class="rsi-pct-line sc-pct" data-pct1y="11.5" data-min1y="35.3" data-max1y="86.4" data-median1y="61.3" data-pct3y="35.1" data-min3y="16.2" data-max3y="86.4" data-median3y="52.5" data-pctall="29.5" data-minall="15.6" data-maxall="97.6" data-medianall="54.5"><span class="sc-pct-label">7周RSI</span><span class="pct-dot" style="color:#c88a0c">●</span>第<strong class="pct-val" style="color:#c88a0c">35.1</strong>%位<span class="pct-range">（区间 16.2 ~ 86.4，中位 52.5）</span></div></div>
             </div>
             <div class="score-card cat-energy" data-code="016185" onclick="switchToProduct('016185')">
               <div class="sc-header">
@@ -604,6 +668,7 @@
               </div>
               <div class="sc-grade" style="color:#6b7280">无需关注</div>
               <div class="sc-badges"><div class="mini-badge"><span class="mini-label">RSI6</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">77.0</span></div><div class="mini-badge"><span class="mini-label">RSI7W</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">73.2</span></div><div class="mini-badge"><span class="mini-label">MA250</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+18.5%</span></div><div class="mini-badge"><span class="mini-label">MA550</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+22.6%</span></div></div>
+              <div class="sc-pct-row"><div class="rsi-pct-line sc-pct" data-pct1y="89.3" data-min1y="10.4" data-max1y="93.7" data-median1y="53.7" data-pct3y="93.4" data-min3y="4.9" data-max3y="93.7" data-median3y="51.3" data-pctall="93.7" data-minall="4.9" data-maxall="93.7" data-medianall="51.4"><span class="sc-pct-label">6日RSI</span><span class="pct-dot" style="color:#0ea882">●</span>第<strong class="pct-val" style="color:#0ea882">93.4</strong>%位<span class="pct-range">（区间 4.9 ~ 93.7，中位 51.3）</span></div><div class="rsi-pct-line sc-pct" data-pct1y="84.6" data-min1y="34.8" data-max1y="84.1" data-median1y="57.9" data-pct3y="92.9" data-min3y="18.3" data-max3y="84.1" data-median3y="53.1" data-pctall="94.5" data-minall="18.3" data-maxall="84.1" data-medianall="51.6"><span class="sc-pct-label">7周RSI</span><span class="pct-dot" style="color:#0ea882">●</span>第<strong class="pct-val" style="color:#0ea882">92.9</strong>%位<span class="pct-range">（区间 18.3 ~ 84.1，中位 53.1）</span></div></div>
             </div>
           </div>
         </div>
@@ -625,6 +690,7 @@
               </div>
               <div class="sc-grade" style="color:#6b7280">无需关注</div>
               <div class="sc-badges"><div class="mini-badge"><span class="mini-label">RSI6</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">53.1</span></div><div class="mini-badge"><span class="mini-label">RSI7W</span><span style="color:#e07040;font-size:16px">●</span><span class="mini-val">36.6</span></div><div class="mini-badge"><span class="mini-label">MA250</span><span style="color:#e07040;font-size:16px">●</span><span class="mini-val">-2.0%</span></div><div class="mini-badge"><span class="mini-label">MA550</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+4.5%</span></div></div>
+              <div class="sc-pct-row"><div class="rsi-pct-line sc-pct" data-pct1y="56.0" data-min1y="11.8" data-max1y="86.5" data-median1y="49.7" data-pct3y="53.3" data-min3y="4.9" data-max3y="95.9" data-median3y="52.2" data-pctall="50.9" data-minall="2.7" data-maxall="95.9" data-medianall="53.0"><span class="sc-pct-label">6日RSI</span><span class="pct-dot" style="color:#0ea882">●</span>第<strong class="pct-val" style="color:#0ea882">53.3</strong>%位<span class="pct-range">（区间 4.9 ~ 95.9，中位 52.2）</span></div><div class="rsi-pct-line sc-pct" data-pct1y="11.5" data-min1y="27.8" data-max1y="87.1" data-median1y="53.3" data-pct3y="11.7" data-min3y="12.5" data-max3y="87.1" data-median3y="54.9" data-pctall="10.6" data-minall="12.5" data-maxall="88.7" data-medianall="54.7"><span class="sc-pct-label">7周RSI</span><span class="pct-dot" style="color:#e07040">●</span>第<strong class="pct-val" style="color:#e07040">11.7</strong>%位<span class="pct-range">（区间 12.5 ~ 87.1，中位 54.9）</span></div></div>
             </div>
             <div class="score-card cat-regular" data-code="020602" onclick="switchToProduct('020602')">
               <div class="sc-header">
@@ -637,6 +703,7 @@
               </div>
               <div class="sc-grade" style="color:#6b7280">无需关注</div>
               <div class="sc-badges"><div class="mini-badge"><span class="mini-label">RSI6</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">61.1</span></div><div class="mini-badge"><span class="mini-label">RSI7W</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">41.6</span></div><div class="mini-badge"><span class="mini-label">MA250</span><span style="color:#e07040;font-size:16px">●</span><span class="mini-val">-3.1%</span></div><div class="mini-badge"><span class="mini-label">MA550</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+0.4%</span></div></div>
+              <div class="sc-pct-row"><div class="rsi-pct-line sc-pct" data-pct1y="71.6" data-min1y="10.6" data-max1y="90.1" data-median1y="46.6" data-pct3y="67.6" data-min3y="0.0" data-max3y="93.6" data-median3y="51.8" data-pctall="67.6" data-minall="0.0" data-maxall="93.6" data-medianall="51.8"><span class="sc-pct-label">6日RSI</span><span class="pct-dot" style="color:#0ea882">●</span>第<strong class="pct-val" style="color:#0ea882">67.6</strong>%位<span class="pct-range">（区间 0.0 ~ 93.6，中位 51.8）</span></div><div class="rsi-pct-line sc-pct" data-pct1y="26.9" data-min1y="26.4" data-max1y="82.5" data-median1y="50.0" data-pct3y="18.3" data-min3y="16.3" data-max3y="82.5" data-median3y="53.5" data-pctall="18.3" data-minall="16.3" data-maxall="82.5" data-medianall="53.5"><span class="sc-pct-label">7周RSI</span><span class="pct-dot" style="color:#e07040">●</span>第<strong class="pct-val" style="color:#e07040">18.3</strong>%位<span class="pct-range">（区间 16.3 ~ 82.5，中位 53.5）</span></div></div>
             </div>
             <div class="score-card cat-regular" data-code="021550" onclick="switchToProduct('021550')">
               <div class="sc-header">
@@ -649,6 +716,7 @@
               </div>
               <div class="sc-grade" style="color:#6b7280">无需关注</div>
               <div class="sc-badges"><div class="mini-badge"><span class="mini-label">RSI6</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">57.7</span></div><div class="mini-badge"><span class="mini-label">RSI7W</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">40.5</span></div><div class="mini-badge"><span class="mini-label">MA250</span><span style="color:#e07040;font-size:16px">●</span><span class="mini-val">-1.8%</span></div><div class="mini-badge"><span class="mini-label">MA550</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+1.5%</span></div></div>
+              <div class="sc-pct-row"><div class="rsi-pct-line sc-pct" data-pct1y="67.9" data-min1y="10.8" data-max1y="92.8" data-median1y="49.9" data-pct3y="68.0" data-min3y="6.6" data-max3y="95.1" data-median3y="50.2" data-pctall="68.0" data-minall="6.6" data-maxall="95.1" data-medianall="50.2"><span class="sc-pct-label">6日RSI</span><span class="pct-dot" style="color:#0ea882">●</span>第<strong class="pct-val" style="color:#0ea882">68.0</strong>%位<span class="pct-range">（区间 6.6 ~ 95.1，中位 50.2）</span></div><div class="rsi-pct-line sc-pct" data-pct1y="21.2" data-min1y="26.6" data-max1y="78.7" data-median1y="53.4" data-pct3y="26.5" data-min3y="9.7" data-max3y="78.7" data-median3y="51.5" data-pctall="26.5" data-minall="9.7" data-maxall="78.7" data-medianall="51.5"><span class="sc-pct-label">7周RSI</span><span class="pct-dot" style="color:#c88a0c">●</span>第<strong class="pct-val" style="color:#c88a0c">26.5</strong>%位<span class="pct-range">（区间 9.7 ~ 78.7，中位 51.5）</span></div></div>
             </div>
             <div class="score-card cat-regular" data-code="014771" onclick="switchToProduct('014771')">
               <div class="sc-header">
@@ -661,6 +729,7 @@
               </div>
               <div class="sc-grade" style="color:#6b7280">无需关注</div>
               <div class="sc-badges"><div class="mini-badge"><span class="mini-label">RSI6</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">46.6</span></div><div class="mini-badge"><span class="mini-label">RSI7W</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">46.6</span></div><div class="mini-badge"><span class="mini-label">MA250</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+1.8%</span></div><div class="mini-badge"><span class="mini-label">MA550</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+12.3%</span></div></div>
+              <div class="sc-pct-row"><div class="rsi-pct-line sc-pct" data-pct1y="31.7" data-min1y="9.6" data-max1y="92.3" data-median1y="54.4" data-pct3y="34.8" data-min3y="6.0" data-max3y="95.5" data-median3y="53.8" data-pctall="36.5" data-minall="6.0" data-maxall="95.5" data-medianall="53.3"><span class="sc-pct-label">6日RSI</span><span class="pct-dot" style="color:#c88a0c">●</span>第<strong class="pct-val" style="color:#c88a0c">34.8</strong>%位<span class="pct-range">（区间 6.0 ~ 95.5，中位 53.8）</span></div><div class="rsi-pct-line sc-pct" data-pct1y="19.2" data-min1y="35.0" data-max1y="88.6" data-median1y="57.8" data-pct3y="22.1" data-min3y="24.1" data-max3y="88.6" data-median3y="58.1" data-pctall="26.1" data-minall="19.5" data-maxall="88.6" data-medianall="56.7"><span class="sc-pct-label">7周RSI</span><span class="pct-dot" style="color:#e07040">●</span>第<strong class="pct-val" style="color:#e07040">22.1</strong>%位<span class="pct-range">（区间 24.1 ~ 88.6，中位 58.1）</span></div></div>
             </div>
             <div class="score-card cat-regular" data-code="515450" onclick="switchToProduct('515450')">
               <div class="sc-header">
@@ -673,6 +742,7 @@
               </div>
               <div class="sc-grade" style="color:#6b7280">无需关注</div>
               <div class="sc-badges"><div class="mini-badge"><span class="mini-label">RSI6</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">63.5</span></div><div class="mini-badge"><span class="mini-label">RSI7W</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">52.7</span></div><div class="mini-badge"><span class="mini-label">MA250</span><span style="color:#e07040;font-size:16px">●</span><span class="mini-val">-0.3%</span></div><div class="mini-badge"><span class="mini-label">MA550</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+2.3%</span></div></div>
+              <div class="sc-pct-row"><div class="rsi-pct-line sc-pct" data-pct1y="74.9" data-min1y="7.6" data-max1y="84.0" data-median1y="49.9" data-pct3y="75.9" data-min3y="4.2" data-max3y="97.1" data-median3y="51.2" data-pctall="73.7" data-minall="4.2" data-maxall="97.1" data-medianall="52.2"><span class="sc-pct-label">6日RSI</span><span class="pct-dot" style="color:#0ea882">●</span>第<strong class="pct-val" style="color:#0ea882">75.9</strong>%位<span class="pct-range">（区间 4.2 ~ 97.1，中位 51.2）</span></div><div class="rsi-pct-line sc-pct" data-pct1y="59.6" data-min1y="29.2" data-max1y="85.1" data-median1y="50.7" data-pct3y="48.7" data-min3y="9.8" data-max3y="85.1" data-median3y="53.3" data-pctall="47.8" data-minall="9.8" data-maxall="86.7" data-medianall="53.8"><span class="sc-pct-label">7周RSI</span><span class="pct-dot" style="color:#c88a0c">●</span>第<strong class="pct-val" style="color:#c88a0c">48.7</strong>%位<span class="pct-range">（区间 9.8 ~ 85.1，中位 53.3）</span></div></div>
             </div>
           </div>
         </div>
@@ -813,6 +883,10 @@
             <div class="gauge-tick top" style="left:50%">50</div>
             <div class="gauge-tick top" style="left:75%">75</div>
           </div>
+          <div class="rsi-pct-line" data-pct1y="23.5" data-min1y="12.3" data-max1y="90.5" data-median1y="51.8" data-pct3y="23.1" data-min3y="12.2" data-max3y="90.5" data-median3y="51.3" data-pctall="23.1" data-minall="12.2" data-maxall="90.5" data-medianall="51.3">
+            历史第 <strong class="pct-val" style="color:#e07040">23.1</strong> 百分位
+            <span class="pct-range">（区间 12.2 ~ 90.5，中位 51.3）</span>
+          </div>
           <div class="rsi-legend" style="margin-top:10px;text-align:center">25为观察点，低于25越低越买</div>
         </div>
       </div>
@@ -845,6 +919,10 @@
             <div class="gauge-tick top" style="left:40%">40</div>
             <div class="gauge-tick top" style="left:50%">50</div>
             <div class="gauge-tick top" style="left:75%">75</div>
+          </div>
+          <div class="rsi-pct-line" data-pct1y="5.8" data-min1y="33.3" data-max1y="79.7" data-median1y="59.5" data-pct3y="9.9" data-min3y="17.9" data-max3y="79.7" data-median3y="56.6" data-pctall="9.9" data-minall="17.9" data-maxall="79.7" data-medianall="56.6">
+            历史第 <strong class="pct-val" style="color:#c62828">9.9</strong> 百分位
+            <span class="pct-range">（区间 17.9 ~ 79.7，中位 56.6）</span>
           </div>
           <div class="rsi-legend" style="margin-top:10px;text-align:center">40为观察点，低于40越低越买</div>
         </div>
@@ -1037,6 +1115,10 @@
             <div class="gauge-tick top" style="left:50%">50</div>
             <div class="gauge-tick top" style="left:75%">75</div>
           </div>
+          <div class="rsi-pct-line" data-pct1y="21.0" data-min1y="12.6" data-max1y="91.8" data-median1y="57.8" data-pct3y="19.8" data-min3y="12.4" data-max3y="100.0" data-median3y="56.1" data-pctall="19.8" data-minall="12.4" data-maxall="100.0" data-medianall="56.1">
+            历史第 <strong class="pct-val" style="color:#e07040">19.8</strong> 百分位
+            <span class="pct-range">（区间 12.4 ~ 100.0，中位 56.1）</span>
+          </div>
           <div class="rsi-legend" style="margin-top:10px;text-align:center">25为观察点，低于25越低越买</div>
         </div>
       </div>
@@ -1069,6 +1151,10 @@
             <div class="gauge-tick top" style="left:40%">40</div>
             <div class="gauge-tick top" style="left:50%">50</div>
             <div class="gauge-tick top" style="left:75%">75</div>
+          </div>
+          <div class="rsi-pct-line" data-pct1y="1.9" data-min1y="36.1" data-max1y="89.0" data-median1y="66.9" data-pct3y="6.2" data-min3y="28.4" data-max3y="89.0" data-median3y="61.4" data-pctall="6.2" data-minall="28.4" data-maxall="89.0" data-medianall="61.4">
+            历史第 <strong class="pct-val" style="color:#c62828">6.2</strong> 百分位
+            <span class="pct-range">（区间 28.4 ~ 89.0，中位 61.4）</span>
           </div>
           <div class="rsi-legend" style="margin-top:10px;text-align:center">40为观察点，低于40越低越买</div>
         </div>
@@ -1262,6 +1348,10 @@
             <div class="gauge-tick top" style="left:50%">50</div>
             <div class="gauge-tick top" style="left:75%">75</div>
           </div>
+          <div class="rsi-pct-line" data-pct1y="6.6" data-min1y="15.8" data-max1y="96.4" data-median1y="56.2" data-pct3y="8.1" data-min3y="12.3" data-max3y="96.8" data-median3y="55.5" data-pctall="8.1" data-minall="12.3" data-maxall="96.8" data-medianall="55.5">
+            历史第 <strong class="pct-val" style="color:#c62828">8.1</strong> 百分位
+            <span class="pct-range">（区间 12.3 ~ 96.8，中位 55.5）</span>
+          </div>
           <div class="rsi-legend" style="margin-top:10px;text-align:center">25为观察点，低于25越低越买</div>
         </div>
       </div>
@@ -1294,6 +1384,10 @@
             <div class="gauge-tick top" style="left:40%">40</div>
             <div class="gauge-tick top" style="left:50%">50</div>
             <div class="gauge-tick top" style="left:75%">75</div>
+          </div>
+          <div class="rsi-pct-line" data-pct1y="0.0" data-min1y="30.8" data-max1y="83.1" data-median1y="63.3" data-pct3y="0.9" data-min3y="28.4" data-max3y="86.4" data-median3y="63.1" data-pctall="0.9" data-minall="28.4" data-maxall="86.4" data-medianall="63.1">
+            历史第 <strong class="pct-val" style="color:#c62828">0.9</strong> 百分位
+            <span class="pct-range">（区间 28.4 ~ 86.4，中位 63.1）</span>
           </div>
           <div class="rsi-legend" style="margin-top:10px;text-align:center">40为观察点，低于40越低越买</div>
         </div>
@@ -1503,6 +1597,10 @@
             <div class="gauge-tick top" style="left:50%">50</div>
             <div class="gauge-tick top" style="left:75%">75</div>
           </div>
+          <div class="rsi-pct-line" data-pct1y="89.3" data-min1y="10.4" data-max1y="93.7" data-median1y="53.7" data-pct3y="93.4" data-min3y="4.9" data-max3y="93.7" data-median3y="51.3" data-pctall="93.7" data-minall="4.9" data-maxall="93.7" data-medianall="51.4">
+            历史第 <strong class="pct-val" style="color:#0ea882">93.4</strong> 百分位
+            <span class="pct-range">（区间 4.9 ~ 93.7，中位 51.3）</span>
+          </div>
           <div class="rsi-legend" style="margin-top:10px;text-align:center">25为观察点，低于25越低越买</div>
         </div>
       </div>
@@ -1535,6 +1633,10 @@
             <div class="gauge-tick top" style="left:40%">40</div>
             <div class="gauge-tick top" style="left:50%">50</div>
             <div class="gauge-tick top" style="left:75%">75</div>
+          </div>
+          <div class="rsi-pct-line" data-pct1y="84.6" data-min1y="34.8" data-max1y="84.1" data-median1y="57.9" data-pct3y="92.9" data-min3y="18.3" data-max3y="84.1" data-median3y="53.1" data-pctall="94.5" data-minall="18.3" data-maxall="84.1" data-medianall="51.6">
+            历史第 <strong class="pct-val" style="color:#0ea882">92.9</strong> 百分位
+            <span class="pct-range">（区间 18.3 ~ 84.1，中位 53.1）</span>
           </div>
           <div class="rsi-legend" style="margin-top:10px;text-align:center">40为观察点，低于40越低越买</div>
         </div>
@@ -1802,6 +1904,10 @@
             <div class="gauge-tick top" style="left:50%">50</div>
             <div class="gauge-tick top" style="left:75%">75</div>
           </div>
+          <div class="rsi-pct-line" data-pct1y="44.4" data-min1y="12.9" data-max1y="95.0" data-median1y="51.9" data-pct3y="46.1" data-min3y="6.1" data-max3y="95.7" data-median3y="50.0" data-pctall="40.9" data-minall="6.1" data-maxall="96.5" data-medianall="52.8">
+            历史第 <strong class="pct-val" style="color:#c88a0c">46.1</strong> 百分位
+            <span class="pct-range">（区间 6.1 ~ 95.7，中位 50.0）</span>
+          </div>
           <div class="rsi-legend" style="margin-top:10px;text-align:center">25为观察点，低于25越低越买</div>
         </div>
       </div>
@@ -1834,6 +1940,10 @@
             <div class="gauge-tick top" style="left:40%">40</div>
             <div class="gauge-tick top" style="left:50%">50</div>
             <div class="gauge-tick top" style="left:75%">75</div>
+          </div>
+          <div class="rsi-pct-line" data-pct1y="19.2" data-min1y="29.8" data-max1y="84.7" data-median1y="55.3" data-pct3y="24.0" data-min3y="16.0" data-max3y="84.7" data-median3y="51.8" data-pctall="20.4" data-minall="16.0" data-maxall="86.6" data-medianall="53.3">
+            历史第 <strong class="pct-val" style="color:#e07040">24.0</strong> 百分位
+            <span class="pct-range">（区间 16.0 ~ 84.7，中位 51.8）</span>
           </div>
           <div class="rsi-legend" style="margin-top:10px;text-align:center">40为观察点，低于40越低越买</div>
         </div>
@@ -2208,6 +2318,10 @@
             <div class="gauge-tick top" style="left:50%">50</div>
             <div class="gauge-tick top" style="left:75%">75</div>
           </div>
+          <div class="rsi-pct-line" data-pct1y="61.7" data-min1y="15.2" data-max1y="93.0" data-median1y="56.1" data-pct3y="70.9" data-min3y="6.5" data-max3y="96.2" data-median3y="50.8" data-pctall="64.7" data-minall="2.9" data-maxall="100.0" data-medianall="53.4">
+            历史第 <strong class="pct-val" style="color:#0ea882">70.9</strong> 百分位
+            <span class="pct-range">（区间 6.5 ~ 96.2，中位 50.8）</span>
+          </div>
           <div class="rsi-legend" style="margin-top:10px;text-align:center">25为观察点，低于25越低越买</div>
         </div>
       </div>
@@ -2240,6 +2354,10 @@
             <div class="gauge-tick top" style="left:40%">40</div>
             <div class="gauge-tick top" style="left:50%">50</div>
             <div class="gauge-tick top" style="left:75%">75</div>
+          </div>
+          <div class="rsi-pct-line" data-pct1y="11.5" data-min1y="35.3" data-max1y="86.4" data-median1y="61.3" data-pct3y="35.1" data-min3y="16.2" data-max3y="86.4" data-median3y="52.5" data-pctall="29.5" data-minall="15.6" data-maxall="97.6" data-medianall="54.5">
+            历史第 <strong class="pct-val" style="color:#c88a0c">35.1</strong> 百分位
+            <span class="pct-range">（区间 16.2 ~ 86.4，中位 52.5）</span>
           </div>
           <div class="rsi-legend" style="margin-top:10px;text-align:center">40为观察点，低于40越低越买</div>
         </div>
@@ -2681,6 +2799,10 @@
             <div class="gauge-tick top" style="left:50%">50</div>
             <div class="gauge-tick top" style="left:75%">75</div>
           </div>
+          <div class="rsi-pct-line" data-pct1y="31.7" data-min1y="9.6" data-max1y="92.3" data-median1y="54.4" data-pct3y="34.8" data-min3y="6.0" data-max3y="95.5" data-median3y="53.8" data-pctall="36.5" data-minall="6.0" data-maxall="95.5" data-medianall="53.3">
+            历史第 <strong class="pct-val" style="color:#c88a0c">34.8</strong> 百分位
+            <span class="pct-range">（区间 6.0 ~ 95.5，中位 53.8）</span>
+          </div>
           <div class="rsi-legend" style="margin-top:10px;text-align:center">25为观察点，低于25越低越买</div>
         </div>
       </div>
@@ -2713,6 +2835,10 @@
             <div class="gauge-tick top" style="left:40%">40</div>
             <div class="gauge-tick top" style="left:50%">50</div>
             <div class="gauge-tick top" style="left:75%">75</div>
+          </div>
+          <div class="rsi-pct-line" data-pct1y="19.2" data-min1y="35.0" data-max1y="88.6" data-median1y="57.8" data-pct3y="22.1" data-min3y="24.1" data-max3y="88.6" data-median3y="58.1" data-pctall="26.1" data-minall="19.5" data-maxall="88.6" data-medianall="56.7">
+            历史第 <strong class="pct-val" style="color:#e07040">22.1</strong> 百分位
+            <span class="pct-range">（区间 24.1 ~ 88.6，中位 58.1）</span>
           </div>
           <div class="rsi-legend" style="margin-top:10px;text-align:center">40为观察点，低于40越低越买</div>
         </div>
@@ -2922,6 +3048,10 @@
             <div class="gauge-tick top" style="left:50%">50</div>
             <div class="gauge-tick top" style="left:75%">75</div>
           </div>
+          <div class="rsi-pct-line" data-pct1y="71.6" data-min1y="10.6" data-max1y="90.1" data-median1y="46.6" data-pct3y="67.6" data-min3y="0.0" data-max3y="93.6" data-median3y="51.8" data-pctall="67.6" data-minall="0.0" data-maxall="93.6" data-medianall="51.8">
+            历史第 <strong class="pct-val" style="color:#0ea882">67.6</strong> 百分位
+            <span class="pct-range">（区间 0.0 ~ 93.6，中位 51.8）</span>
+          </div>
           <div class="rsi-legend" style="margin-top:10px;text-align:center">25为观察点，低于25越低越买</div>
         </div>
       </div>
@@ -2954,6 +3084,10 @@
             <div class="gauge-tick top" style="left:40%">40</div>
             <div class="gauge-tick top" style="left:50%">50</div>
             <div class="gauge-tick top" style="left:75%">75</div>
+          </div>
+          <div class="rsi-pct-line" data-pct1y="26.9" data-min1y="26.4" data-max1y="82.5" data-median1y="50.0" data-pct3y="18.3" data-min3y="16.3" data-max3y="82.5" data-median3y="53.5" data-pctall="18.3" data-minall="16.3" data-maxall="82.5" data-medianall="53.5">
+            历史第 <strong class="pct-val" style="color:#e07040">18.3</strong> 百分位
+            <span class="pct-range">（区间 16.3 ~ 82.5，中位 53.5）</span>
           </div>
           <div class="rsi-legend" style="margin-top:10px;text-align:center">40为观察点，低于40越低越买</div>
         </div>
@@ -3254,6 +3388,10 @@
             <div class="gauge-tick top" style="left:50%">50</div>
             <div class="gauge-tick top" style="left:75%">75</div>
           </div>
+          <div class="rsi-pct-line" data-pct1y="67.9" data-min1y="10.8" data-max1y="92.8" data-median1y="49.9" data-pct3y="68.0" data-min3y="6.6" data-max3y="95.1" data-median3y="50.2" data-pctall="68.0" data-minall="6.6" data-maxall="95.1" data-medianall="50.2">
+            历史第 <strong class="pct-val" style="color:#0ea882">68.0</strong> 百分位
+            <span class="pct-range">（区间 6.6 ~ 95.1，中位 50.2）</span>
+          </div>
           <div class="rsi-legend" style="margin-top:10px;text-align:center">25为观察点，低于25越低越买</div>
         </div>
       </div>
@@ -3286,6 +3424,10 @@
             <div class="gauge-tick top" style="left:40%">40</div>
             <div class="gauge-tick top" style="left:50%">50</div>
             <div class="gauge-tick top" style="left:75%">75</div>
+          </div>
+          <div class="rsi-pct-line" data-pct1y="21.2" data-min1y="26.6" data-max1y="78.7" data-median1y="53.4" data-pct3y="26.5" data-min3y="9.7" data-max3y="78.7" data-median3y="51.5" data-pctall="26.5" data-minall="9.7" data-maxall="78.7" data-medianall="51.5">
+            历史第 <strong class="pct-val" style="color:#c88a0c">26.5</strong> 百分位
+            <span class="pct-range">（区间 9.7 ~ 78.7，中位 51.5）</span>
           </div>
           <div class="rsi-legend" style="margin-top:10px;text-align:center">40为观察点，低于40越低越买</div>
         </div>
@@ -3583,6 +3725,10 @@
             <div class="gauge-tick top" style="left:50%">50</div>
             <div class="gauge-tick top" style="left:75%">75</div>
           </div>
+          <div class="rsi-pct-line" data-pct1y="56.0" data-min1y="11.8" data-max1y="86.5" data-median1y="49.7" data-pct3y="53.3" data-min3y="4.9" data-max3y="95.9" data-median3y="52.2" data-pctall="50.9" data-minall="2.7" data-maxall="95.9" data-medianall="53.0">
+            历史第 <strong class="pct-val" style="color:#0ea882">53.3</strong> 百分位
+            <span class="pct-range">（区间 4.9 ~ 95.9，中位 52.2）</span>
+          </div>
           <div class="rsi-legend" style="margin-top:10px;text-align:center">25为观察点，低于25越低越买</div>
         </div>
       </div>
@@ -3615,6 +3761,10 @@
             <div class="gauge-tick top" style="left:40%">40</div>
             <div class="gauge-tick top" style="left:50%">50</div>
             <div class="gauge-tick top" style="left:75%">75</div>
+          </div>
+          <div class="rsi-pct-line" data-pct1y="11.5" data-min1y="27.8" data-max1y="87.1" data-median1y="53.3" data-pct3y="11.7" data-min3y="12.5" data-max3y="87.1" data-median3y="54.9" data-pctall="10.6" data-minall="12.5" data-maxall="88.7" data-medianall="54.7">
+            历史第 <strong class="pct-val" style="color:#e07040">11.7</strong> 百分位
+            <span class="pct-range">（区间 12.5 ~ 87.1，中位 54.9）</span>
           </div>
           <div class="rsi-legend" style="margin-top:10px;text-align:center">40为观察点，低于40越低越买</div>
         </div>
@@ -4069,6 +4219,10 @@
             <div class="gauge-tick top" style="left:50%">50</div>
             <div class="gauge-tick top" style="left:75%">75</div>
           </div>
+          <div class="rsi-pct-line" data-pct1y="74.9" data-min1y="7.6" data-max1y="84.0" data-median1y="49.9" data-pct3y="75.9" data-min3y="4.2" data-max3y="97.1" data-median3y="51.2" data-pctall="73.7" data-minall="4.2" data-maxall="97.1" data-medianall="52.2">
+            历史第 <strong class="pct-val" style="color:#0ea882">75.9</strong> 百分位
+            <span class="pct-range">（区间 4.2 ~ 97.1，中位 51.2）</span>
+          </div>
           <div class="rsi-legend" style="margin-top:10px;text-align:center">25为观察点，低于25越低越买</div>
         </div>
       </div>
@@ -4101,6 +4255,10 @@
             <div class="gauge-tick top" style="left:40%">40</div>
             <div class="gauge-tick top" style="left:50%">50</div>
             <div class="gauge-tick top" style="left:75%">75</div>
+          </div>
+          <div class="rsi-pct-line" data-pct1y="59.6" data-min1y="29.2" data-max1y="85.1" data-median1y="50.7" data-pct3y="48.7" data-min3y="9.8" data-max3y="85.1" data-median3y="53.3" data-pctall="47.8" data-minall="9.8" data-maxall="86.7" data-medianall="53.8">
+            历史第 <strong class="pct-val" style="color:#c88a0c">48.7</strong> 百分位
+            <span class="pct-range">（区间 9.8 ~ 85.1，中位 53.3）</span>
           </div>
           <div class="rsi-legend" style="margin-top:10px;text-align:center">40为观察点，低于40越低越买</div>
         </div>
@@ -4249,7 +4407,7 @@
 
 
 <div class="footer">
-  红利策略ETF深度分析 | 2026-05-30 13:51<br>
+  红利策略ETF深度分析 | 2026-05-30 14:16<br>
   数据源: 新浪(行情) + 天天基金(净值) + 基金季报/指数成分股 + baostock(估值/行业/股息)<br>
   重要声明: 本报告仅供投资参考，不构成投资建议。投资有风险，入市需谨慎。
 </div>
@@ -4330,6 +4488,42 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
   const btn = document.querySelector('.tab-btn[data-code="' + defaultCode + '"]');
   if (btn) btn.classList.add('active');
 })();
+
+function pctColor(pct) {
+  if (pct < 10) return '#c62828';
+  if (pct < 25) return '#e07040';
+  if (pct < 50) return '#c88a0c';
+  return '#0ea882';
+}
+
+document.querySelectorAll('.pct-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.pct-btn').forEach(function(b) { b.classList.remove('active'); });
+    this.classList.add('active');
+    var w = this.dataset.window;
+    document.querySelectorAll('.rsi-pct-line').forEach(function(el) {
+      var pct = el.dataset['pct' + w];
+      var dot = el.querySelector('.pct-dot');
+      if (pct === undefined) {
+        el.querySelector('.pct-val').textContent = '--';
+        el.querySelector('.pct-val').style.color = '#8b919e';
+        if (dot) dot.style.color = '#c0c4cc';
+        el.querySelector('.pct-range').textContent = '（数据不足）';
+        el.classList.add('insufficient');
+        return;
+      }
+      var mn = el.dataset['min' + w];
+      var mx = el.dataset['max' + w];
+      var md = el.dataset['median' + w];
+      var clr = pctColor(parseFloat(pct));
+      el.querySelector('.pct-val').textContent = pct;
+      el.querySelector('.pct-val').style.color = clr;
+      if (dot) dot.style.color = clr;
+      el.querySelector('.pct-range').textContent = '（区间 ' + (mn || '--') + ' ~ ' + (mx || '--') + '，中位 ' + (md || '--') + '）';
+      el.classList.remove('insufficient');
+    });
+  });
+});
 </script>
 
 </body>
