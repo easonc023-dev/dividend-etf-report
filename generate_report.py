@@ -523,21 +523,18 @@ def get_etf_price(sina_sym, max_retries=3):
             else:
                 raise e
 
-def get_fund_nav(code):
-    """获取场外基金净值走势"""
-    try:
-        df = ak.fund_open_fund_info_em(symbol=code, indicator='单位净值走势')
-        if df is not None and not df.empty:
-            # 列: ['净值日期', '单位净值', '日增长率']
-            df.columns = ['date', 'nav', 'daily_return']
-            df['date'] = pd.to_datetime(df['date'])
-            df['nav'] = pd.to_numeric(df['nav'])
-            df = df.sort_values('date')
-            df['close'] = df['nav']  # 统一字段名
-            return df
-    except:
-        pass
-    return None
+def get_cumulative_nav(code):
+    """获取累计净值走势（含分红再投资），统一用于所有产品"""
+    df = ak.fund_open_fund_info_em(symbol=code, indicator='累计净值走势', period='成立以来')
+    if df is None or df.empty:
+        return None
+    # 累计净值走势返回 2 列: ['净值日期', '累计净值']
+    df.columns = ['date', 'cum_nav']
+    df['date'] = pd.to_datetime(df['date'])
+    df['cum_nav'] = pd.to_numeric(df['cum_nav'])
+    df = df.sort_values('date')
+    df['close'] = df['cum_nav']
+    return df
 
 # ═══════════════════════════════════════════════════════════════
 # 核心：单产品数据采集
@@ -569,17 +566,12 @@ def _collect_inner(d, p, industry_map):
     code = d['display_code']
     is_hk = ptype in ('etf_hk', 'feeder_hk', 'index_fund_hk')
     no_baostock = ptype in ('etf_hk', 'feeder_hk', 'index_fund_hk', 'mixed_fund')
-    use_fund_nav = ptype in ('index_fund_a', 'index_fund_hk', 'mixed_fund')
 
-    # -- 1. 行情数据 --
-    if use_fund_nav:
-        df = get_fund_nav(p['code'])
-        if df is None:
-            raise Exception('基金净值获取失败')
-        price_source = '基金净值'
-    else:
-        df = get_etf_price(p['sina_sym'])
-        price_source = 'ETF行情'
+    # -- 1. 行情数据（统一口径：累计净值，含分红总回报） --
+    df = get_cumulative_nav(p['code'])
+    if df is None:
+        raise Exception('累计净值获取失败')
+    price_source = '累计净值'
 
     close_s = df.set_index('date')['close']
     latest = df.iloc[-1]
@@ -591,20 +583,11 @@ def _collect_inner(d, p, industry_map):
     d['price_source'] = price_source
     d['data_days'] = len(df)
 
-    # 交易数据（ETF才有开盘/最高/最低/成交额）
-    if not use_fund_nav:
-        d['nav_open'] = float(latest.get('open', nav))
-        d['nav_high'] = float(latest.get('high', nav))
-        d['nav_low'] = float(latest.get('low', nav))
-        try:
-            d['nav_amount'] = float(latest.get('amount', 0)) / 1e4
-        except:
-            d['nav_amount'] = 0
-    else:
-        d['nav_open'] = nav
-        d['nav_high'] = nav
-        d['nav_low'] = nav
-        d['nav_amount'] = 0
+    # 累计净值无OHLC数据，统一用收盘价
+    d['nav_open'] = nav
+    d['nav_high'] = nav
+    d['nav_low'] = nav
+    d['nav_amount'] = 0
 
     # -- 2. 技术指标 --
     ma250 = float(df['close'].tail(250).mean()) if len(df) >= 250 else nav
