@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>我花了两个月，用三个免费工具，搭了一套量化投研系统</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&display=swap" rel="stylesheet">
+</head>
+<body style="margin:0;padding:0;background:#f3f0e9">
+
+<div style="max-width:680px;margin:0 auto;padding:28px 16px 48px;font-family:-apple-system,'Microsoft YaHei','PingFang SC','Noto Sans SC',sans-serif;font-size:15px;line-height:1.85;color:#2d2a24;letter-spacing:0.15px">
+
+<!-- ═══════ TITLE CARD ═══════ -->
+<div style="background:#ffffff;border:1px solid #e0d8c8;border-radius:12px;padding:36px 28px;margin-bottom:16px;text-align:center;box-shadow:0 1px 8px rgba(0,0,0,0.03)">
+  <div style="width:36px;height:2px;background:linear-gradient(90deg,#c8a860,#d4b870,#c8a860);margin:0 auto 24px"></div>
+  <h1 style="font-family:'Noto Serif SC','Source Han Serif SC',serif;font-size:24px;font-weight:900;line-height:1.4;color:#1a1a18;margin:0 0 12px 0;letter-spacing:1px">
+    我花了两个月，用三个免费工具，<br>搭了一套量化投研系统
+  </h1>
+  <p style="color:#8a8070;font-size:14px;margin:0;font-weight:400;letter-spacing:0.5px">
+    从「感觉投资」到「规则投资」——一个人如何搭建专业级投研基础设施
+  </p>
+  <div style="width:100%;height:1px;background:linear-gradient(90deg,transparent,#d4c8b0 30%,#d4c8b0 70%,transparent);margin-top:24px"></div>
+</div>
+
+<!-- ═══════ OPENING CARD ═══════ -->
+<div style="background:#ffffff;border:1px solid #e0d8c8;border-radius:12px;padding:28px;margin-bottom:16px;box-shadow:0 1px 8px rgba(0,0,0,0.03)">
+  <blockquote style="margin:0 0 24px 0;padding:18px 22px;background:linear-gradient(135deg,#faf7f0 0%,#f5efe0 100%);border-left:3px solid #c8a860;border-radius:0 6px 6px 0">
+    <p style="margin:0;color:#4a4030;font-family:'Noto Serif SC',serif;font-size:16px;font-style:italic;letter-spacing:0.5px;line-height:1.7">
+      投资最可怕的不是亏钱。是亏得不明不白。
+    </p>
+  </blockquote>
+
+  <p style="margin:0 0 16px 0;color:#3d3830">说实话，我之前投资也靠感觉。</p>
+  <p style="margin:0 0 16px 0;color:#3d3830">感觉这个ETF不错——买了。感觉最近跌得差不多了——加仓。感觉市场要调整了——卖掉。</p>
+  <p style="margin:0 0 16px 0;color:#3d3830">结果呢？运气好的时候赚一点，运气差的时候亏回去。一年下来，收益和扔骰子差不多。</p>
+  <p style="margin:0 0 16px 0;color:#3d3830">
+    后来我才想明白：<em style="color:#b8860b;font-style:italic;font-weight:600">投资的敌人不是市场，是你自己的「感觉」。</em>
+    只要决策还靠感觉，结果就靠运气。
+  </p>
+  <p style="margin:0 0 16px 0;color:#3d3830">今年初我开始认真研究红利策略ETF。这类产品持仓以高分红股票为主，波动相对可控，长期逻辑清晰，很适合不想天天盯盘的人。</p>
+  <p style="margin:0 0 16px 0;color:#3d3830">但很快发现一个尴尬的事实：市面上的工具——基金App、券商软件、天天基金——数据都很丰富，但<strong style="color:#1a1a18;font-weight:700">没有一个能回答我最核心的问题</strong>：</p>
+
+  <blockquote style="margin:16px 0 0 0;padding:16px 20px;background:#faf8f4;border-left:3px solid #b8860b;border-radius:0 4px 4px 0">
+    <p style="margin:0;color:#5a4a30;font-weight:600;font-size:15px;letter-spacing:0.3px">
+      11支红利策略ETF，到底该买哪支？什么时候买？
+    </p>
+  </blockquote>
+</div>
+
+<!-- ═══════ PART 1: 三大问题 ═══════ -->
+<div style="background:#fdfcf8;border:1px solid #dbd0b8;border-radius:12px;padding:28px;margin-bottom:16px;box-shadow:0 1px 8px rgba(0,0,0,0.03);border-left:4px solid #b8860b">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #e8dcc8">
+    <span style="display:inline-block;background:#b8860b;color:#fff;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;letter-spacing:1px">PART 1</span>
+    <h2 style="font-family:'Noto Serif SC',serif;font-size:20px;font-weight:900;color:#1a1a18;margin:0;letter-spacing:0.5px;line-height:1.35">
+      我翻了五六个App，发现一个更可怕的事实
+    </h2>
+  </div>
+
+  <p style="margin:0 0 22px 0;color:#3d3830"><strong style="color:#1a1a18;font-weight:700;font-size:16px">第一，数据口径是乱的。</strong></p>
+  <p style="margin:0 0 28px 0;color:#5a5040;padding-left:4px">
+    ETF有场内行情价（不含分红），场外基金有单位净值，还有累计净值（含分红）。你把两支产品放一起对比收益率，根本不知道比的是不是同一件事。这就像拿一个人的税前工资和另一个人的税后工资比谁赚得多——没有意义。
+  </p>
+
+  <p style="margin:0 0 22px 0;color:#3d3830"><strong style="color:#1a1a18;font-weight:700;font-size:16px">第二，买卖时机全凭拍脑袋。</strong></p>
+  <p style="margin:0 0 8px 0;color:#5a5040;padding-left:4px">
+    网上说「RSI低于30是超卖，可以抄底」。但这个30是怎么来的？对所有产品都一样吗？对同一支产品，历史上RSI到30以下之后，到底涨了还是继续跌？——没人告诉你。包括那些推荐你买基金的App。
+  </p>
+  <p style="margin:0 0 28px 0;color:#b8860b;font-style:italic;padding-left:4px;font-weight:500">
+    大多数投资建议的问题在于：它们告诉你要做什么，但从不说这个建议是怎么来的。
+  </p>
+
+  <p style="margin:0 0 22px 0;color:#3d3830"><strong style="color:#1a1a18;font-weight:700;font-size:16px">第三，信息分散得像拼图。</strong></p>
+  <p style="margin:0 0 0 0;color:#5a5040;padding-left:4px">
+    估值在东方财富，技术指标在券商App，分红记录要翻公告，持仓行业要手动整理。每次想做一个稍微认真的决策，都要在五六个平台之间切来切去。切换成本高到——算了，不分析了，随便买吧。
+  </p>
+
+  <div style="background:linear-gradient(135deg,#faf7f0 0%,#f7f2e5 100%);padding:20px 22px;border-radius:6px;border:1px solid #e8dcc8;text-align:center;margin-top:20px">
+    <p style="margin:0 0 6px 0;color:#3d3830;font-size:14px">这三个问题的根因其实是一个：</p>
+    <p style="margin:0;color:#1a1a18;font-weight:700;font-size:15px;line-height:1.6">
+      缺少一个「单一事实来源」——把所有数据汇到一起，用统一口径计算，输出可对比、可追溯的信号。
+    </p>
+    <p style="margin:8px 0 0 0;color:#8a8070;font-size:13px">
+      就像做饭，食材分散在各个超市不可怕；可怕的是连砝码都不统一，你根本不知道一斤肉和一斤菜谁更重。
+    </p>
+  </div>
+</div>
+
+<!-- ═══════ PART 2: 四个决策 ═══════ -->
+<div style="background:#fdfcf8;border:1px solid #dbd0b8;border-radius:12px;padding:28px;margin-bottom:16px;box-shadow:0 1px 8px rgba(0,0,0,0.03);border-left:4px solid #3b7fb6">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #d0dde8">
+    <span style="display:inline-block;background:#3b7fb6;color:#fff;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;letter-spacing:1px">PART 2</span>
+    <h2 style="font-family:'Noto Serif SC',serif;font-size:20px;font-weight:900;color:#1a1a18;margin:0;letter-spacing:0.5px;line-height:1.35">
+      从一支ETF到十一支，我踩过的四个坑
+    </h2>
+  </div>
+
+  <p style="margin:0 0 28px 0;color:#5a5040">于是开始动手。从最初一支ETF的深度分析，到后来11支产品的量化决策中枢，中间做了四个关键决定。</p>
+
+  <!-- Decision 1 -->
+  <div style="margin-bottom:20px;padding:18px 18px 18px 16px;background:#faf8f4;border-left:3px solid #c8a860;border-radius:0 4px 4px 0">
+    <h3 style="font-family:'Noto Serif SC',serif;font-size:16px;font-weight:700;color:#1a1a18;margin:0 0 10px 0;letter-spacing:0.3px">
+      一、别给每支产品写一次性脚本，写一个能装下所有产品的壳
+    </h3>
+    <p style="margin:0 0 8px 0;color:#5a5040">最早只为南方红利低波50（515450）做了一个页面。跑通之后没有停，而是立刻把逻辑泛化：用Tab式结构支持多产品切换。</p>
+    <p style="margin:0 0 8px 0;color:#5a5040">现在覆盖11支产品，按「能源资源红利」和「常规红利」分两类。新增一支产品只需要加一行配置——不需要重写任何逻辑。</p>
+    <p style="margin:0;color:#b8860b;font-style:italic;font-weight:500">一次性脚本解决今天的问题，框架解决未来的问题。很多人不愿意多花那30%的时间做泛化，结果后面花300%的时间在维护。</p>
+  </div>
+
+  <!-- Decision 2 -->
+  <div style="margin-bottom:20px;padding:18px 18px 18px 16px;background:#f6f8fb;border-left:3px solid #3b7fb6;border-radius:0 4px 4px 0">
+    <h3 style="font-family:'Noto Serif SC',serif;font-size:16px;font-weight:700;color:#1a1a18;margin:0 0 10px 0;letter-spacing:0.3px">
+      二、我让电脑跑了25×7×11次回测，答案自己浮出来了
+    </h3>
+    <p style="margin:0 0 8px 0;color:#5a5040">RSI参数到底怎么选？6天还是14天？观察点设在20还是30？不靠经验，靠回测。</p>
+    <p style="margin:0 0 8px 0;color:#5a5040">设计了一个矩阵：3个日线周期 × 5个观察点 + 2个周线周期 × 5个观察点 = <strong style="color:#1a1a18;font-weight:700">25组参数组合</strong>，再 × 7个持有期 × 11支产品。</p>
+    <p style="margin:0 0 12px 0;color:#5a5040">回测跑完，一个规律清晰浮现：<strong style="color:#1a1a18;font-weight:700">收益和频率是跷跷板。</strong></p>
+
+    <div style="display:flex;gap:12px;margin-bottom:12px;flex-wrap:wrap">
+      <div style="flex:1;min-width:170px;background:linear-gradient(135deg,#fef9f0,#faf5e5);padding:14px 16px;border-radius:6px;border:1px solid #e8d8b0;text-align:center">
+        <p style="margin:0 0 4px 0;font-size:12px;color:#8a8070">灵敏派 · 6日RSI / 25</p>
+        <p style="margin:0;font-size:18px;font-weight:900;color:#b8860b;font-family:'JetBrains Mono',monospace">+17.4% <span style="font-size:12px;font-weight:400;color:#8a8070">年化</span></p>
+        <p style="margin:4px 0 0 0;font-size:12px;color:#8a8070">胜率 79% · 年均 5.9 次 · 单次 +2.9%</p>
+      </div>
+      <div style="flex:1;min-width:170px;background:linear-gradient(135deg,#f5f8fc,#eaf0f6);padding:14px 16px;border-radius:6px;border:1px solid #c8d8e8;text-align:center">
+        <p style="margin:0 0 4px 0;font-size:12px;color:#6b7d8a">耐心派 · 7周RSI / 40</p>
+        <p style="margin:0;font-size:18px;font-weight:900;color:#3b7fb6;font-family:'JetBrains Mono',monospace">+6.6% <span style="font-size:12px;font-weight:400;color:#6b7d8a">年化</span></p>
+        <p style="margin:4px 0 0 0;font-size:12px;color:#6b7d8a">胜率 70% · 年均 1.9 次 · 单次 +3.4%</p>
+      </div>
+    </div>
+    <p style="margin:0;color:#5a5040">没有绝对的好坏。高频选手赚的是次数，低频选手赚的是确定性。</p>
+  </div>
+
+  <!-- Decision 3 -->
+  <div style="margin-bottom:20px;padding:18px 18px 18px 16px;background:#f6faf7;border-left:3px solid #0d8a6e;border-radius:0 4px 4px 0">
+    <h3 style="font-family:'Noto Serif SC',serif;font-size:16px;font-weight:700;color:#1a1a18;margin:0 0 10px 0;letter-spacing:0.3px">
+      三、同样是RSI信号，有人一年出手6次，有人2次——都是对的
+    </h3>
+    <p style="margin:0 0 8px 0;color:#5a5040">回测结果逼出了一个「双路径框架」：</p>
+
+    <div style="display:flex;gap:12px;margin:12px 0;flex-wrap:wrap">
+      <div style="flex:1;min-width:165px;background:linear-gradient(135deg,#fef9f0,#faf5e5);padding:16px;border-radius:4px;border:1px solid #e8d8b0">
+        <p style="margin:0 0 4px 0;font-size:11px;color:#b8860b;font-weight:700;letter-spacing:1px">路径一</p>
+        <p style="margin:0 0 6px 0;font-weight:700;color:#1a1a18;font-size:14px">高频捕捉小波段</p>
+        <p style="margin:0;font-size:12px;color:#5a5040">看「年化预期收益」——信号密、频率高，适合资金周转快的人</p>
+      </div>
+      <div style="flex:1;min-width:165px;background:linear-gradient(135deg,#f5faf7,#e8f5ee);padding:16px;border-radius:4px;border:1px solid #b8d8c8">
+        <p style="margin:0 0 4px 0;font-size:11px;color:#0d8a6e;font-weight:700;letter-spacing:1px">路径二</p>
+        <p style="margin:0 0 6px 0;font-weight:700;color:#1a1a18;font-size:14px">低频等待大机会</p>
+        <p style="margin:0;font-size:12px;color:#5a5040">看「单次信号质量」——信号稀但确定性高，适合单笔资金大的人</p>
+      </div>
+    </div>
+
+    <p style="margin:8px 0;color:#b8860b;font-style:italic;font-weight:500">你不能用同一个标准去评价两个完全不同的策略。</p>
+    <p style="margin:0 0 8px 0;color:#5a5040">高频策略嫌它单次收益低？那是你没理解它的逻辑——它赚的是复利叠加，不是单次暴击。低频策略嫌它信号太少？那是你忘了它的优势——每次出手时，你有更高的信心下更大的注。</p>
+    <p style="margin:0;color:#5a5040">顺便说一句，14周RSI被直接丢弃——回测没进前15，信号太稀疏。<em style="color:#b8860b;font-weight:500">数据不会照顾你的感受，该扔就扔。</em></p>
+  </div>
+
+  <!-- Decision 4 -->
+  <div style="padding:18px 18px 18px 16px;background:#faf8f5;border-left:3px solid #8b5e3c;border-radius:0 4px 4px 0">
+    <h3 style="font-family:'Noto Serif SC',serif;font-size:16px;font-weight:700;color:#1a1a18;margin:0 0 10px 0;letter-spacing:0.3px">
+      四、含分红和不含分红，差的不止是一点点
+    </h3>
+    <p style="margin:0 0 8px 0;color:#5a5040">这个决定最技术性，但也最关键。</p>
+    <p style="margin:0 0 8px 0;color:#5a5040">所有11支产品的数据源，统一为<strong style="color:#1a1a18;font-weight:700">累计净值（含分红再投资）</strong>。不管你是ETF还是场外基金，全部用同一个指标——总回报——来衡量。</p>
+    <p style="margin:0 0 8px 0;color:#5a5040">这样回测脚本和前端报告的计算口径完全一致。杜绝了「回测算出来好看，实盘对不上」的隐患。</p>
+    <p style="margin:0;color:#b8860b;font-style:italic;font-weight:500">口径统一这件事，不性感，不重要到让人忽略，但忽略它会让你所有数据失去意义。</p>
+  </div>
+</div>
+
+<!-- ═══════ PART 3: 架构 ═══════ -->
+<div style="background:#fdfcf8;border:1px solid #dbd0b8;border-radius:12px;padding:28px;margin-bottom:16px;box-shadow:0 1px 8px rgba(0,0,0,0.03);border-left:4px solid #8b5e3c">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #e8dcc8">
+    <span style="display:inline-block;background:#8b5e3c;color:#fff;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;letter-spacing:1px">PART 3</span>
+    <h2 style="font-family:'Noto Serif SC',serif;font-size:20px;font-weight:900;color:#1a1a18;margin:0;letter-spacing:0.5px;line-height:1.35">
+      每天下午4点07分，它自己醒了
+    </h2>
+  </div>
+
+  <p style="margin:0 0 20px 0;color:#5a5040">整个系统就四步，三个免费工具：</p>
+
+  <div style="background:linear-gradient(135deg,#fcfaf6,#f7f2e8);padding:20px 16px;border-radius:8px;border:1px solid #e5dcc8;margin-bottom:20px">
+    <div style="display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap;text-align:center">
+      <div style="padding:10px 12px;min-width:90px">
+        <span style="display:block;font-size:22px;margin-bottom:4px">📡</span>
+        <p style="margin:0;font-size:12px;font-weight:700;color:#1a1a18">数据采集</p>
+        <p style="margin:2px 0 0 0;font-size:10px;color:#8a8070">akshare + baostock</p>
+      </div>
+      <span style="color:#c8a860;font-size:16px;font-weight:700;margin:0 2px">→</span>
+      <div style="padding:10px 12px;min-width:90px">
+        <span style="display:block;font-size:22px;margin-bottom:4px">⚙️</span>
+        <p style="margin:0;font-size:12px;font-weight:700;color:#1a1a18">计算引擎</p>
+        <p style="margin:2px 0 0 0;font-size:10px;color:#8a8070">指标 · 评分 · 回测</p>
+      </div>
+      <span style="color:#c8a860;font-size:16px;font-weight:700;margin:0 2px">→</span>
+      <div style="padding:10px 12px;min-width:90px">
+        <span style="display:block;font-size:22px;margin-bottom:4px">📄</span>
+        <p style="margin:0;font-size:12px;font-weight:700;color:#1a1a18">静态报告</p>
+        <p style="margin:2px 0 0 0;font-size:10px;color:#8a8070">零框架 · 零构建</p>
+      </div>
+      <span style="color:#c8a860;font-size:16px;font-weight:700;margin:0 2px">→</span>
+      <div style="padding:10px 12px;min-width:90px">
+        <span style="display:block;font-size:22px;margin-bottom:4px">🚀</span>
+        <p style="margin:0;font-size:12px;font-weight:700;color:#1a1a18">自动部署</p>
+        <p style="margin:2px 0 0 0;font-size:10px;color:#8a8070">GitHub Pages</p>
+      </div>
+    </div>
+  </div>
+
+  <p style="margin:0 0 8px 0;color:#5a5040">选型原则：<strong style="color:#1a1a18;font-weight:700">不需要服务器、不需要数据库、不需要付费 API。</strong></p>
+  <p style="margin:0;color:#5a5040">每天下午4点07分，系统自动采集数据 → 计算 → 生成报告 → Git提交 → GitHub Pages上线。全程无人值守。我甚至不需要打开电脑。</p>
+</div>
+
+<!-- ═══════ PART 4: 功能 ═══════ -->
+<div style="background:#fdfcf8;border:1px solid #dbd0b8;border-radius:12px;padding:28px;margin-bottom:16px;box-shadow:0 1px 8px rgba(0,0,0,0.03);border-left:4px solid #0d8a6e">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #c8d8cc">
+    <span style="display:inline-block;background:#0d8a6e;color:#fff;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;letter-spacing:1px">PART 4</span>
+    <h2 style="font-family:'Noto Serif SC',serif;font-size:20px;font-weight:900;color:#1a1a18;margin:0;letter-spacing:0.5px;line-height:1.35">
+      打开页面，你看到的不是数字，是决策信号
+    </h2>
+  </div>
+
+  <p style="margin:0 0 20px 0;color:#5a5040">每支产品展示10个维度的数据：累计净值、PE/PB估值（加权平均）、股息率、RSI 6日/7周、MA250/MA550偏离、年化波动率、最大回撤、多阶段收益、行业分布、持仓明细。</p>
+  <p style="margin:0 0 16px 0;color:#5a5040">几个关键设计：</p>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+    <div style="background:#faf8f4;padding:16px;border-radius:4px;border:1px solid #e8e0d0">
+      <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:500;color:#c8a860;opacity:0.5;margin-bottom:4px">01</span>
+      <p style="margin:0 0 4px 0;font-weight:700;color:#1a1a18;font-size:14px">复合买入评分 0-100分</p>
+      <p style="margin:0;font-size:12px;color:#5a5040;line-height:1.7">RSI6 + RSI7W + MA250 + MA550 加权合成。≥45 买入 · 30-44 观察 · &lt;30 安全。</p>
+    </div>
+    <div style="background:#faf8f4;padding:16px;border-radius:4px;border:1px solid #e8e0d0">
+      <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:500;color:#c8a860;opacity:0.5;margin-bottom:4px">02</span>
+      <p style="margin:0 0 4px 0;font-weight:700;color:#1a1a18;font-size:14px">RSI 历史百分位</p>
+      <p style="margin:0;font-size:12px;color:#5a5040;line-height:1.7">第8百分位 = 比92%的时间都便宜。历史坐标系比绝对数值有用十倍。</p>
+    </div>
+    <div style="background:#faf8f4;padding:16px;border-radius:4px;border:1px solid #e8e0d0">
+      <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:500;color:#c8a860;opacity:0.5;margin-bottom:4px">03</span>
+      <p style="margin:0 0 4px 0;font-weight:700;color:#1a1a18;font-size:14px">信号规则 Rule A</p>
+      <p style="margin:0;font-size:12px;color:#5a5040;line-height:1.7">跌破触发一次，回升超观察点+5才重新上膛——避免超卖区间反复假信号。</p>
+    </div>
+    <div style="background:#faf8f4;padding:16px;border-radius:4px;border:1px solid #e8e0d0">
+      <span style="display:block;font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:500;color:#c8a860;opacity:0.5;margin-bottom:4px">04</span>
+      <p style="margin:0 0 4px 0;font-weight:700;color:#1a1a18;font-size:14px">同类对比 + 策略卡片</p>
+      <p style="margin:0;font-size:12px;color:#5a5040;line-height:1.7">8支ETF横向排名，每支独立展示指数、因子、权重、调仓频率。</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════ PART 5: CLOSING ═══════ -->
+<div style="background:#ffffff;border:1px solid #e0d8c8;border-radius:12px;padding:28px;margin-bottom:16px;box-shadow:0 1px 8px rgba(0,0,0,0.03);border-left:4px solid #c8a860">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid #e8dcc8">
+    <span style="display:inline-block;background:#c8a860;color:#fff;font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;padding:3px 10px;border-radius:3px;letter-spacing:1px">CODA</span>
+    <h2 style="font-family:'Noto Serif SC',serif;font-size:20px;font-weight:900;color:#1a1a18;margin:0;letter-spacing:0.5px;line-height:1.35">
+      工具会越来越好，但拍板的永远是你
+    </h2>
+  </div>
+
+  <p style="margin:0 0 16px 0;color:#5a5040">这个项目验证了一件事：<strong style="color:#1a1a18;font-weight:700">个人完全可以搭建专业级的投研基础设施。</strong></p>
+  <p style="margin:0 0 16px 0;color:#5a5040">不需要团队，不需要预算。Python + akshare + GitHub Pages，加上把问题想清楚、不想再凭感觉亏钱的耐心——就够了。</p>
+  <p style="margin:0 0 16px 0;color:#5a5040">当然，目前这还只是一个「买入信号系统」：告诉你什么时候有机会，但仓位管多少、什么时候卖、亏了怎么办——还没覆盖。这些是下一步要啃的硬骨头。</p>
+  <p style="margin:0;color:#b8860b;font-style:italic;font-weight:500">
+    工具只是延伸你的判断力，不是替代它。最终拍板的，还是你。
+  </p>
+</div>
+
+<!-- ═══════ FOOTER CARD ═══════ -->
+<div style="background:#ffffff;border:1px solid #e0d8c8;border-radius:12px;padding:24px 20px;text-align:center;box-shadow:0 1px 8px rgba(0,0,0,0.03)">
+  <div style="width:24px;height:2px;background:#c8a860;margin:0 auto 16px"></div>
+  <p style="margin:0 0 6px 0;font-weight:700;color:#1a1a18;font-size:14px">项目开源</p>
+  <p style="margin:0 0 2px 0;font-size:13px;color:#5a5040">
+    🔗 <a href="https://github.com/easonc023-dev/dividend-etf-report" style="color:#b8860b;text-decoration:none;border-bottom:1px solid #d4c8b0">github.com/easonc023-dev/dividend-etf-report</a>
+  </p>
+  <p style="margin:12px 0 6px 0;font-weight:700;color:#1a1a18;font-size:14px">线上报告每日自动更新</p>
+  <p style="margin:0;font-size:13px;color:#5a5040">
+    🌐 <a href="https://easonc023-dev.github.io/dividend-etf-report/" style="color:#b8860b;text-decoration:none;border-bottom:1px solid #d4c8b0">easonc023-dev.github.io/dividend-etf-report/</a>
+  </p>
+</div>
+
+</div>
+</body>
+</html>

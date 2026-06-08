@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>红利策略ETF · 项目总结</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@500;700;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* ============ Reset ============ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{overflow:hidden;height:100%}
+body{
+  font-family:-apple-system,"Microsoft YaHei","PingFang SC","Noto Sans SC",sans-serif;
+  height:100vh;overflow:hidden;
+  background:#faf7f0;
+  color:#2c2416;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+:root{
+  --gold:#b8860b;--gold-bright:#d4a017;--gold-light:#f5e6c8;--gold-bg:rgba(184,134,11,0.06);
+  --primary:#2c2416;--secondary:#6b5e45;--muted:#9a8d78;
+  --border:#e5ddd0;--border-strong:#d4c8b0;
+  --bg-warm:#f5f0e6;--bg-card:#ffffff;
+  --accent-blue:#3b6fb6;--accent-green:#0d8a6e;--accent-red:#c0392b;
+  --blue-bg:#e8f0f8;--green-bg:#e0f2ec;--red-bg:#fde8ec;
+  --font-display:"Noto Serif SC","Source Han Serif SC",serif;
+  --font-mono:"JetBrains Mono","Cascadia Code",monospace;
+  --slide-pad:clamp(32px,5vh,56px);
+  --slide-pad-sides:clamp(36px,6vw,88px);
+}
+
+/* ============ Deck ============ */
+.deck{
+  display:flex;height:100vh;overflow-x:auto;overflow-y:hidden;
+  scroll-snap-type:x mandatory;scroll-behavior:smooth;
+}
+.deck::-webkit-scrollbar{height:5px}
+.deck::-webkit-scrollbar-track{background:transparent}
+.deck::-webkit-scrollbar-thumb{background:var(--border-strong);border-radius:3px}
+
+/* ============ Slide ============ */
+.slide{
+  flex:0 0 100vw;width:100vw;height:100vh;
+  padding:var(--slide-pad) var(--slide-pad-sides);
+  display:flex;flex-direction:column;
+  scroll-snap-align:start;
+  position:relative;
+  background:linear-gradient(175deg,#faf7f0 0%,#f7f3e8 50%,#faf7f0 100%);
+}
+
+/* top bar */
+.slide::after{
+  content:'';
+  position:absolute;top:0;left:var(--slide-pad-sides);right:var(--slide-pad-sides);
+  height:1px;background:linear-gradient(90deg,transparent,var(--border-strong)20%,var(--border-strong)80%,transparent);
+}
+/* page number */
+.slide-num{
+  position:absolute;bottom:var(--slide-pad);right:var(--slide-pad-sides);
+  font-family:var(--font-mono);font-size:12px;color:var(--muted);letter-spacing:1px;
+}
+
+/* ============ Slide inner layout ============ */
+.slide-head{margin-bottom:clamp(18px,3vh,32px)}
+.slide-tag{
+  font-size:11px;font-weight:700;letter-spacing:2.5px;color:var(--gold);
+  text-transform:uppercase;margin-bottom:6px;display:block;
+}
+.slide-title{
+  font-family:var(--font-display);font-size:clamp(22px,3.5vh,30px);font-weight:900;
+  line-height:1.25;color:var(--primary);max-width:80%;
+}
+.slide-body{flex:1;display:flex;flex-direction:column;justify-content:center;gap:clamp(14px,2vh,24px)}
+
+.slide-foot{
+  margin-top:auto;padding-top:clamp(12px,2vh,18px);
+  border-top:1px solid var(--border);
+  display:flex;align-items:flex-start;gap:10px;
+}
+.slide-foot .foot-marker{
+  flex-shrink:0;width:20px;height:20px;border-radius:50%;
+  background:var(--gold);color:#fff;display:flex;align-items:center;
+  justify-content:center;font-size:12px;font-weight:700;
+}
+.slide-foot p{font-size:13px;color:var(--secondary);line-height:1.5}
+.slide-foot strong{color:var(--primary);font-weight:700}
+
+/* ============ HERO SLIDE ============ */
+.hero .slide-title{
+  font-size:clamp(28px,4.5vh,38px);
+  background:linear-gradient(135deg,var(--primary)0%,var(--gold)70%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;max-width:100%;
+}
+.hero .hook{font-size:clamp(15px,2.2vh,18px);color:var(--secondary);font-style:italic;margin-top:8px}
+.hero-stats{
+  display:flex;gap:clamp(28px,5vw,60px);margin-top:clamp(16px,2.5vh,28px);
+  flex-wrap:wrap;
+}
+.hero-stat{text-align:center;min-width:80px}
+.hero-stat .val{
+  font-family:var(--font-display);font-size:clamp(36px,7vh,56px);font-weight:900;
+  color:var(--gold);line-height:1;
+}
+.hero-stat .lbl{font-size:12px;color:var(--muted);margin-top:4px}
+
+/* ============ Background 2-col ============ */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,2.5vh,28px)}
+.ctx-card{
+  background:var(--bg-warm);border-radius:4px;
+  padding:clamp(18px,2.5vh,28px) clamp(20px,3vw,32px);
+  border-left:3px solid var(--gold);
+}
+.ctx-card.blue{border-left-color:var(--accent-blue)}
+.ctx-card h4{font-size:clamp(14px,1.8vh,16px);font-weight:700;margin-bottom:8px}
+.ctx-card p{font-size:clamp(13px,1.6vh,14px);color:var(--secondary);line-height:1.7}
+.insight-box{
+  padding:clamp(14px,2vh,20px) clamp(18px,3vw,28px);
+  background:linear-gradient(135deg,var(--gold-light)0%,transparent 100%);
+  border-radius:4px;text-align:center;margin-top:4px;
+}
+.insight-box p{font-size:clamp(13px,1.7vh,15px);color:var(--secondary)}
+.insight-box strong{color:var(--gold)}
+
+/* ============ Problem 3-col ============ */
+.prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vh,20px)}
+.prob-card{
+  text-align:center;padding:clamp(22px,3vh,32px) clamp(16px,2vw,24px);
+  border:1px solid var(--border);border-radius:4px;background:var(--bg-card);
+}
+.prob-card .p-icon{
+  width:46px;height:46px;border-radius:50%;display:flex;align-items:center;
+  justify-content:center;margin:0 auto 10px;font-size:20px;
+}
+.prob-card:nth-child(1) .p-icon{background:var(--blue-bg);color:var(--accent-blue)}
+.prob-card:nth-child(2) .p-icon{background:var(--gold-light);color:var(--gold)}
+.prob-card:nth-child(3) .p-icon{background:var(--green-bg);color:var(--accent-green)}
+.prob-card h4{font-size:clamp(13px,1.7vh,15px);font-weight:700;margin-bottom:6px}
+.prob-card p{font-size:clamp(12px,1.5vh,13px);color:var(--secondary);line-height:1.6}
+
+/* ============ Timeline 2x2 ============ */
+.tl{display:grid;grid-template-columns:1fr 1fr;gap:clamp(14px,2vh,20px)}
+.tl-item{
+  padding:clamp(16px,2.2vh,24px);border:1px solid var(--border);
+  border-radius:4px;background:var(--bg-card);
+}
+.tl-step{
+  font-family:var(--font-mono);font-size:10px;font-weight:700;
+  letter-spacing:1px;color:var(--gold);margin-bottom:4px;
+}
+.tl-item h4{font-size:clamp(14px,1.7vh,16px);font-weight:700;margin-bottom:4px}
+.tl-item p{font-size:clamp(12px,1.5vh,13px);color:var(--secondary);line-height:1.6}
+
+/* ============ Architecture ============ */
+.arch{display:flex;align-items:center;justify-content:center;gap:0;flex-wrap:wrap}
+.arch-node{
+  background:var(--bg-warm);border:1px solid var(--border);
+  border-radius:4px;padding:clamp(14px,2vh,22px)clamp(18px,3vw,32px);
+  text-align:center;min-width:clamp(130px,16vw,170px);
+}
+.arch-node .n-icon{font-size:clamp(20px,2.5vh,26px);display:block;margin-bottom:4px}
+.arch-node .n-title{font-size:clamp(13px,1.6vh,15px);font-weight:700;margin-bottom:2px}
+.arch-node .n-desc{font-size:clamp(11px,1.4vh,12px);color:var(--muted)}
+.arch-arrow{font-size:clamp(16px,2vh,22px);color:var(--gold);margin:0 clamp(4px,1vw,10px);font-weight:700}
+.arch-note{text-align:center;font-size:12px;color:var(--muted);margin-top:12px}
+
+/* ============ Features 3x2 ============ */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.6vh,18px)}
+.feat-card{
+  padding:clamp(16px,2vh,24px);border:1px solid var(--border);
+  border-radius:4px;background:var(--bg-card);transition:box-shadow 0.2s;
+}
+.feat-card:hover{box-shadow:0 2px 16px rgba(0,0,0,0.05)}
+.feat-card .f-num{
+  font-family:var(--font-mono);font-size:clamp(20px,2.8vh,28px);font-weight:500;
+  color:var(--gold);opacity:0.35;margin-bottom:4px;line-height:1;
+}
+.feat-card h4{font-size:clamp(13px,1.6vh,14px);font-weight:700;margin-bottom:6px}
+.feat-card p{font-size:clamp(11px,1.4vh,13px);color:var(--secondary);line-height:1.6}
+
+/* ============ Decision Table ============ */
+.dec-table{width:100%;border-collapse:collapse;font-size:clamp(11px,1.4vh,13px)}
+.dec-table thead th{
+  background:var(--bg-warm);padding:clamp(10px,1.5vh,14px) 14px;text-align:left;
+  font-weight:700;font-size:11px;letter-spacing:0.5px;color:var(--secondary);
+  border-bottom:2px solid var(--border-strong);
+}
+.dec-table tbody td{padding:clamp(10px,1.4vh,14px) 14px;border-bottom:1px solid var(--border);color:var(--secondary)}
+.dec-table tbody tr:last-child td{border-bottom:none}
+.col-choice{color:var(--gold);font-weight:700;white-space:nowrap}
+
+/* ============ Tech 4-col ============ */
+.tech-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.6vh,18px)}
+.tech-card{
+  padding:clamp(16px,2vh,24px);text-align:center;
+  border:1px solid var(--border);border-radius:4px;background:var(--bg-card);
+}
+.tech-card .t-icon{font-size:clamp(24px,3vh,30px);display:block;margin-bottom:6px}
+.tech-card h4{font-size:clamp(13px,1.6vh,14px);font-weight:700;margin-bottom:4px}
+.tech-card p{font-size:clamp(11px,1.4vh,12px);color:var(--muted);line-height:1.6}
+.end-links{display:flex;gap:16px;justify-content:center;margin-top:16px;flex-wrap:wrap}
+.end-link{
+  padding:10px 24px;border:1px solid var(--border-strong);border-radius:4px;
+  color:var(--primary);text-decoration:none;font-size:14px;transition:all 0.2s;
+}
+.end-link:hover{border-color:var(--gold);color:var(--gold)}
+
+/* ============ Chips ============ */
+.chip{display:inline-block;padding:1px 8px;border-radius:3px;font-family:var(--font-mono);font-size:11px;font-weight:500;margin:0 2px;white-space:nowrap}
+.chip.gold{background:var(--gold-light);color:var(--gold)}
+.chip.green{background:var(--green-bg);color:var(--accent-green)}
+.chip.blue{background:var(--blue-bg);color:var(--accent-blue)}
+.chip.red{background:var(--red-bg);color:var(--accent-red)}
+
+/* ============ Nav ============ */
+.nav-dots{
+  position:fixed;bottom:20px;left:50%;transform:translateX(-50%);
+  display:flex;gap:8px;z-index:100;
+}
+.nav-dot{
+  width:8px;height:8px;border-radius:50%;background:var(--border-strong);
+  cursor:pointer;transition:all 0.3s;
+}
+.nav-dot.active{background:var(--gold);width:24px;border-radius:4px}
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+  <!-- ====== SLIDE 1: HERO ====== -->
+  <div class="slide hero">
+    <div class="slide-num">01 / 08</div>
+    <div class="slide-head">
+      <span class="slide-tag">Project Retrospective</span>
+      <h1 class="slide-title">红利策略ETF<br>买方信号量化分析工具</h1>
+      <p class="hook">"从单支ETF的深度体检，到11支产品的量化决策中枢"</p>
+    </div>
+    <div class="slide-body">
+      <div class="hero-stats">
+        <div class="hero-stat"><span class="val">11</span><span class="lbl">支红利策略产品</span></div>
+        <div class="hero-stat"><span class="val">10</span><span class="lbl">维度/每产品指标</span></div>
+        <div class="hero-stat"><span class="val">25</span><span class="lbl">组参数系统回测</span></div>
+        <div class="hero-stat"><span class="val">∞</span><span class="lbl">每日自动化更新</span></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="foot-marker">✦</span><p><strong>一句话：</strong>用系统回测取代拍脑袋，用统一口径取代混用数据，把11支红利ETF放在同一把尺子下衡量——这是从"感觉投资"到"规则投资"的第一步。</p></div>
+  </div>
+
+  <!-- ====== SLIDE 2: 项目背景 ====== -->
+  <div class="slide">
+    <div class="slide-num">02 / 08</div>
+    <div class="slide-head">
+      <span class="slide-tag">Background</span>
+      <h2 class="slide-title">从投研痛点出发</h2>
+    </div>
+    <div class="slide-body">
+      <div class="two-col">
+        <div class="ctx-card"><h4>📌 起点</h4><p>AIGC/广告创意项目负责人，在探索红利策略ETF投资中，发现现有工具（基金App、券商软件）数据虽丰富，但<strong>分散在不同平台</strong>，缺乏统一对比，更没有量化买入时机判断。</p></div>
+        <div class="ctx-card blue"><h4>🎯 核心矛盾</h4><p>投前决策缺少<strong>统一的量化坐标系</strong>：同一支ETF，什么时候算"便宜"、什么时候算"贵"？RSI=35对产品A是超卖，对产品B可能只是正常波动。</p></div>
+      </div>
+      <div class="insight-box"><p>💡 <strong>11支红利策略ETF</strong>，底层逻辑相似但结构、费率、分红节奏差异显著——需要一个<span class="chip gold">统一分析框架</span>，把不同产品放在同一把尺子下量。</p></div>
+    </div>
+    <div class="slide-foot"><span class="foot-marker">✦</span><p><strong>关键总结：</strong>问题的起点不是"缺数据"，而是"数据不缺但口径不齐、无法对比"——本质是<strong>缺少统一度量衡</strong>。</p></div>
+  </div>
+
+  <!-- ====== SLIDE 3: 核心痛点 ====== -->
+  <div class="slide">
+    <div class="slide-num">03 / 08</div>
+    <div class="slide-head">
+      <span class="slide-tag">Pain Points</span>
+      <h2 class="slide-title">三大核心痛点</h2>
+    </div>
+    <div class="slide-body">
+      <div class="prob-grid">
+        <div class="prob-card"><div class="p-icon">📐</div><h4>数据口径不统一</h4><p>ETF行情价（不含分红）vs 基金净值 vs 累计净值——不同产品用不同口径，收益无法横向对比。</p></div>
+        <div class="prob-card"><div class="p-icon">🎯</div><h4>买卖时机凭感觉</h4><p>RSI参数拍脑袋选定，缺乏<strong>历史回测验证</strong>。到底该看几天的RSI？跌破多少算信号？全凭经验。</p></div>
+        <div class="prob-card"><div class="p-icon">🔗</div><h4>信息分散割裂</h4><p>估值、技术、分红、持仓分布在不同平台，<strong>切换成本极高</strong>，难以形成整体判断。</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="foot-marker">✦</span><p><strong>关键总结：</strong>三个痛点有一个共同根因——<strong>缺少一个"单一事实来源"（Single Source of Truth）</strong>来整合数据、统一计算、输出信号。</p></div>
+  </div>
+
+  <!-- ====== SLIDE 4: 关键思考 ====== -->
+  <div class="slide">
+    <div class="slide-num">04 / 08</div>
+    <div class="slide-head">
+      <span class="slide-tag">Critical Thinking</span>
+      <h2 class="slide-title">四个关键决策节点</h2>
+    </div>
+    <div class="slide-body">
+      <div class="tl">
+        <div class="tl-item"><div class="tl-step">MILESTONE 1</div><h4>从一支到十一支</h4><p>单点突破后快速横向复制——用Tab式框架替代一次性脚本，建立<span class="chip blue">11产品×2分类</span>的对比体系。</p></div>
+        <div class="tl-item"><div class="tl-step">MILESTONE 2</div><h4>从感觉到数据</h4><p><span class="chip blue">25组参数</span>×<span class="chip blue">7个持有期</span>×<span class="chip blue">11产品</span>系统回测——用历史数据回答"哪个参数最优"，而非经验选参。</p></div>
+        <div class="tl-item"><div class="tl-step">MILESTONE 3</div><h4>从单一到双路径</h4><p>识别<strong>收益-频率跷跷板</strong>：6日RSI/25（高频小波段）vs 7周RSI/40（低频大机会），两条路径各有战场。</p></div>
+        <div class="tl-item"><div class="tl-step">MILESTONE 4</div><h4>从混用到统一</h4><p>全产品切换<span class="chip gold">累计净值（含分红）</span>——回测与前端同一口径，消除"算出来好看、实盘对不上"的隐患。</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="foot-marker">✦</span><p><strong>关键总结：</strong>四个节点不是并行推进——每个都是被上一个节点的发现<strong>逼出来的</strong>。横向铺开逼出了统一口径，回测数据逼出了双路径理论。</p></div>
+  </div>
+
+  <!-- ====== SLIDE 5: 架构 ====== -->
+  <div class="slide">
+    <div class="slide-num">05 / 08</div>
+    <div class="slide-head">
+      <span class="slide-tag">Architecture</span>
+      <h2 class="slide-title">端到端数据管线</h2>
+    </div>
+    <div class="slide-body">
+      <div class="arch">
+        <div class="arch-node"><span class="n-icon">📡</span><div class="n-title">数据采集</div><div class="n-desc">akshare 天天基金<br>baostock 估值分红</div></div>
+        <span class="arch-arrow">→</span>
+        <div class="arch-node"><span class="n-icon">⚙️</span><div class="n-title">计算引擎</div><div class="n-desc">Python 3 + pandas<br>指标 · 评分 · 回测</div></div>
+        <span class="arch-arrow">→</span>
+        <div class="arch-node"><span class="n-icon">📄</span><div class="n-title">报告生成</div><div class="n-desc">静态 HTML<br>零框架 · 零构建</div></div>
+        <span class="arch-arrow">→</span>
+        <div class="arch-node"><span class="n-icon">🚀</span><div class="n-title">自动部署</div><div class="n-desc">Git Push<br>GitHub Pages</div></div>
+      </div>
+      <p class="arch-note">⏰ Windows 定时任务每日 16:07 触发 → 采集 → 生成 → 提交 → 推送 → 80% 自检容错</p>
+    </div>
+    <div class="slide-foot"><span class="foot-marker">✦</span><p><strong>关键总结：</strong>选型原则是<strong>"零运维成本"</strong>——静态HTML不需要服务器，GitHub Pages免费托管，Python单文件做所有事。整个管线无人值守运行。</p></div>
+  </div>
+
+  <!-- ====== SLIDE 6: 功能 ====== -->
+  <div class="slide">
+    <div class="slide-num">06 / 08</div>
+    <div class="slide-head">
+      <span class="slide-tag">Features</span>
+      <h2 class="slide-title">六项核心功能</h2>
+    </div>
+    <div class="slide-body">
+      <div class="feat-grid">
+        <div class="feat-card"><div class="f-num">01</div><h4>多Tab产品对比</h4><p>11产品 × 2分类，Tab式导航，一键切换，URL hash同步状态。</p></div>
+        <div class="feat-card"><div class="f-num">02</div><h4>10维度指标面板</h4><p>NAV、PE/PB、股息率、RSI 6日/7周、MA偏离、波动率、回撤、阶段收益、行业分布。</p></div>
+        <div class="feat-card"><div class="f-num">03</div><h4>复合买入评分</h4><p>RSI6 + RSI7W + MA250 + MA550 加权 → <span class="chip green">0-100分</span>。≥45买入 · 30-44观察 · &lt;30安全。</p></div>
+        <div class="feat-card"><div class="f-num">04</div><h4>RSI历史百分位</h4><p>1年/3年/成立以来三个窗口，当前位置 + 最低·最高·中位参考，全局一键切换。</p></div>
+        <div class="feat-card"><div class="f-num">05</div><h4>策略卡片 & 同类对比</h4><p>每产品独立策略说明（指数、因子、权重、调仓），8支红利ETF横向排名。</p></div>
+        <div class="feat-card"><div class="f-num">06</div><h4>自动化每日部署</h4><p>定时采集→生成→Git提交推送→GitHub Pages。80%容错自检，完全无人值守。</p></div>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="foot-marker">✦</span><p><strong>关键总结：</strong>六个功能围绕一个中心——<strong>"让决策有据可依"</strong>。不是堆指标，而是把指标放进一个可对比、可追溯、可验证的框架里。</p></div>
+  </div>
+
+  <!-- ====== SLIDE 7: 设计决策 ====== -->
+  <div class="slide">
+    <div class="slide-num">07 / 08</div>
+    <div class="slide-head">
+      <span class="slide-tag">Design Decisions</span>
+      <h2 class="slide-title">关键设计决策</h2>
+    </div>
+    <div class="slide-body">
+      <table class="dec-table">
+        <thead><tr><th style="width:15%">决策点</th><th style="width:22%">选择</th><th style="width:63%">依据</th></tr></thead>
+        <tbody>
+          <tr><td>RSI 日线</td><td class="col-choice">6日 / 观察点25</td><td>25组回测最优解：年化<span class="chip green">+17.4%</span>，单次+2.9%，胜率<span class="chip green">79%</span>，年均5.9次信号</td></tr>
+          <tr><td>RSI 周线</td><td class="col-choice">7周 / 观察点40</td><td>周线平衡点：年化+6.6%，单次+3.4%，胜率70%，年均1.9次；兼看35/30为更苛刻入场</td></tr>
+          <tr><td>14周 RSI</td><td class="col-choice"><span class="chip red">丢弃</span></td><td>回测未进前15，信号过稀，对红利策略ETF无实操价值</td></tr>
+          <tr><td>数据口径</td><td class="col-choice">累计净值（含分红）</td><td>统一总回报口径，回测与前端完全一致——杜绝"回测好看、实盘口径不同"</td></tr>
+          <tr><td>信号规则</td><td class="col-choice">Rule A：跌破触发+回升重置</td><td>首次跌破观察点触一次，须回升超obs+5才重新arm，避免超卖区间重复触发</td></tr>
+          <tr><td>前端架构</td><td class="col-choice">静态HTML · 零框架</td><td>无需服务器、无需构建；GitHub Pages即部署，零运维成本</td></tr>
+          <tr><td>分支策略</td><td class="col-choice">dev → master</td><td>dev开发验证，master生产部署；auto_monitor自动切master提交流程</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="slide-foot"><span class="foot-marker">✦</span><p><strong>关键总结：</strong>每个决策背后都有数据或逻辑支撑。原则是<strong>"能用回测回答的，不凭经验判断；能统一口径的，不留不一致的空间"</strong>。</p></div>
+  </div>
+
+  <!-- ====== SLIDE 8: 技术栈 & 收尾 ====== -->
+  <div class="slide">
+    <div class="slide-num">08 / 08</div>
+    <div class="slide-head" style="text-align:center">
+      <span class="slide-tag">Stack &amp; Links</span>
+      <h2 class="slide-title" style="max-width:100%;text-align:center">技术栈 &amp; 连接</h2>
+    </div>
+    <div class="slide-body" style="justify-content:center">
+      <div class="tech-grid">
+        <div class="tech-card"><span class="t-icon">🐍</span><h4>Python 3</h4><p>pandas · numpy<br>akshare · baostock</p></div>
+        <div class="tech-card"><span class="t-icon">🌐</span><h4>静态前端</h4><p>HTML · 内联CSS<br>原生JavaScript</p></div>
+        <div class="tech-card"><span class="t-icon">📦</span><h4>部署托管</h4><p>GitHub Pages<br>dev / master 双分支</p></div>
+        <div class="tech-card"><span class="t-icon">⏰</span><h4>自动化</h4><p>Windows任务计划<br>auto_monitor.py</p></div>
+      </div>
+      <div class="end-links">
+        <a class="end-link" href="https://github.com/easonc023-dev/dividend-etf-report" target="_blank">📂 GitHub 仓库</a>
+        <a class="end-link" href="https://easonc023-dev.github.io/dividend-etf-report/" target="_blank">🔗 共享链接</a>
+      </div>
+    </div>
+    <div class="slide-foot"><span class="foot-marker">✦</span><p><strong>关键总结：</strong>轻量、零成本、完全自动——一个人 + 一套脚本就可以维护的量化决策工具，验证了<strong>"个人也能搭建专业级投研基础设施"</strong>的可行性。</p></div>
+  </div>
+
+</div><!-- .deck -->
+
+<!-- Nav -->
+<div class="nav-dots" id="navDots"></div>
+
+<script>
+(function(){
+  const deck=document.getElementById('deck'),slides=deck.querySelectorAll('.slide'),dotsC=document.getElementById('navDots');
+
+  // build nav dots
+  slides.forEach(function(s,i){
+    const d=document.createElement('div');d.className='nav-dot'+(i===0?' active':'');
+    d.addEventListener('click',function(){s.scrollIntoView({behavior:'smooth',block:'nearest',inline:'start'})});
+    dotsC.appendChild(d);
+  });
+  const dots=dotsC.querySelectorAll('.nav-dot');
+
+  // track active slide
+  const obs=new IntersectionObserver(function(entries){
+    let maxR=0,maxI=0;
+    entries.forEach(function(e){if(e.intersectionRatio>maxR){maxR=e.intersectionRatio;maxI=Array.from(slides).indexOf(e.target)}});
+    if(maxR>0.3)dots.forEach(function(d,i){d.classList.toggle('active',i===maxI)});
+  },{threshold:[0,0.3,0.5,0.8]});
+  slides.forEach(function(s){obs.observe(s)});
+
+  // keyboard nav
+  document.addEventListener('keydown',function(e){
+    if(e.key==='ArrowRight'||e.key==='ArrowDown'){e.preventDefault();deck.scrollBy({left:window.innerWidth,behavior:'smooth'})}
+    if(e.key==='ArrowLeft'||e.key==='ArrowUp'){e.preventDefault();deck.scrollBy({left:-window.innerWidth,behavior:'smooth'})}
+  });
+})();
+</script>
+</body>
+</html>

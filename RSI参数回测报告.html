@@ -1,0 +1,3380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RSI 参数回测报告 — 2026-05-30</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family: -apple-system, 'Microsoft YaHei', sans-serif; background:#f5f6f8;
+         color:#2d3748; padding:24px 32px; }
+  h1 { font-size:22px; margin-bottom:4px; }
+  .sub { color:#8b919e; font-size:13px; margin-bottom:24px; }
+  .section { margin-bottom:32px; }
+  h2 { font-size:17px; margin-bottom:12px; padding-bottom:8px; border-bottom:2px solid #e2e6ec; }
+
+  table { width:100%; border-collapse:collapse; font-size:13px; background:#fff;
+          border-radius:8px; overflow:hidden; box-shadow:0 1px 3px rgba(0,0,0,0.06); }
+  th { background:#f0f2f5; color:#4a5568; font-weight:600; padding:10px 10px;
+        text-align:center; font-size:12px; white-space:nowrap; }
+  td { padding:8px 10px; text-align:center; border-top:1px solid #f0f2f5; }
+  tr:hover { background:#f8f9fb; }
+  tr.low { color:#a0a8b4; font-style:italic; }
+
+  .note { margin-top:24px; padding:14px 18px; background:#fff; border-radius:8px;
+           font-size:12px; color:#5a6070; line-height:1.8;
+           box-shadow:0 1px 3px rgba(0,0,0,0.06); }
+  .note strong { color:#c62828; }
+
+  .tab-nav { display:flex; gap:4px; margin-bottom:16px; }
+  .tab-btn { padding:6px 18px; border:1px solid #d0d5dd; border-radius:6px;
+              background:#fff; cursor:pointer; font-size:13px; }
+  .tab-btn.active { background:#1a5fdc; color:#fff; border-color:#1a5fdc; }
+  .tab-content { display:none; }
+  .tab-content.active { display:block; }
+</style>
+</head>
+<body>
+
+<h1>RSI 参数回测报告</h1>
+<div class="sub">
+  生成日期: 2026-05-30 &nbsp;|&nbsp;
+  数据口径: 全部产品统一用累计净值（含分红总回报）&nbsp;|&nbsp;
+  信号规则: 首次跌破观察点即触发，RSI回升至 obs+5 上方重新激活
+</div>
+
+<div class="tab-nav">
+  <button class="tab-btn active" onclick="switchTab('summary')">汇总排名</button>
+  <button class="tab-btn" onclick="switchTab('daily')">日线 RSI</button>
+  <button class="tab-btn" onclick="switchTab('weekly')">周线 RSI</button>
+  <button class="tab-btn" onclick="switchTab('detail')">产品明细</button>
+</div>
+
+<!-- 汇总排名 -->
+<div id="tab-summary" class="tab-content active section">
+  <h2>全部参数组合排名（按年化预期收益 ↓）</h2>
+  <div style="overflow-x:auto">
+  <table>
+    <thead>
+    <tr>
+      <th>排名</th><th>参数组合</th><th>总信号数</th><th>年均/产品</th>
+      <th>窗口均长</th><th>20日均收益</th><th>20日胜率</th>
+      <th>120日均收益</th><th>250日均收益</th><th>550日均收益</th><th>年化预期(20日)</th>
+      <th>最差20日</th><th>低置信产品</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+        <tr style="border-left: 3px solid #0ea882">
+          <td style="font-weight:700;color:#0ea882">1</td>
+          <td>RSI6日 / 观察点30</td>
+          <td>366</td>
+          <td>8.5</td>
+          <td>4天</td>
+          <td style="font-weight:700;color:#0ea882">2.06%</td>
+          <td>72%</td>
+          <td style="font-weight:700">7.92%</td>
+          <td style="font-weight:700">17.44%</td>
+          <td style="font-weight:700">28.08%</td>
+          <td style="font-weight:700;color:#0ea882">17.4%</td>
+          <td style="color:#c62828">-8.10%</td>
+          <td><span style="color:#e07040">⚠ 5 产品低置信</span></td>
+        </tr>
+        <tr style="border-left: 3px solid #0ea882">
+          <td style="font-weight:700;color:#0ea882">2</td>
+          <td>RSI6日 / 观察点25</td>
+          <td>246</td>
+          <td>5.9</td>
+          <td>3天</td>
+          <td style="font-weight:700;color:#0ea882">2.94%</td>
+          <td>79%</td>
+          <td style="font-weight:700">9.11%</td>
+          <td style="font-weight:700">18.42%</td>
+          <td style="font-weight:700">29.69%</td>
+          <td style="font-weight:700;color:#0ea882">17.4%</td>
+          <td style="color:#c62828">-10.34%</td>
+          <td><span style="color:#e07040">⚠ 5 产品低置信</span></td>
+        </tr>
+        <tr style="border-left: 3px solid #0ea882">
+          <td style="font-weight:700;color:#0ea882">3</td>
+          <td>RSI6日 / 观察点35</td>
+          <td>485</td>
+          <td>11.4</td>
+          <td>4天</td>
+          <td style="font-weight:700;color:#0ea882">1.43%</td>
+          <td>68%</td>
+          <td style="font-weight:700">7.18%</td>
+          <td style="font-weight:700">16.99%</td>
+          <td style="font-weight:700">27.11%</td>
+          <td style="font-weight:700;color:#0ea882">16.3%</td>
+          <td style="color:#c62828">-9.75%</td>
+          <td><span style="color:#e07040">⚠ 5 产品低置信</span></td>
+        </tr>
+        <tr style="border-left: 3px solid #c88a0c">
+          <td style="font-weight:700;color:#c88a0c">4</td>
+          <td>RSI14日 / 观察点35</td>
+          <td>139</td>
+          <td>3.3</td>
+          <td>4天</td>
+          <td style="font-weight:700;color:#c88a0c">3.93%</td>
+          <td>80%</td>
+          <td style="font-weight:700">11.15%</td>
+          <td style="font-weight:700">19.28%</td>
+          <td style="font-weight:700">30.78%</td>
+          <td style="font-weight:700;color:#c88a0c">13.0%</td>
+          <td style="color:#c62828">-7.96%</td>
+          <td><span style="color:#e07040">⚠ 5 产品低置信</span></td>
+        </tr>
+        <tr style="border-left: 3px solid #c88a0c">
+          <td style="font-weight:700;color:#c88a0c">5</td>
+          <td>RSI6日 / 观察点20</td>
+          <td>141</td>
+          <td>3.3</td>
+          <td>3天</td>
+          <td style="font-weight:700;color:#c88a0c">3.91%</td>
+          <td>79%</td>
+          <td style="font-weight:700">11.03%</td>
+          <td style="font-weight:700">18.70%</td>
+          <td style="font-weight:700">31.98%</td>
+          <td style="font-weight:700;color:#c88a0c">12.8%</td>
+          <td style="color:#c62828">-10.34%</td>
+          <td><span style="color:#e07040">⚠ 5 产品低置信</span></td>
+        </tr>
+        <tr style="border-left: 3px solid #c88a0c">
+          <td style="font-weight:700;color:#c88a0c">6</td>
+          <td>RSI6日 / 观察点15</td>
+          <td>67</td>
+          <td>1.6</td>
+          <td>2天</td>
+          <td style="font-weight:700;color:#c88a0c">6.02%</td>
+          <td>87%</td>
+          <td style="font-weight:700">11.74%</td>
+          <td style="font-weight:700">18.28%</td>
+          <td style="font-weight:700">28.16%</td>
+          <td style="font-weight:700;color:#c88a0c">9.8%</td>
+          <td style="color:#c62828">-3.15%</td>
+          <td><span style="color:#e07040">⚠ 6 产品低置信</span></td>
+        </tr>
+        <tr style="border-left: 3px solid #c88a0c">
+          <td style="font-weight:700;color:#c88a0c">7</td>
+          <td>RSI7周 / 观察点50</td>
+          <td>158</td>
+          <td>3.6</td>
+          <td>167天</td>
+          <td style="font-weight:700;color:#c88a0c">2.34%</td>
+          <td>74%</td>
+          <td style="font-weight:700">8.92%</td>
+          <td style="font-weight:700">16.59%</td>
+          <td style="font-weight:700">28.22%</td>
+          <td style="font-weight:700;color:#c88a0c">8.4%</td>
+          <td style="color:#c62828">-8.13%</td>
+          <td><span style="color:#e07040">⚠ 5 产品低置信</span></td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">8</td>
+          <td>RSI21日 / 观察点35</td>
+          <td>53</td>
+          <td>1.3</td>
+          <td>5天</td>
+          <td style="font-weight:700;color:#8b919e">6.26%</td>
+          <td>94%</td>
+          <td style="font-weight:700">12.49%</td>
+          <td style="font-weight:700">17.77%</td>
+          <td style="font-weight:700">31.48%</td>
+          <td style="font-weight:700;color:#8b919e">8.1%</td>
+          <td style="color:#c62828">-2.42%</td>
+          <td><span style="color:#e07040">⚠ 6 产品低置信</span></td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">9</td>
+          <td>RSI14日 / 观察点30</td>
+          <td>64</td>
+          <td>1.5</td>
+          <td>3天</td>
+          <td style="font-weight:700;color:#8b919e">5.19%</td>
+          <td>87%</td>
+          <td style="font-weight:700">11.41%</td>
+          <td style="font-weight:700">17.73%</td>
+          <td style="font-weight:700">31.28%</td>
+          <td style="font-weight:700;color:#8b919e">7.8%</td>
+          <td style="color:#c62828">-4.17%</td>
+          <td><span style="color:#e07040">⚠ 6 产品低置信</span></td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">10</td>
+          <td>RSI7周 / 观察点45</td>
+          <td>122</td>
+          <td>2.8</td>
+          <td>142天</td>
+          <td style="font-weight:700;color:#8b919e">2.72%</td>
+          <td>79%</td>
+          <td style="font-weight:700">7.79%</td>
+          <td style="font-weight:700">16.07%</td>
+          <td style="font-weight:700">28.88%</td>
+          <td style="font-weight:700;color:#8b919e">7.6%</td>
+          <td style="color:#c62828">-8.13%</td>
+          <td><span style="color:#e07040">⚠ 5 产品低置信</span></td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">11</td>
+          <td>RSI7周 / 观察点40</td>
+          <td>88</td>
+          <td>1.9</td>
+          <td>113天</td>
+          <td style="font-weight:700;color:#8b919e">3.39%</td>
+          <td>70%</td>
+          <td style="font-weight:700">8.26%</td>
+          <td style="font-weight:700">17.52%</td>
+          <td style="font-weight:700">28.85%</td>
+          <td style="font-weight:700;color:#8b919e">6.6%</td>
+          <td style="color:#c62828">-6.81%</td>
+          <td><span style="color:#e07040">⚠ 5 产品低置信</span></td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">12</td>
+          <td>RSI14日 / 观察点25</td>
+          <td>23</td>
+          <td>0.5</td>
+          <td>4天</td>
+          <td style="font-weight:700;color:#8b919e">9.44%</td>
+          <td>96%</td>
+          <td style="font-weight:700">15.38%</td>
+          <td style="font-weight:700">21.53%</td>
+          <td style="font-weight:700">38.06%</td>
+          <td style="font-weight:700;color:#8b919e">5.1%</td>
+          <td style="color:#c62828">-1.73%</td>
+          <td><span style="color:#e07040">⚠ 10 产品低置信</span></td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">13</td>
+          <td>RSI14周 / 观察点50</td>
+          <td>79</td>
+          <td>1.7</td>
+          <td>159天</td>
+          <td style="font-weight:700;color:#8b919e">2.72%</td>
+          <td>71%</td>
+          <td style="font-weight:700">4.49%</td>
+          <td style="font-weight:700">13.40%</td>
+          <td style="font-weight:700">31.33%</td>
+          <td style="font-weight:700;color:#8b919e">4.6%</td>
+          <td style="color:#c62828">-8.13%</td>
+          <td><span style="color:#e07040">⚠ 6 产品低置信</span></td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">14</td>
+          <td>RSI7周 / 观察点35</td>
+          <td>60</td>
+          <td>1.4</td>
+          <td>89天</td>
+          <td style="font-weight:700;color:#8b919e">3.27%</td>
+          <td>76%</td>
+          <td style="font-weight:700">8.34%</td>
+          <td style="font-weight:700">15.60%</td>
+          <td style="font-weight:700">29.02%</td>
+          <td style="font-weight:700;color:#8b919e">4.5%</td>
+          <td style="color:#c62828">-2.83%</td>
+          <td><span style="color:#e07040">⚠ 5 产品低置信</span></td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">15</td>
+          <td>RSI7周 / 观察点30</td>
+          <td>33</td>
+          <td>0.8</td>
+          <td>81天</td>
+          <td style="font-weight:700;color:#8b919e">4.97%</td>
+          <td>87%</td>
+          <td style="font-weight:700">10.73%</td>
+          <td style="font-weight:700">16.91%</td>
+          <td style="font-weight:700">39.85%</td>
+          <td style="font-weight:700;color:#8b919e">3.8%</td>
+          <td style="color:#c62828">-2.83%</td>
+          <td><span style="color:#e07040">⚠ 8 产品低置信</span></td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">16</td>
+          <td>RSI14周 / 观察点45</td>
+          <td>50</td>
+          <td>1.2</td>
+          <td>130天</td>
+          <td style="font-weight:700;color:#8b919e">3.04%</td>
+          <td>77%</td>
+          <td style="font-weight:700">9.55%</td>
+          <td style="font-weight:700">17.19%</td>
+          <td style="font-weight:700">34.81%</td>
+          <td style="font-weight:700;color:#8b919e">3.6%</td>
+          <td style="color:#c62828">-8.13%</td>
+          <td><span style="color:#e07040">⚠ 6 产品低置信</span></td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">17</td>
+          <td>RSI14周 / 观察点40</td>
+          <td>23</td>
+          <td>0.6</td>
+          <td>79天</td>
+          <td style="font-weight:700;color:#8b919e">5.69%</td>
+          <td>73%</td>
+          <td style="font-weight:700">12.84%</td>
+          <td style="font-weight:700">18.25%</td>
+          <td style="font-weight:700">44.08%</td>
+          <td style="font-weight:700;color:#8b919e">3.1%</td>
+          <td style="color:#c62828">-1.73%</td>
+          <td><span style="color:#e07040">⚠ 10 产品低置信</span></td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">18</td>
+          <td>RSI21日 / 观察点30</td>
+          <td>15</td>
+          <td>0.3</td>
+          <td>5天</td>
+          <td style="font-weight:700;color:#8b919e">6.86%</td>
+          <td>83%</td>
+          <td style="font-weight:700">15.94%</td>
+          <td style="font-weight:700">21.66%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700;color:#8b919e">2.4%</td>
+          <td style="color:#c62828">-2.42%</td>
+          <td><span style="color:#e07040">⚠ 11 产品低置信</span></td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">19</td>
+          <td>RSI14周 / 观察点30</td>
+          <td>4</td>
+          <td>0.1</td>
+          <td>22天</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td>nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td style="color:#c62828">nan%</td>
+          <td><span style="color:#e07040">⚠ 11 产品低置信</span></td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">20</td>
+          <td>RSI14周 / 观察点35</td>
+          <td>7</td>
+          <td>0.1</td>
+          <td>51天</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td>nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td style="color:#c62828">nan%</td>
+          <td><span style="color:#e07040">⚠ 11 产品低置信</span></td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">21</td>
+          <td>RSI14日 / 观察点15</td>
+          <td>2</td>
+          <td>0.1</td>
+          <td>0天</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td>nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td style="color:#c62828">nan%</td>
+          <td><span style="color:#e07040">⚠ 11 产品低置信</span></td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">22</td>
+          <td>RSI14日 / 观察点20</td>
+          <td>6</td>
+          <td>0.1</td>
+          <td>1天</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td>nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td style="color:#c62828">nan%</td>
+          <td><span style="color:#e07040">⚠ 11 产品低置信</span></td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">23</td>
+          <td>RSI21日 / 观察点15</td>
+          <td>0</td>
+          <td>0.0</td>
+          <td>0天</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td>nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td style="color:#c62828">nan%</td>
+          <td><span style="color:#e07040">⚠ 11 产品低置信</span></td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">24</td>
+          <td>RSI21日 / 观察点20</td>
+          <td>2</td>
+          <td>0.1</td>
+          <td>1天</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td>nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td style="color:#c62828">nan%</td>
+          <td><span style="color:#e07040">⚠ 11 产品低置信</span></td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">25</td>
+          <td>RSI21日 / 观察点25</td>
+          <td>5</td>
+          <td>0.1</td>
+          <td>1天</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td>nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td style="color:#c62828">nan%</td>
+          <td><span style="color:#e07040">⚠ 11 产品低置信</span></td>
+        </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- 日线 -->
+<div id="tab-daily" class="tab-content section">
+  <h2>日线 RSI（6日 / 14日 / 21日）</h2>
+  <div style="overflow-x:auto">
+  <table>
+    <thead>
+    <tr>
+      <th>排名</th><th>参数组合</th><th>总信号数</th><th>年均/产品</th>
+      <th>窗口均长</th><th>20日均收益</th><th>20日胜率</th>
+      <th>120日均收益</th><th>250日均收益</th><th>550日均收益</th><th>年化预期(20日)</th>
+      <th>最差20日</th><th>低置信产品</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+        <tr style="border-left: 3px solid #0ea882">
+          <td style="font-weight:700;color:#0ea882">1</td>
+          <td>RSI6日 / 观察点30</td>
+          <td>366</td>
+          <td>8.5</td>
+          <td>4天</td>
+          <td style="font-weight:700;color:#0ea882">2.06%</td>
+          <td>72%</td>
+          <td style="font-weight:700">7.92%</td>
+          <td style="font-weight:700">17.44%</td>
+          <td style="font-weight:700">28.08%</td>
+          <td style="font-weight:700;color:#0ea882">17.4%</td>
+          <td style="color:#c62828">-8.10%</td>
+          <td>⚠5</td>
+        </tr>
+        <tr style="border-left: 3px solid #0ea882">
+          <td style="font-weight:700;color:#0ea882">2</td>
+          <td>RSI6日 / 观察点25</td>
+          <td>246</td>
+          <td>5.9</td>
+          <td>3天</td>
+          <td style="font-weight:700;color:#0ea882">2.94%</td>
+          <td>79%</td>
+          <td style="font-weight:700">9.11%</td>
+          <td style="font-weight:700">18.42%</td>
+          <td style="font-weight:700">29.69%</td>
+          <td style="font-weight:700;color:#0ea882">17.4%</td>
+          <td style="color:#c62828">-10.34%</td>
+          <td>⚠5</td>
+        </tr>
+        <tr style="border-left: 3px solid #c88a0c">
+          <td style="font-weight:700;color:#c88a0c">3</td>
+          <td>RSI6日 / 观察点35</td>
+          <td>485</td>
+          <td>11.4</td>
+          <td>4天</td>
+          <td style="font-weight:700;color:#c88a0c">1.43%</td>
+          <td>68%</td>
+          <td style="font-weight:700">7.18%</td>
+          <td style="font-weight:700">16.99%</td>
+          <td style="font-weight:700">27.11%</td>
+          <td style="font-weight:700;color:#c88a0c">16.3%</td>
+          <td style="color:#c62828">-9.75%</td>
+          <td>⚠5</td>
+        </tr>
+        <tr style="border-left: 3px solid #c88a0c">
+          <td style="font-weight:700;color:#c88a0c">4</td>
+          <td>RSI14日 / 观察点35</td>
+          <td>139</td>
+          <td>3.3</td>
+          <td>4天</td>
+          <td style="font-weight:700;color:#c88a0c">3.93%</td>
+          <td>80%</td>
+          <td style="font-weight:700">11.15%</td>
+          <td style="font-weight:700">19.28%</td>
+          <td style="font-weight:700">30.78%</td>
+          <td style="font-weight:700;color:#c88a0c">13.0%</td>
+          <td style="color:#c62828">-7.96%</td>
+          <td>⚠5</td>
+        </tr>
+        <tr style="border-left: 3px solid #c88a0c">
+          <td style="font-weight:700;color:#c88a0c">5</td>
+          <td>RSI6日 / 观察点20</td>
+          <td>141</td>
+          <td>3.3</td>
+          <td>3天</td>
+          <td style="font-weight:700;color:#c88a0c">3.91%</td>
+          <td>79%</td>
+          <td style="font-weight:700">11.03%</td>
+          <td style="font-weight:700">18.70%</td>
+          <td style="font-weight:700">31.98%</td>
+          <td style="font-weight:700;color:#c88a0c">12.8%</td>
+          <td style="color:#c62828">-10.34%</td>
+          <td>⚠5</td>
+        </tr>
+        <tr style="border-left: 3px solid #c88a0c">
+          <td style="font-weight:700;color:#c88a0c">6</td>
+          <td>RSI6日 / 观察点15</td>
+          <td>67</td>
+          <td>1.6</td>
+          <td>2天</td>
+          <td style="font-weight:700;color:#c88a0c">6.02%</td>
+          <td>87%</td>
+          <td style="font-weight:700">11.74%</td>
+          <td style="font-weight:700">18.28%</td>
+          <td style="font-weight:700">28.16%</td>
+          <td style="font-weight:700;color:#c88a0c">9.8%</td>
+          <td style="color:#c62828">-3.15%</td>
+          <td>⚠6</td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">7</td>
+          <td>RSI21日 / 观察点35</td>
+          <td>53</td>
+          <td>1.3</td>
+          <td>5天</td>
+          <td style="font-weight:700;color:#8b919e">6.26%</td>
+          <td>94%</td>
+          <td style="font-weight:700">12.49%</td>
+          <td style="font-weight:700">17.77%</td>
+          <td style="font-weight:700">31.48%</td>
+          <td style="font-weight:700;color:#8b919e">8.1%</td>
+          <td style="color:#c62828">-2.42%</td>
+          <td>⚠6</td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">8</td>
+          <td>RSI14日 / 观察点30</td>
+          <td>64</td>
+          <td>1.5</td>
+          <td>3天</td>
+          <td style="font-weight:700;color:#8b919e">5.19%</td>
+          <td>87%</td>
+          <td style="font-weight:700">11.41%</td>
+          <td style="font-weight:700">17.73%</td>
+          <td style="font-weight:700">31.28%</td>
+          <td style="font-weight:700;color:#8b919e">7.8%</td>
+          <td style="color:#c62828">-4.17%</td>
+          <td>⚠6</td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">9</td>
+          <td>RSI14日 / 观察点25</td>
+          <td>23</td>
+          <td>0.5</td>
+          <td>4天</td>
+          <td style="font-weight:700;color:#8b919e">9.44%</td>
+          <td>96%</td>
+          <td style="font-weight:700">15.38%</td>
+          <td style="font-weight:700">21.53%</td>
+          <td style="font-weight:700">38.06%</td>
+          <td style="font-weight:700;color:#8b919e">5.1%</td>
+          <td style="color:#c62828">-1.73%</td>
+          <td>⚠10</td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">10</td>
+          <td>RSI21日 / 观察点30</td>
+          <td>15</td>
+          <td>0.3</td>
+          <td>5天</td>
+          <td style="font-weight:700;color:#8b919e">6.86%</td>
+          <td>83%</td>
+          <td style="font-weight:700">15.94%</td>
+          <td style="font-weight:700">21.66%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700;color:#8b919e">2.4%</td>
+          <td style="color:#c62828">-2.42%</td>
+          <td>⚠11</td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">11</td>
+          <td>RSI14日 / 观察点15</td>
+          <td>2</td>
+          <td>0.1</td>
+          <td>0天</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td>nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td style="color:#c62828">nan%</td>
+          <td>⚠11</td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">12</td>
+          <td>RSI14日 / 观察点20</td>
+          <td>6</td>
+          <td>0.1</td>
+          <td>1天</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td>nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td style="color:#c62828">nan%</td>
+          <td>⚠11</td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">13</td>
+          <td>RSI21日 / 观察点15</td>
+          <td>0</td>
+          <td>0.0</td>
+          <td>0天</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td>nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td style="color:#c62828">nan%</td>
+          <td>⚠11</td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">14</td>
+          <td>RSI21日 / 观察点20</td>
+          <td>2</td>
+          <td>0.1</td>
+          <td>1天</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td>nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td style="color:#c62828">nan%</td>
+          <td>⚠11</td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">15</td>
+          <td>RSI21日 / 观察点25</td>
+          <td>5</td>
+          <td>0.1</td>
+          <td>1天</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td>nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td style="color:#c62828">nan%</td>
+          <td>⚠11</td>
+        </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- 周线 -->
+<div id="tab-weekly" class="tab-content section">
+  <h2>周线 RSI（7周 / 14周）</h2>
+  <div style="overflow-x:auto">
+  <table>
+    <thead>
+    <tr>
+      <th>排名</th><th>参数组合</th><th>总信号数</th><th>年均/产品</th>
+      <th>窗口均长</th><th>20日均收益</th><th>20日胜率</th>
+      <th>120日均收益</th><th>250日均收益</th><th>550日均收益</th><th>年化预期(20日)</th>
+      <th>最差20日</th><th>低置信产品</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+        <tr style="border-left: 3px solid #0ea882">
+          <td style="font-weight:700;color:#0ea882">1</td>
+          <td>RSI7周 / 观察点50</td>
+          <td>158</td>
+          <td>3.6</td>
+          <td>167天</td>
+          <td style="font-weight:700;color:#0ea882">2.34%</td>
+          <td>74%</td>
+          <td style="font-weight:700">8.92%</td>
+          <td style="font-weight:700">16.59%</td>
+          <td style="font-weight:700">28.22%</td>
+          <td style="font-weight:700;color:#0ea882">8.4%</td>
+          <td style="color:#c62828">-8.13%</td>
+          <td>⚠5</td>
+        </tr>
+        <tr style="border-left: 3px solid #c88a0c">
+          <td style="font-weight:700;color:#c88a0c">2</td>
+          <td>RSI7周 / 观察点45</td>
+          <td>122</td>
+          <td>2.8</td>
+          <td>142天</td>
+          <td style="font-weight:700;color:#c88a0c">2.72%</td>
+          <td>79%</td>
+          <td style="font-weight:700">7.79%</td>
+          <td style="font-weight:700">16.07%</td>
+          <td style="font-weight:700">28.88%</td>
+          <td style="font-weight:700;color:#c88a0c">7.6%</td>
+          <td style="color:#c62828">-8.13%</td>
+          <td>⚠5</td>
+        </tr>
+        <tr style="border-left: 3px solid #c88a0c">
+          <td style="font-weight:700;color:#c88a0c">3</td>
+          <td>RSI7周 / 观察点40</td>
+          <td>88</td>
+          <td>1.9</td>
+          <td>113天</td>
+          <td style="font-weight:700;color:#c88a0c">3.39%</td>
+          <td>70%</td>
+          <td style="font-weight:700">8.26%</td>
+          <td style="font-weight:700">17.52%</td>
+          <td style="font-weight:700">28.85%</td>
+          <td style="font-weight:700;color:#c88a0c">6.6%</td>
+          <td style="color:#c62828">-6.81%</td>
+          <td>⚠5</td>
+        </tr>
+        <tr style="border-left: 3px solid #c88a0c">
+          <td style="font-weight:700;color:#c88a0c">4</td>
+          <td>RSI14周 / 观察点50</td>
+          <td>79</td>
+          <td>1.7</td>
+          <td>159天</td>
+          <td style="font-weight:700;color:#c88a0c">2.72%</td>
+          <td>71%</td>
+          <td style="font-weight:700">4.49%</td>
+          <td style="font-weight:700">13.40%</td>
+          <td style="font-weight:700">31.33%</td>
+          <td style="font-weight:700;color:#c88a0c">4.6%</td>
+          <td style="color:#c62828">-8.13%</td>
+          <td>⚠6</td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">5</td>
+          <td>RSI7周 / 观察点35</td>
+          <td>60</td>
+          <td>1.4</td>
+          <td>89天</td>
+          <td style="font-weight:700;color:#8b919e">3.27%</td>
+          <td>76%</td>
+          <td style="font-weight:700">8.34%</td>
+          <td style="font-weight:700">15.60%</td>
+          <td style="font-weight:700">29.02%</td>
+          <td style="font-weight:700;color:#8b919e">4.5%</td>
+          <td style="color:#c62828">-2.83%</td>
+          <td>⚠5</td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">6</td>
+          <td>RSI7周 / 观察点30</td>
+          <td>33</td>
+          <td>0.8</td>
+          <td>81天</td>
+          <td style="font-weight:700;color:#8b919e">4.97%</td>
+          <td>87%</td>
+          <td style="font-weight:700">10.73%</td>
+          <td style="font-weight:700">16.91%</td>
+          <td style="font-weight:700">39.85%</td>
+          <td style="font-weight:700;color:#8b919e">3.8%</td>
+          <td style="color:#c62828">-2.83%</td>
+          <td>⚠8</td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">7</td>
+          <td>RSI14周 / 观察点45</td>
+          <td>50</td>
+          <td>1.2</td>
+          <td>130天</td>
+          <td style="font-weight:700;color:#8b919e">3.04%</td>
+          <td>77%</td>
+          <td style="font-weight:700">9.55%</td>
+          <td style="font-weight:700">17.19%</td>
+          <td style="font-weight:700">34.81%</td>
+          <td style="font-weight:700;color:#8b919e">3.6%</td>
+          <td style="color:#c62828">-8.13%</td>
+          <td>⚠6</td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">8</td>
+          <td>RSI14周 / 观察点40</td>
+          <td>23</td>
+          <td>0.6</td>
+          <td>79天</td>
+          <td style="font-weight:700;color:#8b919e">5.69%</td>
+          <td>73%</td>
+          <td style="font-weight:700">12.84%</td>
+          <td style="font-weight:700">18.25%</td>
+          <td style="font-weight:700">44.08%</td>
+          <td style="font-weight:700;color:#8b919e">3.1%</td>
+          <td style="color:#c62828">-1.73%</td>
+          <td>⚠10</td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">9</td>
+          <td>RSI14周 / 观察点30</td>
+          <td>4</td>
+          <td>0.1</td>
+          <td>22天</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td>nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td style="color:#c62828">nan%</td>
+          <td>⚠11</td>
+        </tr>
+        <tr style="border-left: 3px solid #8b919e">
+          <td style="font-weight:700;color:#8b919e">10</td>
+          <td>RSI14周 / 观察点35</td>
+          <td>7</td>
+          <td>0.1</td>
+          <td>51天</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td>nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700">nan%</td>
+          <td style="font-weight:700;color:#8b919e">nan%</td>
+          <td style="color:#c62828">nan%</td>
+          <td>⚠11</td>
+        </tr>
+    </tbody>
+  </table>
+  </div>
+</div>
+
+<!-- 产品明细 -->
+<div id="tab-detail" class="tab-content section">
+  <h2>每产品 × 每参数组合 详情</h2>
+  <div style="overflow-x:auto">
+  <table>
+    <thead>
+    <tr><th>参数组合</th><th>产品</th><th>20日均收益</th><th>20日胜率</th>
+        <th>信号数</th><th>年均信号</th><th>数据年限</th></tr>
+    </thead>
+    <tbody>
+    
+            <tr class="low">
+              <td>RSI14周 / 观察点30</td>
+              <td>国新红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点30</td>
+              <td>沪深港红利50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点30</td>
+              <td>港股通央企红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点30</td>
+              <td>电力公用事业</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点30</td>
+              <td>中证红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.2</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点30</td>
+              <td>国企红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.1</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点30</td>
+              <td>中泰红利优选</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.2</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点30</td>
+              <td>红利低波(易方达)</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.5</td>
+              <td>2.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点30</td>
+              <td>红利低波100</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点30</td>
+              <td>东证红利低波</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点30</td>
+              <td>红利低波50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点35</td>
+              <td>国新红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点35</td>
+              <td>沪深港红利50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点35</td>
+              <td>港股通央企红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点35</td>
+              <td>电力公用事业</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.3</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点35</td>
+              <td>中证红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.2</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点35</td>
+              <td>国企红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.1</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点35</td>
+              <td>中泰红利优选</td>
+              <td>--</td>
+              <td>--</td>
+              <td>2</td>
+              <td>0.5</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点35</td>
+              <td>红利低波(易方达)</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.5</td>
+              <td>2.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点35</td>
+              <td>红利低波100</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点35</td>
+              <td>东证红利低波</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点35</td>
+              <td>红利低波50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.2</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点40</td>
+              <td>东证红利低波</td>
+              <td>8.0%</td>
+              <td>100%</td>
+              <td>4</td>
+              <td>0.9</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点40</td>
+              <td>红利低波50</td>
+              <td>6.2%</td>
+              <td>67%</td>
+              <td>3</td>
+              <td>0.5</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI14周 / 观察点40</td>
+              <td>中泰红利优选</td>
+              <td>5.6%</td>
+              <td>50%</td>
+              <td>4</td>
+              <td>1.0</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点40</td>
+              <td>电力公用事业</td>
+              <td>3.0%</td>
+              <td>75%</td>
+              <td>4</td>
+              <td>1.0</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点40</td>
+              <td>国新红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>2</td>
+              <td>1.2</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点40</td>
+              <td>沪深港红利50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点40</td>
+              <td>港股通央企红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.5</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点40</td>
+              <td>中证红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>2</td>
+              <td>0.3</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点40</td>
+              <td>国企红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>2</td>
+              <td>0.2</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点40</td>
+              <td>红利低波(易方达)</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.5</td>
+              <td>2.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点40</td>
+              <td>红利低波100</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点45</td>
+              <td>国新红利</td>
+              <td>4.5%</td>
+              <td>100%</td>
+              <td>3</td>
+              <td>1.8</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="">
+              <td>RSI14周 / 观察点45</td>
+              <td>中证红利</td>
+              <td>4.4%</td>
+              <td>86%</td>
+              <td>7</td>
+              <td>1.2</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI14周 / 观察点45</td>
+              <td>东证红利低波</td>
+              <td>3.4%</td>
+              <td>86%</td>
+              <td>8</td>
+              <td>1.8</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点45</td>
+              <td>红利低波(易方达)</td>
+              <td>3.0%</td>
+              <td>100%</td>
+              <td>4</td>
+              <td>1.8</td>
+              <td>2.2年</td>
+            </tr>
+            <tr class="">
+              <td>RSI14周 / 观察点45</td>
+              <td>红利低波50</td>
+              <td>3.0%</td>
+              <td>80%</td>
+              <td>5</td>
+              <td>0.8</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI14周 / 观察点45</td>
+              <td>国企红利</td>
+              <td>2.7%</td>
+              <td>80%</td>
+              <td>10</td>
+              <td>1.3</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点45</td>
+              <td>电力公用事业</td>
+              <td>2.0%</td>
+              <td>60%</td>
+              <td>5</td>
+              <td>1.3</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI14周 / 观察点45</td>
+              <td>中泰红利优选</td>
+              <td>1.2%</td>
+              <td>25%</td>
+              <td>4</td>
+              <td>1.0</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点45</td>
+              <td>沪深港红利50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.6</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点45</td>
+              <td>港股通央企红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>2</td>
+              <td>0.9</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点45</td>
+              <td>红利低波100</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.5</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI14周 / 观察点50</td>
+              <td>国企红利</td>
+              <td>3.7%</td>
+              <td>76%</td>
+              <td>18</td>
+              <td>2.3</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI14周 / 观察点50</td>
+              <td>红利低波50</td>
+              <td>3.4%</td>
+              <td>78%</td>
+              <td>10</td>
+              <td>1.6</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点50</td>
+              <td>电力公用事业</td>
+              <td>3.0%</td>
+              <td>60%</td>
+              <td>5</td>
+              <td>1.3</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI14周 / 观察点50</td>
+              <td>东证红利低波</td>
+              <td>2.9%</td>
+              <td>75%</td>
+              <td>8</td>
+              <td>1.8</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI14周 / 观察点50</td>
+              <td>中证红利</td>
+              <td>2.9%</td>
+              <td>73%</td>
+              <td>16</td>
+              <td>2.7</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI14周 / 观察点50</td>
+              <td>中泰红利优选</td>
+              <td>1.7%</td>
+              <td>67%</td>
+              <td>9</td>
+              <td>2.1</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点50</td>
+              <td>红利低波(易方达)</td>
+              <td>1.4%</td>
+              <td>67%</td>
+              <td>4</td>
+              <td>1.8</td>
+              <td>2.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点50</td>
+              <td>国新红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>2</td>
+              <td>1.2</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点50</td>
+              <td>沪深港红利50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>3</td>
+              <td>1.8</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点50</td>
+              <td>港股通央企红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>2</td>
+              <td>0.9</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14周 / 观察点50</td>
+              <td>红利低波100</td>
+              <td>--</td>
+              <td>--</td>
+              <td>2</td>
+              <td>1.1</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点15</td>
+              <td>国新红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点15</td>
+              <td>沪深港红利50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点15</td>
+              <td>港股通央企红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点15</td>
+              <td>电力公用事业</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点15</td>
+              <td>中证红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点15</td>
+              <td>国企红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.1</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点15</td>
+              <td>中泰红利优选</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点15</td>
+              <td>红利低波(易方达)</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>2.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点15</td>
+              <td>红利低波100</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.5</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点15</td>
+              <td>东证红利低波</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点15</td>
+              <td>红利低波50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点20</td>
+              <td>国新红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点20</td>
+              <td>沪深港红利50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点20</td>
+              <td>港股通央企红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点20</td>
+              <td>电力公用事业</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.3</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点20</td>
+              <td>中证红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.2</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点20</td>
+              <td>国企红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>2</td>
+              <td>0.2</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点20</td>
+              <td>中泰红利优选</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.2</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点20</td>
+              <td>红利低波(易方达)</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>2.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点20</td>
+              <td>红利低波100</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.5</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点20</td>
+              <td>东证红利低波</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点20</td>
+              <td>红利低波50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点25</td>
+              <td>中泰红利优选</td>
+              <td>14.0%</td>
+              <td>100%</td>
+              <td>3</td>
+              <td>0.7</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点25</td>
+              <td>红利低波50</td>
+              <td>8.6%</td>
+              <td>100%</td>
+              <td>3</td>
+              <td>0.5</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI14日 / 观察点25</td>
+              <td>国企红利</td>
+              <td>5.7%</td>
+              <td>88%</td>
+              <td>8</td>
+              <td>1.0</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点25</td>
+              <td>国新红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>2</td>
+              <td>1.2</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点25</td>
+              <td>沪深港红利50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点25</td>
+              <td>港股通央企红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.5</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点25</td>
+              <td>电力公用事业</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.3</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点25</td>
+              <td>中证红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.2</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点25</td>
+              <td>红利低波(易方达)</td>
+              <td>--</td>
+              <td>--</td>
+              <td>2</td>
+              <td>0.9</td>
+              <td>2.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点25</td>
+              <td>红利低波100</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.5</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点25</td>
+              <td>东证红利低波</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.2</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点30</td>
+              <td>中泰红利优选</td>
+              <td>6.5%</td>
+              <td>100%</td>
+              <td>5</td>
+              <td>1.2</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="">
+              <td>RSI14日 / 观察点30</td>
+              <td>东证红利低波</td>
+              <td>6.2%</td>
+              <td>100%</td>
+              <td>7</td>
+              <td>1.6</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI14日 / 观察点30</td>
+              <td>中证红利</td>
+              <td>5.7%</td>
+              <td>91%</td>
+              <td>11</td>
+              <td>1.9</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI14日 / 观察点30</td>
+              <td>国企红利</td>
+              <td>5.6%</td>
+              <td>92%</td>
+              <td>12</td>
+              <td>1.5</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点30</td>
+              <td>红利低波(易方达)</td>
+              <td>5.2%</td>
+              <td>67%</td>
+              <td>4</td>
+              <td>1.8</td>
+              <td>2.2年</td>
+            </tr>
+            <tr class="">
+              <td>RSI14日 / 观察点30</td>
+              <td>红利低波50</td>
+              <td>5.2%</td>
+              <td>100%</td>
+              <td>9</td>
+              <td>1.4</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI14日 / 观察点30</td>
+              <td>电力公用事业</td>
+              <td>4.0%</td>
+              <td>83%</td>
+              <td>6</td>
+              <td>1.6</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点30</td>
+              <td>国新红利</td>
+              <td>3.2%</td>
+              <td>67%</td>
+              <td>3</td>
+              <td>1.8</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点30</td>
+              <td>沪深港红利50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>2</td>
+              <td>1.2</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点30</td>
+              <td>港股通央企红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>3</td>
+              <td>1.4</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点30</td>
+              <td>红利低波100</td>
+              <td>--</td>
+              <td>--</td>
+              <td>2</td>
+              <td>1.1</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点35</td>
+              <td>港股通央企红利</td>
+              <td>12.3%</td>
+              <td>100%</td>
+              <td>4</td>
+              <td>1.9</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点35</td>
+              <td>红利低波100</td>
+              <td>4.3%</td>
+              <td>83%</td>
+              <td>7</td>
+              <td>3.8</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI14日 / 观察点35</td>
+              <td>中证红利</td>
+              <td>3.7%</td>
+              <td>70%</td>
+              <td>21</td>
+              <td>3.6</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点35</td>
+              <td>沪深港红利50</td>
+              <td>3.7%</td>
+              <td>100%</td>
+              <td>5</td>
+              <td>3.0</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="">
+              <td>RSI14日 / 观察点35</td>
+              <td>东证红利低波</td>
+              <td>3.6%</td>
+              <td>76%</td>
+              <td>19</td>
+              <td>4.3</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI14日 / 观察点35</td>
+              <td>国企红利</td>
+              <td>3.1%</td>
+              <td>80%</td>
+              <td>26</td>
+              <td>3.3</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点35</td>
+              <td>国新红利</td>
+              <td>3.0%</td>
+              <td>80%</td>
+              <td>6</td>
+              <td>3.6</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI14日 / 观察点35</td>
+              <td>红利低波(易方达)</td>
+              <td>2.9%</td>
+              <td>75%</td>
+              <td>9</td>
+              <td>4.1</td>
+              <td>2.2年</td>
+            </tr>
+            <tr class="">
+              <td>RSI14日 / 观察点35</td>
+              <td>红利低波50</td>
+              <td>2.3%</td>
+              <td>71%</td>
+              <td>17</td>
+              <td>2.7</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI14日 / 观察点35</td>
+              <td>中泰红利优选</td>
+              <td>2.2%</td>
+              <td>77%</td>
+              <td>14</td>
+              <td>3.4</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="">
+              <td>RSI14日 / 观察点35</td>
+              <td>电力公用事业</td>
+              <td>2.0%</td>
+              <td>64%</td>
+              <td>11</td>
+              <td>2.9</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点15</td>
+              <td>国新红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点15</td>
+              <td>沪深港红利50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点15</td>
+              <td>港股通央企红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点15</td>
+              <td>电力公用事业</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点15</td>
+              <td>中证红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点15</td>
+              <td>国企红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点15</td>
+              <td>中泰红利优选</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点15</td>
+              <td>红利低波(易方达)</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>2.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点15</td>
+              <td>红利低波100</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点15</td>
+              <td>东证红利低波</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点15</td>
+              <td>红利低波50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点20</td>
+              <td>国新红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点20</td>
+              <td>沪深港红利50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点20</td>
+              <td>港股通央企红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点20</td>
+              <td>电力公用事业</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点20</td>
+              <td>中证红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点20</td>
+              <td>国企红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.1</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点20</td>
+              <td>中泰红利优选</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点20</td>
+              <td>红利低波(易方达)</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>2.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点20</td>
+              <td>红利低波100</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.5</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点20</td>
+              <td>东证红利低波</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点20</td>
+              <td>红利低波50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点25</td>
+              <td>国新红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点25</td>
+              <td>沪深港红利50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点25</td>
+              <td>港股通央企红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点25</td>
+              <td>电力公用事业</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.3</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点25</td>
+              <td>中证红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.2</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点25</td>
+              <td>国企红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>2</td>
+              <td>0.2</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点25</td>
+              <td>中泰红利优选</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点25</td>
+              <td>红利低波(易方达)</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>2.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点25</td>
+              <td>红利低波100</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.5</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点25</td>
+              <td>东证红利低波</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点25</td>
+              <td>红利低波50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点30</td>
+              <td>红利低波50</td>
+              <td>8.6%</td>
+              <td>100%</td>
+              <td>3</td>
+              <td>0.5</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点30</td>
+              <td>国企红利</td>
+              <td>5.1%</td>
+              <td>67%</td>
+              <td>3</td>
+              <td>0.4</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点30</td>
+              <td>国新红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.6</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点30</td>
+              <td>沪深港红利50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点30</td>
+              <td>港股通央企红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点30</td>
+              <td>电力公用事业</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.3</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点30</td>
+              <td>中证红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.2</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点30</td>
+              <td>中泰红利优选</td>
+              <td>--</td>
+              <td>--</td>
+              <td>2</td>
+              <td>0.5</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点30</td>
+              <td>红利低波(易方达)</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.5</td>
+              <td>2.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点30</td>
+              <td>红利低波100</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.5</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点30</td>
+              <td>东证红利低波</td>
+              <td>--</td>
+              <td>--</td>
+              <td>2</td>
+              <td>0.5</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点35</td>
+              <td>中泰红利优选</td>
+              <td>7.7%</td>
+              <td>100%</td>
+              <td>4</td>
+              <td>1.0</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="">
+              <td>RSI21日 / 观察点35</td>
+              <td>红利低波50</td>
+              <td>7.2%</td>
+              <td>100%</td>
+              <td>5</td>
+              <td>0.8</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI21日 / 观察点35</td>
+              <td>中证红利</td>
+              <td>6.7%</td>
+              <td>88%</td>
+              <td>8</td>
+              <td>1.4</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI21日 / 观察点35</td>
+              <td>东证红利低波</td>
+              <td>6.5%</td>
+              <td>100%</td>
+              <td>6</td>
+              <td>1.4</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点35</td>
+              <td>国新红利</td>
+              <td>6.0%</td>
+              <td>100%</td>
+              <td>3</td>
+              <td>1.8</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="">
+              <td>RSI21日 / 观察点35</td>
+              <td>国企红利</td>
+              <td>5.7%</td>
+              <td>91%</td>
+              <td>11</td>
+              <td>1.4</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI21日 / 观察点35</td>
+              <td>电力公用事业</td>
+              <td>4.0%</td>
+              <td>83%</td>
+              <td>6</td>
+              <td>1.6</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点35</td>
+              <td>沪深港红利50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>2</td>
+              <td>1.2</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点35</td>
+              <td>港股通央企红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>3</td>
+              <td>1.4</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点35</td>
+              <td>红利低波(易方达)</td>
+              <td>--</td>
+              <td>--</td>
+              <td>3</td>
+              <td>1.4</td>
+              <td>2.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI21日 / 观察点35</td>
+              <td>红利低波100</td>
+              <td>--</td>
+              <td>--</td>
+              <td>2</td>
+              <td>1.1</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点15</td>
+              <td>港股通央企红利</td>
+              <td>12.3%</td>
+              <td>100%</td>
+              <td>4</td>
+              <td>1.9</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点15</td>
+              <td>中泰红利优选</td>
+              <td>8.3%</td>
+              <td>100%</td>
+              <td>6</td>
+              <td>1.4</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点15</td>
+              <td>国企红利</td>
+              <td>5.3%</td>
+              <td>86%</td>
+              <td>14</td>
+              <td>1.8</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点15</td>
+              <td>红利低波(易方达)</td>
+              <td>4.9%</td>
+              <td>67%</td>
+              <td>4</td>
+              <td>1.8</td>
+              <td>2.2年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点15</td>
+              <td>红利低波50</td>
+              <td>4.7%</td>
+              <td>86%</td>
+              <td>7</td>
+              <td>1.1</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点15</td>
+              <td>东证红利低波</td>
+              <td>4.5%</td>
+              <td>100%</td>
+              <td>8</td>
+              <td>1.8</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点15</td>
+              <td>中证红利</td>
+              <td>4.3%</td>
+              <td>75%</td>
+              <td>9</td>
+              <td>1.5</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点15</td>
+              <td>电力公用事业</td>
+              <td>3.9%</td>
+              <td>86%</td>
+              <td>7</td>
+              <td>1.8</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点15</td>
+              <td>国新红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>2</td>
+              <td>1.2</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点15</td>
+              <td>沪深港红利50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>4</td>
+              <td>2.4</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点15</td>
+              <td>红利低波100</td>
+              <td>--</td>
+              <td>--</td>
+              <td>2</td>
+              <td>1.1</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点20</td>
+              <td>港股通央企红利</td>
+              <td>11.0%</td>
+              <td>100%</td>
+              <td>4</td>
+              <td>1.9</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点20</td>
+              <td>红利低波100</td>
+              <td>5.2%</td>
+              <td>86%</td>
+              <td>7</td>
+              <td>3.8</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点20</td>
+              <td>中证红利</td>
+              <td>4.1%</td>
+              <td>73%</td>
+              <td>23</td>
+              <td>3.9</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点20</td>
+              <td>红利低波50</td>
+              <td>3.4%</td>
+              <td>94%</td>
+              <td>18</td>
+              <td>2.8</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点20</td>
+              <td>国企红利</td>
+              <td>3.4%</td>
+              <td>82%</td>
+              <td>28</td>
+              <td>3.5</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点20</td>
+              <td>国新红利</td>
+              <td>3.3%</td>
+              <td>75%</td>
+              <td>5</td>
+              <td>3.0</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点20</td>
+              <td>东证红利低波</td>
+              <td>3.1%</td>
+              <td>81%</td>
+              <td>18</td>
+              <td>4.1</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点20</td>
+              <td>红利低波(易方达)</td>
+              <td>2.9%</td>
+              <td>88%</td>
+              <td>11</td>
+              <td>5.0</td>
+              <td>2.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点20</td>
+              <td>沪深港红利50</td>
+              <td>2.5%</td>
+              <td>67%</td>
+              <td>4</td>
+              <td>2.4</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点20</td>
+              <td>电力公用事业</td>
+              <td>2.1%</td>
+              <td>54%</td>
+              <td>11</td>
+              <td>2.9</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点20</td>
+              <td>中泰红利优选</td>
+              <td>2.1%</td>
+              <td>73%</td>
+              <td>12</td>
+              <td>2.9</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点25</td>
+              <td>港股通央企红利</td>
+              <td>6.4%</td>
+              <td>100%</td>
+              <td>9</td>
+              <td>4.3</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点25</td>
+              <td>红利低波100</td>
+              <td>3.5%</td>
+              <td>89%</td>
+              <td>12</td>
+              <td>6.5</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点25</td>
+              <td>红利低波(易方达)</td>
+              <td>3.4%</td>
+              <td>88%</td>
+              <td>18</td>
+              <td>8.1</td>
+              <td>2.2年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点25</td>
+              <td>国企红利</td>
+              <td>3.0%</td>
+              <td>75%</td>
+              <td>42</td>
+              <td>5.3</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点25</td>
+              <td>东证红利低波</td>
+              <td>2.6%</td>
+              <td>75%</td>
+              <td>31</td>
+              <td>7.0</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点25</td>
+              <td>中证红利</td>
+              <td>2.6%</td>
+              <td>70%</td>
+              <td>38</td>
+              <td>6.5</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点25</td>
+              <td>中泰红利优选</td>
+              <td>2.6%</td>
+              <td>82%</td>
+              <td>23</td>
+              <td>5.5</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点25</td>
+              <td>国新红利</td>
+              <td>2.5%</td>
+              <td>78%</td>
+              <td>10</td>
+              <td>6.0</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点25</td>
+              <td>电力公用事业</td>
+              <td>2.2%</td>
+              <td>64%</td>
+              <td>22</td>
+              <td>5.7</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点25</td>
+              <td>红利低波50</td>
+              <td>2.0%</td>
+              <td>76%</td>
+              <td>33</td>
+              <td>5.2</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点25</td>
+              <td>沪深港红利50</td>
+              <td>1.6%</td>
+              <td>71%</td>
+              <td>8</td>
+              <td>4.8</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点30</td>
+              <td>港股通央企红利</td>
+              <td>3.5%</td>
+              <td>82%</td>
+              <td>18</td>
+              <td>8.6</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点30</td>
+              <td>红利低波100</td>
+              <td>2.8%</td>
+              <td>69%</td>
+              <td>15</td>
+              <td>8.1</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点30</td>
+              <td>国新红利</td>
+              <td>2.7%</td>
+              <td>77%</td>
+              <td>14</td>
+              <td>8.4</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点30</td>
+              <td>东证红利低波</td>
+              <td>2.1%</td>
+              <td>76%</td>
+              <td>40</td>
+              <td>9.1</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点30</td>
+              <td>中泰红利优选</td>
+              <td>2.0%</td>
+              <td>72%</td>
+              <td>40</td>
+              <td>9.6</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点30</td>
+              <td>红利低波(易方达)</td>
+              <td>1.8%</td>
+              <td>79%</td>
+              <td>20</td>
+              <td>9.0</td>
+              <td>2.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点30</td>
+              <td>沪深港红利50</td>
+              <td>1.8%</td>
+              <td>78%</td>
+              <td>10</td>
+              <td>6.0</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点30</td>
+              <td>国企红利</td>
+              <td>1.7%</td>
+              <td>69%</td>
+              <td>66</td>
+              <td>8.4</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点30</td>
+              <td>中证红利</td>
+              <td>1.6%</td>
+              <td>67%</td>
+              <td>52</td>
+              <td>8.8</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点30</td>
+              <td>红利低波50</td>
+              <td>1.5%</td>
+              <td>62%</td>
+              <td>63</td>
+              <td>9.9</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点30</td>
+              <td>电力公用事业</td>
+              <td>1.1%</td>
+              <td>57%</td>
+              <td>28</td>
+              <td>7.2</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点35</td>
+              <td>港股通央企红利</td>
+              <td>2.9%</td>
+              <td>75%</td>
+              <td>25</td>
+              <td>11.9</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点35</td>
+              <td>沪深港红利50</td>
+              <td>2.2%</td>
+              <td>79%</td>
+              <td>15</td>
+              <td>8.9</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点35</td>
+              <td>中泰红利优选</td>
+              <td>1.6%</td>
+              <td>72%</td>
+              <td>52</td>
+              <td>12.4</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点35</td>
+              <td>国新红利</td>
+              <td>1.4%</td>
+              <td>63%</td>
+              <td>21</td>
+              <td>12.6</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点35</td>
+              <td>中证红利</td>
+              <td>1.2%</td>
+              <td>66%</td>
+              <td>68</td>
+              <td>11.6</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点35</td>
+              <td>国企红利</td>
+              <td>1.2%</td>
+              <td>64%</td>
+              <td>92</td>
+              <td>11.7</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点35</td>
+              <td>电力公用事业</td>
+              <td>1.1%</td>
+              <td>68%</td>
+              <td>44</td>
+              <td>11.4</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点35</td>
+              <td>红利低波(易方达)</td>
+              <td>1.1%</td>
+              <td>68%</td>
+              <td>23</td>
+              <td>10.4</td>
+              <td>2.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI6日 / 观察点35</td>
+              <td>红利低波100</td>
+              <td>1.1%</td>
+              <td>70%</td>
+              <td>22</td>
+              <td>11.8</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点35</td>
+              <td>红利低波50</td>
+              <td>1.0%</td>
+              <td>62%</td>
+              <td>76</td>
+              <td>11.9</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI6日 / 观察点35</td>
+              <td>东证红利低波</td>
+              <td>0.9%</td>
+              <td>60%</td>
+              <td>47</td>
+              <td>10.7</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点30</td>
+              <td>中泰红利优选</td>
+              <td>9.1%</td>
+              <td>100%</td>
+              <td>4</td>
+              <td>1.0</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点30</td>
+              <td>东证红利低波</td>
+              <td>6.9%</td>
+              <td>100%</td>
+              <td>4</td>
+              <td>0.9</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点30</td>
+              <td>红利低波50</td>
+              <td>4.9%</td>
+              <td>100%</td>
+              <td>5</td>
+              <td>0.8</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点30</td>
+              <td>红利低波(易方达)</td>
+              <td>4.8%</td>
+              <td>100%</td>
+              <td>4</td>
+              <td>1.8</td>
+              <td>2.2年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点30</td>
+              <td>国企红利</td>
+              <td>2.8%</td>
+              <td>71%</td>
+              <td>7</td>
+              <td>0.9</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点30</td>
+              <td>电力公用事业</td>
+              <td>1.3%</td>
+              <td>50%</td>
+              <td>4</td>
+              <td>1.0</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点30</td>
+              <td>国新红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>0</td>
+              <td>0.0</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点30</td>
+              <td>沪深港红利50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.6</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点30</td>
+              <td>港股通央企红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.5</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点30</td>
+              <td>中证红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>2</td>
+              <td>0.3</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点30</td>
+              <td>红利低波100</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.5</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点35</td>
+              <td>红利低波(易方达)</td>
+              <td>5.1%</td>
+              <td>100%</td>
+              <td>5</td>
+              <td>2.3</td>
+              <td>2.2年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点35</td>
+              <td>中泰红利优选</td>
+              <td>4.4%</td>
+              <td>83%</td>
+              <td>6</td>
+              <td>1.4</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点35</td>
+              <td>中证红利</td>
+              <td>3.8%</td>
+              <td>67%</td>
+              <td>6</td>
+              <td>1.0</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点35</td>
+              <td>东证红利低波</td>
+              <td>3.4%</td>
+              <td>78%</td>
+              <td>10</td>
+              <td>2.3</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点35</td>
+              <td>红利低波50</td>
+              <td>3.3%</td>
+              <td>83%</td>
+              <td>12</td>
+              <td>1.9</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点35</td>
+              <td>电力公用事业</td>
+              <td>3.1%</td>
+              <td>75%</td>
+              <td>8</td>
+              <td>2.1</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点35</td>
+              <td>国企红利</td>
+              <td>-0.2%</td>
+              <td>43%</td>
+              <td>7</td>
+              <td>0.9</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点35</td>
+              <td>国新红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.6</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点35</td>
+              <td>沪深港红利50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.6</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点35</td>
+              <td>港股通央企红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>3</td>
+              <td>1.4</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点35</td>
+              <td>红利低波100</td>
+              <td>--</td>
+              <td>--</td>
+              <td>1</td>
+              <td>0.5</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点40</td>
+              <td>港股通央企红利</td>
+              <td>8.2%</td>
+              <td>100%</td>
+              <td>4</td>
+              <td>1.9</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点40</td>
+              <td>红利低波(易方达)</td>
+              <td>4.3%</td>
+              <td>75%</td>
+              <td>5</td>
+              <td>2.3</td>
+              <td>2.2年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点40</td>
+              <td>东证红利低波</td>
+              <td>3.5%</td>
+              <td>82%</td>
+              <td>12</td>
+              <td>2.7</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点40</td>
+              <td>中证红利</td>
+              <td>3.1%</td>
+              <td>88%</td>
+              <td>17</td>
+              <td>2.9</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点40</td>
+              <td>红利低波50</td>
+              <td>2.6%</td>
+              <td>54%</td>
+              <td>12</td>
+              <td>1.9</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点40</td>
+              <td>国企红利</td>
+              <td>2.2%</td>
+              <td>62%</td>
+              <td>17</td>
+              <td>2.2</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点40</td>
+              <td>中泰红利优选</td>
+              <td>2.2%</td>
+              <td>50%</td>
+              <td>6</td>
+              <td>1.4</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点40</td>
+              <td>电力公用事业</td>
+              <td>0.9%</td>
+              <td>50%</td>
+              <td>8</td>
+              <td>2.1</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点40</td>
+              <td>国新红利</td>
+              <td>--</td>
+              <td>--</td>
+              <td>3</td>
+              <td>1.8</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点40</td>
+              <td>沪深港红利50</td>
+              <td>--</td>
+              <td>--</td>
+              <td>2</td>
+              <td>1.2</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点40</td>
+              <td>红利低波100</td>
+              <td>--</td>
+              <td>--</td>
+              <td>2</td>
+              <td>1.1</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点45</td>
+              <td>港股通央企红利</td>
+              <td>7.2%</td>
+              <td>100%</td>
+              <td>6</td>
+              <td>2.9</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点45</td>
+              <td>沪深港红利50</td>
+              <td>4.2%</td>
+              <td>100%</td>
+              <td>4</td>
+              <td>2.4</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点45</td>
+              <td>国新红利</td>
+              <td>3.8%</td>
+              <td>100%</td>
+              <td>4</td>
+              <td>2.4</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点45</td>
+              <td>东证红利低波</td>
+              <td>2.9%</td>
+              <td>83%</td>
+              <td>13</td>
+              <td>3.0</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点45</td>
+              <td>中证红利</td>
+              <td>2.8%</td>
+              <td>78%</td>
+              <td>24</td>
+              <td>4.1</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点45</td>
+              <td>国企红利</td>
+              <td>2.6%</td>
+              <td>73%</td>
+              <td>27</td>
+              <td>3.4</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点45</td>
+              <td>红利低波100</td>
+              <td>2.4%</td>
+              <td>100%</td>
+              <td>6</td>
+              <td>3.2</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点45</td>
+              <td>中泰红利优选</td>
+              <td>1.8%</td>
+              <td>73%</td>
+              <td>11</td>
+              <td>2.6</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点45</td>
+              <td>红利低波(易方达)</td>
+              <td>1.0%</td>
+              <td>50%</td>
+              <td>5</td>
+              <td>2.3</td>
+              <td>2.2年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点45</td>
+              <td>红利低波50</td>
+              <td>1.0%</td>
+              <td>42%</td>
+              <td>13</td>
+              <td>2.0</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点45</td>
+              <td>电力公用事业</td>
+              <td>0.3%</td>
+              <td>67%</td>
+              <td>9</td>
+              <td>2.3</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点50</td>
+              <td>港股通央企红利</td>
+              <td>5.5%</td>
+              <td>100%</td>
+              <td>8</td>
+              <td>3.8</td>
+              <td>2.1年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点50</td>
+              <td>国新红利</td>
+              <td>3.9%</td>
+              <td>80%</td>
+              <td>6</td>
+              <td>3.6</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点50</td>
+              <td>中泰红利优选</td>
+              <td>2.5%</td>
+              <td>80%</td>
+              <td>16</td>
+              <td>3.8</td>
+              <td>4.2年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点50</td>
+              <td>电力公用事业</td>
+              <td>2.4%</td>
+              <td>73%</td>
+              <td>15</td>
+              <td>3.9</td>
+              <td>3.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点50</td>
+              <td>中证红利</td>
+              <td>2.3%</td>
+              <td>68%</td>
+              <td>26</td>
+              <td>4.4</td>
+              <td>5.9年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点50</td>
+              <td>沪深港红利50</td>
+              <td>2.3%</td>
+              <td>75%</td>
+              <td>5</td>
+              <td>3.0</td>
+              <td>1.7年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点50</td>
+              <td>红利低波100</td>
+              <td>2.1%</td>
+              <td>100%</td>
+              <td>6</td>
+              <td>3.2</td>
+              <td>1.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点50</td>
+              <td>国企红利</td>
+              <td>1.9%</td>
+              <td>67%</td>
+              <td>34</td>
+              <td>4.3</td>
+              <td>7.9年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点50</td>
+              <td>东证红利低波</td>
+              <td>1.7%</td>
+              <td>60%</td>
+              <td>15</td>
+              <td>3.4</td>
+              <td>4.4年</td>
+            </tr>
+            <tr class="">
+              <td>RSI7周 / 观察点50</td>
+              <td>红利低波50</td>
+              <td>0.7%</td>
+              <td>63%</td>
+              <td>20</td>
+              <td>3.1</td>
+              <td>6.4年</td>
+            </tr>
+            <tr class="low">
+              <td>RSI7周 / 观察点50</td>
+              <td>红利低波(易方达)</td>
+              <td>0.4%</td>
+              <td>50%</td>
+              <td>7</td>
+              <td>3.2</td>
+              <td>2.2年</td>
+            </tr>
+    </tbody>
+  </table>
+  </div>
+  <p style="margin-top:8px;font-size:12px;color:#a0a8b4">
+    灰色斜体 = 信号数不足5，低置信度
+  </p>
+</div>
+
+<div class="note">
+  <strong>指标说明：</strong><br>
+  · <strong>年化预期收益(20日)</strong> = 信号后20日平均收益 × 每产品年均信号次数。综合衡量信号质量和实操密度。<br>
+  · <strong>20日均收益</strong>：信号发出后持有20个交易日（≈1个月）的平均总回报。衡量入场时机把握能力。<br>
+  · <strong>120日均收益</strong>：持有约半年的总回报。衡量中期投资结果。<br>
+  · <strong>250日均收益</strong>：持有约一年的总回报。衡量长期投资结果。<br>
+  · <strong>550日均收益</strong>：持有约两年的总回报。衡量跨周期投资结果。<br>
+  · <strong>窗口均长</strong>：RSI跌破观察点后，在线下持续的平均自然日天数。<br>
+  · <strong>低置信产品</strong>：信号数不足5。对应该参数组合数据分析支撑不足。<br>
+  · <strong>数据口径</strong>：全部产品统一使用天天基金「累计净值」（含分红再投资），日收益率自动包含分红。<br>
+  · <strong>信号去重</strong>：同一段 RSI 线下走势中仅取首次跌破为有效信号，RSI 回到 obs+5 以上后才重新激活。<br>
+  · <strong>跨产品聚合</strong>：各产品等权平均，不做规模或年限加权。
+</div>
+
+<script>
+function switchTab(name) {
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
+  document.getElementById('tab-' + name).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

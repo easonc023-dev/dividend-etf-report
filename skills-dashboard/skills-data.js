@@ -1,20 +1,20 @@
-// 自动生成于 2026/5/23 18:45:05
+// 自动生成于 2026/6/7 01:46:25
 // 运行 node generate-skills-data.js 重新生成
 // 请勿手动编辑此文件
 window.__SKILLS_DATA__ = {
-  "generatedAt": "2026-05-23T10:45:05.672Z",
+  "generatedAt": "2026-06-06T17:46:25.219Z",
   "totals": {
-    "all": 50,
-    "global": 42,
+    "all": 105,
+    "global": 97,
     "project": 0,
     "builtin": 8
   },
   "categories": [
     "API 开发",
+    "其他",
     "内容创作",
     "创意设计",
     "开发工具",
-    "用户自定义",
     "系统配置",
     "项目管理",
     "飞书协作",
@@ -29,15 +29,13 @@ window.__SKILLS_DATA__ = {
   ],
   "sources": [
     "Anthropic",
-    "第三方",
     "系统内置",
-    "自定义",
     "飞书"
   ],
   "skills": [
     {
       "name": "algorithmic-art",
-      "description": "Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use this when users request creating art using code, generative art, algorithmic art, flow fields, or particle systems. Create original algorithmic art rather than copying existing artists' work to avoid copyright violations.",
+      "description": "使用 p5.js 创建生成式算法艺术，支持种子随机和交互式参数探索。当用户请求用代码创作艺术、生成艺术、算法艺术、流场或粒子系统时使用。",
       "source": "Anthropic",
       "category": "创意设计",
       "dimensions": {
@@ -53,12 +51,13 @@ window.__SKILLS_DATA__ = {
         ],
         "tools": [
           "无特定外部依赖"
-        ]
+        ],
+        "verification": "页面是否可交互（参数面板可用）？同一种子是否产生相同结果？作品是否原创而非复制现有艺术家？"
       }
     },
     {
       "name": "brand-guidelines",
-      "description": "Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit from having Anthropic's look-and-feel. Use it when brand colors or style guidelines, visual formatting, or company design standards apply.",
+      "description": "将 Anthropic 官方品牌色彩和字体应用到任何需要统一视觉风格的作品中。当涉及品牌颜色、样式规范、视觉格式化或公司设计标准时使用。",
       "source": "Anthropic",
       "category": "创意设计",
       "dimensions": {
@@ -74,12 +73,13 @@ window.__SKILLS_DATA__ = {
         ],
         "tools": [
           "无特定外部依赖"
-        ]
+        ],
+        "verification": "标题字体是否为 Poppins？按钮色值是否为 #3b82f6？字体缺失时是否自动降级为 Georgia/Arial？"
       }
     },
     {
       "name": "canvas-design",
-      "description": "Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, design, or other static piece. Create original visual designs, never copying existing artists' work to avoid copyright violations.",
+      "description": "使用设计哲学创作精美的 PNG 和 PDF 静态视觉艺术作品。当用户要求创建海报、艺术作品、设计或其他静态视觉作品时使用。",
       "source": "Anthropic",
       "category": "创意设计",
       "dimensions": {
@@ -95,12 +95,13 @@ window.__SKILLS_DATA__ = {
         ],
         "tools": [
           "无特定外部依赖"
-        ]
+        ],
+        "verification": "输出是否为 PNG 或 PDF？画面元素是否符合设计哲学描述？是否原创而非复制现有艺术家？"
       }
     },
     {
       "name": "frontend-design",
-      "description": "Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, artifacts, posters, or applications (examples include websites, landing pages, dashboards, React components, HTML/CSS layouts, or when styling/beautifying any web UI). Generates creative, polished code and UI design that avoids generic AI aesthetics.",
+      "description": "创建独具风格、生产级质量的前端界面。当用户要求构建网页组件、页面、Dashboard、React 组件、HTML/CSS 布局，或美化任何 Web UI 时使用。告别 AI 味的通用设计。",
       "source": "Anthropic",
       "category": "创意设计",
       "dimensions": {
@@ -117,12 +118,13 @@ window.__SKILLS_DATA__ = {
         ],
         "tools": [
           "无特定外部依赖"
-        ]
+        ],
+        "verification": "页面是否避免了 AI 味的紫渐变+Inter 字体？是否有独特的字体和配色选择？布局是否突破对称模板？"
       }
     },
     {
       "name": "theme-factory",
-      "description": "Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML landing pages, etc. There are 10 pre-set themes with colors/fonts that you can apply to any artifact that has been creating, or can generate a new theme on-the-fly.",
+      "description": "为各类作品（幻灯片、文档、报告、HTML 落地页等）应用主题样式。内置 10 套预设主题（含配色+字体），也可即时生成新主题。",
       "source": "Anthropic",
       "category": "创意设计",
       "dimensions": {
@@ -138,7 +140,8 @@ window.__SKILLS_DATA__ = {
         ],
         "tools": [
           "无特定外部依赖"
-        ]
+        ],
+        "verification": "颜色是否来自选定主题？字体对是否正确应用？整体风格是否与主题预览一致？"
       }
     },
     {
@@ -160,7 +163,8 @@ window.__SKILLS_DATA__ = {
           [
             "lark-cli"
           ]
-        ]
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
       }
     },
     {
@@ -182,7 +186,8 @@ window.__SKILLS_DATA__ = {
           [
             "lark-cli"
           ]
-        ]
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
       }
     },
     {
@@ -204,7 +209,8 @@ window.__SKILLS_DATA__ = {
           [
             "lark-cli"
           ]
-        ]
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
       }
     },
     {
@@ -226,7 +232,8 @@ window.__SKILLS_DATA__ = {
           [
             "lark-cli"
           ]
-        ]
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
       }
     },
     {
@@ -248,7 +255,8 @@ window.__SKILLS_DATA__ = {
           [
             "lark-cli"
           ]
-        ]
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
       }
     },
     {
@@ -270,7 +278,8 @@ window.__SKILLS_DATA__ = {
           [
             "lark-cli"
           ]
-        ]
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
       }
     },
     {
@@ -292,18 +301,19 @@ window.__SKILLS_DATA__ = {
           [
             "lark-cli"
           ]
-        ]
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
       }
     },
     {
       "name": "lark-event",
-      "description": "Lark/Feishu real-time event listening / subscribing / consuming: stream events as NDJSON via `lark-cli event consume <EventKey>` (covers IM message receive, reactions, chat member changes, etc.). Use for Lark bots, real-time message processing, long-running subscribers, streaming webhook/push handlers. Supports `--max-events` / `--timeout` bounded runs and a stderr ready-marker contract — designed for AI agents running as subprocesses.",
+      "description": "飞书实时事件监听与订阅：通过 lark-cli 流式消费 NDJSON 事件（覆盖消息接收、表情回应、群成员变更等）。用于飞书机器人、实时消息处理、长期运行的订阅者、流式 webhook 推送处理。",
       "source": "飞书",
       "category": "飞书基础",
       "dimensions": {
         "scenario": "飞书事件订阅：监听飞书开放平台事件。",
-        "trigger": "Lark/Feishu real-time event listening / subscribing / consuming: stream events as NDJSON via `lark-cli event consume <EventKey>` (covers IM message receive, reactions, chat member changes, etc.). Use for Lark bots, real-time message processing, long-running subscribers, streaming webhook/push handlers. Supports `--max-events` / `--timeout` bounded runs and a stderr ready-marker contract — designed for AI agents running as subprocesses.。",
-        "features": "Lark/Feishu real-time event listening / subscribing / consuming: stream events as NDJSON via `lark-cli event consume <EventKey>` (covers IM message receive, reactions, chat member changes, etc.). Use for Lark bots, real-time message processing, long-running subscribers, streaming webhook/push handlers. Supports `--max-events` / `--timeout` bounded runs and a stderr ready-marker contract — designed for AI agents running as subprocesses.",
+        "trigger": "飞书实时事件监听与订阅：通过 lark-cli 流式消费 NDJSON 事件（覆盖消息接收、表情回应、群成员变更等）。",
+        "features": "飞书实时事件监听与订阅：通过 lark-cli 流式消费 NDJSON 事件（覆盖消息接收、表情回应、群成员变更等）。用于飞书机器人、实时消息处理、长期运行的订阅者、流式 webhook 推送处理。",
         "solves": "提升效率，减少手动操作和查找文档的时间。",
         "steps": [
           "读取 lark-shared 认证配置",
@@ -314,7 +324,8 @@ window.__SKILLS_DATA__ = {
           [
             "lark-cli"
           ]
-        ]
+        ],
+        "verification": "事件流是否正确消费？事件类型是否匹配预期？--max-events / --timeout 限制下是否正常退出？"
       }
     },
     {
@@ -336,7 +347,8 @@ window.__SKILLS_DATA__ = {
           [
             "lark-cli"
           ]
-        ]
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
       }
     },
     {
@@ -358,7 +370,8 @@ window.__SKILLS_DATA__ = {
           [
             "lark-cli"
           ]
-        ]
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
       }
     },
     {
@@ -380,7 +393,8 @@ window.__SKILLS_DATA__ = {
           [
             "lark-cli"
           ]
-        ]
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
       }
     },
     {
@@ -402,7 +416,8 @@ window.__SKILLS_DATA__ = {
           [
             "lark-cli"
           ]
-        ]
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
       }
     },
     {
@@ -424,7 +439,8 @@ window.__SKILLS_DATA__ = {
           [
             "lark-cli"
           ]
-        ]
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
       }
     },
     {
@@ -446,7 +462,8 @@ window.__SKILLS_DATA__ = {
           [
             "lark-cli"
           ]
-        ]
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
       }
     },
     {
@@ -468,7 +485,8 @@ window.__SKILLS_DATA__ = {
           [
             "lark-cli"
           ]
-        ]
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
       }
     },
     {
@@ -490,7 +508,8 @@ window.__SKILLS_DATA__ = {
           [
             "lark-cli"
           ]
-        ]
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
       }
     },
     {
@@ -512,18 +531,19 @@ window.__SKILLS_DATA__ = {
           [
             "lark-cli"
           ]
-        ]
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
       }
     },
     {
       "name": "lark-whiteboard",
-      "description": ">",
+      "description": "飞书画板：查询和编辑飞书云文档中的画板。支持导出画板为预览图片、导出原始节点结构、使用 DSL/PlantUML/Mermaid 格式更新画板内容。当需要可视化表达架构、流程、组织关系等结构化信息时使用。",
       "source": "飞书",
       "category": "飞书文档",
       "dimensions": {
         "scenario": "创建和管理飞书白板。",
-        "trigger": ">。",
-        "features": ">",
+        "trigger": "飞书画板：查询和编辑飞书云文档中的画板。",
+        "features": "飞书画板：查询和编辑飞书云文档中的画板。支持导出画板为预览图片、导出原始节点结构、使用 DSL/PlantUML/Mermaid 格式更新画板内容。当需要可视化表达架构、流程、组织关系等结构化信息时使用。",
         "solves": "提升效率，减少手动操作和查找文档的时间。",
         "steps": [
           "读取 lark-shared 认证配置",
@@ -534,7 +554,8 @@ window.__SKILLS_DATA__ = {
           [
             "lark-cli"
           ]
-        ]
+        ],
+        "verification": "画板内容是否正确导出为图片？DSL/PlantUML/Mermaid 格式更新是否生效？"
       }
     },
     {
@@ -556,7 +577,8 @@ window.__SKILLS_DATA__ = {
           [
             "lark-cli"
           ]
-        ]
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
       }
     },
     {
@@ -578,7 +600,8 @@ window.__SKILLS_DATA__ = {
           [
             "lark-cli"
           ]
-        ]
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
       }
     },
     {
@@ -600,7 +623,8 @@ window.__SKILLS_DATA__ = {
           [
             "lark-cli"
           ]
-        ]
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
       }
     },
     {
@@ -622,7 +646,8 @@ window.__SKILLS_DATA__ = {
           [
             "lark-cli"
           ]
-        ]
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
       }
     },
     {
@@ -644,7 +669,8 @@ window.__SKILLS_DATA__ = {
           [
             "lark-cli"
           ]
-        ]
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
       }
     },
     {
@@ -666,32 +692,36 @@ window.__SKILLS_DATA__ = {
           [
             "lark-cli"
           ]
-        ]
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
       }
     },
     {
       "name": "karpathy-guidelines",
-      "description": "Behavioral guidelines to reduce common LLM coding mistakes. Use when writing, reviewing, or refactoring code to avoid overcomplication, make surgical changes, surface assumptions, and define verifiable success criteria.",
-      "source": "第三方",
+      "description": "减少 LLM 常见编码错误的五条行为准则。在写代码、审查代码、重构代码时使用，避免过度工程、盲目修改、缺乏验证等问题，让代码改动更精准可控。",
+      "source": "Anthropic",
       "category": "开发工具",
       "dimensions": {
-        "scenario": "Behavioral guidelines to reduce common LLM coding mistakes. Use when writing, reviewing, or refactoring code to avoid overcomplication, make surgical changes, surface assumptions, and define verifiable success criteria.。",
-        "trigger": "Behavioral guidelines to reduce common LLM coding mistakes。 Use when writing, reviewing, or refactoring code to avoid overcomplication, make surgical changes, surface assumptions, and define verifiable success criteria",
-        "features": "Behavioral guidelines to reduce common LLM coding mistakes. Use when writing, reviewing, or refactoring code to avoid overcomplication, make surgical changes, surface assumptions, and define verifiable success criteria.",
-        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "scenario": "写代码、改代码、重构代码时，需要遵循一套经过验证的行为准则，避免低级错误。",
+        "trigger": "用户写代码、审查代码、重构代码——任何涉及代码修改的场景自动激活。",
+        "features": "5 条核心准则：先思考再动手、极简优先、手术刀式修改、验证再迭代、坦诚沟通",
+        "solves": "减少过度工程、盲目修改、缺乏验证等 LLM 常见编码坏习惯，让代码改动更精准可控。",
         "steps": [
-          "读取技能文档",
-          "按文档执行操作",
-          "输出结果"
+          "理解需求后再动手",
+          "用最简方案解决问题",
+          "只改必要的代码",
+          "验证改动效果",
+          "如实报告结果"
         ],
         "tools": [
           "无特定外部依赖"
-        ]
+        ],
+        "verification": "代码改动是否符合\"最小修改\"原则？是否在改代码前先理解了需求？改完后是否验证了效果？"
       }
     },
     {
       "name": "mcp-builder",
-      "description": "Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).",
+      "description": "创建高质量 MCP（模型上下文协议）服务器的指南，让 LLM 能通过标准化工具与外部服务交互。支持 Python（FastMCP）和 Node/TypeScript（MCP SDK）两种实现方式。",
       "source": "Anthropic",
       "category": "开发工具",
       "dimensions": {
@@ -707,7 +737,8 @@ window.__SKILLS_DATA__ = {
         ],
         "tools": [
           "无特定外部依赖"
-        ]
+        ],
+        "verification": "MCP 服务器能否成功连接？工具列表是否正确注册？调用工具后是否返回预期 JSON？"
       }
     },
     {
@@ -729,7 +760,8 @@ window.__SKILLS_DATA__ = {
         "tools": [
           "gh CLI",
           "git diff"
-        ]
+        ],
+        "verification": "是否找出了肉眼容易忽略的 bug？建议是否具体可操作？是否标注了问题严重等级？"
       }
     },
     {
@@ -751,7 +783,8 @@ window.__SKILLS_DATA__ = {
         "tools": [
           "静态代码分析",
           "依赖项扫描"
-        ]
+        ],
+        "verification": "是否扫描了所有关键文件？漏洞是否按严重度分级？修复方案是否可行且不影响功能？"
       }
     },
     {
@@ -772,12 +805,13 @@ window.__SKILLS_DATA__ = {
         ],
         "tools": [
           "AST 分析"
-        ]
+        ],
+        "verification": "简化后功能是否完好？代码行数是否减少？可读性是否反而变差？"
       }
     },
     {
       "name": "skill-creator",
-      "description": "Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, edit, or optimize an existing skill, run evals to test a skill, benchmark skill performance with variance analysis, or optimize a skill's description for better triggering accuracy.",
+      "description": "创建新技能、修改优化已有技能、评测技能表现。当用户想从零创建技能、编辑优化已有技能、运行 eval 测试、基准评测技能性能、优化技能描述以提升触发准确率时使用。",
       "source": "Anthropic",
       "category": "开发工具",
       "dimensions": {
@@ -794,12 +828,13 @@ window.__SKILLS_DATA__ = {
         ],
         "tools": [
           "无特定外部依赖"
-        ]
+        ],
+        "verification": "技能触发准确率是否提升？eval 评分是否达标？盲评对比是否优于旧版本？"
       }
     },
     {
       "name": "pdf",
-      "description": "Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting text/tables from PDFs, combining or merging multiple PDFs into one, splitting PDFs apart, rotating pages, adding watermarks, creating new PDFs, filling PDF forms, encrypting/decrypting PDFs, extracting images, and OCR on scanned PDFs to make them searchable. If the user mentions a .pdf file or asks to produce one, use this skill.",
+      "description": "处理任何 PDF 相关操作：读取提取文本/表格、合并拆分、旋转页面、添加水印、创建填写表单、加密解密、OCR 识别。用户提到 .pdf 文件或要生成 PDF 时使用。",
       "source": "Anthropic",
       "category": "内容创作",
       "dimensions": {
@@ -815,12 +850,13 @@ window.__SKILLS_DATA__ = {
         ],
         "tools": [
           "无特定外部依赖"
-        ]
+        ],
+        "verification": "输出 PDF 能否正常打开？合并/拆分页数是否正确？OCR 结果是否可搜索？水印是否在预期位置？"
       }
     },
     {
       "name": "pptx",
-      "description": "Use this skill any time a .pptx file is involved in any way — as input, output, or both. This includes: creating slide decks, pitch decks, or presentations; reading, parsing, or extracting text from any .pptx file (even if the extracted content will be used elsewhere, like in an email or summary); editing, modifying, or updating existing presentations; combining or splitting slide files; working with templates, layouts, speaker notes, or comments. Trigger whenever the user mentions \\\"deck,\\\" \\\"slides,\\\" \\\"presentation,\\\" or references a .pptx filename, regardless of what they plan to do with the content afterward. If a .pptx file needs to be opened, created, or touched, use this skill.",
+      "description": "处理任何与 .pptx 文件相关的操作：创建幻灯片、演示文稿、提取内容、编辑修改、合并拆分、模板布局、演讲者备注。只要用户提到\"PPT\"\"幻灯片\"\"演示文稿\"或引用 .pptx 文件就触发。",
       "source": "Anthropic",
       "category": "内容创作",
       "dimensions": {
@@ -836,7 +872,1219 @@ window.__SKILLS_DATA__ = {
         ],
         "tools": [
           "无特定外部依赖"
-        ]
+        ],
+        "verification": "生成的 .pptx 能否用 PowerPoint/WPS 正常打开？幻灯片页数是否正确？文字和图片是否在预期位置？"
+      }
+    },
+    {
+      "name": "agent-reach",
+      "description": ">",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": ">。",
+        "trigger": ">",
+        "features": ">",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "baoyu-article-illustrator",
+      "description": "Analyzes article structure, identifies positions requiring visual aids, generates illustrations with Type × Style × Palette three-dimension approach. Use when user asks to \"illustrate article\", \"add images\", \"generate images for article\", or \"为文章配图\".",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Analyzes article structure, identifies positions requiring visual aids, generates illustrations with Type × Style × Palette three-dimension approach. Use when user asks to \"illustrate article\", \"add images\", \"generate images for article\", or \"为文章配图\".。",
+        "trigger": "Analyzes article structure, identifies positions requiring visual aids, generates illustrations with Type × Style × Palette three-dimension approach。 Use when user asks to \"illustrate article\", \"add images\", \"generate images for article\", or \"为文章配图\"",
+        "features": "Analyzes article structure, identifies positions requiring visual aids, generates illustrations with Type × Style × Palette three-dimension approach. Use when user asks to \"illustrate article\", \"add images\", \"generate images for article\", or \"为文章配图\".",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "baoyu-comic",
+      "description": "Knowledge comic creator supporting multiple art styles and tones. Creates original educational comics with detailed panel layouts and batch-capable image generation. Use when user asks to create \"知识漫画\", \"教育漫画\", \"biography comic\", \"tutorial comic\", or \"Logicomix-style comic\".",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Knowledge comic creator supporting multiple art styles and tones. Creates original educational comics with detailed panel layouts and batch-capable image generation. Use when user asks to create \"知识漫画\", \"教育漫画\", \"biography comic\", \"tutorial comic\", or \"Logicomix-style comic\".。",
+        "trigger": "Knowledge comic creator supporting multiple art styles and tones。 Creates original educational comics with detailed panel layouts and batch-capable image generation",
+        "features": "Knowledge comic creator supporting multiple art styles and tones. Creates original educational comics with detailed panel layouts and batch-capable image generation. Use when user asks to create \"知识漫画\", \"教育漫画\", \"biography comic\", \"tutorial comic\", or \"Logicomix-style comic\".",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "baoyu-compress-image",
+      "description": "Compresses images to WebP (default) or PNG with automatic tool selection. Use when user asks to \"compress image\", \"optimize image\", \"convert to webp\", or reduce image file size.",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Compresses images to WebP (default) or PNG with automatic tool selection. Use when user asks to \"compress image\", \"optimize image\", \"convert to webp\", or reduce image file size.。",
+        "trigger": "Compresses images to WebP (default) or PNG with automatic tool selection。 Use when user asks to \"compress image\", \"optimize image\", \"convert to webp\", or reduce image file size",
+        "features": "Compresses images to WebP (default) or PNG with automatic tool selection. Use when user asks to \"compress image\", \"optimize image\", \"convert to webp\", or reduce image file size.",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "baoyu-cover-image",
+      "description": "Generates article cover images with 5 dimensions (type, palette, rendering, text, mood) combining 11 color palettes and 7 rendering styles. Supports cinematic (2.35:1), widescreen (16:9), and square (1:1) aspects. Use when user asks to \"generate cover image\", \"create article cover\", or \"make cover\".",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Generates article cover images with 5 dimensions (type, palette, rendering, text, mood) combining 11 color palettes and 7 rendering styles. Supports cinematic (2.35:1), widescreen (16:9), and square (1:1) aspects. Use when user asks to \"generate cover image\", \"create article cover\", or \"make cover\".。",
+        "trigger": "Generates article cover images with 5 dimensions (type, palette, rendering, text, mood) combining 11 color palettes and 7 rendering styles。 Supports cinematic (2",
+        "features": "Generates article cover images with 5 dimensions (type, palette, rendering, text, mood) combining 11 color palettes and 7 rendering styles. Supports cinematic (2.35:1), widescreen (16:9), and square (1:1) aspects. Use when user asks to \"generate cover image\", \"create article cover\", or \"make cover\".",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "baoyu-danger-gemini-web",
+      "description": "Generates images and text via reverse-engineered Gemini Web API. Supports text generation, image generation from prompts, reference images for vision input, and multi-turn conversations. Use when other skills need image generation backend, or when user requests \"generate image with Gemini\", \"Gemini text generation\", or needs vision-capable AI generation.",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Generates images and text via reverse-engineered Gemini Web API. Supports text generation, image generation from prompts, reference images for vision input, and multi-turn conversations. Use when other skills need image generation backend, or when user requests \"generate image with Gemini\", \"Gemini text generation\", or needs vision-capable AI generation.。",
+        "trigger": "Generates images and text via reverse-engineered Gemini Web API。 Supports text generation, image generation from prompts, reference images for vision input, and multi-turn conversations",
+        "features": "Generates images and text via reverse-engineered Gemini Web API. Supports text generation, image generation from prompts, reference images for vision input, and multi-turn conversations. Use when other skills need image generation backend, or when user requests \"generate image with Gemini\", \"Gemini text generation\", or needs vision-capable AI generation.",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "baoyu-danger-x-to-markdown",
+      "description": "Converts X (Twitter) tweets and articles to markdown with YAML front matter. Uses reverse-engineered API requiring user consent. Use when user mentions \"X to markdown\", \"tweet to markdown\", \"save tweet\", or provides x.com/twitter.com URLs for conversion.",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Converts X (Twitter) tweets and articles to markdown with YAML front matter. Uses reverse-engineered API requiring user consent. Use when user mentions \"X to markdown\", \"tweet to markdown\", \"save tweet\", or provides x.com/twitter.com URLs for conversion.。",
+        "trigger": "Converts X (Twitter) tweets and articles to markdown with YAML front matter。 Uses reverse-engineered API requiring user consent",
+        "features": "Converts X (Twitter) tweets and articles to markdown with YAML front matter. Uses reverse-engineered API requiring user consent. Use when user mentions \"X to markdown\", \"tweet to markdown\", \"save tweet\", or provides x.com/twitter.com URLs for conversion.",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "baoyu-diagram",
+      "description": "Create professional, dark-themed SVG diagrams of any type — architecture diagrams, flowcharts, sequence diagrams, structural diagrams, mind maps, timelines, illustrative/conceptual diagrams, and more. Use this skill whenever the user asks for any kind of technical or conceptual diagram, visualization of a system, process flow, data flow, component relationship, network topology, decision tree, org chart, state machine, or any visual representation of structure/logic/process. Also trigger when the user says \"画个图\" \"画一个架构图\" \"diagram\" \"flowchart\" \"sequence diagram\" \"draw me a ...\" or uploads content and asks to visualize it. Output is always a standalone .svg file.",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Create professional, dark-themed SVG diagrams of any type — architecture diagrams, flowcharts, sequence diagrams, structural diagrams, mind maps, timelines, illustrative/conceptual diagrams, and more. Use this skill whenever the user asks for any kind of technical or conceptual diagram, visualization of a system, process flow, data flow, component relationship, network topology, decision tree, org chart, state machine, or any visual representation of structure/logic/process. Also。",
+        "trigger": "the user says \"画个图\" \"画一个架构图\" \"diagram\" \"flowchart\" \"sequence diagram\" \"draw me a ...\" or uploads content and asks to visualize it. Output is always a standalone .svg file.",
+        "features": "Create professional, dark-themed SVG diagrams of any type — architecture diagrams, flowcharts, sequence diagrams, structural diagrams, mind maps, timelines, illustrative/conceptual diagrams, and more. Use this skill whenever the user asks for any kind of technical or conceptual diagram, visualization of a system, process flow, data flow, component relationship, network topology, decision tree, org chart, state machine, or any visual representation of structure/logic/process. Also",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "1",
+          "Identify the diagram type from the user's request 2",
+          "Read the relevant reference file if one exists for that type 3",
+          "Plan the layout: list all components, determine grouping and flow direction, calculate positions 4",
+          "Write the SVG following the layering order above 5"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "baoyu-electron-extract",
+      "description": "Extracts resources and JavaScript from any installed Electron app (`.asar` bundle), restoring original sources from `.js.map` files when available or formatting minified code with Prettier otherwise. Use when user wants to \"extract Electron app\", \"decompile Electron\", \"get the source code of <app>\", \"inspect app.asar\", \"看 Electron 应用源码\", \"提取 .asar\", or asks how a desktop Electron app is built. Skips `node_modules` and supports both macOS and Windows.",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Extracts resources and JavaScript from any installed Electron app (`.asar` bundle), restoring original sources from `.js.map` files when available or formatting minified code with Prettier otherwise. Use when user wants to \"extract Electron app\", \"decompile Electron\", \"get the source code of <app>\", \"inspect app.asar\", \"看 Electron 应用源码\", \"提取 .asar\", or asks how a desktop Electron app is built. Skips `node_modules` and supports both macOS and Windows.。",
+        "trigger": "Extracts resources and JavaScript from any installed Electron app (`。asar` bundle), restoring original sources from `",
+        "features": "Extracts resources and JavaScript from any installed Electron app (`.asar` bundle), restoring original sources from `.js.map` files when available or formatting minified code with Prettier otherwise. Use when user wants to \"extract Electron app\", \"decompile Electron\", \"get the source code of <app>\", \"inspect app.asar\", \"看 Electron 应用源码\", \"提取 .asar\", or asks how a desktop Electron app is built. Skips `node_modules` and supports both macOS and Windows.",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "baoyu-format-markdown",
+      "description": "Formats plain text or markdown files with frontmatter, titles, summaries, headings, bold, lists, and code blocks. Use when user asks to \"format markdown\", \"beautify article\", \"add formatting\", or improve article layout. Outputs to {filename}-formatted.md.",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Formats plain text or markdown files with frontmatter, titles, summaries, headings, bold, lists, and code blocks. Use when user asks to \"format markdown\", \"beautify article\", \"add formatting\", or improve article layout. Outputs to {filename}-formatted.md.。",
+        "trigger": "Formats plain text or markdown files with frontmatter, titles, summaries, headings, bold, lists, and code blocks。 Use when user asks to \"format markdown\", \"beautify article\", \"add formatting\", or improve article layout",
+        "features": "Formats plain text or markdown files with frontmatter, titles, summaries, headings, bold, lists, and code blocks. Use when user asks to \"format markdown\", \"beautify article\", \"add formatting\", or improve article layout. Outputs to {filename}-formatted.md.",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "baoyu-image-gen",
+      "description": "AI image generation with OpenAI GPT Image 2, Azure OpenAI, Google, OpenRouter, DashScope, Z.AI GLM-Image, MiniMax, Jimeng, Seedream and Replicate APIs. Supports text-to-image, reference images, aspect ratios, and batch generation from saved prompt files. Sequential by default; use batch parallel generation when the user already has multiple prompts or wants stable multi-image throughput. Use when user asks to generate, create, or draw images.",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "AI image generation with OpenAI GPT Image 2, Azure OpenAI, Google, OpenRouter, DashScope, Z.AI GLM-Image, MiniMax, Jimeng, Seedream and Replicate APIs. Supports text-to-image, reference images, aspect ratios, and batch generation from saved prompt files. Sequential by default; use batch parallel generation when the user already has multiple prompts or wants stable multi-image throughput. Use when user asks to generate, create, or draw images.。",
+        "trigger": "AI image generation with OpenAI GPT Image 2, Azure OpenAI, Google, OpenRouter, DashScope, Z。AI GLM-Image, MiniMax, Jimeng, Seedream and Replicate APIs",
+        "features": "AI image generation with OpenAI GPT Image 2, Azure OpenAI, Google, OpenRouter, DashScope, Z.AI GLM-Image, MiniMax, Jimeng, Seedream and Replicate APIs. Supports text-to-image, reference images, aspect ratios, and batch generation from saved prompt files. Sequential by default; use batch parallel generation when the user already has multiple prompts or wants stable multi-image throughput. Use when user asks to generate, create, or draw images.",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "**Found** → load, parse, apply. If `default_model.[provider]` is null → ask model only.",
+          "**Not found** → run first-time setup (`references/config/first-time-setup.md`) using AskUserQuestion to collect provider + model + quality + save location. Save EXTEND.md, then continue. Do not generate images before this completes."
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "baoyu-infographic",
+      "description": "Generate professional infographics with 21 layout types and 22 visual styles. Analyzes content, recommends layout×style combinations, and generates publication-ready infographics. Use when user asks to create \"infographic\", \"信息图\", \"visual summary\", \"可视化\", or \"高密度信息大图\".",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Generate professional infographics with 21 layout types and 22 visual styles. Analyzes content, recommends layout×style combinations, and generates publication-ready infographics. Use when user asks to create \"infographic\", \"信息图\", \"visual summary\", \"可视化\", or \"高密度信息大图\".。",
+        "trigger": "Generate professional infographics with 21 layout types and 22 visual styles。 Analyzes content, recommends layout×style combinations, and generates publication-ready infographics",
+        "features": "Generate professional infographics with 21 layout types and 22 visual styles. Analyzes content, recommends layout×style combinations, and generates publication-ready infographics. Use when user asks to create \"infographic\", \"信息图\", \"visual summary\", \"可视化\", or \"高密度信息大图\".",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "baoyu-markdown-to-html",
+      "description": "Converts Markdown to styled HTML with WeChat-compatible themes. Supports code highlighting, math, Mermaid (rendered to PNG via headless Chrome), PlantUML, footnotes, alerts, infographics, and optional bottom citations for external links. Use when user asks for \"markdown to html\", \"convert md to html\", \"md 转 html\", \"微信外链转底部引用\", or needs styled HTML output from markdown.",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Converts Markdown to styled HTML with WeChat-compatible themes. Supports code highlighting, math, Mermaid (rendered to PNG via headless Chrome), PlantUML, footnotes, alerts, infographics, and optional bottom citations for external links. Use when user asks for \"markdown to html\", \"convert md to html\", \"md 转 html\", \"微信外链转底部引用\", or needs styled HTML output from markdown.。",
+        "trigger": "Converts Markdown to styled HTML with WeChat-compatible themes。 Supports code highlighting, math, Mermaid (rendered to PNG via headless Chrome), PlantUML, footnotes, alerts, infographics, and optional bottom citations for external links",
+        "features": "Converts Markdown to styled HTML with WeChat-compatible themes. Supports code highlighting, math, Mermaid (rendered to PNG via headless Chrome), PlantUML, footnotes, alerts, infographics, and optional bottom citations for external links. Use when user asks for \"markdown to html\", \"convert md to html\", \"md 转 html\", \"微信外链转底部引用\", or needs styled HTML output from markdown.",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "baoyu-post-to-wechat",
+      "description": "Posts content to WeChat Official Account (微信公众号) via API or Chrome CDP. Supports article posting (文章) with HTML, markdown, or plain text input, and image-text posting (贴图, formerly 图文) with multiple images. Markdown article workflows default to converting ordinary external links into bottom citations for WeChat-friendly output. Use when user mentions \"发布公众号\", \"post to wechat\", \"微信公众号\", or \"贴图/图文/文章\".",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Posts content to WeChat Official Account (微信公众号) via API or Chrome CDP. Supports article posting (文章) with HTML, markdown, or plain text input, and image-text posting (贴图, formerly 图文) with multiple images. Markdown article workflows default to converting ordinary external links into bottom citations for WeChat-friendly output. Use when user mentions \"发布公众号\", \"post to wechat\", \"微信公众号\", or \"贴图/图文/文章\".。",
+        "trigger": "Posts content to WeChat Official Account (微信公众号) via API or Chrome CDP。 Supports article posting (文章) with HTML, markdown, or plain text input, and image-text posting (贴图, formerly 图文) with multiple images",
+        "features": "Posts content to WeChat Official Account (微信公众号) via API or Chrome CDP. Supports article posting (文章) with HTML, markdown, or plain text input, and image-text posting (贴图, formerly 图文) with multiple images. Markdown article workflows default to converting ordinary external links into bottom citations for WeChat-friendly output. Use when user mentions \"发布公众号\", \"post to wechat\", \"微信公众号\", or \"贴图/图文/文章\".",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "baoyu-post-to-weibo",
+      "description": "Posts content to Weibo (微博). Supports regular posts with text, images, and videos, and headline articles (头条文章) with Markdown input via Chrome CDP. Use when user asks to \"post to Weibo\", \"发微博\", \"发布微博\", \"publish to Weibo\", \"share on Weibo\", \"写微博\", or \"微博头条文章\".",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Posts content to Weibo (微博). Supports regular posts with text, images, and videos, and headline articles (头条文章) with Markdown input via Chrome CDP. Use when user asks to \"post to Weibo\", \"发微博\", \"发布微博\", \"publish to Weibo\", \"share on Weibo\", \"写微博\", or \"微博头条文章\".。",
+        "trigger": "Posts content to Weibo (微博)。 Supports regular posts with text, images, and videos, and headline articles (头条文章) with Markdown input via Chrome CDP",
+        "features": "Posts content to Weibo (微博). Supports regular posts with text, images, and videos, and headline articles (头条文章) with Markdown input via Chrome CDP. Use when user asks to \"post to Weibo\", \"发微博\", \"发布微博\", \"publish to Weibo\", \"share on Weibo\", \"写微博\", or \"微博头条文章\".",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "baoyu-post-to-x",
+      "description": "Posts content and articles to X (Twitter). Supports regular posts with images/videos and X Articles (long-form Markdown). In Codex, honor explicit requests for the Codex Chrome plugin/@chrome by using the Chrome Extension workflow; otherwise use Chrome Computer Use when available and fall back to real Chrome CDP scripts only when allowed. Use when user asks to \"post to X\", \"tweet\", \"publish to Twitter\", or \"share on X\".",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Posts content and articles to X (Twitter). Supports regular posts with images/videos and X Articles (long-form Markdown). In Codex, honor explicit requests for the Codex Chrome plugin/@chrome by using the Chrome Extension workflow; otherwise use Chrome Computer Use when available and fall back to real Chrome CDP scripts only when allowed. Use when user asks to \"post to X\", \"tweet\", \"publish to Twitter\", or \"share on X\".。",
+        "trigger": "Posts content and articles to X (Twitter)。 Supports regular posts with images/videos and X Articles (long-form Markdown)",
+        "features": "Posts content and articles to X (Twitter). Supports regular posts with images/videos and X Articles (long-form Markdown). In Codex, honor explicit requests for the Codex Chrome plugin/@chrome by using the Chrome Extension workflow; otherwise use Chrome Computer Use when available and fall back to real Chrome CDP scripts only when allowed. Use when user asks to \"post to X\", \"tweet\", \"publish to Twitter\", or \"share on X\".",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "baoyu-slide-deck",
+      "description": "Generates professional slide deck images from content. Creates outlines with style instructions, then generates individual slide images. Use when user asks to \"create slides\", \"make a presentation\", \"generate deck\", \"slide deck\", or \"PPT\".",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Generates professional slide deck images from content. Creates outlines with style instructions, then generates individual slide images. Use when user asks to \"create slides\", \"make a presentation\", \"generate deck\", \"slide deck\", or \"PPT\".。",
+        "trigger": "Generates professional slide deck images from content。 Creates outlines with style instructions, then generates individual slide images",
+        "features": "Generates professional slide deck images from content. Creates outlines with style instructions, then generates individual slide images. Use when user asks to \"create slides\", \"make a presentation\", \"generate deck\", \"slide deck\", or \"PPT\".",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "baoyu-translate",
+      "description": "Translates articles and documents between languages with three modes - quick (direct), normal (analyze then translate), and refined (analyze, translate, review, polish). Supports custom glossaries and terminology consistency via EXTEND.md. Use when user asks to \"translate\", \"翻译\", \"精翻\", \"translate article\", \"translate to Chinese/English\", \"改成中文\", \"改成英文\", \"convert to Chinese\", \"localize\", \"本地化\", or needs any document translation. Also triggers for \"refined translation\", \"精细翻译\", \"proofread translation\", \"快速翻译\", \"快翻\", \"这篇文章翻译一下\", or when a URL or file is provided with translation intent.",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Translates articles and documents between languages with three modes - quick (direct), normal (analyze then translate), and refined (analyze, translate, review, polish). Supports custom glossaries and terminology consistency via EXTEND.md. Use when user asks to \"translate\", \"翻译\", \"精翻\", \"translate article\", \"translate to Chinese/English\", \"改成中文\", \"改成英文\", \"convert to Chinese\", \"localize\", \"本地化\", or needs any document translation. Also triggers for \"refined translation\", \"精细翻译\", \"proofread translation\", \"快速翻译\", \"快翻\", \"这篇文章翻译一下\", or when a URL or file is provided with translation intent.。",
+        "trigger": "s for \"refined translation\", \"精细翻译\", \"proofread translation\", \"快速翻译\", \"快翻\", \"这篇文章翻译一下\", or when a URL or file is provided with translation intent.",
+        "features": "Translates articles and documents between languages with three modes - quick (direct), normal (analyze then translate), and refined (analyze, translate, review, polish). Supports custom glossaries and terminology consistency via EXTEND.md. Use when user asks to \"translate\", \"翻译\", \"精翻\", \"translate article\", \"translate to Chinese/English\", \"改成中文\", \"改成英文\", \"convert to Chinese\", \"localize\", \"本地化\", or needs any document translation. Also triggers for \"refined translation\", \"精细翻译\", \"proofread translation\", \"快速翻译\", \"快翻\", \"这篇文章翻译一下\", or when a URL or file is provided with translation intent.",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "baoyu-url-to-markdown",
+      "description": "Fetch any URL and convert to markdown using baoyu-fetch CLI (Chrome CDP with site-specific adapters). Built-in adapters for X/Twitter, YouTube transcripts, Hacker News threads, and generic pages via Defuddle. Handles login/CAPTCHA via interaction wait modes. Use when user wants to save a webpage as markdown.",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Fetch any URL and convert to markdown using baoyu-fetch CLI (Chrome CDP with site-specific adapters). Built-in adapters for X/Twitter, YouTube transcripts, Hacker News threads, and generic pages via Defuddle. Handles login/CAPTCHA via interaction wait modes. Use when user wants to save a webpage as markdown.。",
+        "trigger": "Fetch any URL and convert to markdown using baoyu-fetch CLI (Chrome CDP with site-specific adapters)。 Built-in adapters for X/Twitter, YouTube transcripts, Hacker News threads, and generic pages via Defuddle",
+        "features": "Fetch any URL and convert to markdown using baoyu-fetch CLI (Chrome CDP with site-specific adapters). Built-in adapters for X/Twitter, YouTube transcripts, Hacker News threads, and generic pages via Defuddle. Handles login/CAPTCHA via interaction wait modes. Use when user wants to save a webpage as markdown.",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "baoyu-wechat-summary",
+      "description": "Summarizes WeChat group chat highlights into a structured digest using the local wx-cli binary (https://github.com/jackwener/wx-cli). Generates a normal digest by default; a roast (毒舌) version is opt-in. Maintains per-group history (history.json + history-digests.jsonl) and per-user profiles across runs, with privacy guardrails baked in. Use when the user asks to \"总结群聊\", \"群聊精华\", \"群聊摘要\", \"summarize group chat\", \"group chat digest\", mentions a WeChat group name with a time range, says \"帮我看看 XX 群最近聊了什么\", \"XX 群有什么值得看的\", or asks to \"回溯画像\" / \"初始化画像\" / \"backfill profiles\". Adds the roast version when the user says \"毒舌版\", \"roast 版\", \"再来个毒舌的\", or similar.",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Summarizes WeChat group chat highlights into a structured digest using the local wx-cli binary (https://github.com/jackwener/wx-cli). Generates a normal digest by default; a roast (毒舌) version is opt-in. Maintains per-group history (history.json + history-digests.jsonl) and per-user profiles across runs, with privacy guardrails baked in. Use when the user asks to \"总结群聊\", \"群聊精华\", \"群聊摘要\", \"summarize group chat\", \"group chat digest\", mentions a WeChat group name with a time range, says \"帮我看看 XX 群最近聊了什么\", \"XX 群有什么值得看的\", or asks to \"回溯画像\" / \"初始化画像\" / \"backfill profiles\". Adds the roast version when the user says \"毒舌版\", \"roast 版\", \"再来个毒舌的\", or similar.。",
+        "trigger": "Summarizes WeChat group chat highlights into a structured digest using the local wx-cli binary (https://github。com/jackwener/wx-cli)",
+        "features": "Summarizes WeChat group chat highlights into a structured digest using the local wx-cli binary (https://github.com/jackwener/wx-cli). Generates a normal digest by default; a roast (毒舌) version is opt-in. Maintains per-group history (history.json + history-digests.jsonl) and per-user profiles across runs, with privacy guardrails baked in. Use when the user asks to \"总结群聊\", \"群聊精华\", \"群聊摘要\", \"summarize group chat\", \"group chat digest\", mentions a WeChat group name with a time range, says \"帮我看看 XX 群最近聊了什么\", \"XX 群有什么值得看的\", or asks to \"回溯画像\" / \"初始化画像\" / \"backfill profiles\". Adds the roast version when the user says \"毒舌版\", \"roast 版\", \"再来个毒舌的\", or similar.",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "baoyu-xhs-images",
+      "description": "Generates infographic image card series with 12 visual styles, 8 layouts, and 3 color palettes. Breaks content into 1-10 cartoon-style image cards optimized for social media engagement. Use when user mentions \"小红书图片\", \"小红书种草\", \"小绿书\", \"微信图文\", \"微信贴图\", \"image cards\", \"图片卡片\", baoyu-xhs-images, or wants social media infographic series.",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Generates infographic image card series with 12 visual styles, 8 layouts, and 3 color palettes. Breaks content into 1-10 cartoon-style image cards optimized for social media engagement. Use when user mentions \"小红书图片\", \"小红书种草\", \"小绿书\", \"微信图文\", \"微信贴图\", \"image cards\", \"图片卡片\", baoyu-xhs-images, or wants social media infographic series.。",
+        "trigger": "Generates infographic image card series with 12 visual styles, 8 layouts, and 3 color palettes。 Breaks content into 1-10 cartoon-style image cards optimized for social media engagement",
+        "features": "Generates infographic image card series with 12 visual styles, 8 layouts, and 3 color palettes. Breaks content into 1-10 cartoon-style image cards optimized for social media engagement. Use when user mentions \"小红书图片\", \"小红书种草\", \"小绿书\", \"微信图文\", \"微信贴图\", \"image cards\", \"图片卡片\", baoyu-xhs-images, or wants social media infographic series.",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "baoyu-youtube-transcript",
+      "description": "Downloads YouTube video transcripts/subtitles and cover images by URL or video ID. Supports multiple languages, translation, chapters, and speaker identification. Caches raw data for fast re-formatting. Use when user asks to \"get YouTube transcript\", \"download subtitles\", \"get captions\", \"YouTube字幕\", \"YouTube封面\", \"视频封面\", \"video thumbnail\", \"video cover image\", or provides a YouTube URL and wants the transcript/subtitle text or cover image extracted.",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Downloads YouTube video transcripts/subtitles and cover images by URL or video ID. Supports multiple languages, translation, chapters, and speaker identification. Caches raw data for fast re-formatting. Use when user asks to \"get YouTube transcript\", \"download subtitles\", \"get captions\", \"YouTube字幕\", \"YouTube封面\", \"视频封面\", \"video thumbnail\", \"video cover image\", or provides a YouTube URL and wants the transcript/subtitle text or cover image extracted.。",
+        "trigger": "Downloads YouTube video transcripts/subtitles and cover images by URL or video ID。 Supports multiple languages, translation, chapters, and speaker identification",
+        "features": "Downloads YouTube video transcripts/subtitles and cover images by URL or video ID. Supports multiple languages, translation, chapters, and speaker identification. Caches raw data for fast re-formatting. Use when user asks to \"get YouTube transcript\", \"download subtitles\", \"get captions\", \"YouTube字幕\", \"YouTube封面\", \"视频封面\", \"video thumbnail\", \"video cover image\", or provides a YouTube URL and wants the transcript/subtitle text or cover image extracted.",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "claude-design-card",
+      "description": "|",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "|。",
+        "trigger": "|",
+        "features": "|",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "所有样式内联，不依赖外部 CSS / JS",
+          "使用本地字体（`TsangerJinKai02-W04.ttf`、`NotoSerifSC-Regular.ttf`），通过 `@font-face` 加载",
+          "卡片宽度与格式尺寸匹配",
+          "底部包含一键保存 PNG 按鈕（浏览器直接打开可用）"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "content-pipeline",
+      "description": "内容生产和分发统一管线。素材收集→出稿→排版→封面→朋友圈文案→多平台转换→一键分发。涵盖公众号写作、小红书轮播图、即刻文案、播客音频、品牌视频、Chrome CDP 自动发布。",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "内容生产和分发统一管线。",
+        "trigger": "内容生产和分发统一管线。素材收集→出稿→排版→封面→朋友圈文案→多平台转换→一键分发",
+        "features": "内容生产和分发统一管线。素材收集→出稿→排版→封面→朋友圈文案→多平台转换→一键分发。涵盖公众号写作、小红书轮播图、即刻文案、播客音频、品牌视频、Chrome CDP 自动发布。",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "export-to-docx",
+      "description": "将当前对话中产生的结构化内容（分析报告、梳理总结、技术文档等）导出为排版良好的 Word 文档（.docx）。当用户说「导出word」「导出到word」「导出成word」「存成word」或类似意图时使用。",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "将当前对话中产生的结构化内容（分析报告、梳理总结、技术文档等）导出为排版良好的 Word 文档（.docx）。",
+        "trigger": "将当前对话中产生的结构化内容（分析报告、梳理总结、技术文档等）导出为排版良好的 Word 文档（。docx）",
+        "features": "将当前对话中产生的结构化内容（分析报告、梳理总结、技术文档等）导出为排版良好的 Word 文档（.docx）。当用户说「导出word」「导出到word」「导出成word」「存成word」或类似意图时使用。",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "默认输出到用户本次对话的工作目录（`d:\\AI漫剧制作\\` 或其子文件夹）",
+          "文件名使用用户指定的名称，若未指定则根据内容自动命名",
+          "同时输出 `.md`（便于版本管理）和 `.docx`（便于使用）",
+          "使用清晰的标题层级（`#` `##` `###` `####`）",
+          "表格用标准 markdown 表格语法"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "find-skills",
+      "description": "Helps users discover and install agent skills when they ask questions like \"how do I do X\", \"find a skill for X\", \"is there a skill that can...\", or express interest in extending capabilities. This skill should be used when the user is looking for functionality that might exist as an installable skill.",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Helps users discover and install agent skills when they ask questions like \"how do I do X\", \"find a skill for X\", \"is there a skill that can...\", or express interest in extending capabilities. This skill should be used when the user is looking for functionality that might exist as an installable skill.。",
+        "trigger": "Helps users discover and install agent skills when they ask questions like \"how do I do X\", \"find a skill for X\", \"is there a skill that can。",
+        "features": "Helps users discover and install agent skills when they ask questions like \"how do I do X\", \"find a skill for X\", \"is there a skill that can...\", or express interest in extending capabilities. This skill should be used when the user is looking for functionality that might exist as an installable skill.",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "humanizer-zh",
+      "description": "|",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "|。",
+        "trigger": "|",
+        "features": "|",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "kling-api",
+      "description": "可灵 (Kling) AI 图片与视频生成。当用户说\"生成一张图\"\"做一张海报\"\"生成视频\"\"文生图\"\"图生视频\"\"可灵\"\"kling\"时触发。",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "可灵 (Kling) AI 图片与视频生成。",
+        "trigger": "可灵 (Kling) AI 图片与视频生成。当用户说\"生成一张图\"\"做一张海报\"\"生成视频\"\"文生图\"\"图生视频\"\"可灵\"\"kling\"时触发",
+        "features": "可灵 (Kling) AI 图片与视频生成。当用户说\"生成一张图\"\"做一张海报\"\"生成视频\"\"文生图\"\"图生视频\"\"可灵\"\"kling\"时触发。",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "md2wechat",
+      "description": "Convert Markdown to WeChat Official Account HTML. Use this whenever the user wants WeChat article conversion, draft upload, image generation for articles, cover or infographic generation, image-post creation, writer-style drafting, AI trace removal, or needs to inspect supported providers, themes, and prompt templates before running the workflow.",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Convert Markdown to WeChat Official Account HTML. Use this whenever the user wants WeChat article conversion, draft upload, image generation for articles, cover or infographic generation, image-post creation, writer-style drafting, AI trace removal, or needs to inspect supported providers, themes, and prompt templates before running the workflow.。",
+        "trigger": "Convert Markdown to WeChat Official Account HTML。 Use this whenever the user wants WeChat article conversion, draft upload, image generation for articles, cover or infographic generation, image-post creation, writer-style drafting, AI trace removal, or needs to inspect supported providers, themes, and prompt templates before running the workflow",
+        "features": "Convert Markdown to WeChat Official Account HTML. Use this whenever the user wants WeChat article conversion, draft upload, image generation for articles, cover or infographic generation, image-post creation, writer-style drafting, AI trace removal, or needs to inspect supported providers, themes, and prompt templates before running the workflow.",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "notebooklm",
+      "description": "Use this skill to query your Google NotebookLM notebooks directly from Claude Code for source-grounded, citation-backed answers from Gemini. Browser automation, library management, persistent auth. Drastically reduced hallucinations through document-only responses.",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Use this skill to query your Google NotebookLM notebooks directly from Claude Code for source-grounded, citation-backed answers from Gemini. Browser automation, library management, persistent auth. Drastically reduced hallucinations through document-only responses.。",
+        "trigger": "Use this skill to query your Google NotebookLM notebooks directly from Claude Code for source-grounded, citation-backed answers from Gemini。 Browser automation, library management, persistent auth",
+        "features": "Use this skill to query your Google NotebookLM notebooks directly from Claude Code for source-grounded, citation-backed answers from Gemini. Browser automation, library management, persistent auth. Drastically reduced hallucinations through document-only responses.",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "opencli-adapter-author",
+      "description": "Use when writing an OpenCLI adapter for a new site or adding a new command to an existing site. Guides end-to-end from first recon through field decoding, adapter coding, and verify. Replaces opencli-oneshot / opencli-explorer. For ad-hoc browser driving (no adapter), see opencli-browser instead; for a top-level orientation to opencli, see opencli-usage.",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Use when writing an OpenCLI adapter for a new site or adding a new command to an existing site. Guides end-to-end from first recon through field decoding, adapter coding, and verify. Replaces opencli-oneshot / opencli-explorer. For ad-hoc browser driving (no adapter), see opencli-browser instead; for a top-level orientation to opencli, see opencli-usage.。",
+        "trigger": "Use when writing an OpenCLI adapter for a new site or adding a new command to an existing site。 Guides end-to-end from first recon through field decoding, adapter coding, and verify",
+        "features": "Use when writing an OpenCLI adapter for a new site or adding a new command to an existing site. Guides end-to-end from first recon through field decoding, adapter coding, and verify. Replaces opencli-oneshot / opencli-explorer. For ad-hoc browser driving (no adapter), see opencli-browser instead; for a top-level orientation to opencli, see opencli-usage.",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "opencli-autofix",
+      "description": "Automatically fix broken OpenCLI adapters when commands fail. Load this skill when an opencli command fails — it guides you through collecting a trace artifact, patching the adapter, retrying, and filing an upstream GitHub issue after a verified fix. Works with any AI agent.",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Automatically fix broken OpenCLI adapters when commands fail. Load this skill when an opencli command fails — it guides you through collecting a trace artifact, patching the adapter, retrying, and filing an upstream GitHub issue after a verified fix. Works with any AI agent.。",
+        "trigger": "Automatically fix broken OpenCLI adapters when commands fail。 Load this skill when an opencli command fails — it guides you through collecting a trace artifact, patching the adapter, retrying, and filing an upstream GitHub issue after a verified fix",
+        "features": "Automatically fix broken OpenCLI adapters when commands fail. Load this skill when an opencli command fails — it guides you through collecting a trace artifact, patching the adapter, retrying, and filing an upstream GitHub issue after a verified fix. Works with any AI agent.",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "opencli-browser",
+      "description": "Use when an agent needs to drive a real Chrome window via opencli — inspect a page, fill forms, click through logged-in flows, or extract data ad-hoc. Covers the selector-first target contract, compound form fields, stale-ref handling, network capture, and the agent-native envelopes the CLI returns. Not for writing adapters — see opencli-adapter-author for that.",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Use when an agent needs to drive a real Chrome window via opencli — inspect a page, fill forms, click through logged-in flows, or extract data ad-hoc. Covers the selector-first target contract, compound form fields, stale-ref handling, network capture, and the agent-native envelopes the CLI returns. Not for writing adapters — see opencli-adapter-author for that.。",
+        "trigger": "Use when an agent needs to drive a real Chrome window via opencli — inspect a page, fill forms, click through logged-in flows, or extract data ad-hoc。 Covers the selector-first target contract, compound form fields, stale-ref handling, network capture, and the agent-native envelopes the CLI returns",
+        "features": "Use when an agent needs to drive a real Chrome window via opencli — inspect a page, fill forms, click through logged-in flows, or extract data ad-hoc. Covers the selector-first target contract, compound form fields, stale-ref handling, network capture, and the agent-native envelopes the CLI returns. Not for writing adapters — see opencli-adapter-author for that.",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "opencli-usage",
+      "description": "Use at the start of any OpenCLI session — this is the top-level map of what `opencli` can do, how to discover adapters, what flags and output formats are universal, and which specialized skill to load next. Point here when an agent asks \"what can opencli do?\" or \"how do I find the right command?\".",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Use at the start of any OpenCLI session — this is the top-level map of what `opencli` can do, how to discover adapters, what flags and output formats are universal, and which specialized skill to load next. Point here when an agent asks \"what can opencli do?\" or \"how do I find the right command?\".。",
+        "trigger": "Use at the start of any OpenCLI session — this is the top-level map of what `opencli` can do, how to discover adapters, what flags and output formats are universal, and which specialized skill to load next。 Point here when an agent asks \"what can opencli do?\" or \"how do I find the right command?\"",
+        "features": "Use at the start of any OpenCLI session — this is the top-level map of what `opencli` can do, how to discover adapters, what flags and output formats are universal, and which specialized skill to load next. Point here when an agent asks \"what can opencli do?\" or \"how do I find the right command?\".",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "pdf-full-reader",
+      "description": "",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "。",
+        "trigger": "。",
+        "features": "",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "pdf-vision-reader",
+      "description": "Converts PDF pages to images and uses vision analysis to extract content including diagrams, charts, and visual elements. Use for PDFs with rich visual content. Requires pdf2image and poppler-utils.",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Converts PDF pages to images and uses vision analysis to extract content including diagrams, charts, and visual elements. Use for PDFs with rich visual content. Requires pdf2image and poppler-utils.。",
+        "trigger": "Converts PDF pages to images and uses vision analysis to extract content including diagrams, charts, and visual elements。 Use for PDFs with rich visual content",
+        "features": "Converts PDF pages to images and uses vision analysis to extract content including diagrams, charts, and visual elements. Use for PDFs with rich visual content. Requires pdf2image and poppler-utils.",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "project-summary",
+      "description": "项目总结汇报生成器。当用户需要对项目进行总结汇报、制作项目 presentation、生成项目介绍 PPT、向利益相关者展示项目来龙去脉时使用。也适用于用户说\"总结这个项目\"、\"做一个项目汇报\"、\"生成项目 presentation\"、\"给老板看这个项目\"等场景。生成全屏横滑幻灯片式 HTML，风格为浅米色+金色点缀的专业投研报告风格。",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "项目总结汇报生成器。",
+        "trigger": "项目总结汇报生成器。当用户需要对项目进行总结汇报、制作项目 presentation、生成项目介绍 PPT、向利益相关者展示项目来龙去脉时使用",
+        "features": "项目总结汇报生成器。当用户需要对项目进行总结汇报、制作项目 presentation、生成项目介绍 PPT、向利益相关者展示项目来龙去脉时使用。也适用于用户说\"总结这个项目\"、\"做一个项目汇报\"、\"生成项目 presentation\"、\"给老板看这个项目\"等场景。生成全屏横滑幻灯片式 HTML，风格为浅米色+金色点缀的专业投研报告风格。",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "project-to-article",
+      "description": "将 coding 项目总结为结构清晰、有人味、视觉吸睛的公众号文章。当用户说\"把这个项目写成文章\"、\"总结成公众号文章\"、\"生成一篇项目介绍文\"、\"写一篇推文介绍这个项目\"时使用。也适用于用户想将技术项目转化为面向普通读者的叙事性文章。",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "将 coding 项目总结为结构清晰、有人味、视觉吸睛的公众号文章。",
+        "trigger": "将 coding 项目总结为结构清晰、有人味、视觉吸睛的公众号文章。当用户说\"把这个项目写成文章\"、\"总结成公众号文章\"、\"生成一篇项目介绍文\"、\"写一篇推文介绍这个项目\"时使用",
+        "features": "将 coding 项目总结为结构清晰、有人味、视觉吸睛的公众号文章。当用户说\"把这个项目写成文章\"、\"总结成公众号文章\"、\"生成一篇项目介绍文\"、\"写一篇推文介绍这个项目\"时使用。也适用于用户想将技术项目转化为面向普通读者的叙事性文章。",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "具体、有数字、有悬念感",
+          "例：\"我花了两个月，用三个免费工具，搭了一套量化投研系统\"",
+          "副标题一句话提炼核心价值",
+          "**语气**：像朋友聊天，不像老师讲课。用\"说实话\"、\"后来才想明白\"这类口语化转折",
+          "**金句**：每段至少 1 句可以单独摘出来发朋友圈的话，用斜体"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "release-skills",
+      "description": "Universal release workflow. Auto-detects version files and changelogs. Supports Node.js, Python, Rust, Claude Plugin, GitHub Releases, annotated tags, historical release backfill, and generic projects. Use when user says \"release\", \"发布\", \"new version\", \"bump version\", \"push\", \"推送\", \"release notes\", \"GitHub Release\", or \"回填 Release\".",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Universal release workflow. Auto-detects version files and changelogs. Supports Node.js, Python, Rust, Claude Plugin, GitHub Releases, annotated tags, historical release backfill, and generic projects. Use when user says \"release\", \"发布\", \"new version\", \"bump version\", \"push\", \"推送\", \"release notes\", \"GitHub Release\", or \"回填 Release\".。",
+        "trigger": "Universal release workflow。 Auto-detects version files and changelogs",
+        "features": "Universal release workflow. Auto-detects version files and changelogs. Supports Node.js, Python, Rust, Claude Plugin, GitHub Releases, annotated tags, historical release backfill, and generic projects. Use when user says \"release\", \"发布\", \"new version\", \"bump version\", \"push\", \"推送\", \"release notes\", \"GitHub Release\", or \"回填 Release\".",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "skill-publisher",
+      "description": "Publish a Claude Code skill to GitHub with one command. Automates git init, commit, repo creation, README generation, topics, and license setup. TRIGGER when: user wants to upload a skill to GitHub, publish a skill, push to GitHub, \"上传到GitHub\", \"发布到GitHub\", \"skill上传到我github\", \"把这个skill发布到github\", \"推送到github\".",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Publish a Claude Code skill to GitHub with one command. Automates git init, commit, repo creation, README generation, topics, and license setup.。",
+        "trigger": "user wants to upload a skill to GitHub, publish a skill, push to GitHub, \"上传到GitHub\", \"发布到GitHub\", \"skill上传到我github\", \"把这个skill发布到github\", \"推送到github\".",
+        "features": "Publish a Claude Code skill to GitHub with one command. Automates git init, commit, repo creation, README generation, topics, and license setup.",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "`gh` not found → install: `winget install GitHub.cli` (Windows) or direct to https://cli.github.com",
+          "`gh` not authenticated → direct user to run `gh auth login`",
+          "`git` not found → direct user to install Git",
+          "Look for pattern: `Logged in to github.com account <USERNAME>`",
+          "Store as `GITHUB_USER`"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "skills-dashboard",
+      "description": "Build an HTML dashboard to visualize and manage all your Claude Code skills. Uses a 7-dimension analysis framework with auto-generated skill data, search, filter, and interactive expandable cards. TRIGGER when: user wants to see all skills, build a skills dashboard, visualize skills, manage skills overview, create a skills gallery/展示页面, make a skill management page, or asks \"what skills do I have\" / \"show me my skills\" / \"列出所有技能\" / \"技能概览\" / \"查看技能\" / \"我有哪些技能\".",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Build an HTML dashboard to visualize and manage all your Claude Code skills. Uses a 7-dimension analysis framework with auto-generated skill data, search, filter, and interactive expandable cards.。",
+        "trigger": "user wants to see all skills, build a skills dashboard, visualize skills, manage skills overview, create a skills gallery/展示页面, make a skill management page, or asks \"what skills do I have\" / \"show me my skills\" / \"列出所有技能\" / \"技能概览\" / \"查看技能\" / \"我有哪些技能\".",
+        "features": "Build an HTML dashboard to visualize and manage all your Claude Code skills. Uses a 7-dimension analysis framework with auto-generated skill data, search, filter, and interactive expandable cards.",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "socratic",
+      "description": "Socratic questioning to examine beliefs, uncover assumptions, and develop deeper understanding. Use to challenge thinking, evaluate proposals, or teach without lecturing.",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Socratic questioning to examine beliefs, uncover assumptions, and develop deeper understanding. Use to challenge thinking, evaluate proposals, or teach without lecturing.。",
+        "trigger": "Socratic questioning to examine beliefs, uncover assumptions, and develop deeper understanding。 Use to challenge thinking, evaluate proposals, or teach without lecturing",
+        "features": "Socratic questioning to examine beliefs, uncover assumptions, and develop deeper understanding. Use to challenge thinking, evaluate proposals, or teach without lecturing.",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "superpowers-brainstorming",
+      "description": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.。",
+        "trigger": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior。 Explores user intent, requirements and design before implementation",
+        "features": "You MUST use this before any creative work - creating features, building components, adding functionality, or modifying behavior. Explores user intent, requirements and design before implementation.",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "Check out the current project state first (files, docs, recent commits)",
+          "Before asking detailed questions, assess scope: if the request describes multiple independent subsystems (e.g., \"build a platform with chat, file storage, billing, and analytics\"), flag this immediately. Don't spend questions refining details of a project that needs to be decomposed first.",
+          "If the project is too large for a single spec, help the user decompose into sub-projects: what are the independent pieces, how do they relate, what order should they be built? Then brainstorm the first sub-project through the normal design flow. Each sub-project gets its own spec → plan → implementation cycle.",
+          "For appropriately-scoped projects, ask questions one at a time to refine the idea",
+          "Prefer multiple choice questions when possible, but open-ended is fine too"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "superpowers-dispatching-parallel-agents",
+      "description": "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies。",
+        "trigger": "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies",
+        "features": "Use when facing 2+ independent tasks that can be worked on without shared state or sequential dependencies",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "After agents return: 1. **Review each summary** - Understand what changed 2. **Check for conflicts** - Did agents edit same code? 3. **Run full suite** - Verify all fixes work together 4. **Spot check** - Agents can make systematic errors"
+      }
+    },
+    {
+      "name": "superpowers-executing-plans",
+      "description": "Use when you have a written implementation plan to execute in a separate session with review checkpoints",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Use when you have a written implementation plan to execute in a separate session with review checkpoints。",
+        "trigger": "Use when you have a written implementation plan to execute in a separate session with review checkpoints",
+        "features": "Use when you have a written implementation plan to execute in a separate session with review checkpoints",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "Announce: \"I'm using the finishing-a-development-branch skill to complete this work.\"",
+          "**REQUIRED SUB-SKILL:** Use superpowers:finishing-a-development-branch",
+          "Follow that skill to verify tests, present options, execute choice",
+          "Partner updates the plan based on your feedback",
+          "Fundamental approach needs rethinking"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "superpowers-finishing-a-development-branch",
+      "description": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting structured options for merge, PR, or cleanup",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting structured options for merge, PR, or cleanup。",
+        "trigger": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting structured options for merge, PR, or cleanup",
+        "features": "Use when implementation is complete, all tests pass, and you need to decide how to integrate the work - guides completion of development work by presenting structured options for merge, PR, or cleanup",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "superpowers-receiving-code-review",
+      "description": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation。",
+        "trigger": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation",
+        "features": "Use when receiving code review feedback, before implementing suggestions, especially if feedback seems unclear or technically questionable - requires technical rigor and verification, not performative agreement or blind implementation",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "superpowers-requesting-code-review",
+      "description": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements。",
+        "trigger": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
+        "features": "Use when completing tasks, implementing major features, or before merging to verify work meets requirements",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "superpowers-subagent-driven-development",
+      "description": "Use when executing implementation plans with independent tasks in the current session",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Use when executing implementation plans with independent tasks in the current session。",
+        "trigger": "Use when executing implementation plans with independent tasks in the current session",
+        "features": "Use when executing implementation plans with independent tasks in the current session",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "superpowers-systematic-debugging",
+      "description": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes。",
+        "trigger": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
+        "features": "Use when encountering any bug, test failure, or unexpected behavior, before proposing fixes",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "\"Quick fix for now, investigate later\"",
+          "\"Just try changing X and see if it works\"",
+          "\"Add multiple changes, run tests\"",
+          "\"Skip the test, I'll manually verify\"",
+          "\"It's probably X, let me fix that\""
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "superpowers-test-driven-development",
+      "description": "Use when implementing any feature or bugfix, before writing implementation code",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Use when implementing any feature or bugfix, before writing implementation code。",
+        "trigger": "Use when implementing any feature or bugfix, before writing implementation code",
+        "features": "Use when implementing any feature or bugfix, before writing implementation code",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "superpowers-using-git-worktrees",
+      "description": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback。",
+        "trigger": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback",
+        "features": "Use when starting feature work that needs isolation from current workspace or before executing implementation plans - ensures an isolated workspace exists via native tools or git worktree fallback",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "superpowers-using-superpowers",
+      "description": "Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions。",
+        "trigger": "Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions",
+        "features": "Use when starting any conversation - establishes how to find and use skills, requiring Skill tool invocation before ANY response including clarifying questions",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "superpowers-verification-before-completion",
+      "description": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always。",
+        "trigger": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always",
+        "features": "Use when about to claim work is complete, fixed, or passing, before committing or creating PRs - requires running verification commands and confirming output before making any success claims; evidence before assertions always",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "superpowers-writing-plans",
+      "description": "Use when you have a spec or requirements for a multi-step task, before touching code",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Use when you have a spec or requirements for a multi-step task, before touching code。",
+        "trigger": "Use when you have a spec or requirements for a multi-step task, before touching code",
+        "features": "Use when you have a spec or requirements for a multi-step task, before touching code",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "superpowers-writing-skills",
+      "description": "Use when creating new skills, editing existing skills, or verifying skills work before deployment",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "Use when creating new skills, editing existing skills, or verifying skills work before deployment。",
+        "trigger": "Use when creating new skills, editing existing skills, or verifying skills work before deployment",
+        "features": "Use when creating new skills, editing existing skills, or verifying skills work before deployment",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
+      }
+    },
+    {
+      "name": "xiaohongshu-architecture-ugc",
+      "description": "小红书建筑学考研UGC获客方法论（已锁定）。当用户需要创作建筑考研类小红书笔记、设计引流钩子、撰写私信转化话术、规划选题排期时使用。覆盖5校（浙大/浙工大/浙农林/浙理工/浙大城院）×12大话题类型×120套公式套装×7维变异引擎×5套写作模板×4阶段转化SOP×封面设计×去AI味×活人感×Z世代口语词库×防过度做作校准。",
+      "source": "Anthropic",
+      "category": "其他",
+      "dimensions": {
+        "scenario": "小红书建筑学考研UGC获客方法论（已锁定）。",
+        "trigger": "小红书建筑学考研UGC获客方法论（已锁定）。当用户需要创作建筑考研类小红书笔记、设计引流钩子、撰写私信转化话术、规划选题排期时使用",
+        "features": "小红书建筑学考研UGC获客方法论（已锁定）。当用户需要创作建筑考研类小红书笔记、设计引流钩子、撰写私信转化话术、规划选题排期时使用。覆盖5校（浙大/浙工大/浙农林/浙理工/浙大城院）×12大话题类型×120套公式套装×7维变异引擎×5套写作模板×4阶段转化SOP×封面设计×去AI味×活人感×Z世代口语词库×防过度做作校准。",
+        "solves": "提升效率，减少手动操作和查找文档的时间。",
+        "steps": [
+          "读取技能文档",
+          "按文档执行操作",
+          "输出结果"
+        ],
+        "tools": [
+          "无特定外部依赖"
+        ],
+        "verification": "检查输出结果是否符合预期格式和内容要求。"
       }
     },
     {
@@ -857,7 +2105,8 @@ window.__SKILLS_DATA__ = {
         ],
         "tools": [
           "settings.json"
-        ]
+        ],
+        "verification": "弹窗频率是否明显减少？建议的白名单是否真实命中高频操作？是否有误放危险命令？"
       }
     },
     {
@@ -878,7 +2127,8 @@ window.__SKILLS_DATA__ = {
         ],
         "tools": [
           "keybindings.json"
-        ]
+        ],
+        "verification": "快捷键是否正确绑定？是否与已有快捷键冲突？用户按下组合键后是否触发预期功能？"
       }
     },
     {
@@ -899,7 +2149,8 @@ window.__SKILLS_DATA__ = {
         ],
         "tools": [
           "Cron / Schedule Wakeup"
-        ]
+        ],
+        "verification": "循环是否按设定间隔执行？是否能手动正常停止？执行结果是否符合预期？"
       }
     },
     {
@@ -921,7 +2172,8 @@ window.__SKILLS_DATA__ = {
         "tools": [
           "settings.json",
           "settings.local.json"
-        ]
+        ],
+        "verification": "配置是否正确写入 JSON？新增权限是否生效？原有配置是否被误删？"
       }
     },
     {
@@ -943,56 +2195,13 @@ window.__SKILLS_DATA__ = {
         "tools": [
           "git init",
           "模板文件生成"
-        ]
-      }
-    },
-    {
-      "name": "export-to-docx",
-      "description": "将当前对话中产生的结构化内容（分析报告、梳理总结、技术文档等）导出为排版良好的 Word 文档（.docx）。当用户说「导出word」「导出到word」「导出成word」「存成word」或类似意图时使用。",
-      "source": "自定义",
-      "category": "用户自定义",
-      "dimensions": {
-        "scenario": "将当前对话中产生的结构化内容（分析报告、梳理总结、技术文档等）导出为排版良好的 Word 文档（.docx）。",
-        "trigger": "将当前对话中产生的结构化内容（分析报告、梳理总结、技术文档等）导出为排版良好的 Word 文档（。docx）",
-        "features": "将当前对话中产生的结构化内容（分析报告、梳理总结、技术文档等）导出为排版良好的 Word 文档（.docx）。当用户说「导出word」「导出到word」「导出成word」「存成word」或类似意图时使用。",
-        "solves": "提升效率，减少手动操作和查找文档的时间。",
-        "steps": [
-          "默认输出到用户本次对话的工作目录（`d:\\AI漫剧制作\\` 或其子文件夹）",
-          "文件名使用用户指定的名称，若未指定则根据内容自动命名",
-          "同时输出 `.md`（便于版本管理）和 `.docx`（便于使用）",
-          "使用清晰的标题层级（`#` `##` `###` `####`）",
-          "表格用标准 markdown 表格语法"
         ],
-        "tools": [
-          "无特定外部依赖"
-        ]
-      }
-    },
-    {
-      "name": "xiaohongshu-architecture-ugc",
-      "description": "小红书建筑学考研UGC获客方法论（已锁定）。当用户需要创作建筑考研类小红书笔记、设计引流钩子、撰写私信转化话术、规划选题排期时使用。覆盖5校（浙大/浙工大/浙农林/浙理工/浙大城院）×12大话题类型×120套公式套装×7维变异引擎×5套写作模板×4阶段转化SOP×封面设计×去AI味×活人感×Z世代口语词库×防过度做作校准。",
-      "source": "自定义",
-      "category": "用户自定义",
-      "dimensions": {
-        "scenario": "运营小红书建筑考研 UGC 内容账号，需要批量化、多样化地产出内容。",
-        "trigger": "用户提到\"小红书\"\"建筑考研\"\"UGC\"\"内容营销\"\"笔记\"",
-        "features": "5 所学校 × 12 种选题 × 120 套公式 × 7 维变量引擎 × 5 种写作模板 × 4 阶段转化 SOP",
-        "solves": "不用每天绞尽脑汁想选题写文案，系统化批量产出有人味、不 AI 感的小红书内容。",
-        "steps": [
-          "确定选题类型",
-          "选取变量组合",
-          "套用写作模板",
-          "执行反 AI 话术检查",
-          "输出排版好的笔记"
-        ],
-        "tools": [
-          "无特定外部依赖"
-        ]
+        "verification": "项目目录下是否生成了基础配置文件？git 仓库是否初始化成功？"
       }
     },
     {
       "name": "claude-api",
-      "description": "Build, debug, and optimize Claude API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Claude API code between Claude model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements). TRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Claude API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Claude feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project. SKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.",
+      "description": "构建、调试和优化 Claude API / Anthropic SDK 应用。覆盖 prompt caching、streaming、thinking、tool use、compaction、batch、files、citations、memory 等全部功能，以及模型版本迁移（4.5→4.6→4.7）。",
       "source": "Anthropic",
       "category": "API 开发",
       "dimensions": {
@@ -1008,12 +2217,13 @@ window.__SKILLS_DATA__ = {
         ],
         "tools": [
           "无特定外部依赖"
-        ]
+        ],
+        "verification": "生成的代码能否直接运行？是否使用了 prompt caching？SDK 版本是否匹配项目语言？"
       }
     },
     {
       "name": "claude-api-csharp",
-      "description": "Build Claude API applications with the official C# Anthropic SDK. Covers installation, client init, messages, streaming, thinking, tool use (raw definitions + JSON schema), prompt caching, structured output, PDF input, Files API, context editing/compaction, effort parameter, token counting, and server-side tools. TRIGGER when: .cs/.csproj/.sln files import Anthropic SDK; user asks about Claude API in C#/.NET; C# code calls Anthropic models.",
+      "description": "使用官方 C# Anthropic SDK 构建 Claude API 应用。覆盖 dotnet 安装、客户端初始化、消息发送、流式响应、thinking、tool use、prompt caching、结构化输出、PDF 输入、Files API、effort 参数等功能。",
       "source": "Anthropic",
       "category": "API 开发",
       "dimensions": {
@@ -1029,12 +2239,13 @@ window.__SKILLS_DATA__ = {
         ],
         "tools": [
           "无特定外部依赖"
-        ]
+        ],
+        "verification": "C# 代码能否 dotnet build 通过？Union 类型是否由 TryPick* 正确处理？"
       }
     },
     {
       "name": "claude-api-curl",
-      "description": "Build Claude API applications using raw HTTP requests (curl). Covers REST endpoint usage, authentication headers, JSON request/response handling, streaming SSE events, tool use loop, prompt caching, extended thinking, and beta features via anthropic-beta header. TRIGGER when: user writes curl commands for Claude API; shell scripts calling Anthropic API; raw HTTP integration without an official SDK; bash/zsh scripts hitting api.anthropic.com.",
+      "description": "使用原始 HTTP 请求（curl）调用 Claude API。覆盖 REST 端点、认证头、JSON 请求响应、SSE 流式事件、tool use 循环、prompt caching、extended thinking 等功能。",
       "source": "Anthropic",
       "category": "API 开发",
       "dimensions": {
@@ -1050,12 +2261,13 @@ window.__SKILLS_DATA__ = {
         ],
         "tools": [
           "无特定外部依赖"
-        ]
+        ],
+        "verification": "curl 命令能否成功返回 200？响应体是否能用 jq 正确解析？headers 是否完整？"
       }
     },
     {
       "name": "claude-api-go",
-      "description": "Build Claude API applications with the official Go Anthropic SDK. Covers go get install, client init, messages, streaming with accumulation, tool use (Beta ToolRunner with jsonschema struct tags + manual loop), thinking (adaptive), prompt caching, server-side tools, PDF input, Files API, and context editing/compaction. TRIGGER when: .go files import anthropic-sdk-go; user asks about Claude API in Go; Go code calls Anthropic models.",
+      "description": "使用官方 Go Anthropic SDK 构建 Claude API 应用。覆盖 go get 安装、客户端初始化、消息发送、流式累积、tool use（Beta ToolRunner + jsonschema struct tags）、thinking、prompt caching 等功能。",
       "source": "Anthropic",
       "category": "API 开发",
       "dimensions": {
@@ -1072,12 +2284,13 @@ window.__SKILLS_DATA__ = {
         ],
         "tools": [
           "无特定外部依赖"
-        ]
+        ],
+        "verification": "Go 代码能否 go build 通过？ToolRunner 是否正确处理工具调用循环？流式响应是否完整累积？"
       }
     },
     {
       "name": "claude-api-java",
-      "description": "Build Claude API applications with the official Java Anthropic SDK. Covers Maven/Gradle install, client init, messages, streaming, thinking (adaptive), tool use, prompt caching, structured output, PDF input, Files API, and context editing/compaction. TRIGGER when: .java files import com.anthropic.*; user asks about Claude API in Java; Java code calls Anthropic models.",
+      "description": "使用官方 Java Anthropic SDK 构建 Claude API 应用。覆盖 Maven/Gradle 安装、客户端初始化、消息发送、流式响应、thinking、tool use、prompt caching、结构化输出、PDF 输入、Files API 等功能。",
       "source": "Anthropic",
       "category": "API 开发",
       "dimensions": {
@@ -1093,12 +2306,13 @@ window.__SKILLS_DATA__ = {
         ],
         "tools": [
           "无特定外部依赖"
-        ]
+        ],
+        "verification": "Java 代码能否 mvn/gradle 编译通过？Response 类型是否正确解析？异常是否被妥善处理？"
       }
     },
     {
       "name": "claude-api-php",
-      "description": "Build Claude API applications with the official PHP Anthropic SDK. Covers composer install, client init, messages, streaming, thinking (adaptive), tool use, prompt caching, structured output, PDF input, Files API, and context editing/compaction. TRIGGER when: .php files use Anthropic\\* namespace; user asks about Claude API in PHP; PHP code calls Anthropic models.",
+      "description": "使用官方 PHP Anthropic SDK 构建 Claude API 应用。覆盖 composer 安装、客户端初始化、消息发送、流式响应、thinking、tool use、prompt caching、结构化输出、PDF 输入、Files API 等功能。",
       "source": "Anthropic",
       "category": "API 开发",
       "dimensions": {
@@ -1114,7 +2328,8 @@ window.__SKILLS_DATA__ = {
         ],
         "tools": [
           "无特定外部依赖"
-        ]
+        ],
+        "verification": "PHP 代码能否 composer install 后正常运行？Response 是否正确解析？异常处理是否到位？"
       }
     }
   ]
