@@ -48,6 +48,7 @@
   }
   .tab-cat-dot.cat-energy { background: #c88a0c; }
   .tab-cat-dot.cat-regular { background: #0ea882; }
+  .tab-cat-dot.cat-value { background: #1a6fb5; }
   .tab-cat-label {
     font-size: 12px; font-weight: 600; color: #2a3140;
     letter-spacing: 0.3px;
@@ -89,6 +90,11 @@
     background: #0ea882;
     color: #fff;
     box-shadow: 0 2px 8px rgba(14,168,130,0.28);
+  }
+  .tab-btn.cat-value.active {
+    background: #1a6fb5;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(26,111,181,0.28);
   }
   .tab-btn.active .tab-code {
     color: rgba(255,255,255,0.6);
@@ -296,6 +302,7 @@
   }
   .dash-dot.cat-energy { background: #c88a0c; }
   .dash-dot.cat-regular { background: #0ea882; }
+  .dash-dot.cat-value { background: #1a6fb5; }
   .dash-cat-name {
     font-size: 16px; font-weight: 700; color: #2a3140;
   }
@@ -326,6 +333,7 @@
   }
   .score-card.cat-energy { border-top: 3px solid #c88a0c; }
   .score-card.cat-regular { border-top: 3px solid #0ea882; }
+  .score-card.cat-value { border-top: 3px solid #1a6fb5; }
   .score-card.error-card {
     opacity: 0.55;
     cursor: default;
@@ -529,11 +537,11 @@
 
 <div class="header" id="main-header">
   <div>
-    <h1 id="header-name">红利策略综合概览 (11产品)</h1>
-    <div class="sub">跟踪 <span id="header-index">RSI + 均线偏离加权评分</span> | <span id="header-cat">能源/资源红利 + 常规红利</span></div>
+    <h1 id="header-name">红利策略综合概览 (14产品)</h1>
+    <div class="sub">跟踪 <span id="header-index">RSI + 均线偏离加权评分</span> | <span id="header-cat">能源/资源红利 + 常规红利 + 价值基金</span></div>
   </div>
   <div style="text-align:right">
-    <div class="nav-num" id="header-nav">11只</div>
+    <div class="nav-num" id="header-nav">14只</div>
     <div class="nav-label" id="header-src">技术指标综合</div>
     <div class="nav-date" id="header-date">2026-06-20</div>
   </div>
@@ -571,6 +579,15 @@
     <button class="tab-btn cat-regular" data-code="021550" data-cat="常规红利">红利低波100<span class="tab-code">021550</span></button>
     <button class="tab-btn cat-regular" data-code="012708" data-cat="常规红利">东证红利低波<span class="tab-code">012708</span></button>
     <button class="tab-btn cat-regular" data-code="515450" data-cat="常规红利">红利低波50<span class="tab-code">515450</span></button>
+  </div>
+  <div class="tab-category" data-cat="价值基金">
+    <span class="tab-cat-dot cat-value"></span>
+    <span class="tab-cat-label">价值基金</span>
+  </div>
+  <div class="tab-group">
+    <button class="tab-btn cat-value" data-code="006567" data-cat="价值基金">中泰星元价值优选<span class="tab-code">006567</span></button>
+    <button class="tab-btn cat-value" data-code="017415" data-cat="价值基金">中泰元和价值精选<span class="tab-code">017415</span></button>
+    <button class="tab-btn cat-value" data-code="090013" data-cat="价值基金">大成竞争优势<span class="tab-code">090013</span></button>
   </div>
 </div>
 
@@ -743,6 +760,54 @@
               <div class="sc-grade" style="color:#6b7280">无需关注</div>
               <div class="sc-badges"><div class="mini-badge"><span class="mini-label">RSI6</span><span style="color:#e07040;font-size:16px">●</span><span class="mini-val">20.6</span></div><div class="mini-badge"><span class="mini-label">RSI7W</span><span style="color:#e07040;font-size:16px">●</span><span class="mini-val">35.8</span></div><div class="mini-badge"><span class="mini-label">MA250</span><span style="color:#e07040;font-size:16px">●</span><span class="mini-val">-1.5%</span></div><div class="mini-badge"><span class="mini-label">MA550</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+8.5%</span></div></div>
               <div class="sc-pct-row"><div class="rsi-pct-line sc-pct" data-pct1y="4.5" data-min1y="9.6" data-max1y="87.6" data-median1y="53.8" data-pct3y="3.4" data-min3y="6.0" data-max3y="95.5" data-median3y="53.8" data-pctall="3.3" data-minall="6.0" data-maxall="95.5" data-medianall="53.3"><span class="sc-pct-label">6日RSI</span><span class="pct-dot" style="color:#c62828">●</span>第<strong class="pct-val" style="color:#c62828">3.4</strong>%位<span class="pct-range">（区间 6.0 ~ 95.5，中位 53.8）</span></div><div class="rsi-pct-line sc-pct" data-pct1y="1.9" data-min1y="35.0" data-max1y="88.6" data-median1y="56.8" data-pct3y="3.9" data-min3y="24.1" data-max3y="88.6" data-median3y="58.3" data-pctall="7.6" data-minall="19.5" data-maxall="88.6" data-medianall="56.6"><span class="sc-pct-label">7周RSI</span><span class="pct-dot" style="color:#c62828">●</span>第<strong class="pct-val" style="color:#c62828">3.9</strong>%位<span class="pct-range">（区间 24.1 ~ 88.6，中位 58.3）</span></div></div>
+            </div>
+          </div>
+        </div>
+        <div class="dash-section">
+          <div class="dash-section-head">
+            <span class="dash-dot cat-value"></span>
+            <span class="dash-cat-name">价值基金</span>
+            <span class="dash-cat-count">3只产品</span>
+          </div>
+          <div class="dash-grid">
+            <div class="score-card cat-value" data-code="006567" onclick="switchToProduct('006567')">
+              <div class="sc-header">
+                <span class="sc-name">中泰星元价值优选</span>
+                <span class="sc-code">006567</span>
+              </div>
+              <div class="sc-score-wrap">
+                <div class="score-bar-bg"><div class="score-bar-fill" style="width:50%;background:#c62828"></div></div>
+                <span class="sc-num" style="color:#c62828">50</span>
+              </div>
+              <div class="sc-grade" style="color:#c62828">买入信号</div>
+              <div class="sc-badges"><div class="mini-badge"><span class="mini-label">RSI6</span><span style="color:#c62828;font-size:16px">●</span><span class="mini-val">19.2</span></div><div class="mini-badge"><span class="mini-label">RSI7W</span><span style="color:#c62828;font-size:16px">●</span><span class="mini-val">24.1</span></div><div class="mini-badge"><span class="mini-label">MA250</span><span style="color:#e07040;font-size:16px">●</span><span class="mini-val">-5.6%</span></div><div class="mini-badge"><span class="mini-label">MA550</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+0.6%</span></div></div>
+              <div class="sc-pct-row"><div class="rsi-pct-line sc-pct" data-pct1y="3.3" data-min1y="10.7" data-max1y="92.9" data-median1y="52.6" data-pct3y="3.7" data-min3y="10.7" data-max3y="97.1" data-median3y="51.4" data-pctall="3.1" data-minall="3.3" data-maxall="97.6" data-medianall="54.1"><span class="sc-pct-label">6日RSI</span><span class="pct-dot" style="color:#c62828">●</span>第<strong class="pct-val" style="color:#c62828">3.7</strong>%位<span class="pct-range">（区间 10.7 ~ 97.1，中位 51.4）</span></div><div class="rsi-pct-line sc-pct" data-pct1y="0.0" data-min1y="24.1" data-max1y="84.4" data-median1y="57.8" data-pct3y="3.2" data-min3y="15.1" data-max3y="84.4" data-median3y="54.2" data-pctall="1.6" data-minall="15.1" data-maxall="95.0" data-medianall="57.4"><span class="sc-pct-label">7周RSI</span><span class="pct-dot" style="color:#c62828">●</span>第<strong class="pct-val" style="color:#c62828">3.2</strong>%位<span class="pct-range">（区间 15.1 ~ 84.4，中位 54.2）</span></div></div>
+            </div>
+            <div class="score-card cat-value" data-code="017415" onclick="switchToProduct('017415')">
+              <div class="sc-header">
+                <span class="sc-name">中泰元和价值精选</span>
+                <span class="sc-code">017415</span>
+              </div>
+              <div class="sc-score-wrap">
+                <div class="score-bar-bg"><div class="score-bar-fill" style="width:42%;background:#e07040"></div></div>
+                <span class="sc-num" style="color:#e07040">42</span>
+              </div>
+              <div class="sc-grade" style="color:#e07040">观察期</div>
+              <div class="sc-badges"><div class="mini-badge"><span class="mini-label">RSI6</span><span style="color:#c62828;font-size:16px">●</span><span class="mini-val">18.0</span></div><div class="mini-badge"><span class="mini-label">RSI7W</span><span style="color:#c62828;font-size:16px">●</span><span class="mini-val">29.7</span></div><div class="mini-badge"><span class="mini-label">MA250</span><span style="color:#e07040;font-size:16px">●</span><span class="mini-val">-3.5%</span></div><div class="mini-badge"><span class="mini-label">MA550</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+4.7%</span></div></div>
+              <div class="sc-pct-row"><div class="rsi-pct-line sc-pct" data-pct1y="1.2" data-min1y="9.0" data-max1y="88.4" data-median1y="53.4" data-pct3y="3.0" data-min3y="8.3" data-max3y="96.5" data-median3y="50.2" data-pctall="3.2" data-minall="8.3" data-maxall="96.5" data-medianall="50.0"><span class="sc-pct-label">6日RSI</span><span class="pct-dot" style="color:#c62828">●</span>第<strong class="pct-val" style="color:#c62828">3.0</strong>%位<span class="pct-range">（区间 8.3 ~ 96.5，中位 50.2）</span></div><div class="rsi-pct-line sc-pct" data-pct1y="0.0" data-min1y="29.7" data-max1y="84.0" data-median1y="59.6" data-pct3y="7.8" data-min3y="13.3" data-max3y="86.3" data-median3y="53.7" data-pctall="8.5" data-minall="13.3" data-maxall="86.3" data-medianall="53.0"><span class="sc-pct-label">7周RSI</span><span class="pct-dot" style="color:#c62828">●</span>第<strong class="pct-val" style="color:#c62828">7.8</strong>%位<span class="pct-range">（区间 13.3 ~ 86.3，中位 53.7）</span></div></div>
+            </div>
+            <div class="score-card cat-value" data-code="090013" onclick="switchToProduct('090013')">
+              <div class="sc-header">
+                <span class="sc-name">大成竞争优势</span>
+                <span class="sc-code">090013</span>
+              </div>
+              <div class="sc-score-wrap">
+                <div class="score-bar-bg"><div class="score-bar-fill" style="width:37%;background:#e07040"></div></div>
+                <span class="sc-num" style="color:#e07040">37</span>
+              </div>
+              <div class="sc-grade" style="color:#e07040">观察期</div>
+              <div class="sc-badges"><div class="mini-badge"><span class="mini-label">RSI6</span><span style="color:#e07040;font-size:16px">●</span><span class="mini-val">23.9</span></div><div class="mini-badge"><span class="mini-label">RSI7W</span><span style="color:#c62828;font-size:16px">●</span><span class="mini-val">21.8</span></div><div class="mini-badge"><span class="mini-label">MA250</span><span style="color:#e07040;font-size:16px">●</span><span class="mini-val">-1.5%</span></div><div class="mini-badge"><span class="mini-label">MA550</span><span style="color:#6b7280;font-size:16px">●</span><span class="mini-val">+4.9%</span></div></div>
+              <div class="sc-pct-row"><div class="rsi-pct-line sc-pct" data-pct1y="5.3" data-min1y="10.0" data-max1y="94.3" data-median1y="53.2" data-pct3y="5.1" data-min3y="10.0" data-max3y="97.6" data-median3y="53.0" data-pctall="6.2" data-minall="3.1" data-maxall="100.0" data-medianall="55.6"><span class="sc-pct-label">6日RSI</span><span class="pct-dot" style="color:#c62828">●</span>第<strong class="pct-val" style="color:#c62828">5.1</strong>%位<span class="pct-range">（区间 10.0 ~ 97.6，中位 53.0）</span></div><div class="rsi-pct-line sc-pct" data-pct1y="0.0" data-min1y="21.8" data-max1y="86.2" data-median1y="58.8" data-pct3y="0.6" data-min3y="13.6" data-max3y="86.2" data-median3y="58.3" data-pctall="2.0" data-minall="13.6" data-maxall="100.0" data-medianall="61.1"><span class="sc-pct-label">7周RSI</span><span class="pct-dot" style="color:#c62828">●</span>第<strong class="pct-val" style="color:#c62828">0.6</strong>%位<span class="pct-range">（区间 13.6 ~ 86.2，中位 58.3）</span></div></div>
             </div>
           </div>
         </div>
@@ -4409,10 +4474,703 @@
 </table>
     </div>
     </div>
+<div class="etf-panel" id="panel-006567">
+    
+      <div class="wide-card strategy-card">
+        <h3>策略概要</h3>
+        <div class="sf-grid">
+          <div class="sf-col sf-col-info">
+            <div class="sf-col-title">基金概况</div>
+            <div class="sf-row"><span class="sf-label">基金类型</span><span class="sf-value">混合型基金（主动管理）</span></div>
+<div class="sf-row"><span class="sf-label">成立日期</span><span class="sf-value">2019-09-06</span></div>
+<div class="sf-row"><span class="sf-label">基金公司</span><span class="sf-value">中泰证券(上海)资管</span></div>
+
+          </div>
+          <div class="sf-col sf-col-rule">
+            <div class="sf-col-title">调仓与加权</div>
+            <div class="sf-row"><span class="sf-label">调仓频率</span><span class="sf-value">无固定再平衡周期，仅在估值优势消失或基本面恶化时卖出</span></div>
+            <div class="sf-row"><span class="sf-label">成分数量</span><span class="sf-value">高度集中，通常持有20-30只股票</span></div>
+            <div class="sf-row"><span class="sf-label">加权方式</span><span class="sf-value">基金经理主观配置，个股集中度极高（前10大持仓占净值超60%）</span></div>
+            <div class="sf-row" style="margin-top:8px"><span class="sf-label">选股范围</span><span class="sf-value" style="font-weight:400;font-size:13px;line-height:1.6">灵活配置于A股（沪深主板、创业板）及港股通标的，不设行业和市值硬性限制。实际持仓高度集中于传统制造业（家电、建材、化工）、金融（国有大行、保险）、消费（白酒、家电）等具备稳定ROE和充裕自由现金流的成熟行业。持股数量约20-30只，持仓高度集中。</span></div>
+          </div>
+        </div>
+        <div class="sf-factors-section">
+          <div class="sf-col-title">选股因子详解</div>
+          <div class="sf-factor-item"><span class="sf-factor-dot">●</span><div><span class="sf-factor-name">深度价值选股</span><span class="sf-factor-desc">坚持自下而上的深度价值投资框架，寻找市场价格低于企业内生价值的标的。不以短期业绩排名为导向，注重安全边际与长期复合收益，典型持仓周期以年为单位</span></div></div>
+<div class="sf-factor-item"><span class="sf-factor-dot">●</span><div><span class="sf-factor-name">低估值保护</span><span class="sf-factor-desc">要求买入标的PE/PB显著低于其历史中枢和行业平均水平，通过估值保护构建下行缓冲。不参与高估值成长股博弈，宁可错过也不追高</span></div></div>
+<div class="sf-factor-item"><span class="sf-factor-dot">●</span><div><span class="sf-factor-name">高质量企业偏好</span><span class="sf-factor-desc">偏好具有强品牌护城河、高ROE（通常>15%）、低财务杠杆、现金流充裕的企业。聚焦消费、制造、金融等传统行业中具备长期竞争优势的龙头公司</span></div></div>
+<div class="sf-factor-item"><span class="sf-factor-dot">●</span><div><span class="sf-factor-name">集中持仓+低换手</span><span class="sf-factor-desc">前10大持仓通常占净值60%以上，年换手率远低于行业平均（通常<50%）。基金经理姜诚以"买入并持有"著称，不做短期交易和行业轮动</span></div></div>
+
+        </div>
+        <div class="sf-desc">姜诚管理的深度价值风格代表基金，不跟风不抱团，坚持自下而上挖掘具备安全边际的低估优质企业，以低换手率长期持有实现复利积累，是A股市场上风格最纯正的价值型主动管理基金之一。</div>
+      </div>
+    <div class="hero"><div class="hero-card valuation">
+        <h2>估值概览</h2>
+        <div class="val-note" style="margin-top:40px;margin-bottom:40px">
+          ⚠ 该产品跟踪指数含<b>港股成分</b>，baostock暂不支持港股PE/PB/股息率数据。<br>
+          持仓结构详见下方成分股列表。
+        </div>
+      </div><div class="hero-card technical">
+        <h2>技术指标</h2>
+        <div class="tech-grid">
+          <div class="tech-cell">
+        <div class="tech-label">250日均线</div>
+        <div class="rsi-hint buy">进入买点</div>
+        <div class="tech-num" style="color:#C88A0C">2.8580</div>
+        <div class="tech-dev" style="color:#C88A0C">净值偏离 -5.58%</div>
+        <div class="gauge-wrap">
+          <div class="gauge-obs-label" style="left:50.0%">▼观察点</div>
+          <div class="gauge-bar gauge-bar-ma">
+            <div class="gauge-mark obs" style="left:50.0%"></div>
+            <div class="gauge-mark buy" style="left:41.7%"></div>
+            <div class="gauge-mark buy" style="left:33.3%"></div>
+            <div class="gauge-mark buy" style="left:25.0%"></div>
+            <div class="gauge-mark buy" style="left:16.7%"></div>
+            <div class="gauge-mark buy" style="left:8.3%"></div>
+            <div class="gauge-dot" style="left:40.7%;color:#C88A0C"></div>
+          </div>
+          <div class="gauge-ticks">
+            <div class="gauge-tick top" style="left:0.0%">-30%</div>
+            <div class="gauge-tick top" style="left:8.3%">-25%</div>
+            <div class="gauge-tick top" style="left:16.7%">-20%</div>
+            <div class="gauge-tick top" style="left:25.0%">-15%</div>
+            <div class="gauge-tick top" style="left:33.3%">-10%</div>
+            <div class="gauge-tick top" style="left:41.7%">-5%</div>
+            <div class="gauge-tick top" style="left:50.0%">+0%</div>
+            <div class="gauge-tick top" style="left:58.3%">+5%</div>
+            <div class="gauge-tick top" style="left:66.7%">+10%</div>
+            <div class="gauge-tick top" style="left:75.0%">+15%</div>
+            <div class="gauge-tick top" style="left:83.3%">+20%</div>
+            <div class="gauge-tick top" style="left:91.7%">+25%</div>
+            <div class="gauge-tick top" style="left:100.0%">+30%</div>
+          </div>
+          <div class="rsi-legend" style="margin-top:10px;text-align:center">触及均线为观察点，低于均线越低越买</div>
+        </div>
+      </div>
+          <div class="tech-cell">
+        <div class="tech-label">550日均线</div>
+        <div class="rsi-hint safe">不用关注</div>
+        <div class="tech-num" style="color:#E04558">2.6820</div>
+        <div class="tech-dev" style="color:#E04558">净值偏离 +0.61%</div>
+        <div class="gauge-wrap">
+          <div class="gauge-obs-label" style="left:50.0%">▼观察点</div>
+          <div class="gauge-bar gauge-bar-ma">
+            <div class="gauge-mark obs" style="left:50.0%"></div>
+            <div class="gauge-mark buy" style="left:41.7%"></div>
+            <div class="gauge-mark buy" style="left:33.3%"></div>
+            <div class="gauge-mark buy" style="left:25.0%"></div>
+            <div class="gauge-mark buy" style="left:16.7%"></div>
+            <div class="gauge-mark buy" style="left:8.3%"></div>
+            <div class="gauge-dot" style="left:51.0%;color:#E04558"></div>
+          </div>
+          <div class="gauge-ticks">
+            <div class="gauge-tick top" style="left:0.0%">-30%</div>
+            <div class="gauge-tick top" style="left:8.3%">-25%</div>
+            <div class="gauge-tick top" style="left:16.7%">-20%</div>
+            <div class="gauge-tick top" style="left:25.0%">-15%</div>
+            <div class="gauge-tick top" style="left:33.3%">-10%</div>
+            <div class="gauge-tick top" style="left:41.7%">-5%</div>
+            <div class="gauge-tick top" style="left:50.0%">+0%</div>
+            <div class="gauge-tick top" style="left:58.3%">+5%</div>
+            <div class="gauge-tick top" style="left:66.7%">+10%</div>
+            <div class="gauge-tick top" style="left:75.0%">+15%</div>
+            <div class="gauge-tick top" style="left:83.3%">+20%</div>
+            <div class="gauge-tick top" style="left:91.7%">+25%</div>
+            <div class="gauge-tick top" style="left:100.0%">+30%</div>
+          </div>
+          <div class="rsi-legend" style="margin-top:10px;text-align:center">触及均线为观察点，低于均线越低越买</div>
+        </div>
+      </div>
+          <div class="tech-cell">
+        <div class="tech-label">6日RSI</div>
+        <div class="rsi-hint buy">进入买点</div>
+        <div class="tech-num" style="color:#C0392B">19.2</div>
+        <div class="tech-dev" style="color:#C0392B">RSI偏离 -5.8%</div>
+        <div class="gauge-wrap">
+          <div class="gauge-obs-label" style="left:25%">▼观察点</div>
+          <div class="gauge-bar gauge-bar-6d">
+            <div class="gauge-mark obs" style="left:25%"></div>
+            <div class="gauge-mark buy" style="left:20%"></div>
+            <div class="gauge-mark buy" style="left:15%"></div>
+            <div class="gauge-mark buy" style="left:10%"></div>
+            <div class="gauge-mark buy" style="left:5%"></div>
+            <div class="gauge-dot" style="left:19.2%;color:#C0392B"></div>
+          </div>
+          <div class="gauge-ticks">
+            <div class="gauge-tick top" style="left:5%">5</div>
+            <div class="gauge-tick top" style="left:10%">10</div>
+            <div class="gauge-tick top" style="left:15%">15</div>
+            <div class="gauge-tick top" style="left:20%">20</div>
+            <div class="gauge-tick top" style="left:25%">25</div>
+            <div class="gauge-tick top" style="left:30%">30</div>
+            <div class="gauge-tick top" style="left:35%">35</div>
+            <div class="gauge-tick top" style="left:40%">40</div>
+            <div class="gauge-tick top" style="left:50%">50</div>
+            <div class="gauge-tick top" style="left:75%">75</div>
+          </div>
+          <div class="rsi-pct-line" data-pct1y="3.3" data-min1y="10.7" data-max1y="92.9" data-median1y="52.6" data-pct3y="3.7" data-min3y="10.7" data-max3y="97.1" data-median3y="51.4" data-pctall="3.1" data-minall="3.3" data-maxall="97.6" data-medianall="54.1">
+            历史第 <strong class="pct-val" style="color:#c62828">3.7</strong> 百分位
+            <span class="pct-range">（区间 10.7 ~ 97.1，中位 51.4）</span>
+          </div>
+          <div class="rsi-legend" style="margin-top:10px;text-align:center">25为观察点，低于25越低越买</div>
+        </div>
+      </div>
+          <div class="tech-cell">
+        <div class="tech-label">7周RSI</div>
+        <div class="rsi-hint buy">进入买点</div>
+        <div class="tech-num" style="color:#7B1818">24.1</div>
+        <div class="tech-dev" style="color:#7B1818">RSI偏离 -15.9%</div>
+        <div class="gauge-wrap">
+          <div class="gauge-obs-label" style="left:40%">▼观察点</div>
+          <div class="gauge-bar gauge-bar-7w">
+            <div class="gauge-mark obs" style="left:40%"></div>
+            <div class="gauge-mark buy" style="left:35%"></div>
+            <div class="gauge-mark buy" style="left:30%"></div>
+            <div class="gauge-mark buy" style="left:25%"></div>
+            <div class="gauge-mark buy" style="left:20%"></div>
+            <div class="gauge-mark buy" style="left:15%"></div>
+            <div class="gauge-mark buy" style="left:10%"></div>
+            <div class="gauge-mark buy" style="left:5%"></div>
+            <div class="gauge-dot" style="left:24.1%;color:#7B1818"></div>
+          </div>
+          <div class="gauge-ticks">
+            <div class="gauge-tick top" style="left:5%">5</div>
+            <div class="gauge-tick top" style="left:10%">10</div>
+            <div class="gauge-tick top" style="left:15%">15</div>
+            <div class="gauge-tick top" style="left:20%">20</div>
+            <div class="gauge-tick top" style="left:25%">25</div>
+            <div class="gauge-tick top" style="left:30%">30</div>
+            <div class="gauge-tick top" style="left:35%">35</div>
+            <div class="gauge-tick top" style="left:40%">40</div>
+            <div class="gauge-tick top" style="left:50%">50</div>
+            <div class="gauge-tick top" style="left:75%">75</div>
+          </div>
+          <div class="rsi-pct-line" data-pct1y="0.0" data-min1y="24.1" data-max1y="84.4" data-median1y="57.8" data-pct3y="3.2" data-min3y="15.1" data-max3y="84.4" data-median3y="54.2" data-pctall="1.6" data-minall="15.1" data-maxall="95.0" data-medianall="57.4">
+            历史第 <strong class="pct-val" style="color:#c62828">3.2</strong> 百分位
+            <span class="pct-range">（区间 15.1 ~ 84.4，中位 54.2）</span>
+          </div>
+          <div class="rsi-legend" style="margin-top:10px;text-align:center">40为观察点，低于40越低越买</div>
+        </div>
+      </div>
+        </div>
+      </div></div>
+    <div class="main-grid">
+      <div class="card">
+        <h3 style="color:#0ea882">净值与阶段收益</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px">
+          <div><span style="color:#5a6070;font-size:13px">累计净值</span><br><b style="font-size:20px">2.6984</b></div>
+          <div><span style="color:#5a6070;font-size:13px">日期</span><br><b style="font-size:16px">2026-06-18</b></div>
+          <div><span style="color:#5a6070;font-size:13px">数据天数</span><br><b>1788 个交易日</b></div>
+          <div></div>
+        </div>
+        <table>
+          <tr><th>阶段</th><th>收益率</th><th>走势</th></tr>      <tr><td>近1周</td><td style="color:#d64555;font-weight:700">-5.16%</td><td style="font-size:11px;color:#d64555">███████████████</td></tr>
+      <tr><td>近1月</td><td style="color:#d64555;font-weight:700">-4.97%</td><td style="font-size:11px;color:#d64555">██████████████</td></tr>
+      <tr><td>近3月</td><td style="color:#d64555;font-weight:700">-7.36%</td><td style="font-size:11px;color:#d64555">██████████████████████</td></tr>
+      <tr><td>近6月</td><td style="color:#d64555;font-weight:700">-5.31%</td><td style="font-size:11px;color:#d64555">███████████████</td></tr>
+      <tr><td>近1年</td><td style="color:#0ea882;font-weight:700">+1.70%</td><td style="font-size:11px;color:#0ea882">█████</td></tr>
+      <tr><td>近2年</td><td style="color:#0ea882;font-weight:700">+10.07%</td><td style="font-size:11px;color:#0ea882">██████████████████████████████</td></tr>
+</table>
+      </div>
+      <div class="card">
+        <h3 style="color:#d64555">风险指标</h3>
+        <div style="margin-bottom:24px">
+          <div style="font-size:13px;color:#5a6070;margin-bottom:4px">年化波动率 (20日)</div>
+          <div style="font-size:32px;font-weight:800;color:#111">14.32%</div>
+        </div>
+        <div style="margin-bottom:24px">
+          <div style="font-size:13px;color:#5a6070;margin-bottom:4px">年化波动率 (60日)</div>
+          <div style="font-size:32px;font-weight:800;color:#111">12.30%</div>
+        </div>
+        <div>
+          <div style="font-size:13px;color:#5a6070;margin-bottom:4px">近1年最大回撤</div>
+          <div style="font-size:32px;font-weight:800;color:#d64555">10.34%</div>
+        </div>
+      </div>
+    </div>
+    <div class="main-grid">
+      <div class="card" style="grid-column:1/-1">
+        <h3 style="color:#3168d8">同类红利ETF近1年收益对比</h3>
+        <table><tr><th>排名</th><th>名称</th><th style="text-align:right">近1年收益</th><th></th></tr>      <tr style=""><td>1</td><td>红利质量ETF华夏</td><td style="text-align:right;color:#0ea882;font-weight:700">+17.14%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>2</td><td>红利ETF易方达</td><td style="text-align:right;color:#d64555;font-weight:700">-1.32%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>3</td><td>红利ETF华泰柏瑞</td><td style="text-align:right;color:#d64555;font-weight:700">-1.34%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>4</td><td>中证红利ETF招商</td><td style="text-align:right;color:#d64555;font-weight:700">-1.59%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>5</td><td>红利低波华泰柏瑞</td><td style="text-align:right;color:#d64555;font-weight:700">-5.67%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>6</td><td>红利低波50ETF南方</td><td style="text-align:right;color:#d64555;font-weight:700">-6.84%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>7</td><td>红利低波100景顺</td><td style="text-align:right;color:#d64555;font-weight:700">-8.24%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>8</td><td>红利低波易方达</td><td style="text-align:right;color:#d64555;font-weight:700">-9.09%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+</table>
+      </div>
+    </div>
+    
+    
+    </div>
+<div class="etf-panel" id="panel-017415">
+    
+      <div class="wide-card strategy-card">
+        <h3>策略概要</h3>
+        <div class="sf-grid">
+          <div class="sf-col sf-col-info">
+            <div class="sf-col-title">基金概况</div>
+            <div class="sf-row"><span class="sf-label">基金类型</span><span class="sf-value">混合型基金（主动管理）</span></div>
+<div class="sf-row"><span class="sf-label">成立日期</span><span class="sf-value">2023-02-20</span></div>
+<div class="sf-row"><span class="sf-label">基金公司</span><span class="sf-value">中泰证券(上海)资管</span></div>
+
+          </div>
+          <div class="sf-col sf-col-rule">
+            <div class="sf-col-title">调仓与加权</div>
+            <div class="sf-row"><span class="sf-label">调仓频率</span><span class="sf-value">基于微观选股和宏观择时动态调整，无固定周期</span></div>
+            <div class="sf-row"><span class="sf-label">成分数量</span><span class="sf-value">适度集中，通常持有30-50只股票</span></div>
+            <div class="sf-row"><span class="sf-label">加权方式</span><span class="sf-value">基金经理主观配置，个股集中度较高（前10大约占净值40-50%）</span></div>
+            <div class="sf-row" style="margin-top:8px"><span class="sf-label">选股范围</span><span class="sf-value" style="font-weight:400;font-size:13px;line-height:1.6">选股范围为A股（沪深主板、科创板、创业板）及港股通全部标的，行业覆盖消费、制造、金融、能源、公用事业等传统价值型行业，同时适度配置医药、互联网等具备消费属性且估值合理的新兴行业龙头。持股数量约30-50只，集中度低于星元。</span></div>
+          </div>
+        </div>
+        <div class="sf-factors-section">
+          <div class="sf-col-title">选股因子详解</div>
+          <div class="sf-factor-item"><span class="sf-factor-dot">●</span><div><span class="sf-factor-name">价值+质量双维度精选</span><span class="sf-factor-desc">在传统低估值框架上叠加企业质量维度，选取ROE/ROIC处于行业前列（通常要求>12%）、资产负债率合理（<50%）、自由现金流充沛的公司，避免"以低估值买入烂公司"的价值陷阱</span></div></div>
+<div class="sf-factor-item"><span class="sf-factor-dot">●</span><div><span class="sf-factor-name">合理价格买入好公司</span><span class="sf-factor-desc">相较于中泰星元(006567)的深度价值风格，本基金对估值的容忍度略高，愿意为确定性的高质量公司支付适度溢价。核心理念：以合理价格买入优质企业，优于以低价买入平庸企业</span></div></div>
+<div class="sf-factor-item"><span class="sf-factor-dot">●</span><div><span class="sf-factor-name">行业均衡配置</span><span class="sf-factor-desc">在保持价值风格不变的前提下，行业分布较星元更均衡，避免单一行业超配带来的集中度风险。消费、制造、金融、公用事业等均有覆盖，单行业上限通常控制在30%以内</span></div></div>
+<div class="sf-factor-item"><span class="sf-factor-dot">●</span><div><span class="sf-factor-name">宏观经济周期择时</span><span class="sf-factor-desc">基金经理会结合宏观经济（PMI、利率、信用周期）和行业景气度进行适度仓位管理，在经济衰退末期逆向加仓、在经济过热期减仓控制回撤</span></div></div>
+
+        </div>
+        <div class="sf-desc">中泰资管价值投资系列的进阶版，在深度价值的基础上叠加质量因子，以"合理价格买入优质企业"为核心理念。与006567同属姜诚管理但选股框架略有差异，是价值策略体系中的差异化配置选项。</div>
+      </div>
+    <div class="hero"><div class="hero-card valuation">
+        <h2>估值概览</h2>
+        <div class="val-note" style="margin-top:40px;margin-bottom:40px">
+          ⚠ 该产品跟踪指数含<b>港股成分</b>，baostock暂不支持港股PE/PB/股息率数据。<br>
+          持仓结构详见下方成分股列表。
+        </div>
+      </div><div class="hero-card technical">
+        <h2>技术指标</h2>
+        <div class="tech-grid">
+          <div class="tech-cell">
+        <div class="tech-label">250日均线</div>
+        <div class="rsi-hint watch">进入观察期</div>
+        <div class="tech-num" style="color:#E07040">1.1561</div>
+        <div class="tech-dev" style="color:#E07040">净值偏离 -3.46%</div>
+        <div class="gauge-wrap">
+          <div class="gauge-obs-label" style="left:50.0%">▼观察点</div>
+          <div class="gauge-bar gauge-bar-ma">
+            <div class="gauge-mark obs" style="left:50.0%"></div>
+            <div class="gauge-mark buy" style="left:41.7%"></div>
+            <div class="gauge-mark buy" style="left:33.3%"></div>
+            <div class="gauge-mark buy" style="left:25.0%"></div>
+            <div class="gauge-mark buy" style="left:16.7%"></div>
+            <div class="gauge-mark buy" style="left:8.3%"></div>
+            <div class="gauge-dot" style="left:44.2%;color:#E07040"></div>
+          </div>
+          <div class="gauge-ticks">
+            <div class="gauge-tick top" style="left:0.0%">-30%</div>
+            <div class="gauge-tick top" style="left:8.3%">-25%</div>
+            <div class="gauge-tick top" style="left:16.7%">-20%</div>
+            <div class="gauge-tick top" style="left:25.0%">-15%</div>
+            <div class="gauge-tick top" style="left:33.3%">-10%</div>
+            <div class="gauge-tick top" style="left:41.7%">-5%</div>
+            <div class="gauge-tick top" style="left:50.0%">+0%</div>
+            <div class="gauge-tick top" style="left:58.3%">+5%</div>
+            <div class="gauge-tick top" style="left:66.7%">+10%</div>
+            <div class="gauge-tick top" style="left:75.0%">+15%</div>
+            <div class="gauge-tick top" style="left:83.3%">+20%</div>
+            <div class="gauge-tick top" style="left:91.7%">+25%</div>
+            <div class="gauge-tick top" style="left:100.0%">+30%</div>
+          </div>
+          <div class="rsi-legend" style="margin-top:10px;text-align:center">触及均线为观察点，低于均线越低越买</div>
+        </div>
+      </div>
+          <div class="tech-cell">
+        <div class="tech-label">550日均线</div>
+        <div class="rsi-hint safe">不用关注</div>
+        <div class="tech-num" style="color:#E04558">1.0663</div>
+        <div class="tech-dev" style="color:#E04558">净值偏离 +4.67%</div>
+        <div class="gauge-wrap">
+          <div class="gauge-obs-label" style="left:50.0%">▼观察点</div>
+          <div class="gauge-bar gauge-bar-ma">
+            <div class="gauge-mark obs" style="left:50.0%"></div>
+            <div class="gauge-mark buy" style="left:41.7%"></div>
+            <div class="gauge-mark buy" style="left:33.3%"></div>
+            <div class="gauge-mark buy" style="left:25.0%"></div>
+            <div class="gauge-mark buy" style="left:16.7%"></div>
+            <div class="gauge-mark buy" style="left:8.3%"></div>
+            <div class="gauge-dot" style="left:57.8%;color:#E04558"></div>
+          </div>
+          <div class="gauge-ticks">
+            <div class="gauge-tick top" style="left:0.0%">-30%</div>
+            <div class="gauge-tick top" style="left:8.3%">-25%</div>
+            <div class="gauge-tick top" style="left:16.7%">-20%</div>
+            <div class="gauge-tick top" style="left:25.0%">-15%</div>
+            <div class="gauge-tick top" style="left:33.3%">-10%</div>
+            <div class="gauge-tick top" style="left:41.7%">-5%</div>
+            <div class="gauge-tick top" style="left:50.0%">+0%</div>
+            <div class="gauge-tick top" style="left:58.3%">+5%</div>
+            <div class="gauge-tick top" style="left:66.7%">+10%</div>
+            <div class="gauge-tick top" style="left:75.0%">+15%</div>
+            <div class="gauge-tick top" style="left:83.3%">+20%</div>
+            <div class="gauge-tick top" style="left:91.7%">+25%</div>
+            <div class="gauge-tick top" style="left:100.0%">+30%</div>
+          </div>
+          <div class="rsi-legend" style="margin-top:10px;text-align:center">触及均线为观察点，低于均线越低越买</div>
+        </div>
+      </div>
+          <div class="tech-cell">
+        <div class="tech-label">6日RSI</div>
+        <div class="rsi-hint buy">进入买点</div>
+        <div class="tech-num" style="color:#C0392B">18.0</div>
+        <div class="tech-dev" style="color:#C0392B">RSI偏离 -7.0%</div>
+        <div class="gauge-wrap">
+          <div class="gauge-obs-label" style="left:25%">▼观察点</div>
+          <div class="gauge-bar gauge-bar-6d">
+            <div class="gauge-mark obs" style="left:25%"></div>
+            <div class="gauge-mark buy" style="left:20%"></div>
+            <div class="gauge-mark buy" style="left:15%"></div>
+            <div class="gauge-mark buy" style="left:10%"></div>
+            <div class="gauge-mark buy" style="left:5%"></div>
+            <div class="gauge-dot" style="left:18.0%;color:#C0392B"></div>
+          </div>
+          <div class="gauge-ticks">
+            <div class="gauge-tick top" style="left:5%">5</div>
+            <div class="gauge-tick top" style="left:10%">10</div>
+            <div class="gauge-tick top" style="left:15%">15</div>
+            <div class="gauge-tick top" style="left:20%">20</div>
+            <div class="gauge-tick top" style="left:25%">25</div>
+            <div class="gauge-tick top" style="left:30%">30</div>
+            <div class="gauge-tick top" style="left:35%">35</div>
+            <div class="gauge-tick top" style="left:40%">40</div>
+            <div class="gauge-tick top" style="left:50%">50</div>
+            <div class="gauge-tick top" style="left:75%">75</div>
+          </div>
+          <div class="rsi-pct-line" data-pct1y="1.2" data-min1y="9.0" data-max1y="88.4" data-median1y="53.4" data-pct3y="3.0" data-min3y="8.3" data-max3y="96.5" data-median3y="50.2" data-pctall="3.2" data-minall="8.3" data-maxall="96.5" data-medianall="50.0">
+            历史第 <strong class="pct-val" style="color:#c62828">3.0</strong> 百分位
+            <span class="pct-range">（区间 8.3 ~ 96.5，中位 50.2）</span>
+          </div>
+          <div class="rsi-legend" style="margin-top:10px;text-align:center">25为观察点，低于25越低越买</div>
+        </div>
+      </div>
+          <div class="tech-cell">
+        <div class="tech-label">7周RSI</div>
+        <div class="rsi-hint buy">进入买点</div>
+        <div class="tech-num" style="color:#A93226">29.7</div>
+        <div class="tech-dev" style="color:#A93226">RSI偏离 -10.3%</div>
+        <div class="gauge-wrap">
+          <div class="gauge-obs-label" style="left:40%">▼观察点</div>
+          <div class="gauge-bar gauge-bar-7w">
+            <div class="gauge-mark obs" style="left:40%"></div>
+            <div class="gauge-mark buy" style="left:35%"></div>
+            <div class="gauge-mark buy" style="left:30%"></div>
+            <div class="gauge-mark buy" style="left:25%"></div>
+            <div class="gauge-mark buy" style="left:20%"></div>
+            <div class="gauge-mark buy" style="left:15%"></div>
+            <div class="gauge-mark buy" style="left:10%"></div>
+            <div class="gauge-mark buy" style="left:5%"></div>
+            <div class="gauge-dot" style="left:29.7%;color:#A93226"></div>
+          </div>
+          <div class="gauge-ticks">
+            <div class="gauge-tick top" style="left:5%">5</div>
+            <div class="gauge-tick top" style="left:10%">10</div>
+            <div class="gauge-tick top" style="left:15%">15</div>
+            <div class="gauge-tick top" style="left:20%">20</div>
+            <div class="gauge-tick top" style="left:25%">25</div>
+            <div class="gauge-tick top" style="left:30%">30</div>
+            <div class="gauge-tick top" style="left:35%">35</div>
+            <div class="gauge-tick top" style="left:40%">40</div>
+            <div class="gauge-tick top" style="left:50%">50</div>
+            <div class="gauge-tick top" style="left:75%">75</div>
+          </div>
+          <div class="rsi-pct-line" data-pct1y="0.0" data-min1y="29.7" data-max1y="84.0" data-median1y="59.6" data-pct3y="7.8" data-min3y="13.3" data-max3y="86.3" data-median3y="53.7" data-pctall="8.5" data-minall="13.3" data-maxall="86.3" data-medianall="53.0">
+            历史第 <strong class="pct-val" style="color:#c62828">7.8</strong> 百分位
+            <span class="pct-range">（区间 13.3 ~ 86.3，中位 53.7）</span>
+          </div>
+          <div class="rsi-legend" style="margin-top:10px;text-align:center">40为观察点，低于40越低越买</div>
+        </div>
+      </div>
+        </div>
+      </div></div>
+    <div class="main-grid">
+      <div class="card">
+        <h3 style="color:#0ea882">净值与阶段收益</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px">
+          <div><span style="color:#5a6070;font-size:13px">累计净值</span><br><b style="font-size:20px">1.1161</b></div>
+          <div><span style="color:#5a6070;font-size:13px">日期</span><br><b style="font-size:16px">2026-06-18</b></div>
+          <div><span style="color:#5a6070;font-size:13px">数据天数</span><br><b>765 个交易日</b></div>
+          <div></div>
+        </div>
+        <table>
+          <tr><th>阶段</th><th>收益率</th><th>走势</th></tr>      <tr><td>近1周</td><td style="color:#d64555;font-weight:700">-6.90%</td><td style="font-size:11px;color:#d64555">████████████████████</td></tr>
+      <tr><td>近1月</td><td style="color:#d64555;font-weight:700">-5.63%</td><td style="font-size:11px;color:#d64555">████████████████</td></tr>
+      <tr><td>近3月</td><td style="color:#d64555;font-weight:700">-4.30%</td><td style="font-size:11px;color:#d64555">████████████</td></tr>
+      <tr><td>近6月</td><td style="color:#d64555;font-weight:700">-1.18%</td><td style="font-size:11px;color:#d64555">███</td></tr>
+      <tr><td>近1年</td><td style="color:#0ea882;font-weight:700">+4.90%</td><td style="font-size:11px;color:#0ea882">██████████████</td></tr>
+      <tr><td>近2年</td><td style="color:#0ea882;font-weight:700">+14.77%</td><td style="font-size:11px;color:#0ea882">███████████████████████████████████</td></tr>
+</table>
+      </div>
+      <div class="card">
+        <h3 style="color:#d64555">风险指标</h3>
+        <div style="margin-bottom:24px">
+          <div style="font-size:13px;color:#5a6070;margin-bottom:4px">年化波动率 (20日)</div>
+          <div style="font-size:32px;font-weight:800;color:#111">18.64%</div>
+        </div>
+        <div style="margin-bottom:24px">
+          <div style="font-size:13px;color:#5a6070;margin-bottom:4px">年化波动率 (60日)</div>
+          <div style="font-size:32px;font-weight:800;color:#111">16.22%</div>
+        </div>
+        <div>
+          <div style="font-size:13px;color:#5a6070;margin-bottom:4px">近1年最大回撤</div>
+          <div style="font-size:32px;font-weight:800;color:#d64555">10.38%</div>
+        </div>
+      </div>
+    </div>
+    <div class="main-grid">
+      <div class="card" style="grid-column:1/-1">
+        <h3 style="color:#3168d8">同类红利ETF近1年收益对比</h3>
+        <table><tr><th>排名</th><th>名称</th><th style="text-align:right">近1年收益</th><th></th></tr>      <tr style=""><td>1</td><td>红利质量ETF华夏</td><td style="text-align:right;color:#0ea882;font-weight:700">+17.14%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>2</td><td>红利ETF易方达</td><td style="text-align:right;color:#d64555;font-weight:700">-1.32%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>3</td><td>红利ETF华泰柏瑞</td><td style="text-align:right;color:#d64555;font-weight:700">-1.34%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>4</td><td>中证红利ETF招商</td><td style="text-align:right;color:#d64555;font-weight:700">-1.59%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>5</td><td>红利低波华泰柏瑞</td><td style="text-align:right;color:#d64555;font-weight:700">-5.67%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>6</td><td>红利低波50ETF南方</td><td style="text-align:right;color:#d64555;font-weight:700">-6.84%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>7</td><td>红利低波100景顺</td><td style="text-align:right;color:#d64555;font-weight:700">-8.24%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>8</td><td>红利低波易方达</td><td style="text-align:right;color:#d64555;font-weight:700">-9.09%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+</table>
+      </div>
+    </div>
+    
+    
+    </div>
+<div class="etf-panel" id="panel-090013">
+    
+      <div class="wide-card strategy-card">
+        <h3>策略概要</h3>
+        <div class="sf-grid">
+          <div class="sf-col sf-col-info">
+            <div class="sf-col-title">基金概况</div>
+            <div class="sf-row"><span class="sf-label">基金类型</span><span class="sf-value">混合型基金（主动管理）</span></div>
+<div class="sf-row"><span class="sf-label">成立日期</span><span class="sf-value">2014-04-23</span></div>
+<div class="sf-row"><span class="sf-label">基金公司</span><span class="sf-value">大成基金</span></div>
+
+          </div>
+          <div class="sf-col sf-col-rule">
+            <div class="sf-col-title">调仓与加权</div>
+            <div class="sf-row"><span class="sf-label">调仓频率</span><span class="sf-value">长周期持有，仅在竞争优势弱化或估值过度透支时调整</span></div>
+            <div class="sf-row"><span class="sf-label">成分数量</span><span class="sf-value">集中持仓，通常持有20-30只股票</span></div>
+            <div class="sf-row"><span class="sf-label">加权方式</span><span class="sf-value">基金经理深度研究驱动的主观配置，集中度高（前10大约占净值55%以上）</span></div>
+            <div class="sf-row" style="margin-top:8px"><span class="sf-label">选股范围</span><span class="sf-value" style="font-weight:400;font-size:13px;line-height:1.6">选股范围为A股（沪深主板、科创板、创业板）优质上市公司，深耕消费（家电、白酒、食品）、先进制造（高端装备、化工新材料）、金融（银行、保险）等具备长期竞争优势的行业。注重估值与质量的平衡，不限于纯低估值策略。持股数量约20-30只，集中度较高。</span></div>
+          </div>
+        </div>
+        <div class="sf-factors-section">
+          <div class="sf-col-title">选股因子详解</div>
+          <div class="sf-factor-item"><span class="sf-factor-dot">●</span><div><span class="sf-factor-name">竞争优势分析框架</span><span class="sf-factor-desc">核心选股方法论：寻找具备可持续竞争优势（经济护城河）的企业——包括品牌定价权、成本优势、网络效应、转换成本、规模效应五大来源。只有具备长期竞争优势的企业，才能维持高ROE和高自由现金流</span></div></div>
+<div class="sf-factor-item"><span class="sf-factor-dot">●</span><div><span class="sf-factor-name">逆向布局+安全边际</span><span class="sf-factor-desc">偏好在市场悲观、行业低谷期逆向买入。不仅看企业质地，更严格计算内在价值与市场价格之间的安全边际空间（通常要求>30%），确保买入价格有足够缓冲</span></div></div>
+<div class="sf-factor-item"><span class="sf-factor-dot">●</span><div><span class="sf-factor-name">管理层评估</span><span class="sf-factor-desc">将管理层诚信和资本配置能力纳入核心权重——回避有损害股东利益历史的管理团队，偏好管理层持股比例高、信息披露透明、资本纪律严格的企业</span></div></div>
+<div class="sf-factor-item"><span class="sf-factor-dot">●</span><div><span class="sf-factor-name">长期持有+集中投资</span><span class="sf-factor-desc">典型持有期3-5年，不追逐短期热点和风格轮动。持仓集中于20-30只经过深度研究的高确信度标的，基金经理徐彦以稳健和定力著称</span></div></div>
+
+        </div>
+        <div class="sf-desc">徐彦管理的竞争优势框架价值基金，以"买入具备可持续竞争优势的优质企业"为核心策略，强调管理层评估和安全边际双重保护。近10年老基金，长期业绩稳健，是A股价值投资流派的标杆之一。</div>
+      </div>
+    <div class="hero"><div class="hero-card valuation">
+        <h2>估值概览</h2>
+        <div class="val-note" style="margin-top:40px;margin-bottom:40px">
+          ⚠ 该产品跟踪指数含<b>港股成分</b>，baostock暂不支持港股PE/PB/股息率数据。<br>
+          持仓结构详见下方成分股列表。
+        </div>
+      </div><div class="hero-card technical">
+        <h2>技术指标</h2>
+        <div class="tech-grid">
+          <div class="tech-cell">
+        <div class="tech-label">250日均线</div>
+        <div class="rsi-hint watch">进入观察期</div>
+        <div class="tech-num" style="color:#E07040">3.2183</div>
+        <div class="tech-dev" style="color:#E07040">净值偏离 -1.47%</div>
+        <div class="gauge-wrap">
+          <div class="gauge-obs-label" style="left:50.0%">▼观察点</div>
+          <div class="gauge-bar gauge-bar-ma">
+            <div class="gauge-mark obs" style="left:50.0%"></div>
+            <div class="gauge-mark buy" style="left:41.7%"></div>
+            <div class="gauge-mark buy" style="left:33.3%"></div>
+            <div class="gauge-mark buy" style="left:25.0%"></div>
+            <div class="gauge-mark buy" style="left:16.7%"></div>
+            <div class="gauge-mark buy" style="left:8.3%"></div>
+            <div class="gauge-dot" style="left:47.6%;color:#E07040"></div>
+          </div>
+          <div class="gauge-ticks">
+            <div class="gauge-tick top" style="left:0.0%">-30%</div>
+            <div class="gauge-tick top" style="left:8.3%">-25%</div>
+            <div class="gauge-tick top" style="left:16.7%">-20%</div>
+            <div class="gauge-tick top" style="left:25.0%">-15%</div>
+            <div class="gauge-tick top" style="left:33.3%">-10%</div>
+            <div class="gauge-tick top" style="left:41.7%">-5%</div>
+            <div class="gauge-tick top" style="left:50.0%">+0%</div>
+            <div class="gauge-tick top" style="left:58.3%">+5%</div>
+            <div class="gauge-tick top" style="left:66.7%">+10%</div>
+            <div class="gauge-tick top" style="left:75.0%">+15%</div>
+            <div class="gauge-tick top" style="left:83.3%">+20%</div>
+            <div class="gauge-tick top" style="left:91.7%">+25%</div>
+            <div class="gauge-tick top" style="left:100.0%">+30%</div>
+          </div>
+          <div class="rsi-legend" style="margin-top:10px;text-align:center">触及均线为观察点，低于均线越低越买</div>
+        </div>
+      </div>
+          <div class="tech-cell">
+        <div class="tech-label">550日均线</div>
+        <div class="rsi-hint safe">不用关注</div>
+        <div class="tech-num" style="color:#E04558">3.0221</div>
+        <div class="tech-dev" style="color:#E04558">净值偏离 +4.93%</div>
+        <div class="gauge-wrap">
+          <div class="gauge-obs-label" style="left:50.0%">▼观察点</div>
+          <div class="gauge-bar gauge-bar-ma">
+            <div class="gauge-mark obs" style="left:50.0%"></div>
+            <div class="gauge-mark buy" style="left:41.7%"></div>
+            <div class="gauge-mark buy" style="left:33.3%"></div>
+            <div class="gauge-mark buy" style="left:25.0%"></div>
+            <div class="gauge-mark buy" style="left:16.7%"></div>
+            <div class="gauge-mark buy" style="left:8.3%"></div>
+            <div class="gauge-dot" style="left:58.2%;color:#E04558"></div>
+          </div>
+          <div class="gauge-ticks">
+            <div class="gauge-tick top" style="left:0.0%">-30%</div>
+            <div class="gauge-tick top" style="left:8.3%">-25%</div>
+            <div class="gauge-tick top" style="left:16.7%">-20%</div>
+            <div class="gauge-tick top" style="left:25.0%">-15%</div>
+            <div class="gauge-tick top" style="left:33.3%">-10%</div>
+            <div class="gauge-tick top" style="left:41.7%">-5%</div>
+            <div class="gauge-tick top" style="left:50.0%">+0%</div>
+            <div class="gauge-tick top" style="left:58.3%">+5%</div>
+            <div class="gauge-tick top" style="left:66.7%">+10%</div>
+            <div class="gauge-tick top" style="left:75.0%">+15%</div>
+            <div class="gauge-tick top" style="left:83.3%">+20%</div>
+            <div class="gauge-tick top" style="left:91.7%">+25%</div>
+            <div class="gauge-tick top" style="left:100.0%">+30%</div>
+          </div>
+          <div class="rsi-legend" style="margin-top:10px;text-align:center">触及均线为观察点，低于均线越低越买</div>
+        </div>
+      </div>
+          <div class="tech-cell">
+        <div class="tech-label">6日RSI</div>
+        <div class="rsi-hint watch">进入观察期</div>
+        <div class="tech-num" style="color:#C0392B">23.9</div>
+        <div class="tech-dev" style="color:#C0392B">RSI偏离 -1.1%</div>
+        <div class="gauge-wrap">
+          <div class="gauge-obs-label" style="left:25%">▼观察点</div>
+          <div class="gauge-bar gauge-bar-6d">
+            <div class="gauge-mark obs" style="left:25%"></div>
+            <div class="gauge-mark buy" style="left:20%"></div>
+            <div class="gauge-mark buy" style="left:15%"></div>
+            <div class="gauge-mark buy" style="left:10%"></div>
+            <div class="gauge-mark buy" style="left:5%"></div>
+            <div class="gauge-dot" style="left:23.9%;color:#C0392B"></div>
+          </div>
+          <div class="gauge-ticks">
+            <div class="gauge-tick top" style="left:5%">5</div>
+            <div class="gauge-tick top" style="left:10%">10</div>
+            <div class="gauge-tick top" style="left:15%">15</div>
+            <div class="gauge-tick top" style="left:20%">20</div>
+            <div class="gauge-tick top" style="left:25%">25</div>
+            <div class="gauge-tick top" style="left:30%">30</div>
+            <div class="gauge-tick top" style="left:35%">35</div>
+            <div class="gauge-tick top" style="left:40%">40</div>
+            <div class="gauge-tick top" style="left:50%">50</div>
+            <div class="gauge-tick top" style="left:75%">75</div>
+          </div>
+          <div class="rsi-pct-line" data-pct1y="5.3" data-min1y="10.0" data-max1y="94.3" data-median1y="53.2" data-pct3y="5.1" data-min3y="10.0" data-max3y="97.6" data-median3y="53.0" data-pctall="6.2" data-minall="3.1" data-maxall="100.0" data-medianall="55.6">
+            历史第 <strong class="pct-val" style="color:#c62828">5.1</strong> 百分位
+            <span class="pct-range">（区间 10.0 ~ 97.6，中位 53.0）</span>
+          </div>
+          <div class="rsi-legend" style="margin-top:10px;text-align:center">25为观察点，低于25越低越买</div>
+        </div>
+      </div>
+          <div class="tech-cell">
+        <div class="tech-label">7周RSI</div>
+        <div class="rsi-hint buy">进入买点</div>
+        <div class="tech-num" style="color:#7B1818">21.8</div>
+        <div class="tech-dev" style="color:#7B1818">RSI偏离 -18.2%</div>
+        <div class="gauge-wrap">
+          <div class="gauge-obs-label" style="left:40%">▼观察点</div>
+          <div class="gauge-bar gauge-bar-7w">
+            <div class="gauge-mark obs" style="left:40%"></div>
+            <div class="gauge-mark buy" style="left:35%"></div>
+            <div class="gauge-mark buy" style="left:30%"></div>
+            <div class="gauge-mark buy" style="left:25%"></div>
+            <div class="gauge-mark buy" style="left:20%"></div>
+            <div class="gauge-mark buy" style="left:15%"></div>
+            <div class="gauge-mark buy" style="left:10%"></div>
+            <div class="gauge-mark buy" style="left:5%"></div>
+            <div class="gauge-dot" style="left:21.8%;color:#7B1818"></div>
+          </div>
+          <div class="gauge-ticks">
+            <div class="gauge-tick top" style="left:5%">5</div>
+            <div class="gauge-tick top" style="left:10%">10</div>
+            <div class="gauge-tick top" style="left:15%">15</div>
+            <div class="gauge-tick top" style="left:20%">20</div>
+            <div class="gauge-tick top" style="left:25%">25</div>
+            <div class="gauge-tick top" style="left:30%">30</div>
+            <div class="gauge-tick top" style="left:35%">35</div>
+            <div class="gauge-tick top" style="left:40%">40</div>
+            <div class="gauge-tick top" style="left:50%">50</div>
+            <div class="gauge-tick top" style="left:75%">75</div>
+          </div>
+          <div class="rsi-pct-line" data-pct1y="0.0" data-min1y="21.8" data-max1y="86.2" data-median1y="58.8" data-pct3y="0.6" data-min3y="13.6" data-max3y="86.2" data-median3y="58.3" data-pctall="2.0" data-minall="13.6" data-maxall="100.0" data-medianall="61.1">
+            历史第 <strong class="pct-val" style="color:#c62828">0.6</strong> 百分位
+            <span class="pct-range">（区间 13.6 ~ 86.2，中位 58.3）</span>
+          </div>
+          <div class="rsi-legend" style="margin-top:10px;text-align:center">40为观察点，低于40越低越买</div>
+        </div>
+      </div>
+        </div>
+      </div></div>
+    <div class="main-grid">
+      <div class="card">
+        <h3 style="color:#0ea882">净值与阶段收益</h3>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:18px">
+          <div><span style="color:#5a6070;font-size:13px">累计净值</span><br><b style="font-size:20px">3.1711</b></div>
+          <div><span style="color:#5a6070;font-size:13px">日期</span><br><b style="font-size:16px">2026-06-18</b></div>
+          <div><span style="color:#5a6070;font-size:13px">数据天数</span><br><b>3673 个交易日</b></div>
+          <div></div>
+        </div>
+        <table>
+          <tr><th>阶段</th><th>收益率</th><th>走势</th></tr>      <tr><td>近1周</td><td style="color:#d64555;font-weight:700">-0.64%</td><td style="font-size:11px;color:#d64555">█</td></tr>
+      <tr><td>近1月</td><td style="color:#d64555;font-weight:700">-1.37%</td><td style="font-size:11px;color:#d64555">████</td></tr>
+      <tr><td>近3月</td><td style="color:#d64555;font-weight:700">-2.24%</td><td style="font-size:11px;color:#d64555">██████</td></tr>
+      <tr><td>近6月</td><td style="color:#d64555;font-weight:700">-0.95%</td><td style="font-size:11px;color:#d64555">██</td></tr>
+      <tr><td>近1年</td><td style="color:#0ea882;font-weight:700">+4.21%</td><td style="font-size:11px;color:#0ea882">████████████</td></tr>
+      <tr><td>近2年</td><td style="color:#0ea882;font-weight:700">+15.78%</td><td style="font-size:11px;color:#0ea882">███████████████████████████████████</td></tr>
+</table>
+      </div>
+      <div class="card">
+        <h3 style="color:#d64555">风险指标</h3>
+        <div style="margin-bottom:24px">
+          <div style="font-size:13px;color:#5a6070;margin-bottom:4px">年化波动率 (20日)</div>
+          <div style="font-size:32px;font-weight:800;color:#111">4.64%</div>
+        </div>
+        <div style="margin-bottom:24px">
+          <div style="font-size:13px;color:#5a6070;margin-bottom:4px">年化波动率 (60日)</div>
+          <div style="font-size:32px;font-weight:800;color:#111">5.62%</div>
+        </div>
+        <div>
+          <div style="font-size:13px;color:#5a6070;margin-bottom:4px">近1年最大回撤</div>
+          <div style="font-size:32px;font-weight:800;color:#d64555">3.92%</div>
+        </div>
+      </div>
+    </div>
+    <div class="main-grid">
+      <div class="card" style="grid-column:1/-1">
+        <h3 style="color:#3168d8">同类红利ETF近1年收益对比</h3>
+        <table><tr><th>排名</th><th>名称</th><th style="text-align:right">近1年收益</th><th></th></tr>      <tr style=""><td>1</td><td>红利质量ETF华夏</td><td style="text-align:right;color:#0ea882;font-weight:700">+17.14%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>2</td><td>红利ETF易方达</td><td style="text-align:right;color:#d64555;font-weight:700">-1.32%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>3</td><td>红利ETF华泰柏瑞</td><td style="text-align:right;color:#d64555;font-weight:700">-1.34%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>4</td><td>中证红利ETF招商</td><td style="text-align:right;color:#d64555;font-weight:700">-1.59%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>5</td><td>红利低波华泰柏瑞</td><td style="text-align:right;color:#d64555;font-weight:700">-5.67%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>6</td><td>红利低波50ETF南方</td><td style="text-align:right;color:#d64555;font-weight:700">-6.84%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>7</td><td>红利低波100景顺</td><td style="text-align:right;color:#d64555;font-weight:700">-8.24%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+      <tr style=""><td>8</td><td>红利低波易方达</td><td style="text-align:right;color:#d64555;font-weight:700">-9.09%</td><td style="color:#0ea882;font-weight:700"></td></tr>
+</table>
+      </div>
+    </div>
+    
+    
+    </div>
 
 
 <div class="footer">
-  红利策略ETF深度分析 | 2026-06-20 02:38<br>
+  红利策略ETF深度分析 | 2026-06-20 03:34<br>
   数据源: 新浪(行情) + 天天基金(净值) + 基金季报/指数成分股 + baostock(估值/行业/股息)<br>
   重要声明: 本报告仅供投资参考，不构成投资建议。投资有风险，入市需谨慎。
 </div>
@@ -4429,7 +5187,10 @@ const PRODUCT_DATA = {
   "020602": { name: "易方达红利低波ETF联接A", display_code: "563020", nav_str: "1.1090", nav_date: "2026-06-18", price_source: "累计净值", index_name: "红利低波(930955)", category: "常规红利" },
   "021550": { name: "博时中证红利低波动100ETF联接A", display_code: "159307", nav_str: "1.1339", nav_date: "2026-06-18", price_source: "累计净值", index_name: "红利低波100(930955)", category: "常规红利" },
   "012708": { name: "东方红中证东方红红利低波动指数A", display_code: "931446", nav_str: "1.3695", nav_date: "2026-06-18", price_source: "累计净值", index_name: "东证红利低波(931446)", category: "常规红利" },
-  "515450": { name: "红利低波50ETF南方", display_code: "515450", nav_str: "1.7819", nav_date: "2026-06-18", price_source: "累计净值", index_name: "标普中国A股大盘红利低波50", category: "常规红利" }
+  "515450": { name: "红利低波50ETF南方", display_code: "515450", nav_str: "1.7819", nav_date: "2026-06-18", price_source: "累计净值", index_name: "标普中国A股大盘红利低波50", category: "常规红利" },
+  "006567": { name: "中泰星元价值优选灵活配置混合A", display_code: "006567", nav_str: "2.6984", nav_date: "2026-06-18", price_source: "累计净值", index_name: "", category: "价值基金" },
+  "017415": { name: "中泰元和价值精选混合A", display_code: "017415", nav_str: "1.1161", nav_date: "2026-06-18", price_source: "累计净值", index_name: "", category: "价值基金" },
+  "090013": { name: "大成竞争优势混合A", display_code: "090013", nav_str: "3.1711", nav_date: "2026-06-18", price_source: "累计净值", index_name: "", category: "价值基金" }
 };
 
 function switchToProduct(code) {
@@ -4465,8 +5226,8 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     if (code === 'dashboard') {
       document.getElementById('header-name').textContent = '红利策略综合概览';
       document.getElementById('header-index').textContent = 'RSI + 均线偏离加权评分';
-      document.getElementById('header-cat').textContent = '能源/资源红利 + 常规红利';
-      document.getElementById('header-nav').textContent = '11只';
+      document.getElementById('header-cat').textContent = '能源/资源红利 + 常规红利 + 价值基金';
+      document.getElementById('header-nav').textContent = '14只';
       document.getElementById('header-src').textContent = '技术指标综合';
       document.getElementById('header-date').textContent = '2026-06-20';
     } else {

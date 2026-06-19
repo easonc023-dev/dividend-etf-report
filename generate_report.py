@@ -127,6 +127,36 @@ PRODUCTS = [
         'sina_sym': 'sh515450',
         'index_name': '标普中国A股大盘红利低波50',
     },
+
+    # -- 价值基金 --
+
+    {
+        'code': '006567',
+        'name': '中泰星元价值优选灵活配置混合A',
+        'tab': '中泰星元价值优选',
+        'category': '价值基金',
+        'type': 'mixed_fund',
+        'sina_sym': None,
+        'index_name': None,
+    },
+    {
+        'code': '017415',
+        'name': '中泰元和价值精选混合A',
+        'tab': '中泰元和价值精选',
+        'category': '价值基金',
+        'type': 'mixed_fund',
+        'sina_sym': None,
+        'index_name': None,
+    },
+    {
+        'code': '090013',
+        'name': '大成竞争优势混合A',
+        'tab': '大成竞争优势',
+        'category': '价值基金',
+        'type': 'mixed_fund',
+        'sina_sym': None,
+        'index_name': None,
+    },
 ]
 
 # ═══════════════════════════════════════════════════════════════
@@ -346,6 +376,66 @@ STRATEGY_PROFILES = {
         'rebalance': '每半年（3月第三个周五、9月第三个周五收盘后）',
         'constituents': '50只',
         'desc': '标普道琼斯指数公司编制的A股大盘红利低波策略指数，具备国际指数品牌的严格编制标准（盈利质量+流动性+股息率+低波动四重筛选），单股权重上限5%保障分散化，相较国内同类指数更强调盈利质量。',
+    },
+
+    # -- 价值基金 --
+
+    '006567': {
+        'fund_full_name': '中泰星元价值优选灵活配置混合A',
+        'fund_type': '混合型基金（主动管理）',
+        'inception': '2019-09-06',
+        'company': '中泰证券(上海)资管',
+        'underlying_etf': None,
+        'index_name': None,
+        'factors': [
+            ('深度价值选股', '坚持自下而上的深度价值投资框架，寻找市场价格低于企业内生价值的标的。不以短期业绩排名为导向，注重安全边际与长期复合收益，典型持仓周期以年为单位'),
+            ('低估值保护', '要求买入标的PE/PB显著低于其历史中枢和行业平均水平，通过估值保护构建下行缓冲。不参与高估值成长股博弈，宁可错过也不追高'),
+            ('高质量企业偏好', '偏好具有强品牌护城河、高ROE（通常>15%）、低财务杠杆、现金流充裕的企业。聚焦消费、制造、金融等传统行业中具备长期竞争优势的龙头公司'),
+            ('集中持仓+低换手', '前10大持仓通常占净值60%以上，年换手率远低于行业平均（通常<50%）。基金经理姜诚以"买入并持有"著称，不做短期交易和行业轮动'),
+        ],
+        'scope': '灵活配置于A股（沪深主板、创业板）及港股通标的，不设行业和市值硬性限制。实际持仓高度集中于传统制造业（家电、建材、化工）、金融（国有大行、保险）、消费（白酒、家电）等具备稳定ROE和充裕自由现金流的成熟行业。持股数量约20-30只，持仓高度集中。',
+        'weighting': '基金经理主观配置，个股集中度极高（前10大持仓占净值超60%）',
+        'rebalance': '无固定再平衡周期，仅在估值优势消失或基本面恶化时卖出',
+        'constituents': '高度集中，通常持有20-30只股票',
+        'desc': '姜诚管理的深度价值风格代表基金，不跟风不抱团，坚持自下而上挖掘具备安全边际的低估优质企业，以低换手率长期持有实现复利积累，是A股市场上风格最纯正的价值型主动管理基金之一。',
+    },
+    '017415': {
+        'fund_full_name': '中泰元和价值精选混合A',
+        'fund_type': '混合型基金（主动管理）',
+        'inception': '2023-02-20',
+        'company': '中泰证券(上海)资管',
+        'underlying_etf': None,
+        'index_name': None,
+        'factors': [
+            ('价值+质量双维度精选', '在传统低估值框架上叠加企业质量维度，选取ROE/ROIC处于行业前列（通常要求>12%）、资产负债率合理（<50%）、自由现金流充沛的公司，避免"以低估值买入烂公司"的价值陷阱'),
+            ('合理价格买入好公司', '相较于中泰星元(006567)的深度价值风格，本基金对估值的容忍度略高，愿意为确定性的高质量公司支付适度溢价。核心理念：以合理价格买入优质企业，优于以低价买入平庸企业'),
+            ('行业均衡配置', '在保持价值风格不变的前提下，行业分布较星元更均衡，避免单一行业超配带来的集中度风险。消费、制造、金融、公用事业等均有覆盖，单行业上限通常控制在30%以内'),
+            ('宏观经济周期择时', '基金经理会结合宏观经济（PMI、利率、信用周期）和行业景气度进行适度仓位管理，在经济衰退末期逆向加仓、在经济过热期减仓控制回撤'),
+        ],
+        'scope': '选股范围为A股（沪深主板、科创板、创业板）及港股通全部标的，行业覆盖消费、制造、金融、能源、公用事业等传统价值型行业，同时适度配置医药、互联网等具备消费属性且估值合理的新兴行业龙头。持股数量约30-50只，集中度低于星元。',
+        'weighting': '基金经理主观配置，个股集中度较高（前10大约占净值40-50%）',
+        'rebalance': '基于微观选股和宏观择时动态调整，无固定周期',
+        'constituents': '适度集中，通常持有30-50只股票',
+        'desc': '中泰资管价值投资系列的进阶版，在深度价值的基础上叠加质量因子，以\"合理价格买入优质企业\"为核心理念。与006567同属姜诚管理但选股框架略有差异，是价值策略体系中的差异化配置选项。',
+    },
+    '090013': {
+        'fund_full_name': '大成竞争优势混合A',
+        'fund_type': '混合型基金（主动管理）',
+        'inception': '2014-04-23',
+        'company': '大成基金',
+        'underlying_etf': None,
+        'index_name': None,
+        'factors': [
+            ('竞争优势分析框架', '核心选股方法论：寻找具备可持续竞争优势（经济护城河）的企业——包括品牌定价权、成本优势、网络效应、转换成本、规模效应五大来源。只有具备长期竞争优势的企业，才能维持高ROE和高自由现金流'),
+            ('逆向布局+安全边际', '偏好在市场悲观、行业低谷期逆向买入。不仅看企业质地，更严格计算内在价值与市场价格之间的安全边际空间（通常要求>30%），确保买入价格有足够缓冲'),
+            ('管理层评估', '将管理层诚信和资本配置能力纳入核心权重——回避有损害股东利益历史的管理团队，偏好管理层持股比例高、信息披露透明、资本纪律严格的企业'),
+            ('长期持有+集中投资', '典型持有期3-5年，不追逐短期热点和风格轮动。持仓集中于20-30只经过深度研究的高确信度标的，基金经理徐彦以稳健和定力著称'),
+        ],
+        'scope': '选股范围为A股（沪深主板、科创板、创业板）优质上市公司，深耕消费（家电、白酒、食品）、先进制造（高端装备、化工新材料）、金融（银行、保险）等具备长期竞争优势的行业。注重估值与质量的平衡，不限于纯低估值策略。持股数量约20-30只，集中度较高。',
+        'weighting': '基金经理深度研究驱动的主观配置，集中度高（前10大约占净值55%以上）',
+        'rebalance': '长周期持有，仅在竞争优势弱化或估值过度透支时调整',
+        'constituents': '集中持仓，通常持有20-30只股票',
+        'desc': '徐彦管理的竞争优势框架价值基金，以\"买入具备可持续竞争优势的优质企业\"为核心策略，强调管理层评估和安全边际双重保护。近10年老基金，长期业绩稳健，是A股价值投资流派的标杆之一。',
     },
 }
 
@@ -1255,8 +1345,8 @@ def _build_score_card(d):
     s = d['score']
     composite = s['composite']
     grade = s['grade']
-    cat_key = 'energy' if '能源' in d['category'] else 'regular'
-    cat_color = '#c88a0c' if cat_key == 'energy' else '#0ea882'
+    cat_key = _cat_key(d['category'])
+    cat_color = _cat_color(cat_key)
 
     # 4个微型信号
     sig_rsi6  = indicator_signal_rsi(d.get('rsi_6d', 50), 25)
@@ -1334,8 +1424,8 @@ def build_dashboard_panel(all_data, categories):
     """生成首页概览面板HTML"""
     sections = ''
     for cat, items in categories.items():
-        cat_key = 'energy' if '能源' in cat else 'regular'
-        cat_color = '#c88a0c' if cat_key == 'energy' else '#0ea882'
+        cat_key = _cat_key(cat)
+        cat_color = _cat_color(cat_key)
 
         # 按综合分降序, 失败的排最后
         sorted_items = sorted(items, key=lambda d: (
@@ -1395,7 +1485,18 @@ for d in all_data:
 CAT_COLORS = {
     '能源/资源红利': '#c88a0c',  # 暖金
     '常规红利': '#0ea882',        # 绿
+    '价值基金': '#1a6fb5',        # 蓝（理性/价值）
 }
+
+def _cat_key(cat):
+    """类别名 → CSS key"""
+    if '能源' in cat: return 'energy'
+    if '价值' in cat: return 'value'
+    return 'regular'
+
+def _cat_color(cat_key):
+    """CSS key → 颜色"""
+    return {'energy': '#c88a0c', 'regular': '#0ea882', 'value': '#1a6fb5'}[cat_key]
 
 # 概览Tab（默认选中）
 pct_selector_html = '''<div class="pct-selector">
@@ -1411,8 +1512,8 @@ tab_html += '  </div>\n'
 
 # 分类Tab
 for cat, items in categories.items():
-    cat_color = CAT_COLORS.get(cat, '#0ea882')
-    cat_key = 'energy' if '能源' in cat else 'regular'
+    cat_color = _cat_color(_cat_key(cat))
+    cat_key = _cat_key(cat)
     tab_html += '  <div class="tab-category" data-cat="%s">\n' % cat
     tab_html += '    <span class="tab-cat-dot cat-%s"></span>\n' % cat_key
     tab_html += '    <span class="tab-cat-label">%s</span>\n' % cat
@@ -1439,7 +1540,7 @@ def get_header_info(code):
             'name': '红利策略综合概览',
             'display_code': '%d产品' % len(all_data),
             'index_name': 'RSI + 均线偏离加权评分',
-            'category': '能源/资源红利 + 常规红利',
+            'category': '能源/资源红利 + 常规红利 + 价值基金',
             'nav_str': '%d只' % len(all_data), 'price_source': '技术指标综合', 'nav_date': today.strftime('%Y-%m-%d'),
         }
     for d in all_data:
@@ -1497,6 +1598,7 @@ CSS = """
   }
   .tab-cat-dot.cat-energy { background: #c88a0c; }
   .tab-cat-dot.cat-regular { background: #0ea882; }
+  .tab-cat-dot.cat-value { background: #1a6fb5; }
   .tab-cat-label {
     font-size: 12px; font-weight: 600; color: #2a3140;
     letter-spacing: 0.3px;
@@ -1538,6 +1640,11 @@ CSS = """
     background: #0ea882;
     color: #fff;
     box-shadow: 0 2px 8px rgba(14,168,130,0.28);
+  }
+  .tab-btn.cat-value.active {
+    background: #1a6fb5;
+    color: #fff;
+    box-shadow: 0 2px 8px rgba(26,111,181,0.28);
   }
   .tab-btn.active .tab-code {
     color: rgba(255,255,255,0.6);
@@ -1745,6 +1852,7 @@ CSS = """
   }
   .dash-dot.cat-energy { background: #c88a0c; }
   .dash-dot.cat-regular { background: #0ea882; }
+  .dash-dot.cat-value { background: #1a6fb5; }
   .dash-cat-name {
     font-size: 16px; font-weight: 700; color: #2a3140;
   }
@@ -1775,6 +1883,7 @@ CSS = """
   }
   .score-card.cat-energy { border-top: 3px solid #c88a0c; }
   .score-card.cat-regular { border-top: 3px solid #0ea882; }
+  .score-card.cat-value { border-top: 3px solid #1a6fb5; }
   .score-card.error-card {
     opacity: 0.55;
     cursor: default;
@@ -2059,7 +2168,7 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     if (code === 'dashboard') {
       document.getElementById('header-name').textContent = '红利策略综合概览';
       document.getElementById('header-index').textContent = 'RSI + 均线偏离加权评分';
-      document.getElementById('header-cat').textContent = '能源/资源红利 + 常规红利';
+      document.getElementById('header-cat').textContent = '能源/资源红利 + 常规红利 + 价值基金';
       document.getElementById('header-nav').textContent = '%s';
       document.getElementById('header-src').textContent = '技术指标综合';
       document.getElementById('header-date').textContent = '%s';
